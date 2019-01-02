@@ -1,7 +1,3 @@
-# Angular 7 boilerplate
+# Demeter front-end project
 
-This Angular 7 boilerplate contains:
-
-- Angular Material
-- Flex Layout
-- Auth module with sign-up and login forms
+This is Demeter front-end project.
