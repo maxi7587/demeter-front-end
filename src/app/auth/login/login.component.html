@@ -1,0 +1,10 @@
+<form [formGroup]="login_form" fxLayout="column" fxLayoutAlign="center center">
+    <mat-form-field>
+        <input matInput formControlName="email" placeholder="Correo electrónico">
+        <mat-error *ngIf="login_form.controls.email.invalid">Correo no válido</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput formControlName="password" placeholder="Contraseña">
+        <mat-error *ngIf="login_form.controls.password.invalid">Debes colocar tu contraseña</mat-error>
+    </mat-form-field>
+</form>

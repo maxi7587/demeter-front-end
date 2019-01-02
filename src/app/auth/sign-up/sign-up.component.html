@@ -1,0 +1,22 @@
+<form [formGroup]="sign_up_form" fxLayout="column" fxLayoutAlign="center center">
+    <mat-form-field>
+        <input matInput formControlName="first_name" placeholder="Nombre">
+        <mat-error *ngIf="sign_up_form.controls.first_name.invalid">Debes colocar tu nombre</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput formControlName="last_name" placeholder="Apellido">
+        <mat-error *ngIf="sign_up_form.controls.last_name.invalid">Debes colocar tu apellido</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput formControlName="email" placeholder="Correo electrónico">
+        <mat-error *ngIf="sign_up_form.controls.email.invalid">Debes colocar tu correo electrónico</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input type="password" matInput formControlName="password" placeholder="Contraseña">
+        <mat-error *ngIf="sign_up_form.controls.password.invalid">Debes elegir una contraseña</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input type="password" matInput formControlName="repeat_password" placeholder="Confirma tu contraseña">
+        <mat-error *ngIf="sign_up_form.controls.repeat_password.invalid">Debes confirmar tu contraseña</mat-error>
+    </mat-form-field>
+</form>
