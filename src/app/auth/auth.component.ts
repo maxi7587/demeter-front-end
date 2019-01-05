@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+      console.log('inside auth component CONSTRUCTOR');
+  }
 
   ngOnInit() {
+      console.log('inside auth component ONINIT');
   }
 
 }

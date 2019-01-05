@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'demeter-front';
+
+  public constructor() {
+      console.log('inside app component CONSTRUCTOR');
+  }
 }
