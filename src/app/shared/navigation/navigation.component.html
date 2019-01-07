@@ -1,0 +1,23 @@
+<mat-sidenav-container class="height-100">
+    <mat-sidenav #sidenav mode="side" [opened]="true" role="navigation">
+        <mat-nav-list>
+            <h3 mat-subheader>Secciones</h3>
+            <mat-list-item (click)="goToSection(section.key)" *ngFor="let section of sections">
+                <mat-icon mat-list-icon *ngIf="section.icon">section.icon</mat-icon>
+                <h4 mat-line>{{ section.name }}</h4>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="warn">
+            <mat-toolbar-row>
+                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()" color="primary">
+                    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                </button>
+                <h2>{{ route_data.title }}</h2>
+                <!-- <span><img src="./assets/image.png"></span> -->
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>

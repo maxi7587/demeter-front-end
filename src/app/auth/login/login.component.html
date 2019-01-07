@@ -4,8 +4,8 @@
         <mat-error *ngIf="login_form.controls.email.invalid">Correo no válido</mat-error>
     </mat-form-field>
     <mat-form-field>
-        <input matInput formControlName="password" placeholder="Contraseña">
+        <input matInput type="password" formControlName="password" placeholder="Contraseña">
         <mat-error *ngIf="login_form.controls.password.invalid">Debes colocar tu contraseña</mat-error>
     </mat-form-field>
 </form>
-<button mat-button type="button" name="button" (click)="login()">LOGIN</button>
+<button mat-button (click)="login()">LOGIN</button>

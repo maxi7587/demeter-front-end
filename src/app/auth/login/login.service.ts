@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +13,27 @@ export class LoginService {
     private client_secret =
         'DM4f0qkil41Y8Q4Iv7AmzVGntCkKaGksZKCsyrfPvPlyuG57JJJYKD6TxuHz3N9JBEih41vB9ciieh3cv4y7mTjtreuhthyLPcmkHWdI9KvdRQWBVSq3hukCuV0QTAko';
 
-    public constructor (
-        private httpClient: HttpClient
-    ) { }
+    public constructor (public oAuthService: OAuthService) { }
 
-    public login() {
+    public login(username, password): Promise<void> {
         console.log('INSIDE login service login()');
 
-        return this.httpClient.post(
-            this.login_url,
-            {
-                grant_type: 'password',
-                username: 'test',
-                password: 'test',
-                client_id: this.client_id,
-                client_secret: this.client_secret
-            }
-        );
+        return this.oAuthService.fetchTokenUsingPasswordFlow(username, password).then((resp) => {
+              // Loading data about the user
+              return this.oAuthService.loadUserProfile();
+        }).then(data => {
+              // Using the loaded user data
+              // let claims = this.oAuthService.getIdentityClaims();
+              // if (claims) {
+              //     console.log('given_name ----', claims.given_name);
+              // }
+              console.log('logged in, recieved data ---->', data);
+        });
+    }
+
+    public refreshToken() {
+        this.oAuthService.refreshToken().then(() => {
+            console.log('ok');
+        });
     }
 }
