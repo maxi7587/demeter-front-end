@@ -30,7 +30,8 @@ export class NavigationComponent implements OnInit {
     }
 
     public goToSection(section) {
-        this.router.navigate([section], { relativeTo: this.activatedRoute });
+        console.log('WILL NAVIGATE TO SECTION', section);
+        this.router.navigate(['/' + section]);
     }
 
 }

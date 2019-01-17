@@ -14,18 +14,28 @@ const routes: Routes = [
         path: 'dashboard',
         data: { title: 'dashboard' },
         component: DashboardComponent,
-        children: [
-            {
-                path: 'fields',
-                data: { title: 'fields' },
-                component: FieldsComponent
-            },
-            {
-                path: 'profiles',
-                data: { title: 'profiles' },
-                component: ProfilesComponent
-            }
-        ]
+        // children: [
+        //     {
+        //         path: 'fields',
+        //         data: { title: 'fields' },
+        //         component: FieldsComponent
+        //     },
+        //     {
+        //         path: 'profiles',
+        //         data: { title: 'profiles' },
+        //         component: ProfilesComponent
+        //     }
+        // ]
+    },
+    {
+        path: 'fields',
+        data: { title: 'fields' },
+        component: FieldsComponent
+    },
+    {
+        path: 'profiles',
+        data: { title: 'profiles' },
+        component: ProfilesComponent
     }
     //     ]
     // }

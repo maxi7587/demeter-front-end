@@ -19,6 +19,9 @@ export class ProfilesComponent implements OnInit {
     public constructor(private profilesService: ProfilesService) {
         this.profilesService.getProfiles().subscribe(profiles => {
             this.profiles = profiles;
+            console.log(profiles);
+            console.log(profiles.results[0]);
+            // TODO: uncomment following for loop for desktop
             for (let key of Object.keys(profiles.results[0])) {
                 if (['id', 'url'].indexOf(key) === -1) {
                     this.columns.push(new Column(key, key));

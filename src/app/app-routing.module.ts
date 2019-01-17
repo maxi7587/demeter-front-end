@@ -9,7 +9,7 @@ const routes: Routes = [
     {
         path: 'company',
         loadChildren: 'src/app/company/company.module#CompanyModule'
-    },
+    }
     // {
     //     path: '**',
     //     loadChildren: 'src/app/auth/auth.module#AuthModule'
