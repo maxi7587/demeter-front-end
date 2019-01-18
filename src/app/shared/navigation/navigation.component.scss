@@ -1,3 +1,15 @@
-#main-toolbar {
+.background-transparent {
     background-color: transparent !important;
+}
+
+.position-absolute {
+    position: absolute !important;
+}
+
+.bottom {
+    bottom: 0;
+}
+
+.inherit-font {
+    font: inherit !important;
 }

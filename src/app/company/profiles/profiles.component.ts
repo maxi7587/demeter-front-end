@@ -22,15 +22,15 @@ export class ProfilesComponent implements OnInit {
             console.log(profiles);
             console.log(profiles.results[0]);
             // TODO: uncomment following for loop for desktop
-            for (let key of Object.keys(profiles.results[0])) {
-                if (['id', 'url'].indexOf(key) === -1) {
-                    this.columns.push(new Column(key, key));
-                }
-            }
-            console.log('----------------got profiles----------------');
-            console.log(this.profiles);
-            console.log(this.columns);
-            console.log('--------------------------------------------');
+            // for (let key of Object.keys(profiles.results[0])) {
+            //     if (['id', 'url'].indexOf(key) === -1) {
+            //         this.columns.push(new Column(key, key));
+            //     }
+            // }
+
+            // TODO: improve for mobile
+            this.columns.push(new Column('first_name', 'first_name', 'first_name'));
+            this.columns.push(new Column('info', 'first_name', '', 'info', 'end center'));
         });
     }
 

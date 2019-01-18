@@ -13,13 +13,25 @@ export class Column {
     private _title: string;
     set title(title: string) { this._title = title; }
     get title(): string { return this._title; }
+    private _avatar: string;
+    set avatar(avatar: string) { this._avatar = avatar; }
+    get avatar(): string { return this._avatar; }
+    private _icon: string;
+    set icon(icon: string) { this._icon = icon; }
+    get icon(): string { return this._icon; }
+    private _align: string;
+    set align(align: string) { this._align = align; }
+    get align(): string { return this._align; }
     private _pipe: Pipe;
     set pipe(pipe: Pipe) { this._pipe = pipe; }
     get pipe(): Pipe { return this._pipe; }
 
-    public constructor(key: string, title: string, pipe?: Pipe) {
+    public constructor(key: string, title: string, avatar?: string, icon?: string, align?: string, pipe?: Pipe) {
         this.key = key;
         this.title = title;
+        this.avatar = avatar;
+        this.icon = icon;
+        this.align = align;
         this.pipe = pipe;
     }
 }

@@ -8,6 +8,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
 
 @NgModule({
     declarations: [],
@@ -21,7 +23,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         MatListModule,
         MatIconModule,
         MatSidenavModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatAutocompleteModule
     ]
 })
 export class SharedMaterialModule { }
