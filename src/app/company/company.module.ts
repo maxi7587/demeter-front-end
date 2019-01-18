@@ -6,9 +6,10 @@ import { ProfilesComponent } from './profiles/profiles.component';
 import { DashboardComponent } from 'src/app/company/dashboard/dashboard.component';
 import { FieldsComponent } from 'src/app/company/fields/fields.component';
 import { CompanyComponent } from './company.component';
+import { ResourcesListComponent } from './resources-list/resources-list.component';
 
 @NgModule({
-    declarations: [DashboardComponent, FieldsComponent, ProfilesComponent, CompanyComponent],
+    declarations: [DashboardComponent, FieldsComponent, ProfilesComponent, CompanyComponent, ResourcesListComponent],
     imports: [
         CommonModule,
         SharedModule,

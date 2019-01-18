@@ -1,3 +1,6 @@
-<p>
-  fields works!
-</p>
+<app-table
+    *ngIf="fields.results"
+    [columns]="columns"
+    [rows]="fields.results"
+>
+</app-table>

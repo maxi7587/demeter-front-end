@@ -31,7 +31,7 @@ export class NavigationComponent implements OnInit {
 
     public goToSection(section) {
         console.log('WILL NAVIGATE TO SECTION', section);
-        this.router.navigate(['/' + section]);
+        this.router.navigate(['/company/' + section]);
     }
 
 }
