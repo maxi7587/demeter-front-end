@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { TaskTypesComponent } from 'src/app/company/task-types/task-types.component';
 import { TasksComponent } from 'src/app/company/tasks/tasks.component';
 import { CompanyComponent } from 'src/app/company/company.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -21,6 +22,11 @@ const routes: Routes = [
         path: 'tasks',
         data: { title: 'tasks' },
         component: TasksComponent
+    },
+    {
+        path: 'task_types',
+        data: { title: 'task_types' },
+        component: TaskTypesComponent
     },
     {
         path: 'profiles',

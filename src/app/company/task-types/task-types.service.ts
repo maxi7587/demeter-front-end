@@ -16,7 +16,7 @@ export class TaskTypesService {
 
     public constructor(private httpClient: HttpClient) { }
 
-    public getTaskTypess(options?): Observable<{[key: string]: any}> {
+    public getTaskTypes(options?): Observable<{[key: string]: any}> {
         return this.httpClient.get(environment.APIURL + 'task_types/');
     }
 

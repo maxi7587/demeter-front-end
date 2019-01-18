@@ -11,6 +11,8 @@ export class NavigationComponent implements OnInit {
     private _sections: Array<{ key: string; name: string; icon?: string }> = [
         { key: 'dashboard', name: 'Escritorio' },
         { key: 'profiles', name: 'Perfiles' },
+        { key: 'tasks', name: 'Tareas' },
+        { key: 'task_types', name: 'Tipos de tarea' },
         { key: 'fields', name: 'Campos' }
     ];
     get sections(): Array<{ key: string; name: string; icon?: string }> { return this._sections; }
