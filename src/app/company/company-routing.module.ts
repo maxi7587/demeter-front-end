@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ProfileEditComponent } from 'src/app/company/profiles/profile-edit/profile-edit.component';
 import { TaskTypesComponent } from 'src/app/company/task-types/task-types.component';
 import { TasksComponent } from 'src/app/company/tasks/tasks.component';
 import { CompanyComponent } from 'src/app/company/company.component';
@@ -32,6 +33,11 @@ const routes: Routes = [
         path: 'profiles',
         data: { title: 'profiles' },
         component: ProfilesComponent
+    },
+    {
+        path: 'profiles/:objectId',
+        data: { title: 'profile edit' },
+        component: ProfileEditComponent
     }
 ];
 

@@ -9,24 +9,30 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <h3 class="mat-subheading-2 app-basic-padding" fxHide.gt-xs>{{ route_data.title }} Acá va la ruta</h3>
-        <mat-toolbar color="primary" id="main-toolbar" ngClass.gt-xs="background-transparent" ngClass.xs="position-absolute bottom inherit-font">
-            <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()">
-                    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-                </button>
-                <h3 class="mat-subheading-2" fxHide.xs>{{ route_data.title }}</h3>
-                <app-expandable-input></app-expandable-input>
-                <!-- <mat-form-field appearance="standard">
-                    <mat-icon matPrefix>search</mat-icon>
-                    <input matInput type="search" placeholder="Buscar" [(ngModel)]="search_value">
-                    <button mat-icon-button *ngIf="search_value" matSuffix aria-label="Clear" (click)="search_value=''">
-                        <mat-icon>close</mat-icon>
+        <div class="height-100" fxLayout="column" fxLayoutAlign="space-between stretch">
+            <h3 class="mat-subheading-2 app-basic-padding" fxHide.gt-xs>{{ route_data.title }} Acá va la ruta</h3>
+            <!-- <mat-toolbar color="primary" id="main-toolbar" ngClass.gt-xs="background-transparent" ngClass.xs="position-absolute bottom inherit-font">
+                <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+                    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()">
+                        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
                     </button>
-                </mat-form-field> -->
-                <!-- <span><img src="./assets/image.png"></span> -->
-            </mat-toolbar-row>
-        </mat-toolbar>
-        <ng-content></ng-content>
+                    <h3 class="mat-subheading-2" fxHide.xs>{{ route_data.title }}</h3>
+                    <app-expandable-input></app-expandable-input>
+                </mat-toolbar-row>
+            </mat-toolbar> -->
+            <div style="overflow: scroll">
+                <ng-content></ng-content>
+            </div>
+            <!-- <mat-toolbar color="primary" id="main-toolbar" style="position: sticky; bottom: 0"> -->
+            <mat-toolbar color="primary" id="main-toolbar">
+                <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+                    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()">
+                        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                    </button>
+                    <h3 class="mat-subheading-2" fxHide.xs>{{ route_data.title }}</h3>
+                    <app-expandable-input></app-expandable-input>
+                </mat-toolbar-row>
+            </mat-toolbar>
+        </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

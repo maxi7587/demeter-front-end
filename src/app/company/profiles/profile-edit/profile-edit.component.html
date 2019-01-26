@@ -1,5 +1,20 @@
 <form [formGroup]="profile_form">
-    <!-- <mat-form-field>
-        <input type="text" name="" value="">
-    </mat-form-field> -->
+    <mat-form-field>
+        <input matInput type="text" placeholder="Name" formControlName="first_name">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Apellido" formControlName="last_name">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Compañía" formControlName="company">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Rol" formControlName="role">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Horas diarias" formControlName="daily_working_hours">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Usuario del sistema" formControlName="user">
+    </mat-form-field>
 </form>
