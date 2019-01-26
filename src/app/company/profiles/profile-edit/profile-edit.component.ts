@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RolesService } from 'src/app/company/roles/roles.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -16,6 +17,8 @@ export class ProfileEditComponent implements OnInit {
         contact: new FormControl(),
         user: new FormControl()
     });
+
+    public roles: Array<RolesService>;
 
     public constructor() { }
 

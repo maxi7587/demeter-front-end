@@ -19,6 +19,8 @@ import { FieldElementsComponent } from './field-elements/field-elements.componen
 import { FieldElementsEditComponent } from './field-elements/field-elements-edit/field-elements-edit.component';
 import { UsersComponent } from './users/users.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { RolesComponent } from './roles/roles.component';
+import { RolEditComponent } from './roles/rol-edit/rol-edit.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +40,9 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
         FieldElementsComponent,
         FieldElementsEditComponent,
         UsersComponent,
-        UserEditComponent
+        UserEditComponent,
+        RolesComponent,
+        RolEditComponent
     ],
     imports: [
         CommonModule,

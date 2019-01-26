@@ -12,6 +12,14 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { AvatarModule } from 'ngx-avatar';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { ExpandableInputComponent } from './expandable-input/expandable-input.component';
+import { RolesService } from '../company/roles/roles.service';
+import { ProfilesService } from '../company/profiles/profiles.service';
+import { ToolsService } from '../company/tools/tools.service';
+import { TaskTypesService } from '../company/task-types/task-types.service';
+import { FieldElementsService } from '../company/field-elements/field-elements.service';
+import { FieldsService } from '../company/fields/fields.service';
+import { TasksService } from '../company/tasks/tasks.service';
+import { UsersService } from '../user/users.service';
 
 @NgModule({
     declarations: [TableComponent, DynamicPipe, NavigationComponent, AutocompleteComponent, ExpandableInputComponent],
@@ -38,7 +46,8 @@ import { ExpandableInputComponent } from './expandable-input/expandable-input.co
     ],
     providers: [
         BasicDRFService,
-        CompaniesService
+        CompaniesService,
+        RolesService,
     ]
 })
 export class SharedModule { }

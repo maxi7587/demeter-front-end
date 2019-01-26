@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
     declarations: [],
@@ -24,7 +24,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
         MatIconModule,
         MatSidenavModule,
         MatToolbarModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatCheckboxModule
     ]
 })
 export class SharedMaterialModule { }

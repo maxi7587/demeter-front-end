@@ -1,20 +1,20 @@
-<form [formGroup]="profile_form">
+<form [formGroup]="profile_form" fxLayout="column" fxLayoutAlign="start center">
     <mat-form-field>
         <input matInput type="text" placeholder="Name" formControlName="first_name">
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="text" placeholder="Apellido" formControlName="last_name">
+        <input matInput type="text" placeholder="Last name" formControlName="last_name">
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="text" placeholder="Compañía" formControlName="company">
+        <input matInput type="text" placeholder="Company" formControlName="company">
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="text" placeholder="Rol" formControlName="role">
+        <mat-select placeholder="Role" formControlName="role">
+            <mat-opion *ngFor"let role of roles"></mat-option>
+        </mat-select>
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="text" placeholder="Horas diarias" formControlName="daily_working_hours">
+        <input matInput type="number" placeholder="Daily working hours" formControlName="daily_working_hours">
     </mat-form-field>
-    <mat-form-field>
-        <input matInput type="text" placeholder="Usuario del sistema" formControlName="user">
-    </mat-form-field>
+    <mat-checkbox formControlName="user">Usuario del sistema</mat-checkbox>
 </form>
