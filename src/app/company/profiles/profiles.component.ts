@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfilesService } from 'src/app/company/profiles/profiles.service';
+import { ProfilesService } from 'src/app/shared/services/profiles.service';
 import { HttpClient } from '@angular/common/http';
 import { Column } from 'src/app/shared/table/table-elements';
 
@@ -17,7 +17,7 @@ export class ProfilesComponent implements OnInit {
     get columns(): Array<Column> { return this._columns; }
 
     public constructor(private profilesService: ProfilesService) {
-        this.profilesService.getProfiles().subscribe(profiles => {
+        this.profilesService.all().subscribe(profiles => {
             this.profiles = profiles;
             console.log(profiles);
             console.log(profiles.results[0]);

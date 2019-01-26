@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ProfilesService } from 'src/app/company/profiles/profiles.service';
+import { ProfilesService } from 'src/app/shared/services/profiles.service';
 import { HttpClient } from '@angular/common/http';
 import { Column } from 'src/app/shared/table/table-elements';
 
@@ -35,7 +35,7 @@ export class ResourcesListComponent implements OnInit {
         this.activatedRoute.params.subscribe(
             params => this._params = params
         );
-        this.profilesService.getProfiles().subscribe(profiles => {
+        this.profilesService.all().subscribe(profiles => {
             this.collection = profiles;
             console.log(profiles);
             console.log(profiles.results[0]);

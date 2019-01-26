@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskTypesService } from 'src/app/company/task-types/task-types.service';
+import { TaskTypesService } from 'src/app/shared/services/task-types.service';
 import { HttpClient } from '@angular/common/http';
 import { Column } from 'src/app/shared/table/table-elements';
 
@@ -18,7 +18,7 @@ export class TaskTypesComponent implements OnInit {
     get columns(): Array<Column> { return this._columns; }
 
     public constructor(private taskTypesService: TaskTypesService) {
-        this.taskTypesService.getTaskTypes().subscribe(tasks => {
+        this.taskTypesService.all().subscribe(tasks => {
             this.tasks = tasks;
             console.log(tasks);
             console.log(tasks.results[0]);

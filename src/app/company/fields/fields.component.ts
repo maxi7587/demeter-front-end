@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FieldsService } from 'src/app/company/fields/fields.service';
+import { FieldsService } from 'src/app/shared/services/fields.service';
 import { HttpClient } from '@angular/common/http';
 import { Column } from 'src/app/shared/table/table-elements';
 
@@ -18,7 +18,7 @@ export class FieldsComponent implements OnInit {
     get columns(): Array<Column> { return this._columns; }
 
     public constructor(private fieldsService: FieldsService) {
-        this.fieldsService.getFields().subscribe(fields => {
+        this.fieldsService.all().subscribe(fields => {
             this.fields = fields;
             console.log(fields);
             console.log(fields.results[0]);
