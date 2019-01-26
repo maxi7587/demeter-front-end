@@ -30,8 +30,9 @@ export class TasksComponent implements OnInit {
             // }
 
             // TODO: improve for mobile
-            this.columns.push(new Column('first_name', 'first_name', 'first_name'));
-            this.columns.push(new Column('info', 'first_name', '', 'info', 'end center'));
+            this.columns.push(new Column('name', 'name', 'name'));
+            this.columns.push(new Column('field', 'field', ''));
+            this.columns.push(new Column('info', 'name', '', 'info', 'end center'));
         });
     }
 
