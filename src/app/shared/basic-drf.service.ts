@@ -16,11 +16,11 @@ export class DRFCollection<T> {
     providedIn: 'root'
 })
 export class BasicDRFService<T> {
-    private _type: string;
+    protected _type: string;
     set type(type: string) { this._type = type; }
     get type(): string { return this._type; }
 
-    public constructor(private httpClient: HttpClient) { }
+    public constructor(protected httpClient: HttpClient) { }
 
     public all(type?, options?): Observable<DRFCollection<T>> {
         console.log('type ---->', this.type);

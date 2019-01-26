@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { BasicDRFService } from 'src/app/shared/basic-drf.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-export class Profile {
+export class Task {
     public id: string;
     public url: string;
     public name: string;
@@ -27,12 +28,6 @@ export class Profile {
 @Injectable({
   providedIn: 'root'
 })
-export class TasksService {
-
-    public constructor(private httpClient: HttpClient) { }
-
-    public getTasks(options?): Observable<{[key: string]: any}> {
-        return this.httpClient.get(environment.APIURL + 'tasks/');
-    }
-
+export class TasksService extends BasicDRFService<Task> {
+    protected _type = 'tasks';
 }

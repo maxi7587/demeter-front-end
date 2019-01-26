@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BasicDRFService } from 'src/app/shared/basic-drf.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -12,12 +13,6 @@ export class TaskType {
 @Injectable({
   providedIn: 'root'
 })
-export class TaskTypesService {
-
-    public constructor(private httpClient: HttpClient) { }
-
-    public getTaskTypes(options?): Observable<{[key: string]: any}> {
-        return this.httpClient.get(environment.APIURL + 'task_types/');
-    }
-
+export class TaskTypesService extends BasicDRFService<TaskType> {
+    protected _type = 'task_types';
 }
