@@ -175,7 +175,7 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/flex-layout@^7.0.0-beta.22":
+"@angular/flex-layout@7.0.0-beta.22":
   version "7.0.0-beta.22"
   resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-7.0.0-beta.22.tgz#6b48e21ffdf0c3004b606f6dd1e79b578429bbba"
   dependencies:
@@ -214,6 +214,12 @@
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-7.1.0.tgz#19b66e127065dfc2106793e81d660790422e73b0"
   dependencies:
     tslib "^1.9.0"
+
+"@auth0/angular-jwt@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@auth0/angular-jwt/-/angular-jwt-2.1.0.tgz#5c90ee7d927e70cefa8db7c89a64eb67c05a912d"
+  dependencies:
+    url "^0.11.0"
 
 "@ngtools/webpack@7.1.0":
   version "7.1.0"
@@ -504,7 +510,7 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular-oauth2-oidc@^5.0.2:
+angular-oauth2-oidc@5.0.2:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/angular-oauth2-oidc/-/angular-oauth2-oidc-5.0.2.tgz#c70a07f3ad4379e35d9a75fc8a53df63dae93af6"
   dependencies:
@@ -3692,7 +3698,7 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-material-design-icons@^3.0.1:
+material-design-icons@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/material-design-icons/-/material-design-icons-3.0.1.tgz#9a71c48747218ebca51e51a66da682038cdcb7bf"
 
@@ -3992,7 +3998,7 @@ neo-async@^2.5.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
 
-ngx-avatar@^3.2.0:
+ngx-avatar@3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ngx-avatar/-/ngx-avatar-3.2.0.tgz#0581e75ae4cc503e269a7eb157395782cab01d76"
   dependencies:

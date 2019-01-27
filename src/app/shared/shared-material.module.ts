@@ -10,6 +10,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [],
@@ -25,7 +26,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatSidenavModule,
         MatToolbarModule,
         MatAutocompleteModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatSelectModule
     ]
 })
 export class SharedMaterialModule { }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 export class DRFCollection<T> {
     private count: number;
@@ -20,15 +21,33 @@ export class BasicDRFService<T> {
     set type(type: string) { this._type = type; }
     get type(): string { return this._type; }
 
-    public constructor(protected httpClient: HttpClient) { }
+    public constructor(protected httpClient: HttpClient, protected oAuthService: OAuthService) {}
 
     public all(type?, options?): Observable<DRFCollection<T>> {
         console.log('type ---->', this.type);
 
-        return this.httpClient.get<DRFCollection<T>>(environment.APIURL +  (type || this.type) + '/');
+        return this.httpClient.get<DRFCollection<T>>(
+            environment.APIURL +  (type || this.type) + '/',
+            // TODO: remove header from here... oauth sendAccessTokenConfig should work
+            {
+                headers: new HttpHeaders({
+                    'Content-Type':  'application/json',
+                    'Authorization': this.oAuthService.authorizationHeader()
+                })
+            }
+        );
     }
 
     public get(type, id, options?): Observable<T> {
-        return this.httpClient.get<T>(environment.APIURL +  this.type + '/' + id + '/');
+        return this.httpClient.get<T>(
+            environment.APIURL +  this.type + '/' + id + '/',
+            // TODO: remove header from here... oauth sendAccessTokenConfig should work
+            {
+                headers: new HttpHeaders({
+                    'Content-Type':  'application/json',
+                    'Authorization': this.oAuthService.authorizationHeader()
+                })
+            }
+        );
     }
 }

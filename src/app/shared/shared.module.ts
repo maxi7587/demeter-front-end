@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedMaterialModule } from 'src/app/shared/shared-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './table/table.component';
 import { DynamicPipe } from './dynamic-pipe/dynamic-pipe';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -28,7 +28,7 @@ import { UsersService } from './services/users.service';
         FormsModule,
         ReactiveFormsModule,
         FlexLayoutModule,
-        HttpClientModule,
+        // HttpClientModule,
         AvatarModule,
         SharedMaterialModule
     ],
@@ -36,7 +36,7 @@ import { UsersService } from './services/users.service';
         FormsModule,
         ReactiveFormsModule,
         FlexLayoutModule,
-        HttpClientModule,
+        // HttpClientModule,
         SharedMaterialModule,
         TableComponent,
         DynamicPipe,

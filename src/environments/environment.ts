@@ -9,7 +9,7 @@ export const environment = {
     env: 'develop',
     MPURL: mpurl,
     APIURL: mpurl,
-    whiteListedDomains: ['127.0.0.1:8000']
+    whiteListedDomains: ['127.0.0.1:8000', '127.0.0.1']
 };
 
 /*

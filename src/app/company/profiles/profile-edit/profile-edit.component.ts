@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RolesService } from 'src/app/company/roles/roles.service';
+import { DRFCollection } from 'src/app/shared/basic-drf.service';
+import { RolesService, Role } from 'src/app/shared/services/roles.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -18,11 +19,14 @@ export class ProfileEditComponent implements OnInit {
         user: new FormControl()
     });
 
-    public roles: Array<RolesService>;
+    public roles: DRFCollection<Role>;
 
-    public constructor() { }
+    public constructor(protected rolesService: RolesService) { }
 
     public ngOnInit() {
+        this.rolesService
+            .all()
+            .subscribe(roles => this.roles = roles);
     }
 
 }

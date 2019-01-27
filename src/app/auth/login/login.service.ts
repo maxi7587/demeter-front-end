@@ -15,20 +15,19 @@ export class LoginService {
 
     public constructor (public oAuthService: OAuthService) { }
 
-    public login(username, password): Promise<void> {
+    public login(username, password): Promise<{[key: string]: any}> {
         console.log('INSIDE login service login()');
 
-        return this.oAuthService.fetchTokenUsingPasswordFlow(username, password).then((resp) => {
-              // Loading data about the user
-              return this.oAuthService.loadUserProfile();
-        }).then(data => {
-              // Using the loaded user data
-              // let claims = this.oAuthService.getIdentityClaims();
-              // if (claims) {
-              //     console.log('given_name ----', claims.given_name);
-              // }
-              console.log('logged in, recieved data ---->', data);
-        });
+        return this.oAuthService
+            .fetchTokenUsingPasswordFlow(username, password)
+            .then((data: {[key: string]: any}): {[key: string]: any} => {
+                // localStorage.setItem('token', data.access_token.toString()); // Save the token in the local storage...
+                // localStorage.setItem('refresh_token', data.refresh_token.toString()); // Save the token in the local storage...
+                console.log('logged in, recieved data ---->', data);
+                console.log('hasValidAccessToken ---->', this.oAuthService.hasValidAccessToken());
+
+                return data;
+            });
     }
 
     public refreshToken() {
