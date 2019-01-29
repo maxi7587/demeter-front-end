@@ -11,7 +11,7 @@ const routes: Routes = [
         loadChildren: 'src/app/user/user.module#UserModule'
     },
     {
-        path: 'company',
+        path: 'companies/:company_id',
         loadChildren: 'src/app/company/company.module#CompanyModule'
     },
     {

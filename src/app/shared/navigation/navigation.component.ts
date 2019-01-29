@@ -24,7 +24,7 @@ export class NavigationComponent implements OnInit {
         console.log('inside navigation component');
         activatedRoute.data.subscribe(data => {
             this.route_data = data;
-            console.log(this.route_data);
+            console.log('route_data', this.route_data);
         });
     }
 
@@ -33,7 +33,7 @@ export class NavigationComponent implements OnInit {
 
     public goToSection(section) {
         console.log('WILL NAVIGATE TO SECTION', section);
-        this.router.navigate(['/company/' + section]);
+        this.router.navigate(['/companies/' + company + '/' + section]);
     }
 
 }

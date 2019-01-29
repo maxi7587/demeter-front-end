@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BasicDRFService } from 'src/app/shared/basic-drf.service';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 export class Company {
     public id: string;
@@ -22,10 +23,10 @@ export class CompaniesService extends BasicDRFService<Company> {
 
     type = 'companies';
 
-    public constructor(httpClient: HttpClient) {
-        super(httpClient);
+    public constructor(httpClient: HttpClient, protected oAuthService: OAuthService) {
+        super(httpClient, oAuthService);
+        this.get();
         console.log('type in companies...', this.type);
-        // this.type = 'companies';
     }
 
     public storeCompanyId(company_id) {

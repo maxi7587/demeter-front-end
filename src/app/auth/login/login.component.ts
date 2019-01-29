@@ -18,9 +18,7 @@ export class LoginComponent implements OnInit {
     public constructor(
         private router: Router,
         private loginService: LoginService
-    ) {
-        console.log('inside login component CONSTRUCTOR');
-    }
+    ) {}
 
     public ngOnInit() { }
 
@@ -28,12 +26,10 @@ export class LoginComponent implements OnInit {
         if (!this.login_form.valid) {
             return;
         }
-        console.log('will call login service login()', this.login_form);
         this.loginService
             .login(this.login_form.value.email, this.login_form.value.password)
             .then(() => {
-                console.log('AFTER POST response arrived');
-                this.router.navigate(['/user']);
+                this.router.navigate(['/user/companies']);
             });
     }
 }

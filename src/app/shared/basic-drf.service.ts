@@ -21,33 +21,36 @@ export class BasicDRFService<T> {
     set type(type: string) { this._type = type; }
     get type(): string { return this._type; }
 
+    // TODO: remove header from here... oauth sendAccessTokenConfig should work
+    protected headers = new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': this.oAuthService.authorizationHeader()
+    });
+
     public constructor(protected httpClient: HttpClient, protected oAuthService: OAuthService) {}
 
-    public all(type?, options?): Observable<DRFCollection<T>> {
-        console.log('type ---->', this.type);
-
+    public all(type?, headers?): Observable<DRFCollection<T>> {
         return this.httpClient.get<DRFCollection<T>>(
             environment.APIURL +  (type || this.type) + '/',
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
-            {
-                headers: new HttpHeaders({
-                    'Content-Type':  'application/json',
-                    'Authorization': this.oAuthService.authorizationHeader()
-                })
-            }
+            { headers: headers || this.headers }
         );
     }
 
-    public get(type, id, options?): Observable<T> {
+    public get(id, headers?): Observable<T> {
         return this.httpClient.get<T>(
             environment.APIURL +  this.type + '/' + id + '/',
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
-            {
-                headers: new HttpHeaders({
-                    'Content-Type':  'application/json',
-                    'Authorization': this.oAuthService.authorizationHeader()
-                })
-            }
+            { headers: headers || this.headers }
+        );
+    }
+
+    public post(data, headers?): Observable<T> {
+        return this.httpClient.post<T>(
+            environment.APIURL +  this.type + '/',
+            data,
+            // TODO: remove header from here... oauth sendAccessTokenConfig should work
+            { headers: headers || this.headers }
         );
     }
 }

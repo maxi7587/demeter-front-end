@@ -37,7 +37,7 @@ export class CompaniesComponent implements OnInit {
 
     public goToCompany(company: Company) {
         this.companiesService.company = company;
-        this.router.navigate(['/company/dashboard']);
+        this.router.navigate(['/companies/' + company.id + '/dashboard']);
     }
 
 }
