@@ -1,9 +1,17 @@
 <mat-list *ngIf="companies && companies.results">
     <h3 mat-subheader>Compañías</h3>
-    <mat-list-item *ngFor="let company of companies.results">
+    <mat-list-item
+        *ngFor="let company of companies.results"
+        (click)="goToCompany(company)"
+        >
         <mat-icon mat-list-icon>work</mat-icon>
         <h4 mat-line>{{ company.name }}</h4>
         <p mat-line> {{ company.details }} </p>
-        <button mat-button (click)="goToCompany(company)">Entrar</button>
+        <button
+            mat-button
+            (click)="goToCompanyConfig(company)"
+            >
+            <mat-icon>settings</mat-icon>
+        </button>
     </mat-list-item>
 </mat-list>

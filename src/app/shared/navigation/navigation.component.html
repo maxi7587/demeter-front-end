@@ -2,9 +2,9 @@
     <mat-sidenav #sidenav mode="over" [opened]="true" role="navigation">
         <mat-nav-list>
             <h3 mat-subheader>Secciones</h3>
-            <mat-list-item (click)="goToSection(section.key)" *ngFor="let section of sections">
+            <mat-list-item (click)="goToSection(link.section)" *ngFor="let link of sections">
                 <mat-icon mat-list-icon *ngIf="section.icon">section.icon</mat-icon>
-                <h4 mat-line>{{ section.name }}</h4>
+                <h4 mat-line>{{ section.text }}</h4>
             </mat-list-item>
         </mat-nav-list>
     </mat-sidenav>

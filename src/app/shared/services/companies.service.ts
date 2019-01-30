@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BasicDRFService } from 'src/app/shared/basic-drf.service';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 export class Company {
     public id: string;
@@ -11,6 +14,7 @@ export class Company {
     public users: Array<{[key: string]: string}>;
     public details: string;
     public contact: {[key: string]: string};
+    public type = 'companies';
 }
 
 @Injectable({
@@ -21,12 +25,13 @@ export class CompaniesService extends BasicDRFService<Company> {
     set company(company: Company) { this._company = company; }
     get company(): Company { return this._company; }
 
-    type = 'companies';
+    public type = 'companies';
 
-    public constructor(httpClient: HttpClient, protected oAuthService: OAuthService) {
-        super(httpClient, oAuthService);
-        this.get();
-        console.log('type in companies...', this.type);
+    public getCompanyFromId(company_id): Observable<Company> {
+        return this.get(company_id)
+            .pipe(
+                tap(comapny => this._company = comapny)
+            );
     }
 
     public storeCompanyId(company_id) {

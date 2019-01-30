@@ -1,22 +1,8 @@
-export const sections_links = [
-    {
-        text: 'Perfiles',
-        section: 'profiles',
-        icon: 'account_circle'
-    },
-    {
-        text: 'Campos',
-        section: 'fields',
-        icon: 'wb_sunny'
-    },
-    {
-        text: 'Tareas',
-        section: 'tasks',
-        icon: 'assignment'
-    },
-    {
-        text: 'Herramientas',
-        section: 'tools',
-        icon: 'build'
-    }
+import { NavigationSidenavLink } from 'src/app/shared/navigation/navigation.service';
+
+export const sections_links: Array<NavigationSidenavLink> = [
+    new NavigationSidenavLink('Perfiles', 'profiles', 'account_circle'),
+    new NavigationSidenavLink('Campos', 'fields', 'wb_sunny'),
+    new NavigationSidenavLink('Tareas', 'tasks', 'assignment'),
+    new NavigationSidenavLink('Herramientas', 'tools', 'build'),
 ];
