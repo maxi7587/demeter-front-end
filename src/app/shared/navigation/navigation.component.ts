@@ -10,9 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
     @Input() show_title = false;
-
-    private _sections: Array<NavigationSidenavLink> = [];
-    get sections(): Array<NavigationSidenavLink> { return this._sections; }
+    @Input() sections: Array<NavigationSidenavLink> = [];
 
     private _route_data: {[key: string]: any};
     set route_data(data: {[key: string]: any}) { this._route_data = data; }
@@ -30,11 +28,11 @@ export class NavigationComponent implements OnInit {
     }
 
     public ngOnInit() {
-        this.navigationService.sidenav_links.subscribe(
-            sections => {
-                this._sections = sections;
-            }
-        );
+        // this.navigationService.sidenav_links.subscribe(
+        //     sections => {
+        //         this.sections = sections;
+        //     }
+        // );
     }
 
     public goToSection(section) {

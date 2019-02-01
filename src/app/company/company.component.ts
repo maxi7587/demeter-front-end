@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CompanyComponent implements OnInit, OnDestroy {
 
-    public sections_links: Array<NavigationSidenavLink>;
+    public sections_links: Array<NavigationSidenavLink> = [];
 
     public constructor(
         protected activatedRoute: ActivatedRoute,
@@ -27,7 +27,8 @@ export class CompanyComponent implements OnInit, OnDestroy {
                     new NavigationSidenavLink('Herramientas', 'companies/' + params.company_id + '/tools', 'build')
                 ];
                 console.log('sections --->', sections_links);
-                this.navigationService.sidenav_links.next(sections_links);
+                this.sections_links = sections_links;
+                // this.navigationService.sidenav_links.next(sections_links);
             }
         );
     }

@@ -1,13 +1,14 @@
-<div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="16px" style="width: 150px; margin: auto">
+<div fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto" fxLayoutGap="16px" class="height-100">
     <button
-    mat-raised-button
-    fxLayout="row"
-    fxLayoutAlign="start center"
-    color="accent"
-    *ngFor="let link of links"
-    (click)="goToSection(link.section)"
-    >
-    <mat-icon>{{ link.icon }}</mat-icon>
-    {{ link.text }}
-</button>
+        mat-raised-button
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        color="accent"
+        style="width: 150px"
+        *ngFor="let link of links"
+        (click)="goToSection(link.section)"
+        >
+        <mat-icon>{{ link.icon }}</mat-icon>
+        {{ link.text }}
+    </button>
 </div>

@@ -7,7 +7,7 @@ const routes: Routes = [
         loadChildren: 'src/app/auth/auth.module#AuthModule'
     },
     {
-        path: 'user',
+        path: 'users',
         loadChildren: 'src/app/user/user.module#UserModule'
     },
     {

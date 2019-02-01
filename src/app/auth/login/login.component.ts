@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
                 () => {
                     this.usersService.getUser()
                         .subscribe(
-                            user => this.router.navigate([`/user/${user.id}/companies`])
+                            user => this.router.navigate([`/users/${user.id}/companies`])
                         );
                 }
             );
