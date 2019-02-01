@@ -1,10 +1,10 @@
 <mat-sidenav-container class="height-100">
-    <mat-sidenav #sidenav mode="over" [opened]="true" role="navigation">
+    <mat-sidenav #sidenav mode="over" [opened]="sections.length > 0" role="navigation">
         <mat-nav-list>
             <h3 mat-subheader>Secciones</h3>
             <mat-list-item (click)="goToSection(link.section)" *ngFor="let link of sections">
-                <mat-icon mat-list-icon *ngIf="section.icon">section.icon</mat-icon>
-                <h4 mat-line>{{ section.text }}</h4>
+                <mat-icon mat-list-icon *ngIf="link.icon">{{ link.icon }}</mat-icon>
+                <h4 mat-line>{{ link.text }}</h4>
             </mat-list-item>
         </mat-nav-list>
     </mat-sidenav>
@@ -20,13 +20,20 @@
                     <app-expandable-input></app-expandable-input>
                 </mat-toolbar-row>
             </mat-toolbar> -->
-            <div style="overflow: scroll">
+            <div style="overflow: scroll; height: auto" fxFlex="1 1 auto">
                 <ng-content></ng-content>
             </div>
             <!-- <mat-toolbar color="primary" id="main-toolbar" style="position: sticky; bottom: 0"> -->
-            <mat-toolbar color="primary" id="main-toolbar">
+            <!-- TODO: imkprove toolbar hide and show option -->
+            <mat-toolbar color="primary" id="main-toolbar" *ngIf="sections.length > 0">
                 <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-                    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()">
+                    <button
+                        *ngIf="sections.length > 0"
+                        type="button"
+                        aria-label="Toggle sidenav"
+                        mat-icon-button
+                        (click)="sidenav.toggle()"
+                        >
                         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
                     </button>
                     <h3 class="mat-subheading-2" fxHide.xs>{{ route_data.title }}</h3>

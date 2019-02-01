@@ -1,8 +1,16 @@
 <div fxLayout="row" fxLayoutAlign="space-between center">
-    <button mat-icon-button class="mat-button" matTooltip="Buscar"
+    <button
+        mat-icon-button
+        class="mat-button"
+        matTooltip="Buscar"
         *ngIf="!showSearch"
         (click)="showInput()">
-        <mat-icon class="mat-hint">search</mat-icon>
+        <mat-icon
+            class="mat-hint"
+            style="color: white !important"
+            >
+            search
+        </mat-icon>
     </button>
     <div class="reset-input-default" style="padding: 0 16px"
         *ngIf="showSearch"

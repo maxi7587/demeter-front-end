@@ -10,34 +10,41 @@ import { ProfilesComponent } from 'src/app/company/profiles/profiles.component';
 
 const routes: Routes = [
     {
-        path: 'dashboard',
+        path: ':company_id',
         data: { title: 'dashboard' },
-        component: DashboardComponent,
-    },
-    {
-        path: 'fields',
-        data: { title: 'fields' },
-        component: FieldsComponent
-    },
-    {
-        path: 'tasks',
-        data: { title: 'tasks' },
-        component: TasksComponent
-    },
-    {
-        path: 'task_types',
-        data: { title: 'task_types' },
-        component: TaskTypesComponent
-    },
-    {
-        path: 'profiles',
-        data: { title: 'profiles' },
-        component: ProfilesComponent
-    },
-    {
-        path: 'profiles/:objectId',
-        data: { title: 'profile edit' },
-        component: ProfileEditComponent
+        component: CompanyComponent,
+        children: [
+            {
+                path: 'dashboard',
+                data: { title: 'dashboard' },
+                component: DashboardComponent,
+            },
+            {
+                path: 'fields',
+                data: { title: 'fields' },
+                component: FieldsComponent
+            },
+            {
+                path: 'tasks',
+                data: { title: 'tasks' },
+                component: TasksComponent
+            },
+            {
+                path: 'task_types',
+                data: { title: 'task_types' },
+                component: TaskTypesComponent
+            },
+            {
+                path: 'profiles',
+                data: { title: 'profiles' },
+                component: ProfilesComponent
+            },
+            {
+                path: 'profiles/:objectId',
+                data: { title: 'profile edit' },
+                component: ProfileEditComponent
+            }
+        ]
     }
 ];
 

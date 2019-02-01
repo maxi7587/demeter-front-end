@@ -23,10 +23,8 @@ export class NavigationComponent implements OnInit {
         protected companyiesService: CompaniesService,
         protected navigationService: NavigationService
     ) {
-        console.log('inside navigation component');
         activatedRoute.data.subscribe(data => {
             this.route_data = data;
-            console.log('route_data', this.route_data);
         });
     }
 
@@ -34,14 +32,12 @@ export class NavigationComponent implements OnInit {
         this.navigationService.sidenav_links.subscribe(
             sections => {
                 this._sections = sections;
-                console.log('sections --->', this._sections);
             }
         );
     }
 
     public goToSection(section) {
-        console.log('WILL NAVIGATE TO SECTION', section);
-        this.router.navigate(['/companies/' + this.companyiesService.company.id + '/' + section]);
+        this.router.navigate([section]);
     }
 
 }

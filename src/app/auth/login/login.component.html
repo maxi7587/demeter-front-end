@@ -1,4 +1,5 @@
-<form [formGroup]="login_form" fxLayout="column" fxLayoutAlign="center center">
+<form [formGroup]="login_form" class="height-100" fxLayout="column" fxLayoutAlign="center center">
+    <img src="../../../assets/images/demeter.png" alt="demeter" width="150px">
     <mat-form-field>
         <input matInput formControlName="email" placeholder="Correo electrónico">
         <mat-error *ngIf="login_form.controls.email.invalid">Correo no válido</mat-error>
@@ -7,5 +8,5 @@
         <input matInput type="password" formControlName="password" placeholder="Contraseña">
         <mat-error *ngIf="login_form.controls.password.invalid">Debes colocar tu contraseña</mat-error>
     </mat-form-field>
+    <button mat-icon-button color="primary" (click)="login()"><mat-icon>send</mat-icon></button>
 </form>
-<button mat-button (click)="login()">LOGIN</button>

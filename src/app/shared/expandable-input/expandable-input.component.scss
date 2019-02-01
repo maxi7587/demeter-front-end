@@ -19,13 +19,15 @@ div.opened {
 @media only screen and (max-width: 600px) {
     div.opened {
         position: absolute;
-        top: 0;
+        bottom: 0;
         left: 0;
         right: 0;
         z-index: 333;
         background: $content-bg;
-        height: 48px;
-        max-height: 48px;
+        // height: 48px;
+        height: 56px;
+        // max-height: 48px;
+        max-height: 56px;
         box-shadow: 0 2px 1px -1px $shadow-color-02, 0 1px 1px 0 $shadow-color-014, 0 1px 3px 0 $shadow-color-012;
     }
 
