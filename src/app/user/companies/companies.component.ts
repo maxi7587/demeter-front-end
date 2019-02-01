@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService, User } from 'src/app/shared/services/users.service';
 import { Router } from '@angular/router';
 import { DRFCollection } from 'src/app/shared/basic-drf.service';
 import { CompaniesService, Company } from 'src/app/shared/services/companies.service';
@@ -10,6 +11,10 @@ import { Column } from 'src/app/shared/table/table-elements';
   styleUrls: ['./companies.component.scss']
 })
 export class CompaniesComponent implements OnInit {
+    private _user: User;
+    set user(user: User) { this._user = user; }
+    get user(): User { return this._user; }
+
     private _companies: DRFCollection<Company>;
     set companies(companies: DRFCollection<Company>) { this._companies = companies; }
     get companies(): DRFCollection<Company> { return this._companies; }
@@ -20,7 +25,8 @@ export class CompaniesComponent implements OnInit {
 
     public constructor(
         private router: Router,
-        private companiesService: CompaniesService
+        private companiesService: CompaniesService,
+        protected usersService: UsersService
     ) {
         companiesService.all().subscribe(companies => {
             console.log(companies);
@@ -31,6 +37,7 @@ export class CompaniesComponent implements OnInit {
                 }
             }
         });
+        usersService.all().subscribe(users => this.user = users.results[0]);
     }
 
     public ngOnInit() { }

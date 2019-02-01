@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CompaniesService } from 'src/app/shared/services/companies.service';
 import { NavigationService, NavigationSidenavLink } from 'src/app/shared/navigation/navigation.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
+    @Input() show_title = false;
 
     private _sections: Array<NavigationSidenavLink> = [];
     get sections(): Array<NavigationSidenavLink> { return this._sections; }

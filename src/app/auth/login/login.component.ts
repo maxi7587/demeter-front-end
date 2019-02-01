@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/shared/services/users.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/auth/login/login.service';
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
 
     public constructor(
         private router: Router,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private usersService: UsersService
     ) {}
 
     public ngOnInit() { }
@@ -28,8 +30,13 @@ export class LoginComponent implements OnInit {
         }
         this.loginService
             .login(this.login_form.value.email, this.login_form.value.password)
-            .then(() => {
-                this.router.navigate(['/user/companies']);
-            });
+            .then(
+                () => {
+                    this.usersService.getUser()
+                        .subscribe(
+                            user => this.router.navigate([`/user/${user.id}/companies`])
+                        );
+                }
+            );
     }
 }
