@@ -34,4 +34,19 @@ export class Column {
         this.align = align;
         this.pipe = pipe;
     }
+
+    public accessNestedProperty(resource, nested_property_string) {
+        nested_property_string = nested_property_string.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+        nested_property_string = nested_property_string.replace(/^\./, '');           // strip a leading dot
+        let properties = nested_property_string.split('.');
+        for (let i = 0, n = properties.length; i < n; ++i) {
+            let property = properties[i];
+            if (property in resource) {
+                resource = resource[property];
+            } else {
+                return;
+            }
+        }
+        return resource;
+    }
 }

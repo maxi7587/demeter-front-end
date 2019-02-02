@@ -10,12 +10,13 @@
             </ng-container>
             <ng-container *ngIf="column.pipe">
                 <span>
-                    {{ element[column.key] | dynamic: column.pipe.pipe : (column.pipe.arg || element[column.pipe.element_key_arg]) }}
+                    <!-- {{ element[column.key] | dynamic: column.pipe.pipe : (column.pipe.arg || element[column.pipe.element_key_arg]) }} -->
+                    {{ column.accessNestedProperty(element, column.key) | dynamic: column.pipe.pipe : (column.pipe.arg || element[column.pipe.element_key_arg]) }}
                 </span>
             </ng-container>
             <ng-container *ngIf="!column.pipe">
                 <span>
-                    {{ element[column.key] }}
+                    {{ column.accessNestedProperty(element, column.key) }}
                 </span>
             </ng-container>
         </mat-cell>
