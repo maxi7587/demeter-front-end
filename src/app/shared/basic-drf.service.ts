@@ -30,6 +30,7 @@ export class BasicDRFService<T> {
     public constructor(protected httpClient: HttpClient, protected oAuthService: OAuthService) {}
 
     public all(type?, headers?): Observable<DRFCollection<T>> {
+        console.log('headers in BasicDRFService --->', this.headers);
         return this.httpClient.get<DRFCollection<T>>(
             environment.APIURL +  (type || this.type) + '/',
             // TODO: remove header from here... oauth sendAccessTokenConfig should work

@@ -12,7 +12,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
 @NgModule({
     declarations: [],
     imports: [],
@@ -29,7 +30,9 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatAutocompleteModule,
         MatCheckboxModule,
         MatSelectModule,
-        MatTabsModule
+        MatTabsModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ]
 })
 export class SharedMaterialModule { }

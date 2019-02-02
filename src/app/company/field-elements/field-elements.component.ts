@@ -11,5 +11,4 @@ export class FieldElementsComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

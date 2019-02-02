@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Column } from './table-elements';
 @Component({
@@ -10,6 +10,9 @@ export class TableComponent implements OnInit {
 
     @Input() public columns: Array<Column>;
     @Input() public rows: Array<{[key: string]: any}>;
+
+    @Output() public rowClick: EventEmitter<any> = new EventEmitter<any>();
+
     public displayedColumns: Array<string>;
     public dataSource: MatTableDataSource<{[key: string]: any}> = new MatTableDataSource();
 

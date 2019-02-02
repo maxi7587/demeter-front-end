@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TasksService } from 'src/app/shared/services/tasks.service';
 import { HttpClient } from '@angular/common/http';
 import { Column } from 'src/app/shared/table/table-elements';
@@ -17,7 +18,11 @@ export class TasksComponent implements OnInit {
     set columns(columns: Array<Column>) { this._columns = columns; }
     get columns(): Array<Column> { return this._columns; }
 
-    public constructor(private tasksService: TasksService) {
+    public constructor(
+        private tasksService: TasksService,
+        private router: Router,
+        private activatedRoute: ActivatedRoute
+    ) {
         this.tasksService.all().subscribe(tasks => {
             this.tasks = tasks;
             console.log(tasks);
@@ -37,5 +42,11 @@ export class TasksComponent implements OnInit {
     }
 
     public ngOnInit() {}
+
+    public goToElement(element_id) {
+        console.log('id ---->', element_id);
+        this.router.navigate([this.router.url, element_id]);
+        // this.router.navigate([profile_id.toString(), { relativeTo: this.activatedRoute }]);
+    }
 
 }

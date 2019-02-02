@@ -2,5 +2,6 @@
     *ngIf="profiles.results"
     [columns]="columns"
     [rows]="profiles.results"
+    (rowClick)="goToElement($event.id)"
 >
 </app-table>

@@ -2,5 +2,6 @@
     *ngIf="tasks.results"
     [columns]="columns"
     [rows]="tasks.results"
+    (rowClick)="goToElement($event.id)"
 >
 </app-table>

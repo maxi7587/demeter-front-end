@@ -1,4 +1,4 @@
-<form [formGroup]="profile_form" fxLayout="column" fxLayoutAlign="start center">
+<form class="height-100 app-basic-padding" [formGroup]="profile_form" fxLayout="column" fxLayoutAlign="start center">
     <mat-form-field>
         <input matInput type="text" placeholder="Name" formControlName="first_name">
     </mat-form-field>
@@ -16,6 +16,6 @@
     <mat-form-field>
         <input matInput type="number" placeholder="Daily working hours" formControlName="daily_working_hours">
     </mat-form-field>
-    <mat-checkbox formControlName="is_user">Usuario del sistema</mat-checkbox>
-    <button mat-button (click)="save()">Guardar</button>
+    <!-- <mat-checkbox formControlName="is_user">Company user</mat-checkbox> -->
+    <!-- <button mat-button (click)="save()">Save</button> -->
 </form>

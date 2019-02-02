@@ -8,12 +8,13 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class FieldEditComponent implements OnInit {
 
-    public profile_form: FormGroup = new FormGroup({
+    public field_form: FormGroup = new FormGroup({
         name: new FormControl(),
         company: new FormControl(),
         manager: new FormControl(),
         details: new FormControl(),
-        contact: new FormControl()
+        contact: new FormControl(),
+        active: new FormControl()
     });
 
 

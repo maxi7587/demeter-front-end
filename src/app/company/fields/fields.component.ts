@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FieldsService } from 'src/app/shared/services/fields.service';
 import { HttpClient } from '@angular/common/http';
 import { Column } from 'src/app/shared/table/table-elements';
@@ -17,7 +18,10 @@ export class FieldsComponent implements OnInit {
     set columns(columns: Array<Column>) { this._columns = columns; }
     get columns(): Array<Column> { return this._columns; }
 
-    public constructor(private fieldsService: FieldsService) {
+    public constructor(
+        private fieldsService: FieldsService,
+        private router: Router
+    ) {
         this.fieldsService.all().subscribe(fields => {
             this.fields = fields;
             console.log(fields);
@@ -36,5 +40,11 @@ export class FieldsComponent implements OnInit {
     }
 
     public ngOnInit() {}
+
+    public goToElement(element_id) {
+        console.log('id ---->', element_id);
+        this.router.navigate([this.router.url, element_id]);
+        // this.router.navigate([profile_id.toString(), { relativeTo: this.activatedRoute }]);
+    }
 
 }

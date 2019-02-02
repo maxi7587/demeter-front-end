@@ -8,7 +8,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class FieldElementsEditComponent implements OnInit {
 
-    public profile_form: FormGroup = new FormGroup({
+    public field_element_form: FormGroup = new FormGroup({
         code: new FormControl(),
         field: new FormControl()
     });

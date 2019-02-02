@@ -1,3 +1,7 @@
-<p>
-  field-elements works!
-</p>
+<app-table
+    *ngIf="fields.results"
+    [columns]="columns"
+    [rows]="fields.results"
+    (rowClick)="goToElement($event.id)"
+>
+</app-table>
