@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CompanyResolver } from 'src/app/company/company.resolver';
 import { ToolsEditComponent } from 'src/app/company/tools/tools-edit/tools-edit.component';
 import { ToolsComponent } from 'src/app/company/tools/tools.component';
 import { FieldEditComponent } from 'src/app/company/fields/field-edit/field-edit.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
         path: ':company_id',
         data: { title: 'dashboard' },
         component: CompanyComponent,
+        resolve: { user: CompanyResolver },
         children: [
             {
                 path: 'dashboard',

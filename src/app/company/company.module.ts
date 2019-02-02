@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CompanyResolver } from 'src/app/company/company.resolver';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CompanyRoutingModule } from 'src/app/company/company-routing.module';
 import { CommonModule } from '@angular/common';
@@ -48,6 +49,9 @@ import { RoleEditComponent } from './roles/role-edit/role-edit.component';
         CommonModule,
         SharedModule,
         CompanyRoutingModule
+    ],
+    providers: [
+        CompanyResolver
     ]
 })
 export class CompanyModule { }
