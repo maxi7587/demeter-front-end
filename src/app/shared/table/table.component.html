@@ -1,16 +1,22 @@
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="displayedColumns">
     <ng-container *ngFor="let column of columns" [matColumnDef]="column.key">
         <mat-header-cell *matHeaderCellDef>{{ column.title }}</mat-header-cell>
-        <mat-cell *matCellDef="let element" fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="{{ column.align || 'start center' }}" style="padding: 8px">
+        <mat-cell
+            fxFlex="1 1 auto"
+            *matCellDef="let element"
+            fxLayout="row"
+            fxLayoutGap="8px"
+            fxLayoutAlign="{{ column.align || 'start center' }}"
+            style="padding: 8px"
+            >
             <ng-container *ngIf="column.icon">
                 <mat-icon>{{ column.icon }}</mat-icon>
             </ng-container>
             <ng-container *ngIf="column.avatar">
-                <ngx-avatar name="column.name"></ngx-avatar>
+                <ngx-avatar [name]="column.accessNestedProperty(element, column.key)"></ngx-avatar>
             </ng-container>
             <ng-container *ngIf="column.pipe">
                 <span>
-                    <!-- {{ element[column.key] | dynamic: column.pipe.pipe : (column.pipe.arg || element[column.pipe.element_key_arg]) }} -->
                     {{ column.accessNestedProperty(element, column.key) | dynamic: column.pipe.pipe : (column.pipe.arg || element[column.pipe.element_key_arg]) }}
                 </span>
             </ng-container>

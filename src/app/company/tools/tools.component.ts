@@ -23,9 +23,9 @@ export class ToolsComponent implements OnInit {
             console.log(tools);
             console.log(tools.results[0]);
             // TODO: improve for mobile
-            this.columns.push(new Column('name', 'name', ''));
+            this.columns.push(new Column('name', 'name', 'name'));
             this.columns.push(new Column('status', 'status', '', '', 'center center'));
-            this.columns.push(new Column('field', 'field', '', '', 'end center'));
+            this.columns.push(new Column('field.name', 'field', '', '', 'end center'));
         });
     }
 
