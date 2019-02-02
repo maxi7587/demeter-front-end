@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { ToolsEditComponent } from 'src/app/company/tools/tools-edit/tools-edit.component';
+import { ToolsComponent } from 'src/app/company/tools/tools.component';
 import { FieldEditComponent } from 'src/app/company/fields/field-edit/field-edit.component';
 import { TaskEditComponent } from 'src/app/company/tasks/task-edit/task-edit.component';
 import { TaskTypesEditComponent } from 'src/app/company/task-types/task-types-edit/task-types-edit.component';
@@ -51,6 +53,16 @@ const routes: Routes = [
                 path: 'task_types/:objectId',
                 data: { title: 'task_types' },
                 component: TaskTypesEditComponent
+            },
+            {
+                path: 'tools',
+                data: { title: 'tools' },
+                component: ToolsComponent
+            },
+            {
+                path: 'tools/:objectId',
+                data: { title: 'tools' },
+                component: ToolsEditComponent
             },
             {
                 path: 'profiles',

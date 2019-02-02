@@ -1,3 +1,7 @@
-<p>
-  tools works!
-</p>
+<app-table
+    *ngIf="tools.results"
+    [columns]="columns"
+    [rows]="tools.results"
+    (rowClick)="goToElement($event.id)"
+>
+</app-table>
