@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Task } from 'src/app/shared/services/tasks.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -25,10 +27,22 @@ export class TaskEditComponent implements OnInit {
         from_element: new FormControl(),
         to_element: new FormControl()
     });
+    protected task: Task;
 
-    public constructor() { }
+    public constructor(protected activatedRoute: ActivatedRoute) {
+        this.task = this.activatedRoute.snapshot.data.task;
+        for (let form_field in this.task_form.controls) {
+            if (this.task[form_field]) {
+                this.task_form.controls[form_field].setValue(this.task[form_field]);
+            }
+        }
+    }
 
     public ngOnInit() {
+    }
+
+    public compareById(f1: any, f2: any) {
+        return f1 && f2 && f1.id === f2.id;
     }
 
 }

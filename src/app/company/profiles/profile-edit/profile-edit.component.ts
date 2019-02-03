@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Company, CompaniesService } from 'src/app/shared/services/companies.service';
 import { Profile, ProfilesService } from 'src/app/shared/services/profiles.service';
 import { DRFCollection } from 'src/app/shared/basic-drf.service';
@@ -21,7 +22,7 @@ export class ProfileEditComponent implements OnInit {
         is_user: new FormControl()
     });
 
-    protected profile = new Profile();
+    protected profile: Profile;
 
     public company: Company;
     public roles: DRFCollection<Role>;
@@ -29,24 +30,33 @@ export class ProfileEditComponent implements OnInit {
     public constructor(
         protected profilesService: ProfilesService,
         protected companiesService: CompaniesService,
-        protected rolesService: RolesService
-    ) { }
+        protected rolesService: RolesService,
+        protected activatedRoute: ActivatedRoute
+    ) {
+        this.profile = this.activatedRoute.snapshot.data.profile;
+        for (let form_field in this.profile_form.controls) {
+            if (this.profile[form_field]) {
+                this.profile_form.controls[form_field].setValue(this.profile[form_field]);
+            }
+        }
+    }
 
     public ngOnInit() {
         this.company = this.companiesService.company;
-        console.log('company --->', this.company);
         this.rolesService
             .all()
             .subscribe(roles => {
                 this.roles = roles;
-                console.log('roles --->', this.roles.results);
             });
     }
 
     public save() {
         this.profile = { ...this.profile, ...this.profile_form.value };
         this.profilesService.post(this.profile).subscribe(profile => console.log('profile saved', profile));
-        console.log('profile_form --->', this.profile);
+    }
+
+    public compareById(f1: any, f2: any) {
+        return f1 && f2 && f1.id === f2.id;
     }
 
 }

@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+import { TaskEditResolver } from 'src/app/company/tasks/task-edit/task-edit.resolver';
+import { ProfileEditResolver } from 'src/app/company/profiles/profile-edit/profile-edit.resolver';
+import { FieldEditResolver } from 'src/app/company/fields/field-edit/field-edit.resolver';
 import { CompanyResolver } from 'src/app/company/company.resolver';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CompanyRoutingModule } from 'src/app/company/company-routing.module';
@@ -51,7 +54,10 @@ import { RoleEditComponent } from './roles/role-edit/role-edit.component';
         CompanyRoutingModule
     ],
     providers: [
-        CompanyResolver
+        CompanyResolver,
+        FieldEditResolver,
+        ProfileEditResolver,
+        TaskEditResolver
     ]
 })
 export class CompanyModule { }

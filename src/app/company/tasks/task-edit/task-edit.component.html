@@ -3,12 +3,12 @@
         <input matInput type="text" placeholder="Name" formControlName="name">
     </mat-form-field>
     <mat-form-field *ngIf="fields">
-        <mat-select placeholder="Field" formControlName="field">
+        <mat-select placeholder="Field" formControlName="field" [compareWith]="compareById">
             <mat-option *ngFor="let field of fields.results" value="field">{{ field.name }}</mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field *ngIf="task_types">
-        <mat-select placeholder="Task type" formControlName="task_type">
+        <mat-select placeholder="Task type" formControlName="task_type" [compareWith]="compareById">
             <mat-option *ngFor="let task_type of task_types.results" value="task_type">{{ task_type.name }}</mat-option>
         </mat-select>
     </mat-form-field>
@@ -22,12 +22,12 @@
         <input matInput type="text" placeholder="Status" formControlName="status">
     </mat-form-field>
     <mat-form-field *ngIf="profiles">
-        <mat-select placeholder="Supervised by" formControlName="supervised_by">
+        <mat-select placeholder="Supervised by" formControlName="supervised_by" [compareWith]="compareById">
             <mat-option *ngFor="let profile of profiles.results" value="profile">{{ profile.first_name + profile.last_name }}</mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field *ngIf="profiles">
-        <mat-select placeholder="Assigned worker" formControlName="assigned_worker">
+        <mat-select placeholder="Assigned worker" formControlName="assigned_worker" [compareWith]="compareById">
             <mat-option *ngFor="let profile of profiles.results" value="profile">{{ profile.first_name + profile.last_name }}</mat-option>
         </mat-select>
     </mat-form-field>
@@ -46,17 +46,17 @@
         <mat-datepicker #finished_picker></mat-datepicker>
     </mat-form-field>
     <mat-form-field *ngIf="tools">
-        <mat-select placeholder="Tool" formControlName="tool">
+        <mat-select placeholder="Tool" formControlName="tool" [compareWith]="compareById">
             <mat-option *ngFor="let tool of tools.results" value="tool">{{ tool.name }}</mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field *ngIf="field_elements">
-        <mat-select placeholder="From element" formControlName="from_element">
+        <mat-select placeholder="From element" formControlName="from_element" [compareWith]="compareById">
             <mat-option *ngFor="let field_element of field_elements.results" value="field_element">{{ field_element.name }}</mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field *ngIf="field_elements">
-        <mat-select placeholder="Until element" formControlName="to_element">
+        <mat-select placeholder="Until element" formControlName="to_element" [compareWith]="compareById">
             <mat-option *ngFor="let field_element of field_elements.results" value="field_element">{{ field_element.name }}</mat-option>
         </mat-select>
     </mat-form-field>
