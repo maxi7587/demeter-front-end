@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, of as observableOf } from 'rxjs';
 
 export class NavigationSidenavLink {
     public text: string;
@@ -18,4 +18,5 @@ export class NavigationSidenavLink {
 })
 export class NavigationService {
     public sidenav_links: Subject<Array<NavigationSidenavLink>> = new Subject();
+    public actions: Subject<{ search: boolean; add: boolean: delete: boolean}> = new Subject<{ search: boolean; add: boolean: delete: boolean}>()>
 }

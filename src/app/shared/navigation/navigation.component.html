@@ -25,7 +25,7 @@
             </div>
             <!-- <mat-toolbar color="primary" id="main-toolbar" style="position: sticky; bottom: 0"> -->
             <!-- TODO: imkprove toolbar hide and show option -->
-            <mat-toolbar color="primary" id="main-toolbar" *ngIf="sections.length > 0">
+            <mat-toolbar color="primary" id="main-toolbar" *ngIf="sections.length > 0 || nav_actions">
                 <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
                     <button
                         *ngIf="sections.length > 0"
@@ -37,7 +37,9 @@
                         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
                     </button>
                     <h3 class="mat-subheading-2" fxHide.xs>{{ route_data.title }}</h3>
-                    <app-expandable-input></app-expandable-input>
+                    <app-expandable-input *ngIf="nav_actions.search"></app-expandable-input>
+                    <button mat-icon-button name="add" *ngIf="nav_actions.add"><mat-icon>add</mat-icon></button>
+                    <button mat-icon-button name="delete" *ngIf="nav_actions.delete"><mat-icon>delete</mat-icon></button>
                 </mat-toolbar-row>
             </mat-toolbar>
         </div>

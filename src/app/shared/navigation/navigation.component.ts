@@ -12,6 +12,16 @@ export class NavigationComponent implements OnInit {
     @Input() show_title = false;
     @Input() sections: Array<NavigationSidenavLink> = [];
 
+    public nav_actions: {
+        search?: boolean;
+        add?: boolean;
+        delete?: boolean
+    } = {
+        search: false,
+        add: false,
+        delete: false
+    };
+
     private _route_data: {[key: string]: any};
     set route_data(data: {[key: string]: any}) { this._route_data = data; }
     get route_data(): {[key: string]: any} { return this._route_data; }
@@ -28,6 +38,7 @@ export class NavigationComponent implements OnInit {
     }
 
     public ngOnInit() {
+        this.navigationService.actions.subscribe(actions => this.actions = actions);
         // this.navigationService.sidenav_links.subscribe(
         //     sections => {
         //         this.sections = sections;
