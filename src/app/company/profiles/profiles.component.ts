@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfilesService } from 'src/app/shared/services/profiles.service';
 import { HttpClient } from '@angular/common/http';
@@ -20,7 +21,8 @@ export class ProfilesComponent implements OnInit {
     public constructor(
         private profilesService: ProfilesService,
         private router: Router,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        protected navigationService: NavigationService
     ) {
         this.profilesService.all().subscribe(profiles => {
             this.profiles = profiles;
@@ -39,7 +41,9 @@ export class ProfilesComponent implements OnInit {
         });
     }
 
-    public ngOnInit() {}
+    public ngOnInit() {
+        this.navigationService.actions.next(new SidenavActions(['search', 'add']));
+    }
 
     public goToElement(element_id) {
         console.log('id ---->', element_id);

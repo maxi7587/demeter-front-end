@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { Router } from '@angular/router';
 import { FieldsService } from 'src/app/shared/services/fields.service';
 import { HttpClient } from '@angular/common/http';
@@ -20,7 +21,8 @@ export class FieldsComponent implements OnInit {
 
     public constructor(
         private fieldsService: FieldsService,
-        private router: Router
+        private router: Router,
+        protected navigationService: NavigationService
     ) {
         this.fieldsService.all().subscribe(fields => {
             this.fields = fields;
@@ -39,7 +41,9 @@ export class FieldsComponent implements OnInit {
         });
     }
 
-    public ngOnInit() {}
+    public ngOnInit() {
+        this.navigationService.actions.next(new SidenavActions(['search', 'add']));
+    }
 
     public goToElement(element_id) {
         console.log('id ---->', element_id);

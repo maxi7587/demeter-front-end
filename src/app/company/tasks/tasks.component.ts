@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TasksService } from 'src/app/shared/services/tasks.service';
 import { HttpClient } from '@angular/common/http';
@@ -21,7 +22,8 @@ export class TasksComponent implements OnInit {
     public constructor(
         private tasksService: TasksService,
         private router: Router,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        protected navigationService: NavigationService
     ) {
         this.tasksService.all().subscribe(tasks => {
             this.tasks = tasks;
@@ -41,7 +43,9 @@ export class TasksComponent implements OnInit {
         });
     }
 
-    public ngOnInit() {}
+    public ngOnInit() {
+        this.navigationService.actions.next(new SidenavActions(['search', 'add']));
+    }
 
     public goToElement(element_id) {
         console.log('id ---->', element_id);

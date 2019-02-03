@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from 'src/app/shared/services/users.service';
-import { NavigationService, NavigationSidenavLink } from 'src/app/shared/navigation/navigation.service';
+import { NavigationService, NavigationSidenavLink, SidenavActions } from 'src/app/shared/navigation/navigation.service';
 import { CompaniesService } from 'src/app/shared/services/companies.service';
 
 @Component({
@@ -28,6 +28,7 @@ export class UserComponent implements OnInit {
                 ];
                 console.log('sections --->', sections_links);
                 this.sections_links = sections_links;
+                this.navigationService.actions.next(new SidenavActions());
             }
         );
     }

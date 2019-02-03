@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationService, SidenavActions } from 'src/app/shared/navigation/navigation.service';
 import { UsersService, User } from 'src/app/shared/services/users.service';
 import { Router } from '@angular/router';
 import { DRFCollection } from 'src/app/shared/basic-drf.service';
@@ -26,7 +27,8 @@ export class CompaniesComponent implements OnInit {
     public constructor(
         private router: Router,
         private companiesService: CompaniesService,
-        protected usersService: UsersService
+        protected usersService: UsersService,
+        protected navigationService: NavigationService
     ) {
         companiesService.all().subscribe(companies => {
             console.log(companies);
@@ -40,7 +42,9 @@ export class CompaniesComponent implements OnInit {
         usersService.all().subscribe(users => this.user = users.results[0]);
     }
 
-    public ngOnInit() { }
+    public ngOnInit() {
+        this.navigationService.actions.next(new SidenavActions(['search', 'add']));
+    }
 
     public goToCompany(company: Company) {
         this.companiesService.company = company;

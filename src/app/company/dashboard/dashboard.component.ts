@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationService, SidenavActions } from 'src/app/shared/navigation/navigation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -31,11 +32,16 @@ export class DashboardComponent implements OnInit {
         }
     ];
 
-    public constructor(protected router: Router, public activatedRoute: ActivatedRoute) {
+    public constructor(
+        protected router: Router,
+        public activatedRoute: ActivatedRoute,
+        public navigationService: NavigationService
+    ) {
         console.log('inside dashboard component');
     }
 
     ngOnInit() {
+        this.navigationService.actions.next(new SidenavActions());
     }
 
     public goToSection(section: string) {

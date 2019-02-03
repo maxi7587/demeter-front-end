@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -16,9 +17,12 @@ export class ToolsEditComponent implements OnInit {
         field: new FormControl()
     });
 
-    public constructor() { }
+    public constructor(
+        protected navigationService: NavigationService
+    ) { }
 
     public ngOnInit() {
+        this.navigationService.actions.next(new SidenavActions(['delete']));
     }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { ToolsService } from 'src/app/shared/services/tools.service';
 import { HttpClient } from '@angular/common/http';
 import { Column } from 'src/app/shared/table/table-elements';
@@ -17,7 +18,10 @@ export class ToolsComponent implements OnInit {
     set columns(columns: Array<Column>) { this._columns = columns; }
     get columns(): Array<Column> { return this._columns; }
 
-    public constructor(private toolsService: ToolsService) {
+    public constructor(
+        private toolsService: ToolsService,
+        protected navigationService: NavigationService
+    ) {
         this.toolsService.all().subscribe(tools => {
             this.tools = tools;
             console.log(tools);
@@ -30,6 +34,7 @@ export class ToolsComponent implements OnInit {
     }
 
     public ngOnInit() {
+        this.navigationService.actions.next(new SidenavActions(['search', 'add']));
     }
 
 }

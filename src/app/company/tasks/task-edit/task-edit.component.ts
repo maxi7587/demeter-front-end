@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { ActivatedRoute } from '@angular/router';
 import { Task } from 'src/app/shared/services/tasks.service';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -29,7 +30,10 @@ export class TaskEditComponent implements OnInit {
     });
     protected task: Task;
 
-    public constructor(protected activatedRoute: ActivatedRoute) {
+    public constructor(
+        protected activatedRoute: ActivatedRoute,
+        protected navigationService: NavigationService
+    ) {
         this.task = this.activatedRoute.snapshot.data.task;
         for (let form_field in this.task_form.controls) {
             if (this.task[form_field]) {
@@ -39,6 +43,7 @@ export class TaskEditComponent implements OnInit {
     }
 
     public ngOnInit() {
+        this.navigationService.actions.next(new SidenavActions(['delete']));
     }
 
     public compareById(f1: any, f2: any) {

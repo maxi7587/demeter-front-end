@@ -37,9 +37,11 @@
                         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
                     </button>
                     <h3 class="mat-subheading-2" fxHide.xs>{{ route_data.title }}</h3>
-                    <app-expandable-input *ngIf="nav_actions.search"></app-expandable-input>
-                    <button mat-icon-button name="add" *ngIf="nav_actions.add"><mat-icon>add</mat-icon></button>
-                    <button mat-icon-button name="delete" *ngIf="nav_actions.delete"><mat-icon>delete</mat-icon></button>
+                    <span fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="end center">
+                        <app-expandable-input *ngIf="nav_actions.search"></app-expandable-input>
+                        <button mat-icon-button name="add" *ngIf="nav_actions.add"><mat-icon>add</mat-icon></button>
+                        <button mat-icon-button name="delete" *ngIf="nav_actions.delete"><mat-icon>delete</mat-icon></button>
+                    </span>
                 </mat-toolbar-row>
             </mat-toolbar>
         </div>

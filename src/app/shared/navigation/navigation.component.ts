@@ -1,17 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { CompaniesService } from 'src/app/shared/services/companies.service';
 import { NavigationService, NavigationSidenavLink } from 'src/app/shared/navigation/navigation.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent implements OnInit, OnDestroy {
     @Input() show_title = false;
     @Input() sections: Array<NavigationSidenavLink> = [];
 
+    public nav_actions_subscription: Subscription;
     public nav_actions: {
         search?: boolean;
         add?: boolean;
@@ -38,7 +40,7 @@ export class NavigationComponent implements OnInit {
     }
 
     public ngOnInit() {
-        this.navigationService.actions.subscribe(actions => this.actions = actions);
+        this.nav_actions_subscription = this.navigationService.actions.subscribe(actions => this.nav_actions = actions);
         // this.navigationService.sidenav_links.subscribe(
         //     sections => {
         //         this.sections = sections;
@@ -48,6 +50,10 @@ export class NavigationComponent implements OnInit {
 
     public goToSection(section) {
         this.router.navigate([section]);
+    }
+
+    public ngOnDestroy() {
+        this.nav_actions_subscription.unsubscribe();
     }
 
 }

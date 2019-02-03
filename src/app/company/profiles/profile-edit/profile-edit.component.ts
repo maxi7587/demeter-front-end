@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { ActivatedRoute } from '@angular/router';
 import { Company, CompaniesService } from 'src/app/shared/services/companies.service';
 import { Profile, ProfilesService } from 'src/app/shared/services/profiles.service';
@@ -31,7 +32,8 @@ export class ProfileEditComponent implements OnInit {
         protected profilesService: ProfilesService,
         protected companiesService: CompaniesService,
         protected rolesService: RolesService,
-        protected activatedRoute: ActivatedRoute
+        protected activatedRoute: ActivatedRoute,
+        protected navigationService: NavigationService
     ) {
         this.profile = this.activatedRoute.snapshot.data.profile;
         for (let form_field in this.profile_form.controls) {
@@ -48,6 +50,7 @@ export class ProfileEditComponent implements OnInit {
             .subscribe(roles => {
                 this.roles = roles;
             });
+        this.navigationService.actions.next(new SidenavActions(['delete']));
     }
 
     public save() {

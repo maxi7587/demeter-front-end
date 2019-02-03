@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Field } from 'src/app/shared/services/fields.service';
@@ -21,7 +22,10 @@ export class FieldEditComponent implements OnInit {
     protected field: Field;
 
 
-    public constructor(protected activatedRoute: ActivatedRoute) {
+    public constructor(
+        protected activatedRoute: ActivatedRoute,
+        protected navigationService: NavigationService
+    ) {
         this.field = this.activatedRoute.snapshot.data.field;
         for (let form_field in this.field_form.controls) {
             if (this.field[form_field]) {
@@ -31,6 +35,7 @@ export class FieldEditComponent implements OnInit {
     }
 
     public ngOnInit() {
+        this.navigationService.actions.next(new SidenavActions(['delete']));
     }
 
 }
