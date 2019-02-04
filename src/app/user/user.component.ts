@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
                 // TODO: verify if user id matches the route's user id
                 this.usersService.getUser();
                 let sections_links = [
-                    new NavigationSidenavLink('Profile', 'users/' + params.user_id + '/profile', 'account_circle'),
+                    new NavigationSidenavLink('Profile', 'users/' + params.user_id + '/personal_info', 'account_circle'),
                     new NavigationSidenavLink('Companies', 'users/' + params.user_id + '/companies', 'work')
                 ];
                 console.log('sections --->', sections_links);

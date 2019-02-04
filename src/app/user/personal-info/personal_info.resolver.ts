@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
-import { Resolve } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { of as observableOf, Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { UsersService, User } from 'src/app/shared/services/users.service';
