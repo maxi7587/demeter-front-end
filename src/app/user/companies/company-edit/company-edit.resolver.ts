@@ -7,7 +7,7 @@ import { CompaniesService, Company } from 'src/app/shared/services/companies.ser
 
 @Injectable()
 export class CompanyEditResolver implements Resolve<Observable<Company>> {
-    protected field_id: string;
+    protected company_id: string;
 
     public constructor(protected companiesService: CompaniesService) {}
 

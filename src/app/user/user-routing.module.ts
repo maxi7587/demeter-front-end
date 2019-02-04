@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { PersonalInfoResolver } from 'src/app/user/personal-info/personal_info.resolver';
+import { PersonalInfoComponent } from 'src/app/user/personal-info/personal-info.component';
 import { CompanyEditComponent } from 'src/app/user/companies/company-edit/company-edit.component';
 import { CompanyEditResolver } from 'src/app/user/companies/company-edit/company-edit.resolver';
 import { UserComponent } from 'src/app/user/user.component';
@@ -11,6 +13,12 @@ const routes: Routes = [
         data: { title: 'user' },
         component: UserComponent,
         children: [
+            {
+                path: 'personal_info',
+                data: { title: 'personal information' },
+                resolve: { user: PersonalInfoResolver },
+                component: PersonalInfoComponent
+            },
             {
                 path: 'companies',
                 data: { title: 'companies' },
