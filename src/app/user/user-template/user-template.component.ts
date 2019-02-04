@@ -1,5 +1,6 @@
 // TODO: merge company and user template in one template called navigation-child
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { DRFResource } from 'src/app/shared/basic-drf.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NavigationService, SidenavActions, NavigationSidenavLink } from 'src/app/shared/navigation/navigation.service';
@@ -24,18 +25,18 @@ export class UserTemplateComponent implements OnInit, OnDestroy {
         this.actions_subscription = this.navigationService.actionClick.subscribe(action => {
             switch (action) {
                 case 'search':
-                this.search();
-                break;
+                    this.search();
+                    break;
                 case 'add':
-                this.add();
-                break;
+                    this.add();
+                    break;
                 case 'delete':
-                this.delete();
-                break;
+                    this.delete();
+                    break;
                 case 'save':
-                console.log('save case');
-                this.save();
-                break;
+                    console.log('save case');
+                    this.save();
+                    break;
             }
         });
     }

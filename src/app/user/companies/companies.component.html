@@ -1,12 +1,15 @@
-<mat-list *ngIf="user && companies && companies.results">
-    <mat-list-item style="margin-bottom: 16px" fxLayout="row" fxLayoutAlign="center center">
-        <mat-icon color="primary">account_circle</mat-icon>
-        <h3 mat-subheader>
-            Hola {{ user.first_name }}, selecciona una compañía para comenzar a trabajar
-        </h3>
-    </mat-list-item>
+<div class="app-basic-padding" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+    <mat-icon color="primary">account_circle</mat-icon>
+    <h3 class="mat-subheading-1 margin-0">
+        Hola {{ user.first_name }}, selecciona una compañía para comenzar a trabajar
+    </h3>
+</div>
+<mat-divider></mat-divider>
+<!-- class="mat-elevation-z2" -->
+<mat-list
+    *ngIf="user && companies && companies.results"
+    >
     <mat-list-item
-        class="mat-elevation-z8"
         *ngFor="let company of companies.results"
         (click)="goToCompany(company)"
         >

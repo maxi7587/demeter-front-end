@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { BasicDRFService } from 'src/app/shared/basic-drf.service';
+import { BasicDRFService, DRFResource } from 'src/app/shared/basic-drf.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-export class Company {
-    public id: string;
-    public url: string;
+export class Company extends DRFResource {
     public name: string;
     public owner: {[key: string]: string};
     public users: Array<{[key: string]: string}>;

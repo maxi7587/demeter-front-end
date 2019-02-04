@@ -4,6 +4,11 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { OAuthService } from 'angular-oauth2-oidc';
 
+export class DRFResource {
+    public id: string;
+    public url: string;
+}
+
 export class DRFCollection<T> {
     private count: number;
     private next: number;
@@ -53,5 +58,27 @@ export class BasicDRFService<T> {
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
             { headers: headers || this.headers }
         );
+    }
+
+    public patch(data, headers?): Observable<T> {
+        return this.httpClient.patch<T>(
+            environment.APIURL +  this.type + '/',
+            data,
+            // TODO: remove header from here... oauth sendAccessTokenConfig should work
+            { headers: headers || this.headers }
+        );
+    }
+
+    public save(resource: DRFResource): Observable<T> {
+        console.log('INSIDE BASIC DRF SERVICE SAVE METHOD');
+        if (resource.id && resource.id !== '0') {
+            console.log('inside 1st inf', resource.id);
+            return this.patch(resource);
+        } else {
+            console.log('will delete resource id', resource.id);
+            delete resource.id;
+            console.log('deleted resource id');
+            return this.post(resource);
+        }
     }
 }

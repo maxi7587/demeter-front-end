@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserTemplateComponent } from 'src/app/user/user-template/user-template.component';
-import { Company } from 'src/app/shared/services/companies.service';
+import { Company, CompaniesService } from 'src/app/shared/services/companies.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavigationService, SidenavActions } from 'src/app/shared/navigation/navigation.service';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -21,6 +21,7 @@ export class CompanyEditComponent extends UserTemplateComponent implements OnIni
     public constructor(
         protected router: Router,
         protected activatedRoute: ActivatedRoute,
+        protected companiesService: CompaniesService,
         protected navigationService: NavigationService
     ) {
         super(router, navigationService);
@@ -38,6 +39,13 @@ export class CompanyEditComponent extends UserTemplateComponent implements OnIni
         } else {
             this.navigationService.actions.next(new SidenavActions(['delete', 'save']));
         }
+    }
+
+    public save() {
+        this.company = { ...this.company, ...this.company_form.value };
+        this.companiesService.save(this.company).subscribe(
+            company => this.router.navigate(['..', {relativeTo: this.activatedRoute}])
+        );
     }
 
 }
