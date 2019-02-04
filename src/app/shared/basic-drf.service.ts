@@ -56,7 +56,7 @@ export class BasicDRFService<T> {
 
     public post(data, route?, headers?): Observable<T> {
         return this.httpClient.post<T>(
-            environment.APIURL +  (route || ((this.pre_route ? this.pre_route.join('/') + '/' : '') + this.type)) + '/',
+            environment.APIURL +  (route || this.type) + '/',
             data,
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
             { headers: headers || this.headers }
@@ -65,7 +65,7 @@ export class BasicDRFService<T> {
 
     public patch(data, route?, headers?): Observable<T> {
         return this.httpClient.patch<T>(
-            environment.APIURL +  (route || ((this.pre_route ? this.pre_route.join('/') + '/' : '') + this.type)) + '/',
+            environment.APIURL +  (route || this.type) + '/',
             data,
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
             { headers: headers || this.headers }
