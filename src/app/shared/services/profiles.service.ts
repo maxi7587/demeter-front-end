@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CompanyDRFService } from 'src/app/shared/drf/company-drf.service';
 import { BasicDRFService } from 'src/app/shared/basic-drf.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -19,6 +20,6 @@ export class Profile {
 @Injectable({
   providedIn: 'root'
 })
-export class ProfilesService extends BasicDRFService<Profile> {
+export class ProfilesService extends CompanyDRFService<Profile> {
     protected _type = 'profiles';
 }

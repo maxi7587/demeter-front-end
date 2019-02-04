@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CompanyDRFService } from 'src/app/shared/drf/company-drf.service';
 import { BasicDRFService } from 'src/app/shared/basic-drf.service';
 import { Field } from './fields.service';
 
@@ -13,6 +14,6 @@ export class Tool {
 @Injectable({
   providedIn: 'root'
 })
-export class ToolsService extends BasicDRFService<Tool> {
+export class ToolsService extends CompanyDRFService<Tool> {
     protected _type = 'tools';
 }

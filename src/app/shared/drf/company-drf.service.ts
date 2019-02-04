@@ -20,6 +20,7 @@ export class CompanyDRFService<T> extends BasicDRFService<T> {
         protected companiesService: CompaniesService
     ) {
         super(httpClient, oAuthService);
+        // TODO: fix this.. should be set when the requests are made... now its only once in the constructor
         let company_id_index = this.router.url.split('/').indexOf('companies') + 1;
         this.company_id = this.router.url.split('/')[company_id_index];
         this._pre_route = ['companies', this.company_id];

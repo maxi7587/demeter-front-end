@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CompanyDRFService } from 'src/app/shared/drf/company-drf.service';
 import { BasicDRFService } from 'src/app/shared/basic-drf.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -28,6 +29,6 @@ export class Task {
 @Injectable({
   providedIn: 'root'
 })
-export class TasksService extends BasicDRFService<Task> {
+export class TasksService extends CompanyDRFService<Task> {
     protected _type = 'tasks';
 }
