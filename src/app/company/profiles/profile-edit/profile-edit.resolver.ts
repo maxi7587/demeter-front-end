@@ -12,6 +12,9 @@ export class ProfileEditResolver implements Resolve<Observable<Profile>> {
     public constructor(protected profilesService: ProfilesService) {}
 
     public resolve(activatedRouteSnapshot: ActivatedRouteSnapshot) {
+        if (activatedRouteSnapshot.params.objectId === '0') {
+            return observableOf(new Profile());
+        }
         return this.profilesService.get(activatedRouteSnapshot.params.objectId);
     }
 }

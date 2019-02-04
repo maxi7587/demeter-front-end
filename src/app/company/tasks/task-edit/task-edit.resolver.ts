@@ -12,6 +12,9 @@ export class TaskEditResolver implements Resolve<Observable<Task>> {
     public constructor(protected tasksService: TasksService) {}
 
     public resolve(activatedRouteSnapshot: ActivatedRouteSnapshot) {
+        if (activatedRouteSnapshot.params.objectId === '0') {
+            return observableOf(new Task());
+        }
         return this.tasksService.get(activatedRouteSnapshot.params.objectId);
     }
 }

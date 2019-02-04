@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
 import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { Router } from '@angular/router';
 import { FieldsService } from 'src/app/shared/services/fields.service';
@@ -10,7 +11,7 @@ import { Column } from 'src/app/shared/table/table-elements';
   templateUrl: './fields.component.html',
   styleUrls: ['./fields.component.scss']
 })
-export class FieldsComponent implements OnInit {
+export class FieldsComponent extends CompanyTemplateComponent {
 
     private _fields: {[key: string]: any} = {};
     set fields(fields: {[key: string]: any}) { this._fields = fields; }
@@ -21,13 +22,12 @@ export class FieldsComponent implements OnInit {
 
     public constructor(
         private fieldsService: FieldsService,
-        private router: Router,
+        protected router: Router,
         protected navigationService: NavigationService
     ) {
+        super(router, navigationService);
         this.fieldsService.all().subscribe(fields => {
             this.fields = fields;
-            console.log(fields);
-            console.log(fields.results[0]);
             // TODO: uncomment following for loop for desktop
             // for (let key of Object.keys(fields.results[0])) {
             //     if (['id', 'url'].indexOf(key) === -1) {
@@ -39,10 +39,6 @@ export class FieldsComponent implements OnInit {
             this.columns.push(new Column('name', 'name', 'name'));
             this.columns.push(new Column('info', 'name', '', 'info', 'end center'));
         });
-    }
-
-    public ngOnInit() {
-        this.navigationService.actions.next(new SidenavActions(['search', 'add']));
     }
 
     public goToElement(element_id) {

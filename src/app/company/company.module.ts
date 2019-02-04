@@ -25,6 +25,7 @@ import { UsersComponent } from './users/users.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { RolesComponent } from './roles/roles.component';
 import { RoleEditComponent } from './roles/role-edit/role-edit.component';
+import { CompanyTemplateComponent } from './company-template/company-template.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { RoleEditComponent } from './roles/role-edit/role-edit.component';
         UsersComponent,
         UserEditComponent,
         RolesComponent,
-        RoleEditComponent
+        RoleEditComponent,
+        CompanyTemplateComponent
     ],
     imports: [
         CommonModule,

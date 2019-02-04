@@ -1,3 +1,4 @@
+// TODO: improve navigation component implementation relating to OOP
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { CompaniesService } from 'src/app/shared/services/companies.service';
 import { NavigationService, NavigationSidenavLink } from 'src/app/shared/navigation/navigation.service';
@@ -17,11 +18,13 @@ export class NavigationComponent implements OnInit, OnDestroy {
     public nav_actions: {
         search?: boolean;
         add?: boolean;
-        delete?: boolean
+        delete?: boolean;
+        save?: boolean;
     } = {
         search: false,
         add: false,
-        delete: false
+        delete: false,
+        save: false
     };
 
     private _route_data: {[key: string]: any};
@@ -48,12 +51,16 @@ export class NavigationComponent implements OnInit, OnDestroy {
         // );
     }
 
+    public ngOnDestroy() {
+        this.nav_actions_subscription.unsubscribe();
+    }
+
     public goToSection(section) {
         this.router.navigate([section]);
     }
 
-    public ngOnDestroy() {
-        this.nav_actions_subscription.unsubscribe();
+    public actionClick(action) {
+        this.navigationService.actionClick.next(action);
     }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
 import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Task } from 'src/app/shared/services/tasks.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -9,7 +10,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   templateUrl: './task-edit.component.html',
   styleUrls: ['./task-edit.component.scss']
 })
-export class TaskEditComponent implements OnInit {
+export class TaskEditComponent extends CompanyTemplateComponent implements OnInit {
 
     public task_form: FormGroup = new FormGroup({
         name: new FormControl(),
@@ -31,9 +32,11 @@ export class TaskEditComponent implements OnInit {
     protected task: Task;
 
     public constructor(
+        protected router: Router,
         protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
     ) {
+        super(router, navigationService);
         this.task = this.activatedRoute.snapshot.data.task;
         for (let form_field in this.task_form.controls) {
             if (this.task[form_field]) {
@@ -43,7 +46,10 @@ export class TaskEditComponent implements OnInit {
     }
 
     public ngOnInit() {
-        this.navigationService.actions.next(new SidenavActions(['delete']));
+        if (!this.task.id || this.task.id === '0') {
+            this.navigationService.actions.next(new SidenavActions(['save']));
+        }
+        this.navigationService.actions.next(new SidenavActions(['delete', 'save']));
     }
 
     public compareById(f1: any, f2: any) {

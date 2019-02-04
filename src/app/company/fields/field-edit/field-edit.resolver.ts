@@ -12,6 +12,9 @@ export class FieldEditResolver implements Resolve<Observable<Field>> {
     public constructor(protected fieldsService: FieldsService) {}
 
     public resolve(activatedRouteSnapshot: ActivatedRouteSnapshot) {
+        if (activatedRouteSnapshot.params.objectId === '0') {
+            return observableOf(new Field());
+        }
         return this.fieldsService.get(activatedRouteSnapshot.params.objectId);
     }
 }

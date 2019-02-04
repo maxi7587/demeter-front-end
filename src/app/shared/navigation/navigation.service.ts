@@ -5,11 +5,13 @@ export class SidenavActions {
     public search: boolean;
     public add: boolean;
     public delete: boolean;
+    public save: boolean;
 
-    public constructor(options: Array<'search' | 'add' | 'delete'> = []) {
+    public constructor(options: Array<'search' | 'add' | 'delete' | 'save'> = []) {
         this.search = options.indexOf('search') !== -1;
         this.add = options.indexOf('add') !== -1;
         this.delete = options.indexOf('delete') !== -1;
+        this.save = options.indexOf('save') !== -1;
     }
 
     public useSearch(): this {
@@ -26,6 +28,12 @@ export class SidenavActions {
 
     public useDelete(): this {
         this.delete = true;
+
+        return this;
+    }
+
+    public useSave(): this {
+        this.save = true;
 
         return this;
     }
@@ -49,4 +57,5 @@ export class NavigationSidenavLink {
 export class NavigationService {
     public sidenav_links: Subject<Array<NavigationSidenavLink>> = new Subject();
     public actions: Subject<SidenavActions> = new Subject();
+    public actionClick: Subject<string> = new Subject<string>();
 }

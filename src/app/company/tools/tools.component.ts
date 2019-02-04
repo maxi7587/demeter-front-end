@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
+import { Router } from '@angular/router';
 import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { ToolsService } from 'src/app/shared/services/tools.service';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +11,7 @@ import { Column } from 'src/app/shared/table/table-elements';
   templateUrl: './tools.component.html',
   styleUrls: ['./tools.component.scss']
 })
-export class ToolsComponent implements OnInit {
+export class ToolsComponent extends CompanyTemplateComponent {
 
     private _tools: {[key: string]: any} = {};
     set tools(tools: {[key: string]: any}) { this._tools = tools; }
@@ -19,22 +21,18 @@ export class ToolsComponent implements OnInit {
     get columns(): Array<Column> { return this._columns; }
 
     public constructor(
+        protected router: Router,
         private toolsService: ToolsService,
         protected navigationService: NavigationService
     ) {
+        super(router, navigationService);
         this.toolsService.all().subscribe(tools => {
             this.tools = tools;
-            console.log(tools);
-            console.log(tools.results[0]);
             // TODO: improve for mobile
             this.columns.push(new Column('name', 'name', 'name'));
             this.columns.push(new Column('status', 'status', '', '', 'center center'));
             this.columns.push(new Column('field.name', 'field', '', '', 'end center'));
         });
-    }
-
-    public ngOnInit() {
-        this.navigationService.actions.next(new SidenavActions(['search', 'add']));
     }
 
 }

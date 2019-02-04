@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
 import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TasksService } from 'src/app/shared/services/tasks.service';
@@ -10,7 +11,7 @@ import { Column } from 'src/app/shared/table/table-elements';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss']
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent extends CompanyTemplateComponent {
 
     private _tasks: {[key: string]: any} = {};
     set tasks(tasks: {[key: string]: any}) { this._tasks = tasks; }
@@ -21,14 +22,13 @@ export class TasksComponent implements OnInit {
 
     public constructor(
         private tasksService: TasksService,
-        private router: Router,
-        private activatedRoute: ActivatedRoute,
+        protected router: Router,
+        protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
     ) {
+        super(router, navigationService);
         this.tasksService.all().subscribe(tasks => {
             this.tasks = tasks;
-            console.log(tasks);
-            console.log(tasks.results[0]);
             // TODO: uncomment following for loop for desktop
             // for (let key of Object.keys(tasks.results[0])) {
             //     if (['id', 'url'].indexOf(key) === -1) {
@@ -41,10 +41,6 @@ export class TasksComponent implements OnInit {
             this.columns.push(new Column('field.name', 'field', ''));
             this.columns.push(new Column('info', 'name', '', 'info', 'end center'));
         });
-    }
-
-    public ngOnInit() {
-        this.navigationService.actions.next(new SidenavActions(['search', 'add']));
     }
 
     public goToElement(element_id) {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
 import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Company, CompaniesService } from 'src/app/shared/services/companies.service';
 import { Profile, ProfilesService } from 'src/app/shared/services/profiles.service';
 import { DRFCollection } from 'src/app/shared/basic-drf.service';
@@ -12,7 +13,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
     templateUrl: './profile-edit.component.html',
     styleUrls: ['./profile-edit.component.scss']
 })
-export class ProfileEditComponent implements OnInit {
+export class ProfileEditComponent extends CompanyTemplateComponent implements OnInit {
     public profile_form: FormGroup = new FormGroup({
         first_name: new FormControl('', [Validators.required]),
         last_name: new FormControl('', [Validators.required]),
@@ -29,12 +30,14 @@ export class ProfileEditComponent implements OnInit {
     public roles: DRFCollection<Role>;
 
     public constructor(
+        protected router: Router,
         protected profilesService: ProfilesService,
         protected companiesService: CompaniesService,
         protected rolesService: RolesService,
         protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
     ) {
+        super(router, navigationService);
         this.profile = this.activatedRoute.snapshot.data.profile;
         for (let form_field in this.profile_form.controls) {
             if (this.profile[form_field]) {
@@ -50,7 +53,11 @@ export class ProfileEditComponent implements OnInit {
             .subscribe(roles => {
                 this.roles = roles;
             });
-        this.navigationService.actions.next(new SidenavActions(['delete']));
+        if (!this.profile.id || this.profile.id === '0') {
+            this.navigationService.actions.next(new SidenavActions(['save']));
+        } else {
+            this.navigationService.actions.next(new SidenavActions(['delete', 'save']));
+        }
     }
 
     public save() {

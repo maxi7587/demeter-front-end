@@ -22,7 +22,7 @@ export class ToolsEditComponent implements OnInit {
     ) { }
 
     public ngOnInit() {
-        this.navigationService.actions.next(new SidenavActions(['delete']));
+        this.navigationService.actions.next(new SidenavActions(['delete', 'save']));
     }
 
 }
