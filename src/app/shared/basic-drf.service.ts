@@ -26,6 +26,9 @@ export class BasicDRFService<T> {
     set type(type: string) { this._type = type; }
     get type(): string { return this._type; }
 
+    protected _pre_route: Array<string>;
+    get pre_route(): Array<string> { return this._pre_route; }
+
     // TODO: remove header from here... oauth sendAccessTokenConfig should work
     protected headers = new HttpHeaders({
         'Content-Type':  'application/json',
@@ -34,35 +37,35 @@ export class BasicDRFService<T> {
 
     public constructor(protected httpClient: HttpClient, protected oAuthService: OAuthService) {}
 
-    public all(type?, headers?): Observable<DRFCollection<T>> {
+    public all(route?, headers?): Observable<DRFCollection<T>> {
         console.log('headers in BasicDRFService --->', this.headers);
         return this.httpClient.get<DRFCollection<T>>(
-            environment.APIURL +  (type || this.type) + '/',
+            environment.APIURL +  (route || ((this.pre_route ? this.pre_route.join('/') + '/' : '') + this.type)) + '/',
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
             { headers: headers || this.headers }
         );
     }
 
-    public get(id, headers?): Observable<T> {
+    public get(id, route?,  headers?): Observable<T> {
         return this.httpClient.get<T>(
-            environment.APIURL +  this.type + '/' + id + '/',
+            environment.APIURL +  (route || ((this.pre_route ? this.pre_route.join('/') + '/' : '') + this.type)) + '/' + id + '/',
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
             { headers: headers || this.headers }
         );
     }
 
-    public post(data, headers?): Observable<T> {
+    public post(data, route?, headers?): Observable<T> {
         return this.httpClient.post<T>(
-            environment.APIURL +  this.type + '/',
+            environment.APIURL +  (route || ((this.pre_route ? this.pre_route.join('/') + '/' : '') + this.type)) + '/',
             data,
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
             { headers: headers || this.headers }
         );
     }
 
-    public patch(data, headers?): Observable<T> {
+    public patch(data, route?, headers?): Observable<T> {
         return this.httpClient.patch<T>(
-            environment.APIURL +  this.type + '/',
+            environment.APIURL +  (route || ((this.pre_route ? this.pre_route.join('/') + '/' : '') + this.type)) + '/',
             data,
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
             { headers: headers || this.headers }

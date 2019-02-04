@@ -28,6 +28,7 @@ export class FieldsComponent extends CompanyTemplateComponent {
         super(router, navigationService);
         this.fieldsService.all().subscribe(fields => {
             this.fields = fields;
+            console.log(this.fields);
             // TODO: uncomment following for loop for desktop
             // for (let key of Object.keys(fields.results[0])) {
             //     if (['id', 'url'].indexOf(key) === -1) {
