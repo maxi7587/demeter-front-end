@@ -14,8 +14,8 @@
         <h4 mat-line>{{ company.name }}</h4>
         <p mat-line> {{ company.details }} </p>
         <button
-            mat-button
-            (click)="goToCompanyConfig(company)"
+            mat-icon-button
+            (click)="$event.stopPropagation(); goToCompanyEdit(company.id)"
             >
             <mat-icon>settings</mat-icon>
         </button>

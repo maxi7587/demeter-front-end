@@ -53,4 +53,8 @@ export class CompaniesComponent extends UserTemplateComponent implements OnInit 
         this.router.navigate(['/companies/' + company.id + '/dashboard']);
     }
 
+    public goToCompanyEdit(company_id) {
+        this.router.navigate([this.router.url, company_id]);
+    }
+
 }
