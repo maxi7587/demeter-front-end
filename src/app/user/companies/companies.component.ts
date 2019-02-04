@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserTemplateComponent } from 'src/app/user/user-template/user-template.component';
 import { NavigationService, SidenavActions } from 'src/app/shared/navigation/navigation.service';
 import { UsersService, User } from 'src/app/shared/services/users.service';
 import { Router } from '@angular/router';
@@ -11,7 +12,7 @@ import { Column } from 'src/app/shared/table/table-elements';
   templateUrl: './companies.component.html',
   styleUrls: ['./companies.component.scss']
 })
-export class CompaniesComponent implements OnInit {
+export class CompaniesComponent extends UserTemplateComponent implements OnInit {
     private _user: User;
     set user(user: User) { this._user = user; }
     get user(): User { return this._user; }
@@ -25,11 +26,12 @@ export class CompaniesComponent implements OnInit {
     get columns(): Array<Column> { return this._columns; }
 
     public constructor(
-        private router: Router,
-        private companiesService: CompaniesService,
+        protected router: Router,
+        protected companiesService: CompaniesService,
         protected usersService: UsersService,
         protected navigationService: NavigationService
     ) {
+        super(router, navigationService);
         companiesService.all().subscribe(companies => {
             console.log(companies);
             this.companies = companies;

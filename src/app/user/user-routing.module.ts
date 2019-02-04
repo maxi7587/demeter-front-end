@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { CompanyEditComponent } from 'src/app/user/companies/company-edit/company-edit.component';
+import { CompanyEditResolver } from 'src/app/user/companies/company-edit/company-edit.resolver';
 import { UserComponent } from 'src/app/user/user.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CompaniesComponent } from 'src/app/user/companies/companies.component';
@@ -13,6 +15,12 @@ const routes: Routes = [
                 path: 'companies',
                 data: { title: 'companies' },
                 component: CompaniesComponent
+            },
+            {
+                path: 'companies/:objectId',
+                data: { title: 'companies' },
+                resolve: { company: CompanyEditResolver },
+                component: CompanyEditComponent
             }
         ]
     }

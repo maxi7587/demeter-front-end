@@ -1,14 +1,15 @@
+// TODO: merge company and user template in one template called navigation-child
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NavigationService, SidenavActions, NavigationSidenavLink } from 'src/app/shared/navigation/navigation.service';
 
 @Component({
-    selector: 'app-company-template',
-    templateUrl: './company-template.component.html',
-    styleUrls: ['./company-template.component.scss']
+    selector: 'app-user-template',
+    templateUrl: './user-template.component.html',
+    styleUrls: ['./user-template.component.scss']
 })
-export class CompanyTemplateComponent implements OnInit, OnDestroy {
+export class UserTemplateComponent implements OnInit, OnDestroy {
 
     public route_data: {[key: string]: any};
     public sections_links: Array<NavigationSidenavLink> = [];

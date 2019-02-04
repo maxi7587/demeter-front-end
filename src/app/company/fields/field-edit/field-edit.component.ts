@@ -38,7 +38,6 @@ export class FieldEditComponent extends CompanyTemplateComponent implements OnIn
     }
 
     public ngOnInit() {
-        super.ngOnInit();
         if (this.field.id || this.field.id === '0') {
             this.navigationService.actions.next(new SidenavActions(['save']));
         } else {
