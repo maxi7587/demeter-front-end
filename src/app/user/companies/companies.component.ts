@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserTemplateComponent } from 'src/app/user/user-template/user-template.component';
 import { NavigationService, SidenavActions } from 'src/app/shared/navigation/navigation.service';
 import { UsersService, User } from 'src/app/shared/services/users.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DRFCollection } from 'src/app/shared/basic-drf.service';
 import { CompaniesService, Company } from 'src/app/shared/services/companies.service';
 import { Column } from 'src/app/shared/table/table-elements';
@@ -27,11 +27,12 @@ export class CompaniesComponent extends UserTemplateComponent implements OnInit 
 
     public constructor(
         protected router: Router,
+        protected activatedRoute: ActivatedRoute,
         protected companiesService: CompaniesService,
         protected usersService: UsersService,
         protected navigationService: NavigationService
     ) {
-        super(router, navigationService);
+        super(router, activatedRoute, navigationService);
         companiesService.all().subscribe(companies => {
             console.log(companies);
             this.companies = companies;

@@ -3,6 +3,7 @@ import { CompaniesService } from 'src/app/shared/services/companies.service';
 import { BasicDRFService } from 'src/app/shared/basic-drf.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { SharedMaterialModule } from 'src/app/shared/shared-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 // import { HttpClientModule } from '@angular/common/http';
@@ -30,6 +31,7 @@ import { UsersService } from './services/users.service';
         FlexLayoutModule,
         // HttpClientModule,
         AvatarModule,
+        TranslateModule,
         SharedMaterialModule
     ],
     exports: [
@@ -42,6 +44,7 @@ import { UsersService } from './services/users.service';
         DynamicPipe,
         NavigationComponent,
         AutocompleteComponent,
+        TranslateModule,
         ExpandableInputComponent
     ],
     providers: [

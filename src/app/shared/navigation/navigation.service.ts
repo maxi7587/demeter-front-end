@@ -55,6 +55,7 @@ export class NavigationSidenavLink {
   providedIn: 'root'
 })
 export class NavigationService {
+    public title: string;
     public sidenav_links: Subject<Array<NavigationSidenavLink>> = new Subject();
     public actions: Subject<SidenavActions> = new Subject();
     public actionClick: Subject<string> = new Subject<string>();

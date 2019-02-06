@@ -2,7 +2,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { CompaniesService } from 'src/app/shared/services/companies.service';
 import { NavigationService, NavigationSidenavLink } from 'src/app/shared/navigation/navigation.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({

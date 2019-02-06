@@ -10,7 +10,6 @@ import { CompaniesComponent } from 'src/app/user/companies/companies.component';
 const routes: Routes = [
     {
         path: ':user_id',
-        data: { title: 'user' },
         component: UserComponent,
         children: [
             {
@@ -26,7 +25,7 @@ const routes: Routes = [
             },
             {
                 path: 'companies/:objectId',
-                data: { title: 'companies' },
+                data: { title: 'company' },
                 resolve: { company: CompanyEditResolver },
                 component: CompanyEditComponent
             }

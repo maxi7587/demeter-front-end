@@ -5,10 +5,17 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { JwksValidationHandler, OAuthStorage, OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 import { environment } from 'src/environments/environment';
 import { getToken } from './get-token';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http, location.origin + '/assets/i18n/', '.json');
+    // return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -28,6 +35,13 @@ import { getToken } from './get-token';
         resourceServer: {
             allowedUrls: environment.whiteListedDomains,
             sendAccessToken: true
+        }
+    }),
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [ HttpClient ]
         }
     }),
     SharedModule
