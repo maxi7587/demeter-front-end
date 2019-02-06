@@ -24,7 +24,7 @@ export class CompanyEditComponent extends UserTemplateComponent implements OnIni
         protected companiesService: CompaniesService,
         protected navigationService: NavigationService
     ) {
-        super(router, navigationService);
+        super(router, activatedRoute, navigationService);
         this.company = this.activatedRoute.snapshot.data.company;
         for (let form_field in this.company_form.controls) {
             if (this.company[form_field]) {
