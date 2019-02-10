@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class Company extends DRFResource {
     public name: string;
     public owner: {[key: string]: string};
+    public cuit: number;
     public users: Array<{[key: string]: string}>;
     public details: string;
     public contact: {[key: string]: string};

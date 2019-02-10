@@ -13,6 +13,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class CompanyEditComponent extends UserTemplateComponent implements OnInit {
     public company_form: FormGroup = new FormGroup({
         name: new FormControl(),
+        cuit: new FormControl(),
         details: new FormControl(),
         contact: new FormControl()
     });
