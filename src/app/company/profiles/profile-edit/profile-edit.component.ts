@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ContractTypesService, ContractType } from 'src/app/shared/services/contract-types.service';
+import { ChargesService, Charge } from 'src/app/shared/services/charges.service';
 import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
 import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,8 +19,12 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
     public profile_form: FormGroup = new FormGroup({
         first_name: new FormControl('', [Validators.required]),
         last_name: new FormControl('', [Validators.required]),
+        cuit: new FormControl(''),
+        birth_date: new FormControl(''),
         company: new FormControl('', [Validators.required]),
         role: new FormControl('', [Validators.required]),
+        charge: new FormControl(''),
+        contract_type: new FormControl(''),
         daily_working_hours: new FormControl('', [Validators.required]),
         contact: new FormControl(),
         is_user: new FormControl()
@@ -28,12 +34,16 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
 
     public company: Company;
     public roles: DRFCollection<Role>;
+    public charges: DRFCollection<Charge>;
+    public contract_types: DRFCollection<ContractType>;
 
     public constructor(
         protected router: Router,
         protected profilesService: ProfilesService,
         protected companiesService: CompaniesService,
         protected rolesService: RolesService,
+        protected chargesService: ChargesService,
+        protected contractTypesService: ContractTypesService,
         protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
     ) {
@@ -52,6 +62,16 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
             .all()
             .subscribe(roles => {
                 this.roles = roles;
+            });
+        this.chargesService
+            .all()
+            .subscribe(charges => {
+                this.charges = charges;
+            });
+        this.contractTypesService
+            .all()
+            .subscribe(contract_types => {
+                this.contract_types = contract_types;
             });
         if (!this.profile.id || this.profile.id === '0') {
             this.navigationService.actions.next(new SidenavActions(['save']));

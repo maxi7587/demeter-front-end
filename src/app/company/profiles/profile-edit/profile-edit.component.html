@@ -11,6 +11,24 @@
         </mat-select>
     </mat-form-field>
     <mat-form-field>
+        <input matInput [matDatepicker]="birth_date_picker" placeholder="Birth date" formControlName="birth_date">
+        <mat-datepicker-toggle matSuffix [for]="birth_date_picker"></mat-datepicker-toggle>
+        <mat-datepicker #birth_date_picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="number" placeholder="CUIT/CUIL" formControlName="cuit">
+    </mat-form-field>
+    <mat-form-field *ngIf="charges">
+        <mat-select placeholder="Charge" formControlName="charge">
+            <mat-option *ngFor="let charge of charges" value="charge">{{ charge.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="contract_types">
+        <mat-select placeholder="Contract type" formControlName="contract_type">
+            <mat-option *ngFor="let contract_type of contract_types" value="contract_type">{{ contract_type.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
         <input matInput type="number" placeholder="Daily working hours" formControlName="daily_working_hours">
     </mat-form-field>
     <!-- <mat-checkbox formControlName="is_user">Company user</mat-checkbox> -->

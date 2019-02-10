@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { ChargesService } from 'src/app/shared/services/charges.service';
+import { ContractTypesService } from 'src/app/shared/services/contract-types.service';
 import { CompaniesService } from 'src/app/shared/services/companies.service';
 import { BasicDRFService } from 'src/app/shared/basic-drf.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -56,6 +58,8 @@ import { UsersService } from './services/users.service';
         TaskTypesService,
         FieldElementsService,
         FieldsService,
+        ContractTypesService,
+        ChargesService,
         TasksService,
         UsersService
     ]
