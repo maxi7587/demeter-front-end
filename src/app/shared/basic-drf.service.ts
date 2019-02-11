@@ -37,6 +37,13 @@ export class BasicDRFService<T> {
 
     public constructor(protected httpClient: HttpClient, protected oAuthService: OAuthService) {}
 
+    public getAuthorizationHeaders() {
+        this.headers = new HttpHeaders({
+            'Content-Type':  'application/json',
+            'Authorization': this.oAuthService.authorizationHeader()
+        });
+    }
+
     public all(route?, headers?): Observable<DRFCollection<T>> {
         console.log('headers in BasicDRFService --->', this.headers);
         return this.httpClient.get<DRFCollection<T>>(

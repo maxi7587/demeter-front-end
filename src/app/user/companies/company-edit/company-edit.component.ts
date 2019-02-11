@@ -45,7 +45,7 @@ export class CompanyEditComponent extends UserTemplateComponent implements OnIni
     public save() {
         this.company = { ...this.company, ...this.company_form.value };
         this.companiesService.save(this.company).subscribe(
-            company => this.router.navigate(['..', {relativeTo: this.activatedRoute}])
+            company => this.router.navigate(['..'], {relativeTo: this.activatedRoute})
         );
     }
 

@@ -19,13 +19,13 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
     public profile_form: FormGroup = new FormGroup({
         first_name: new FormControl('', [Validators.required]),
         last_name: new FormControl('', [Validators.required]),
-        cuit: new FormControl(''),
-        birth_date: new FormControl(''),
-        company: new FormControl('', [Validators.required]),
-        role: new FormControl('', [Validators.required]),
-        charge: new FormControl(''),
-        contract_type: new FormControl(''),
-        daily_working_hours: new FormControl('', [Validators.required]),
+        cuit: new FormControl(),
+        birth_date: new FormControl(),
+        company: new FormControl([Validators.required]),
+        role: new FormControl([Validators.required]),
+        charge: new FormControl(),
+        contract_type: new FormControl(),
+        daily_working_hours: new FormControl([Validators.required]),
         contact: new FormControl(),
         is_user: new FormControl()
     });
@@ -80,8 +80,20 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
         }
     }
 
+    public getFormattedBirthDate(date: string): string {
+        let day = new Date(date).getDate();
+        let month = new Date(date).getMonth();
+        let year = new Date(date).getFullYear();
+        let birth_date = [year, month, day].join('-');
+
+        return birth_date;
+    }
+
     public save() {
-        this.profile = { ...this.profile, ...this.profile_form.value };
+        let birth_date = this.getFormattedBirthDate(this.profile_form.controls.birth_date.value);
+        console.log(this.profile);
+        this.profile = { ...this.profile, ...this.profile_form.value, ...{ birth_date: birth_date }};
+        console.log(this.profile);
         this.profilesService.post(this.profile).subscribe(profile => console.log('profile saved', profile));
     }
 

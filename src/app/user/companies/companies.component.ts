@@ -36,13 +36,19 @@ export class CompaniesComponent extends UserTemplateComponent implements OnInit 
         companiesService.all().subscribe(companies => {
             console.log(companies);
             this.companies = companies;
+            if (companies.results.length === 0) {
+                return;
+            }
             for (let key of Object.keys(companies.results[0])) {
                 if (['id', 'url'].indexOf(key) === -1) {
                     this.columns.push(new Column(key, key));
                 }
             }
         });
-        usersService.all().subscribe(users => this.user = users.results[0]);
+        usersService.all().subscribe(users => {
+            this.user = users.results[0];
+            console.log('users --->', users);
+        });
     }
 
     public ngOnInit() {

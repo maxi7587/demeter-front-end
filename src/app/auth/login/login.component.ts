@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
             .login(this.login_form.value.email, this.login_form.value.password)
             .then(
                 () => {
+                    this.usersService.getAuthorizationHeaders();
                     this.usersService.getUser()
                         .subscribe(
                             user => this.router.navigate([`/users/${user.id}/companies`])
