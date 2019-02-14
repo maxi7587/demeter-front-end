@@ -1,36 +1,40 @@
-<form class="height-100 app-basic-padding" [formGroup]="profile_form" fxLayout="column" fxLayoutAlign="start center">
-    <mat-form-field>
-        <input matInput type="text" placeholder="Name" formControlName="first_name">
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput type="text" placeholder="Last name" formControlName="last_name">
-    </mat-form-field>
-    <mat-form-field *ngIf="roles">
-        <mat-select placeholder="Role" formControlName="role" [compareWith]="compareById">
-            <mat-option *ngFor="let role of roles.results" [value]="role">{{ role.name }}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput [matDatepicker]="birth_date_picker" placeholder="Birth date" formControlName="birth_date">
-        <mat-datepicker-toggle matSuffix [for]="birth_date_picker"></mat-datepicker-toggle>
-        <mat-datepicker #birth_date_picker></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput type="number" placeholder="CUIT/CUIL" formControlName="cuit">
-    </mat-form-field>
-    <mat-form-field *ngIf="charges">
-        <mat-select placeholder="Charge" formControlName="charge">
-            <mat-option *ngFor="let charge of charges" value="charge">{{ charge.name }}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field *ngIf="contract_types">
-        <mat-select placeholder="Contract type" formControlName="contract_type">
-            <mat-option *ngFor="let contract_type of contract_types" value="contract_type">{{ contract_type.name }}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput type="number" placeholder="Daily working hours" formControlName="daily_working_hours">
-    </mat-form-field>
-    <!-- <mat-checkbox formControlName="is_user">Company user</mat-checkbox> -->
-    <!-- <button mat-button (click)="save()">Save</button> -->
+<form class="height-100 app-form" [formGroup]="profile_form" fxLayout="column" fxLayoutAlign="start center">
+    <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex="80">
+        <h3 class="mat-subheading-1">Personal data</h3>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Name" formControlName="first_name">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Last name" formControlName="last_name">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="number" placeholder="CUIT/CUIL" formControlName="cuit">
+        </mat-form-field>
+        <h3 class="mat-subheading-1">Company data</h3>
+        <mat-form-field *ngIf="roles">
+            <mat-select placeholder="Role" formControlName="role" [compareWith]="compareById">
+                <mat-option *ngFor="let role of roles.results" [value]="role">{{ role.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="birth_date_picker" placeholder="Birth date" formControlName="birth_date">
+            <mat-datepicker-toggle matSuffix [for]="birth_date_picker"></mat-datepicker-toggle>
+            <mat-datepicker #birth_date_picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="number" placeholder="Daily working hours" formControlName="daily_working_hours">
+        </mat-form-field>
+        <mat-form-field *ngIf="charges">
+            <mat-select placeholder="Charge" formControlName="charge">
+                <mat-option *ngFor="let charge of charges" value="charge">{{ charge.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field *ngIf="contract_types">
+            <mat-select placeholder="Contract type" formControlName="contract_type">
+                <mat-option *ngFor="let contract_type of contract_types" value="contract_type">{{ contract_type.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <!-- <mat-checkbox formControlName="is_user">Company user</mat-checkbox> -->
+        <!-- <button mat-button (click)="save()">Save</button> -->
+    </div>
 </form>

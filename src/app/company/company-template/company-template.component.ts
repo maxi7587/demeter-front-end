@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NavigationService, SidenavActions, NavigationSidenavLink } from 'src/app/shared/navigation/navigation.service';
 
@@ -17,8 +17,10 @@ export class CompanyTemplateComponent implements OnInit, OnDestroy {
 
     public constructor(
         protected router: Router,
+        protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
     ) {
+        this.navigationService.title = activatedRoute.snapshot.data.title;
         this.navigationService.actions.next(new SidenavActions(['search', 'add']));
         this.actions_subscription = this.navigationService.actionClick.subscribe(action => {
             switch (action) {
@@ -61,4 +63,5 @@ export class CompanyTemplateComponent implements OnInit, OnDestroy {
     public save() {
         console.log('inside save method');
     }
+
 }

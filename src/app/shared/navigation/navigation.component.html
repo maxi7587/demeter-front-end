@@ -11,15 +11,14 @@
     <mat-sidenav-content>
         <div class="height-100" fxLayout="column" fxLayoutAlign="space-between stretch">
             <!-- *ngIf="show_title" -->
-            <div *ngIf="navigationService.title" class="app-basic-padding" fxLayout="row" fxLayoutAlign="space-between center">
-                <h3
-                    class="mat-subheading-2 padding-0 margin-0"
-                    fxHide.gt-xs
-                    >
-                    {{ navigationService.title | translate | titlecase }}
-                </h3>
-                <button mat-icon-button><mat-icon>arrow_left</mat-icon></button>
-            </div>
+            <mat-toolbar *ngIf="navigationService.title" fxHide.gt-xs class="mobile-title-bar">
+                <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+                    <h3 class="mat-subheading-2">
+                        {{ navigationService.title | translate | titlecase }}
+                    </h3>
+                    <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_back</mat-icon></button>
+                </mat-toolbar-row>
+            </mat-toolbar>
             <!-- <mat-toolbar color="primary" id="main-toolbar" ngClass.gt-xs="background-transparent" ngClass.xs="position-absolute bottom inherit-font">
                 <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
                     <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()">

@@ -21,11 +21,11 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
         last_name: new FormControl('', [Validators.required]),
         cuit: new FormControl(),
         birth_date: new FormControl(),
-        company: new FormControl([Validators.required]),
-        role: new FormControl([Validators.required]),
+        company: new FormControl(null, [Validators.required]),
+        role: new FormControl(null, [Validators.required]),
         charge: new FormControl(),
         contract_type: new FormControl(),
-        daily_working_hours: new FormControl([Validators.required]),
+        daily_working_hours: new FormControl(),
         contact: new FormControl(),
         is_user: new FormControl()
     });
@@ -47,7 +47,7 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
         protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
     ) {
-        super(router, navigationService);
+        super(router, activatedRoute, navigationService);
         this.profile = this.activatedRoute.snapshot.data.profile;
         for (let form_field in this.profile_form.controls) {
             if (this.profile[form_field]) {
@@ -57,7 +57,9 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
     }
 
     public ngOnInit() {
+        // TODO: fix this in company.component
         this.company = this.companiesService.company;
+        console.log('this.company --->', this.company);
         this.rolesService
             .all()
             .subscribe(roles => {
@@ -92,7 +94,11 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
     public save() {
         let birth_date = this.getFormattedBirthDate(this.profile_form.controls.birth_date.value);
         console.log(this.profile);
-        this.profile = { ...this.profile, ...this.profile_form.value, ...{ birth_date: birth_date }};
+        this.profile = {
+            ...this.profile,
+            ...this.profile_form.value,
+            ...{ birth_date: birth_date }
+        };
         console.log(this.profile);
         this.profilesService.post(this.profile).subscribe(profile => console.log('profile saved', profile));
     }

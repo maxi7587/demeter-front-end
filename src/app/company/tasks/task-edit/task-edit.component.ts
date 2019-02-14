@@ -36,7 +36,7 @@ export class TaskEditComponent extends CompanyTemplateComponent implements OnIni
         protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
     ) {
-        super(router, navigationService);
+        super(router, activatedRoute, navigationService);
         this.task = this.activatedRoute.snapshot.data.task;
         for (let form_field in this.task_form.controls) {
             if (this.task[form_field]) {

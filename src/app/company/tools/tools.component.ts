@@ -25,7 +25,7 @@ export class ToolsComponent extends CompanyTemplateComponent {
         private toolsService: ToolsService,
         protected navigationService: NavigationService
     ) {
-        super(router, navigationService);
+        super(router, activatedRoute, navigationService);
         this.toolsService.all().subscribe(tools => {
             this.tools = tools;
             // TODO: improve for mobile

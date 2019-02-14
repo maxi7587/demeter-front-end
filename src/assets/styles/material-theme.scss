@@ -10,7 +10,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $demeter-primary: mat-palette($mat-green, 700, 500, 900);
-$demeter-accent: mat-palette($mat-grey, A200, A100, A400);
+$demeter-accent: mat-palette($mat-grey, 200, 100, 400);
 
 // The warn palette is optional (defaults to red).
 $demeter-warn: mat-palette($mat-red);

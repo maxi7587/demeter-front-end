@@ -25,7 +25,7 @@ export class ProfilesComponent extends CompanyTemplateComponent {
         protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
     ) {
-        super(router, navigationService);
+        super(router, activatedRoute, navigationService);
         this.profilesService.all().subscribe(profiles => {
             this.profiles = profiles;
             // TODO: uncomment following for loop for desktop

@@ -28,7 +28,7 @@ export class FieldEditComponent extends CompanyTemplateComponent implements OnIn
         protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
     ) {
-        super(router, navigationService);
+        super(router, activatedRoute, navigationService);
         this.field = this.activatedRoute.snapshot.data.field;
         for (let form_field in this.field_form.controls) {
             if (this.field[form_field]) {

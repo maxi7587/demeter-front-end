@@ -26,7 +26,7 @@ export class TasksComponent extends CompanyTemplateComponent {
         protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
     ) {
-        super(router, navigationService);
+        super(router, activatedRoute, navigationService);
         this.tasksService.all().subscribe(tasks => {
             this.tasks = tasks;
             // TODO: uncomment following for loop for desktop

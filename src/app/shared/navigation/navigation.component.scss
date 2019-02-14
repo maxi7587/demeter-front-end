@@ -1,3 +1,6 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
 .background-transparent {
     background-color: transparent !important;
 }
@@ -12,4 +15,13 @@
 
 .inherit-font {
     font: inherit !important;
+}
+
+.mobile-title-bar {
+    h3 {
+        // color: white;
+        // background-color: mat-color($mat-green, 700);
+        color: mat-color($mat-green, 700);
+        font-weight: 700;
+    }
 }

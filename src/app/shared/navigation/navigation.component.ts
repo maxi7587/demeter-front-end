@@ -59,6 +59,11 @@ export class NavigationComponent implements OnInit, OnDestroy {
         this.router.navigate([section]);
     }
 
+    public goToParent() {
+        console.log(this.activatedRoute.snapshot.data.parent);
+        // this.router.navigate();
+    }
+
     public actionClick(action) {
         this.navigationService.actionClick.next(action);
     }
