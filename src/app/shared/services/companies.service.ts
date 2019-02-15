@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { User } from 'src/app/shared/services/users.service';
+import { Contact } from 'src/app/shared/services/contacts/contacts.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BasicDRFService, DRFResource } from 'src/app/shared/basic-drf.service';
@@ -8,11 +10,11 @@ import { Observable } from 'rxjs';
 
 export class Company extends DRFResource {
     public name: string;
-    public owner: {[key: string]: string};
+    public owner: User;
     public cuit: number;
-    public users: Array<{[key: string]: string}>;
+    public users: Array<User>;
     public details: string;
-    public contact: {[key: string]: string};
+    public contact: Contact = new Contact();
     public type = 'companies';
 }
 

@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
+import { User } from 'src/app/shared/services/users.service';
+import { Contact } from 'src/app/shared/services/contacts/contacts.service';
 import { ContractType } from 'src/app/shared/services/contract-types.service';
 import { Charge } from 'src/app/shared/services/charges.service';
+import { Company } from 'src/app/shared/services/companies.service';
 import { CompanyDRFService } from 'src/app/shared/drf/company-drf.service';
-import { BasicDRFService } from 'src/app/shared/basic-drf.service';
+import { BasicDRFService, DRFResource } from 'src/app/shared/basic-drf.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
-export class Profile {
-    public id: string;
-    public url: string;
-    public company: {[key: string]: any};
-    public contact: {[key: string]: any};
+export class Profile extends DRFResource {
+    public company: Company;
+    public contact: Contact = new Contact();
     public daily_working_hours: number;
     public first_name: string;
     public last_name: string;
@@ -20,7 +20,7 @@ export class Profile {
     public role: string;
     public charge: Charge;
     public contract_type: ContractType;
-    public user: {[key: string]: any};
+    public user: User;
 }
 
 @Injectable({

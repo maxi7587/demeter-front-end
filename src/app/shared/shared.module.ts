@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ContactsService } from 'src/app/shared/services/contacts/contacts.service';
 import { ChargesService } from 'src/app/shared/services/charges.service';
 import { ContractTypesService } from 'src/app/shared/services/contract-types.service';
 import { CompaniesService } from 'src/app/shared/services/companies.service';
@@ -61,7 +62,8 @@ import { UsersService } from './services/users.service';
         ContractTypesService,
         ChargesService,
         TasksService,
-        UsersService
+        UsersService,
+        ContactsService
     ]
 })
 export class SharedModule { }

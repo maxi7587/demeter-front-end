@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { ToolsService } from 'src/app/shared/services/tools.service';
 import { HttpClient } from '@angular/common/http';
@@ -22,6 +22,7 @@ export class ToolsComponent extends CompanyTemplateComponent {
 
     public constructor(
         protected router: Router,
+        protected activatedRoute: ActivatedRoute,
         private toolsService: ToolsService,
         protected navigationService: NavigationService
     ) {
