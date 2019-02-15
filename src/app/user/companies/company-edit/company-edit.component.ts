@@ -15,7 +15,17 @@ export class CompanyEditComponent extends UserTemplateComponent implements OnIni
         name: new FormControl(),
         cuit: new FormControl(),
         details: new FormControl(),
-        contact: new FormControl()
+        contact: new FormControl(),
+    });
+
+    public company_contact_form: FormGroup = new FormGroup({
+        email: new FormControl(),
+        phone: new FormControl(),
+        country: new FormControl(),
+        state: new FormControl(),
+        city: new FormControl(),
+        street_name: new FormControl(),
+        street_number: new FormControl()
     });
     public company: Company;
 
@@ -44,6 +54,7 @@ export class CompanyEditComponent extends UserTemplateComponent implements OnIni
 
     public save() {
         this.company = { ...this.company, ...this.company_form.value };
+        this.company.contact.updateContactData(this.company_contact_form.value);
         this.companiesService.save(this.company).subscribe(
             company => this.router.navigate(['..'], {relativeTo: this.activatedRoute})
         );

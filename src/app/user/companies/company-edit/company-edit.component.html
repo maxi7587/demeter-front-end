@@ -1,12 +1,39 @@
-<form class="height-100 app-basic-padding" [formGroup]="company_form" fxLayout="column" fxLayoutAlign="start center">
-    <mat-form-field>
-        <input matInput type="text" placeholder="Name" formControlName="name">
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput type="number" placeholder="CUIT" formControlName="cuit">
-    </mat-form-field>
-    <mat-form-field>
-        <textarea matInput placeholder="Details" formControlName="details"></textarea>
-    </mat-form-field>
-    <!-- <mat-checkbox formControlName="active">Active</mat-checkbox> -->
-</form>
+<div class="height-100 app-basic-padding">
+    <form [formGroup]="company_form" fxLayout="column" fxLayoutAlign="start center">
+        <h3 class="mat-subheading-1">Basic data</h3>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="number" placeholder="CUIT" formControlName="cuit">
+        </mat-form-field>
+        <mat-form-field>
+            <textarea matInput placeholder="Details" formControlName="details"></textarea>
+        </mat-form-field>
+        <!-- <mat-checkbox formControlName="active">Active</mat-checkbox> -->
+    </form>
+    <form [formGroup]="company_contact_form" fxLayout="column" fxLayoutAlign="start center">
+        <h3 class="mat-subheading-1">Contact</h3>
+        <mat-form-field>
+            <input matInput type="text" placeholder="email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="number" placeholder="phone" formControlName="phone">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="country" formControlName="country">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="state" formControlName="state">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="city" formControlName="city">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="street_name" formControlName="street_name">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="number" placeholder="street_number" formControlName="street_number">
+        </mat-form-field>
+    </form>
+</div>
