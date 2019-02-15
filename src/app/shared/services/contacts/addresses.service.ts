@@ -10,5 +10,5 @@ export class Address  extends DRFResource {
     public floor: number;
     public department: string;
     public zip: string;
-    public detail: string;
+    public details: string;
 }

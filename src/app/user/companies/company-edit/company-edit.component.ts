@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Contact } from 'src/app/shared/services/contacts/contacts.service';
 import { UserTemplateComponent } from 'src/app/user/user-template/user-template.component';
 import { Company, CompaniesService } from 'src/app/shared/services/companies.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -54,6 +55,9 @@ export class CompanyEditComponent extends UserTemplateComponent implements OnIni
 
     public save() {
         this.company = { ...this.company, ...this.company_form.value };
+        if (!this.company.contact) {
+            this.company.contact = new Contact();
+        }
         this.company.contact.updateContactData(this.company_contact_form.value);
         this.companiesService.save(this.company).subscribe(
             company => this.router.navigate(['..'], {relativeTo: this.activatedRoute})

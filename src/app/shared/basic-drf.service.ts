@@ -72,7 +72,7 @@ export class BasicDRFService<T> {
 
     public patch(data, route?, headers?): Observable<T> {
         return this.httpClient.patch<T>(
-            environment.APIURL +  (route || this.type) + '/',
+            environment.APIURL +  (route || this.type) + '/' + data.id + '/',
             data,
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
             { headers: headers || this.headers }
