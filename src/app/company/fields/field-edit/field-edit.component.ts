@@ -45,4 +45,9 @@ export class FieldEditComponent extends CompanyTemplateComponent implements OnIn
         }
     }
 
+    public save() {
+        this.field = { ...this.field, ...this.field_form.value };
+        console.log(this.field);
+    }
+
 }

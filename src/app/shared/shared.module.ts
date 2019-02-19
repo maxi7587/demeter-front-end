@@ -24,9 +24,10 @@ import { FieldElementsService } from './services/field-elements.service';
 import { FieldsService } from './services/fields.service';
 import { TasksService } from './services/tasks.service';
 import { UsersService } from './services/users.service';
+import { DrfCollectionAutocompleteComponent } from './drf-collection-autocomplete/drf-collection-autocomplete.component';
 
 @NgModule({
-    declarations: [TableComponent, DynamicPipe, NavigationComponent, AutocompleteComponent, ExpandableInputComponent],
+    declarations: [TableComponent, DynamicPipe, NavigationComponent, AutocompleteComponent, ExpandableInputComponent, DrfCollectionAutocompleteComponent],
     imports: [
         CommonModule,
         FormsModule,

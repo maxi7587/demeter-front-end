@@ -25,18 +25,18 @@ export class CompanyTemplateComponent implements OnInit, OnDestroy {
         this.actions_subscription = this.navigationService.actionClick.subscribe(action => {
             switch (action) {
                 case 'search':
-                this.search();
-                break;
+                    this.search();
+                    break;
                 case 'add':
-                this.add();
-                break;
+                    this.add();
+                    break;
                 case 'delete':
-                this.delete();
-                break;
+                    this.delete();
+                    break;
                 case 'save':
-                console.log('save case');
-                this.save();
-                break;
+                    console.log('save case');
+                    this.save();
+                    break;
             }
         });
     }
