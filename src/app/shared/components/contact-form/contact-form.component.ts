@@ -51,6 +51,13 @@ export class ContactFormComponent implements OnInit {
     ) { }
 
     public ngOnInit() {
+        let { name: contact_name, address, phone, web: {social_media: social_media, ...web} } = this.contact;
+        this.contact_form.controls.name.setValue(contact_name);
+        this.address_form.setValue(address);
+        this.phone_form.setValue(phone);
+        this.web_form.setValue(web);
+        this.social_media_form.setValue(social_media);
+        console.log(this.web_form);
     }
 
     public submit() {
