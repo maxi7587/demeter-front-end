@@ -25,6 +25,7 @@ import { FieldsService } from './services/fields.service';
 import { TasksService } from './services/tasks.service';
 import { UsersService } from './services/users.service';
 import { DrfCollectionAutocompleteComponent } from './drf-collection-autocomplete/drf-collection-autocomplete.component';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { DrfCollectionAutocompleteComponent } from './drf-collection-autocomplet
         NavigationComponent,
         AutocompleteComponent,
         ExpandableInputComponent,
-        DrfCollectionAutocompleteComponent
+        DrfCollectionAutocompleteComponent,
+        ContactFormComponent
     ],
     imports: [
         CommonModule,
@@ -57,7 +59,8 @@ import { DrfCollectionAutocompleteComponent } from './drf-collection-autocomplet
         AutocompleteComponent,
         TranslateModule,
         ExpandableInputComponent,
-        DrfCollectionAutocompleteComponent
+        DrfCollectionAutocompleteComponent,
+        ContactFormComponent
     ],
     providers: [
         BasicDRFService,
