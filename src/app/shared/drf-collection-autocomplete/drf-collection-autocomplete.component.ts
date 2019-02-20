@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { BasicDRFService, DRFCollection, DRFResource } from 'src/app/shared/basic-drf.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { MatAutocomplete } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-drf-collection-autocomplete',
@@ -10,11 +11,13 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./drf-collection-autocomplete.component.scss']
 })
 export class DrfCollectionAutocompleteComponent implements OnInit {
+    @ViewChild('matAutocomplete') public autocomplete: MatAutocomplete;
 
     @Input() service: BasicDRFService<any>;
-    @Input() search_field: string;
+    @Input() searchField: string;
     @Input() filters: {[key: string]: any};
-    @Input() placeholder: string;
+    @Input() placeholder = 'Buscar';
+    @Input() activeOption: DRFResource;
     @Output() optionSelected: EventEmitter<string> = new EventEmitter<string>();
 
     public search_form = new FormGroup({
@@ -26,25 +29,36 @@ export class DrfCollectionAutocompleteComponent implements OnInit {
     public constructor() { }
 
     public ngOnInit() {
+        if (this.activeOption) {
+            this.search_form.controls.search.setValue(this.activeOption[this.searchField]);
+        }
         this.service
             .all()
             .subscribe(
                 collection => {
-                    console.log(collection);
                     this.collection = collection;
                 }
             );
         this.filteredOptions = this.search_form.controls.search.valueChanges
             .pipe(
                 startWith(''),
-                map(value => this._filter(value))
+                map(
+                    value => {
+                        if (typeof value !== 'string') { return [value]; }
+                        return this._filter(value);
+                    }
+                )
             );
     }
 
-    private _filter(value: string): Array<DRFResource> {
-        const filterValue = value.toLowerCase();
+    public displayWith = (element: DRFResource) => {
+        return element[this.searchField];
+    }
 
-        return this.collection.results.filter(option => option[this.search_field].toLowerCase().includes(filterValue));
+    private _filter(value: string): Array<DRFResource> {
+        let filterValue = value.toLowerCase();
+
+        return this.collection.results.filter(option => option[this.searchField].toLowerCase().includes(filterValue));
     }
 
 }

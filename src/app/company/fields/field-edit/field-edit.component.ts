@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfilesService } from 'src/app/shared/services/profiles.service';
 import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
 import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -24,6 +25,7 @@ export class FieldEditComponent extends CompanyTemplateComponent implements OnIn
 
 
     public constructor(
+        public profilesService: ProfilesService,
         protected router: Router,
         protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
@@ -43,6 +45,13 @@ export class FieldEditComponent extends CompanyTemplateComponent implements OnIn
         } else {
             this.navigationService.actions.next(new SidenavActions(['delete', 'save']));
         }
+    }
+
+    public updateForm(key, value) {
+        console.log('key --->', key);
+        console.log('value --->', value);
+        this.field_form.controls[key].setValue(value);
+        console.log(this.field_form.value);
     }
 
     public save() {

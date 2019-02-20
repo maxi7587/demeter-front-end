@@ -23,7 +23,7 @@ export class CompanyDRFService<T> extends BasicDRFService<T> {
         // TODO: fix this.. should be set when the requests are made... now its only once in the constructor
         let company_id_index = this.router.url.split('/').indexOf('companies') + 1;
         this.company_id = this.router.url.split('/')[company_id_index];
+        console.log('company_id ----------------->', this.company_id);
         this._pre_route = ['companies', this.company_id];
-        console.log(this.company_id);
     }
 }

@@ -10,6 +10,14 @@
     <mat-form-field>
         <textarea matInput placeholder="Details" formControlName="details"></textarea>
     </mat-form-field>
+    <app-drf-collection-autocomplete
+        [service]="profilesService"
+        [activeOption]="field?.manager"
+        searchField="first_name"
+        placeholder="Manager"
+        (optionSelected)="updateForm('manager', $event.option.value)"
+        >
+    </app-drf-collection-autocomplete>
     <!-- <mat-checkbox formControlName="active">Active</mat-checkbox>
     <button mat-button (click)="save()">Save</button> -->
 </form>

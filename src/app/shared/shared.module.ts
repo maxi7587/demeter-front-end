@@ -27,7 +27,14 @@ import { UsersService } from './services/users.service';
 import { DrfCollectionAutocompleteComponent } from './drf-collection-autocomplete/drf-collection-autocomplete.component';
 
 @NgModule({
-    declarations: [TableComponent, DynamicPipe, NavigationComponent, AutocompleteComponent, ExpandableInputComponent, DrfCollectionAutocompleteComponent],
+    declarations: [
+        TableComponent,
+        DynamicPipe,
+        NavigationComponent,
+        AutocompleteComponent,
+        ExpandableInputComponent,
+        DrfCollectionAutocompleteComponent
+    ],
     imports: [
         CommonModule,
         FormsModule,
@@ -49,7 +56,8 @@ import { DrfCollectionAutocompleteComponent } from './drf-collection-autocomplet
         NavigationComponent,
         AutocompleteComponent,
         TranslateModule,
-        ExpandableInputComponent
+        ExpandableInputComponent,
+        DrfCollectionAutocompleteComponent
     ],
     providers: [
         BasicDRFService,

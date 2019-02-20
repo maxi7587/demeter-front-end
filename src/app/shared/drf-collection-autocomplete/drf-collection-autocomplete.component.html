@@ -1,0 +1,10 @@
+<form [formGroup]="search_form" *ngIf="collection">
+    <mat-form-field>
+        <input type="text" placeholder="{{ placeholder }}" matInput formControlName="search" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith" (optionSelected)="optionSelected.emit($event)">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{ option[searchField] }}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>
