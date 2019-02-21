@@ -19,7 +19,11 @@
         (optionSelected)="updateForm('manager', $event.option.value)"
         >
     </app-drf-collection-autocomplete>
-    <app-contact-form></app-contact-form>
+    <app-contact-form
+        [contact]="field.contact"
+        (contactUpdate)="updateFieldContact($event)"
+        >
+    </app-contact-form>
     <!-- <mat-checkbox formControlName="active">Active</mat-checkbox>
     <button mat-button (click)="save()">Save</button> -->
 </form>
