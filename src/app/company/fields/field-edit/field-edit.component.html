@@ -1,4 +1,5 @@
 <form class="height-100 app-basic-padding" [formGroup]="field_form" fxLayout="column" fxLayoutAlign="start center">
+    <h3 class="mat-subheading-1">Field data</h3>
     <mat-form-field>
         <input matInput type="text" placeholder="Name" formControlName="name">
     </mat-form-field>
@@ -18,6 +19,7 @@
         (optionSelected)="updateForm('manager', $event.option.value)"
         >
     </app-drf-collection-autocomplete>
+    <app-contact-form></app-contact-form>
     <!-- <mat-checkbox formControlName="active">Active</mat-checkbox>
     <button mat-button (click)="save()">Save</button> -->
 </form>

@@ -9,12 +9,6 @@ import { Contact, ContactsService } from 'src/app/shared/services/contacts/conta
 })
 export class ContactFormComponent implements OnInit {
 
-    // 'name', 'address', 'phone', 'web'
-    // 'country', 'state', 'city', 'street_name', 'street_number', 'floor', 'department', 'zip', 'details'
-    // 'country_code', 'area_code', 'phone_number'
-    // 'social_network', 'link'
-    // 'email', 'web_url', 'social_media'
-
     @Input() public contact: Contact;
     @Output() public contactUpdate: EventEmitter<Contact> = new EventEmitter();
 
@@ -51,6 +45,12 @@ export class ContactFormComponent implements OnInit {
     ) { }
 
     public ngOnInit() {
+        if (this.contact) {
+            this.fillForm();
+        }
+    }
+
+    public fillForm() {
         let { name: contact_name, address, phone, web: {social_media: social_media, ...web} } = this.contact;
         this.contact_form.controls.name.setValue(contact_name);
         this.address_form.setValue(address);

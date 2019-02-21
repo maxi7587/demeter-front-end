@@ -1,65 +1,107 @@
-<!-- 'name', 'address', 'phone', 'web' -->
-<!-- Contact -->
-<mat-form-field>
-    <input matInput type="text" formControlName="name">
-</mat-form-field>
+<div class="app-form" [formGroup]="profile_form" fxLayout="column" fxLayoutAlign="start center">
+    <!-- 'name', 'address', 'phone', 'web' -->
+    <!-- Contact -->
+    <form
+        [formGroup]="contact_form"
+        fxLayout="column"
+        fxLayoutAlign="start center"
+        fxFlex="80"
+        >
+        <h3 class="mat-subheading-1">Contact data</h3>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Contact name" formControlName="name">
+        </mat-form-field>
+    </form>
 
-<!-- 'country', 'state', 'city', 'street_name', 'street_number', 'floor', 'department', 'zip', 'details' -->
-<!-- Address -->
-<mat-form-field>
-    <input matInput type="text" formControlName="country">
-</mat-form-field>
-<mat-form-field>
-   <input matInput type="text" formControlName="state">
-</mat-form-field>
-<mat-form-field>
-   <input matInput type="text" formControlName="city">
-</mat-form-field>
-<mat-form-field>
-   <input matInput type="text" formControlName="zip">
-</mat-form-field>
-<mat-form-field>
-   <input matInput type="text" formControlName="street_name">
-</mat-form-field>
-<mat-form-field>
-   <input matInput type="text" formControlName="street_number">
-</mat-form-field>
-<mat-form-field>
-   <input matInput type="text" formControlName="floor">
-</mat-form-field>
-<mat-form-field>
-   <input matInput type="text" formControlName="department">
-</mat-form-field>
-<mat-form-field>
-   <input matInput type="text" formControlName="details">
-</mat-form-field>
+    <!-- 'country', 'state', 'city', 'street_name', 'street_number', 'floor', 'department', 'zip', 'details' -->
+    <!-- Address -->
+    <form
+        [formGroup]="address_form"
+        fxLayout="column"
+        fxLayoutAlign="start center"
+        fxFlex="80"
+        >
+        <h3 class="mat-subheading-1">Address data</h3>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Country" formControlName="country">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="State" formControlName="state">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="City" formControlName="city">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Zip code" formControlName="zip">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Street name" formControlName="street_name">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Street number" formControlName="street_number">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Floor" formControlName="floor">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Department" formControlName="department">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Details" formControlName="details">
+        </mat-form-field>
+    </form>
 
-<!-- 'country_code', 'area_code', 'phone_number' -->
-<!-- Phone -->
-<mat-form-field>
-   <input matInput type="text" formControlName="country_code">
-</mat-form-field>
-<mat-form-field>
-   <input matInput type="text" formControlName="area_code">
-</mat-form-field>
-<mat-form-field>
-   <input matInput type="text" formControlName="phone_number">
-</mat-form-field>
+    <!-- 'country_code', 'area_code', 'phone_number' -->
+    <!-- Phone -->
+    <form
+        [formGroup]="phone_form"
+        fxLayout="column"
+        fxLayoutAlign="start center"
+        fxFlex="80"
+        >
+        <h3 class="mat-subheading-1">Phone data</h3>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Country code" formControlName="country_code">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Area code" formControlName="area_code">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Phone number" formControlName="phone_number">
+        </mat-form-field>
+    </form>
 
-<!-- 'social_network', 'link' -->
-<!-- Social media -->
-<mat-form-field>
-   <input matInput type="text" formControlName="social_network">
-</mat-form-field>
-<mat-form-field>
-   <input matInput type="text" formControlName="link">
-</mat-form-field>
+    <!-- 'social_network', 'link' -->
+    <!-- Social media -->
+    <form
+        [formGroup]="social_media_form"
+        fxLayout="column"
+        fxLayoutAlign="start center"
+        fxFlex="80"
+        >
+        <h3 class="mat-subheading-1">Social media data</h3>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Social network" formControlName="social_network">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Link" formControlName="link">
+        </mat-form-field>
+    </form>
 
-<!-- 'email', 'web_url', 'social_media' -->
-<!-- Web -->
-<mat-form-field>
-   <input matInput type="text" formControlName="email">
-</mat-form-field>
-<mat-form-field>
-   <input matInput type="text" formControlName="web_url">
-</mat-form-field>
+    <!-- 'email', 'web_url', 'social_media' -->
+    <!-- Web -->
+    <form
+        [formGroup]="web_form"
+        fxLayout="column"
+        fxLayoutAlign="start center"
+        fxFlex="80"
+        >
+        <h3 class="mat-subheading-1">Web contact data</h3>
+        <mat-form-field>
+            <input matInput type="text" placeholder="E-mail" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Website" formControlName="web_url">
+        </mat-form-field>
+    </form>
+</div>
