@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Contact } from 'src/app/shared/services/contacts/contacts.service';
 import { ProfilesService } from 'src/app/shared/services/profiles.service';
 import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
 import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
@@ -15,11 +16,11 @@ export class FieldEditComponent extends CompanyTemplateComponent implements OnIn
 
     public field_form: FormGroup = new FormGroup({
         name: new FormControl(),
+        active: new FormControl(true),
         company: new FormControl(),
         manager: new FormControl(),
         details: new FormControl(),
-        contact: new FormControl(),
-        active: new FormControl()
+        contact: new FormControl()
     });
     protected field: Field;
 
@@ -56,7 +57,12 @@ export class FieldEditComponent extends CompanyTemplateComponent implements OnIn
 
     public save() {
         this.field = { ...this.field, ...this.field_form.value };
+        // TODO: update field contact data before saving
         console.log(this.field);
+    }
+
+    public updateFieldContact(contact: Contact) {
+        this.field.contact = contact;
     }
 
 }
