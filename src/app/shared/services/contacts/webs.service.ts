@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DRFResource } from 'src/app/shared/basic-drf.service';
+import { DRFResource, DRFCollection } from 'src/app/shared/basic-drf.service';
 import { SocialMedia } from 'src/app/shared/services/contacts/social-media.service';
 
 @Injectable({
@@ -8,5 +8,5 @@ import { SocialMedia } from 'src/app/shared/services/contacts/social-media.servi
 export class Web extends DRFResource {
     public email: string;
     public web_url: string;
-    public social_media: SocialMedia;
+    public social_media: DRFCollection<SocialMedia>;
 }

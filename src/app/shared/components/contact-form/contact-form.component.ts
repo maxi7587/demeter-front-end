@@ -56,7 +56,8 @@ export class ContactFormComponent implements OnInit {
         this.address_form.setValue(address);
         this.phone_form.setValue(phone);
         this.web_form.setValue(web);
-        this.social_media_form.setValue(social_media);
+        // TODO: suppont multiple social media links
+        this.social_media_form.setValue(social_media[0]);
         console.log(this.web_form);
     }
 
@@ -69,7 +70,7 @@ export class ContactFormComponent implements OnInit {
                 web: {
                     ...this.web_form.value,
                     ...{
-                        social_media: this.social_media_form.value
+                        social_media: [this.social_media_form.value]
                     }
                 }
             }

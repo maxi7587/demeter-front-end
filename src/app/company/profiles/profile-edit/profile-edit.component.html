@@ -36,5 +36,11 @@
         </mat-form-field>
         <!-- <mat-checkbox formControlName="is_user">Company user</mat-checkbox> -->
         <!-- <button mat-button (click)="save()">Save</button> -->
+        <app-contact-form
+            #contactForm
+            [contact]="profile.contact"
+            (contactUpdate)="updateContact($event)"
+            >
+        </app-contact-form>
     </div>
 </form>

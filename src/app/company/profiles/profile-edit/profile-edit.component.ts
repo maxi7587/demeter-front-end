@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ContactFormComponent } from 'src/app/shared/components/contact-form/contact-form.component';
+import { Contact } from 'src/app/shared/services/contacts/contacts.service';
 import { ContractTypesService, ContractType } from 'src/app/shared/services/contract-types.service';
 import { ChargesService, Charge } from 'src/app/shared/services/charges.service';
 import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
@@ -16,6 +18,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
     styleUrls: ['./profile-edit.component.scss']
 })
 export class ProfileEditComponent extends CompanyTemplateComponent implements OnInit {
+    @ViewChild('contactForm') public contact_form: ContactFormComponent;
+
     public profile_form: FormGroup = new FormGroup({
         first_name: new FormControl('', [Validators.required]),
         last_name: new FormControl('', [Validators.required]),
@@ -26,16 +30,15 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
         charge: new FormControl(),
         contract_type: new FormControl(),
         daily_working_hours: new FormControl(),
-        contact: new FormControl(),
         is_user: new FormControl()
     });
-
-    protected profile: Profile;
 
     public company: Company;
     public roles: DRFCollection<Role>;
     public charges: DRFCollection<Charge>;
     public contract_types: DRFCollection<ContractType>;
+
+    protected profile: Profile;
 
     public constructor(
         protected router: Router,
@@ -92,16 +95,17 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
     }
 
     public save() {
+        this.contact_form.submit();
         let birth_date = this.getFormattedBirthDate(this.profile_form.controls.birth_date.value);
         console.log(this.profile_form);
-        console.log('will save this profile --->', this.profile);
         this.profile = {
             ...this.profile,
             ...this.profile_form.value,
             ...{ company: this.companiesService.company },
             ...{ birth_date: birth_date }
         };
-        console.log(this.profile);
+        console.log('will save this profile --->', this.profile);
+        console.log('will save this with this contact email data --->', this.profile.contact.web.email);
         this.profilesService.save(this.profile).subscribe(profile => {
             console.log('profile saved', profile);
             this.profile = profile;
@@ -111,6 +115,10 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
 
     public compareById(f1: any, f2: any) {
         return f1 && f2 && f1.id === f2.id;
+    }
+
+    public updateContact(contact: Contact) {
+        this.profile.contact = contact;
     }
 
 }
