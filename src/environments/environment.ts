@@ -3,13 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 const mpurl = '//127.0.0.1:8000/';
+// const mpurl = '//192.168.0.12:8000/';
 
 export const environment = {
     production: false,
     env: 'develop',
     MPURL: mpurl,
     APIURL: mpurl,
-    whiteListedDomains: ['127.0.0.1:8000', '127.0.0.1']
+    whiteListedDomains: ['127.0.0.1:8000', '127.0.0.1', '192.168.0.12:8000']
 };
 
 /*

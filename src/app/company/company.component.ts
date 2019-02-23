@@ -23,7 +23,9 @@ export class CompanyComponent implements OnInit, OnDestroy {
         this.route_data = this.activatedRoute.snapshot.data;
         this.activatedRoute.params
             .subscribe(params => {
-                this.companiesService.getCompanyFromId(params.company_id).subscribe();
+                this.companiesService.getCompanyFromId(params.company_id).subscribe(
+                    company => console.log('company ---------->', company)
+                );
                 let sections_links = [
                     new NavigationSidenavLink('Cambiar de compañía', 'users/' + this.route_data.user.id + '/companies', 'arrow_back'),
                     new NavigationSidenavLink('Inicio', 'companies/' + params.company_id + '/dashboard', 'dashboard'),

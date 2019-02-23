@@ -57,8 +57,6 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
     }
 
     public ngOnInit() {
-        // TODO: fix this in company.component
-        this.company = this.companiesService.company;
         console.log('this.company --->', this.company);
         this.rolesService
             .all()
@@ -83,6 +81,8 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
     }
 
     public getFormattedBirthDate(date: string): string {
+        console.log('date ------->', date);
+        if (!date) { return; }
         let day = new Date(date).getDate();
         let month = new Date(date).getMonth();
         let year = new Date(date).getFullYear();
@@ -93,14 +93,20 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
 
     public save() {
         let birth_date = this.getFormattedBirthDate(this.profile_form.controls.birth_date.value);
-        console.log(this.profile);
+        console.log(this.profile_form);
+        console.log('will save this profile --->', this.profile);
         this.profile = {
             ...this.profile,
             ...this.profile_form.value,
+            ...{ company: this.companiesService.company },
             ...{ birth_date: birth_date }
         };
         console.log(this.profile);
-        this.profilesService.post(this.profile).subscribe(profile => console.log('profile saved', profile));
+        this.profilesService.save(this.profile).subscribe(profile => {
+            console.log('profile saved', profile);
+            this.profile = profile;
+            console.log('this.profile', this.profile);
+        });
     }
 
     public compareById(f1: any, f2: any) {
