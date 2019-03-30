@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CompanyDRFService } from 'src/app/shared/drf/company-drf.service';
+import { Company } from 'src/app/shared/services/companies.service';
 import { BasicDRFService } from 'src/app/shared/basic-drf.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -9,6 +10,7 @@ export class Task {
     public id: string;
     public url: string;
     public name: string;
+    public company: Company;
     public field;
     public task_type;
     public priority: number;

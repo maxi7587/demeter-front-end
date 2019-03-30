@@ -1,30 +1,83 @@
-<form class="height-100 app-basic-padding" [formGroup]="field_form" fxLayout="column" fxLayoutAlign="start center">
-    <h3 class="mat-subheading-1">Field data</h3>
-    <!-- <div fxLayout="row" fxLayoutAlign="start center"> -->
-    <mat-form-field>
-        <input matInput type="text" placeholder="Name" formControlName="name">
-    </mat-form-field>
-    <mat-form-field *ngIf="profiles">
-        <mat-select placeholder="Manager" formControlName="manager">
-            <mat-option *ngFor="let profile of profiles" value="profile">{{ profile.first_name }}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-        <textarea matInput placeholder="Details" formControlName="details"></textarea>
-    </mat-form-field>
-    <app-drf-collection-autocomplete
-        [service]="profilesService"
-        [activeOption]="field?.manager"
-        searchField="first_name"
-        placeholder="Manager"
-        (optionSelected)="updateForm('manager', $event.option.value)"
+<div fxLayout="row" fxLayoutGap="16px">
+    <form
+        fxFlex="1 1 100"
+        class="height-100 app-form"
+        [formGroup]="field_form"
+        fxLayout="column"
+        fxLayoutAlign="start center"
         >
-    </app-drf-collection-autocomplete>
-    <app-contact-form
-        [contact]="field.contact"
-        (contactUpdate)="updateFieldContact($event)"
-        >
-    </app-contact-form>
-    <!-- <mat-checkbox formControlName="active">Active</mat-checkbox>
-    <button mat-button (click)="save()">Save</button> -->
-</form>
+        <mat-accordion
+            class="width-100"
+            >
+            <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header fxLayout="row">
+                    <mat-panel-title>
+                        Field data
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-flex-form-container>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(50% - 8px)"
+                        >
+                        <input matInput type="text" placeholder="Name" formControlName="name">
+                    </mat-form-field>
+                    <app-drf-collection-autocomplete
+                        fxFlex.gt-sm="calc(50% - 8px)"
+                        [service]="profilesService"
+                        [activeOption]="field?.manager"
+                        searchField="first_name"
+                        placeholder="Manager"
+                        (optionSelected)="updateForm('manager', $event.option.value)"
+                        >
+                    </app-drf-collection-autocomplete>
+                    <mat-form-field
+                        fxFlex="100"
+                        >
+                        <textarea matInput placeholder="Details" formControlName="details"></textarea>
+                    </mat-form-field>
+                </app-flex-form-container>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header fxLayout="row">
+                    <mat-panel-title>
+                        Field contact data
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-contact-form
+                    class="width-100"
+                    #contactForm
+                    [contact]="field.contact"
+                    (contactUpdate)="updateContact($event)"
+                    >
+                </app-contact-form>
+            </mat-expansion-panel>
+            <!-- <mat-checkbox formControlName="active">Active</mat-checkbox>
+            <button mat-button (click)="save()">Save</button> -->
+        </mat-accordion>
+    </form>
+    <mat-list fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="8px">
+        <button
+            mat-raised-button
+            name="save"
+            color="primary"
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            (click)="save()"
+            >
+            <mat-icon>save</mat-icon>
+            Save
+        </button>
+        <button
+            mat-raised-button
+            name="cancel"
+            color="primary"
+            style="background-color: #f44336 !important"
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            [routerLink]="'..'"
+            >
+            <mat-icon>cancel</mat-icon>
+            Cancel
+        </button>
+    </mat-list>
+</div>

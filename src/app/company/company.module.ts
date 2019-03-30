@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ToolEditResolver } from 'src/app/company/tools/tools-edit/tool-edit.resolver';
 import { TaskEditResolver } from 'src/app/company/tasks/task-edit/task-edit.resolver';
 import { ProfileEditResolver } from 'src/app/company/profiles/profile-edit/profile-edit.resolver';
 import { FieldEditResolver } from 'src/app/company/fields/field-edit/field-edit.resolver';
@@ -59,7 +60,8 @@ import { CompanyTemplateComponent } from './company-template/company-template.co
         CompanyResolver,
         FieldEditResolver,
         ProfileEditResolver,
-        TaskEditResolver
+        TaskEditResolver,
+        ToolEditResolver
     ]
 })
 export class CompanyModule { }

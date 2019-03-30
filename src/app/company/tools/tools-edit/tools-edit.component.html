@@ -1,3 +1,84 @@
-<p>
-  tools-edit works!
-</p>
+<div fxLayout="row" fxLayoutGap="16px">
+    <form
+        fxFlex="1 1 100"
+        class="height-100 app-form"
+        [formGroup]="tool_form"
+        fxLayout="column"
+        fxLayoutAlign="start center"
+        >
+        <mat-accordion
+            class="width-100"
+            >
+            <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header fxLayout="row">
+                    <mat-panel-title>
+                        Tool data
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-flex-form-container>
+                    <!-- Tool data -->
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(25% - 8px)"
+                        >
+                        <input matInput type="text" placeholder="Name" formControlName="name">
+                    </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(25% - 8px)"
+                        >
+                        <input matInput type="text" placeholder="Code" formControlName="code">
+                    </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(25% - 8px)"
+                        >
+                        <mat-label>Status</mat-label>
+                        <mat-select formControlName="status">
+                            <mat-option *ngFor="let status of status_options" [value]="status">
+                                {{ status | translate }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <!-- Tool field data -->
+                    <app-drf-collection-autocomplete
+                        fxFlex.gt-sm="calc(25% - 8px)"
+                        [service]="fieldsService"
+                        [activeOption]="tool?.field"
+                        searchField="name"
+                        placeholder="Field"
+                        (optionSelected)="updateForm('field', $event.option.value)"
+                        >
+                    </app-drf-collection-autocomplete>
+                    <mat-form-field
+                        fxFlex="100"
+                        >
+                        <textarea matInput placeholder="Details" formControlName="detail"></textarea>
+                    </mat-form-field>
+                </app-flex-form-container>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </form>
+    <mat-list fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="8px">
+        <button
+            mat-raised-button
+            name="save"
+            color="primary"
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            (click)="save()"
+            >
+            <mat-icon>save</mat-icon>
+            Save
+        </button>
+        <button
+            mat-raised-button
+            name="cancel"
+            color="primary"
+            style="background-color: #f44336 !important"
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            [routerLink]="'..'"
+            >
+            <mat-icon>cancel</mat-icon>
+            Cancel
+        </button>
+    </mat-list>
+</div>

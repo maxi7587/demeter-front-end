@@ -30,13 +30,14 @@ export class DrfCollectionAutocompleteComponent implements OnInit {
 
     public ngOnInit() {
         if (this.activeOption) {
-            this.search_form.controls.search.setValue(this.activeOption[this.searchField]);
+            this.search_form.controls.search.setValue(this.activeOption);
         }
         this.service
             .all()
             .subscribe(
                 collection => {
                     this.collection = collection;
+                    console.log('collection ------>', this.collection);
                 }
             );
         this.filteredOptions = this.search_form.controls.search.valueChanges

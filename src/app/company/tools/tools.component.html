@@ -1,7 +1,37 @@
-<app-table
-    *ngIf="tools.results"
-    [columns]="columns"
-    [rows]="tools.results"
-    (rowClick)="goToElement($event.id)"
->
-</app-table>
+<div
+    fxLayout="row"
+    fxLayoutAlign="center start"
+    fxLayoutGap="16px"
+    class="width-100"
+    >
+    <app-table
+        *ngIf="tools.results"
+        fxFlex="1 1 100"
+        [columns]="columns"
+        [rows]="tools.results"
+        (rowClick)="goToElement($event.id)"
+        >
+    </app-table>
+    <mat-list>
+        <button
+            mat-raised-button
+            name="new"
+            color="primary"
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            [routerLink]="0"
+            >
+            <!-- style="height: 56px; width:56px" -->
+            <!-- <button
+                mat-fab
+                name="new"
+                color="primary"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                >
+            </button> -->
+            <mat-icon>add</mat-icon>
+            New tool
+        </button>
+    </mat-list>
+</div>

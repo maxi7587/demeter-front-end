@@ -26,6 +26,9 @@ import { TasksService } from './services/tasks.service';
 import { UsersService } from './services/users.service';
 import { DrfCollectionAutocompleteComponent } from './drf-collection-autocomplete/drf-collection-autocomplete.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { AppExpansionPanelComponent } from './app-expansion-panel/app-expansion-panel.component';
+import { FlexFormContainerComponent } from './flex-form-container/flex-form-container.component';
+import { ActionsPadComponent } from './actions-pad/actions-pad.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +38,10 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
         AutocompleteComponent,
         ExpandableInputComponent,
         DrfCollectionAutocompleteComponent,
-        ContactFormComponent
+        ContactFormComponent,
+        AppExpansionPanelComponent,
+        FlexFormContainerComponent,
+        ActionsPadComponent
     ],
     imports: [
         CommonModule,
@@ -60,7 +66,10 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
         TranslateModule,
         ExpandableInputComponent,
         DrfCollectionAutocompleteComponent,
-        ContactFormComponent
+        AppExpansionPanelComponent,
+        ContactFormComponent,
+        FlexFormContainerComponent,
+        ActionsPadComponent
     ],
     providers: [
         BasicDRFService,

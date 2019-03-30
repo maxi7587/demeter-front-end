@@ -1,26 +1,65 @@
-<div class="app-basic-padding" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
-    <mat-icon color="primary">account_circle</mat-icon>
-    <h3 class="mat-subheading-1 margin-0">
-        Hola {{ user?.first_name }}, selecciona una compañía para comenzar a trabajar
-    </h3>
-</div>
-<mat-divider></mat-divider>
-<!-- class="mat-elevation-z2" -->
-<mat-list
-    *ngIf="user && companies && companies.results"
+<div
+    fxLayout="row"
+    fxLayoutAlign="center start"
+    fxLayoutGap="16px"
+    class="width-100"
     >
-    <mat-list-item
-        *ngFor="let company of companies.results"
-        (click)="goToCompany(company)"
+    <div
+        fxLayout="column"
+        fxFlex="1 1 100"
         >
-        <mat-icon mat-list-icon>work</mat-icon>
-        <h4 mat-line>{{ company.name }}</h4>
-        <p mat-line> {{ company.details }} </p>
-        <button
-            mat-icon-button
-            (click)="$event.stopPropagation(); goToCompanyEdit(company.id)"
+        <div class="app-basic-padding" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+            <mat-icon color="primary">account_circle</mat-icon>
+            <h3 class="mat-subheading-1 margin-0">
+                Hola {{ user?.first_name }}, selecciona una compañía para comenzar a trabajar
+            </h3>
+        </div>
+        <mat-divider></mat-divider>
+        <!-- class="mat-elevation-z2" -->
+        <mat-list
+            fxFlex="1 1 100"
+            *ngIf="user && companies && companies.results"
+            class="mat-elevation-z2"
+            style="padding: 0 !important"
             >
-            <mat-icon>settings</mat-icon>
+            <mat-list-item
+                *ngFor="let company of companies.results"
+                (click)="goToCompany(company)"
+                >
+                <mat-icon mat-list-icon>work</mat-icon>
+                <h4 mat-line>{{ company.name }}</h4>
+                <p mat-line> {{ company.details }} </p>
+                <button
+                    mat-icon-button
+                    (click)="$event.stopPropagation(); goToCompanyEdit(company.id)"
+                    >
+                    <mat-icon>settings</mat-icon>
+                </button>
+            </mat-list-item>
+        </mat-list>
+    </div>
+    <mat-list
+        style="padding-top: 48px"
+        >
+        <button
+            mat-raised-button
+            name="new"
+            color="primary"
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            [routerLink]="0"
+            >
+            <!-- style="height: 56px; width:56px" -->
+            <!-- <button
+                mat-fab
+                name="new"
+                color="primary"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                >
+            </button> -->
+            <mat-icon>add</mat-icon>
+            Crear compañía
         </button>
-    </mat-list-item>
-</mat-list>
+    </mat-list>
+</div>

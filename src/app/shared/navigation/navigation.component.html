@@ -10,6 +10,23 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="height-100" fxLayout="column" fxLayoutAlign="space-between stretch">
+            <mat-toolbar fxHide.lt-md color="primary">
+                <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+                    <button
+                        *ngIf="sections.length > 0"
+                        type="button"
+                        aria-label="Toggle sidenav"
+                        mat-icon-button
+                        (click)="sidenav.toggle()"
+                        >
+                        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                    </button>
+                    <h3 class="mat-subheading-2">
+                        {{ navigationService.title | translate | titlecase }}
+                    </h3>
+                    <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_back</mat-icon></button>
+                </mat-toolbar-row>
+            </mat-toolbar>
             <!-- *ngIf="show_title" -->
             <mat-toolbar *ngIf="navigationService.title" fxHide.gt-xs class="mobile-title-bar">
                 <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
@@ -28,12 +45,24 @@
                     <app-expandable-input></app-expandable-input>
                 </mat-toolbar-row>
             </mat-toolbar> -->
-            <div style="overflow: scroll" class="height-100" fxFlex="1 1 auto">
-                <ng-content></ng-content>
+            <div
+                style="overflow: scroll"
+                class="height-100"
+                fxFlex="1 1 auto"
+                fxLayout.gt-sm="column"
+                fxLayoutAlign.gt-sm="start center"
+                >
+                <div
+                    [ngStyle.gt-sm]="{ width: '980px', 'margin-top': '56px' }"
+                    ngClass.lt-md="width-100"
+                    >
+                    <!-- ngClass.gt-sm="mat-elevation-z2 app-basic-padding" -->
+                    <ng-content></ng-content>
+                </div>
             </div>
             <!-- <mat-toolbar color="primary" id="main-toolbar" style="position: sticky; bottom: 0"> -->
             <!-- TODO: imkprove toolbar hide and show option -->
-            <mat-toolbar color="primary" id="main-toolbar" *ngIf="sections.length > 0 || nav_actions">
+            <mat-toolbar fxHide.gt-sm color="primary" id="main-toolbar" *ngIf="sections.length > 0 || nav_actions">
                 <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
                     <button
                         *ngIf="sections.length > 0"

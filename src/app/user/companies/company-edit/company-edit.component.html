@@ -1,39 +1,147 @@
-<div class="height-100 app-basic-padding">
-    <form [formGroup]="company_form" fxLayout="column" fxLayoutAlign="start center">
-        <h3 class="mat-subheading-1">Basic data</h3>
-        <mat-form-field>
-            <input matInput type="text" placeholder="Name" formControlName="name">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="number" placeholder="CUIT" formControlName="cuit">
-        </mat-form-field>
-        <mat-form-field>
-            <textarea matInput placeholder="Details" formControlName="details"></textarea>
-        </mat-form-field>
-        <!-- <mat-checkbox formControlName="active">Active</mat-checkbox> -->
-    </form>
-    <form [formGroup]="company_contact_form" fxLayout="column" fxLayoutAlign="start center">
-        <h3 class="mat-subheading-1">Contact</h3>
-        <mat-form-field>
-            <input matInput type="text" placeholder="email" formControlName="email">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="number" placeholder="phone" formControlName="phone">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="text" placeholder="country" formControlName="country">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="text" placeholder="state" formControlName="state">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="text" placeholder="city" formControlName="city">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="text" placeholder="street_name" formControlName="street_name">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="number" placeholder="street_number" formControlName="street_number">
-        </mat-form-field>
-    </form>
+<div fxLayout="row" fxLayoutGap="16px">
+    <!-- <div fxFlex="1 1 100" class="height-100 app-basic-padding" fxLayout="column" fxLayoutGap="16px"> -->
+    <mat-accordion
+        fxFlex="1 1 100"
+        class="width-100"
+        >
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header fxLayout="row">
+                <mat-panel-title>
+                    Personal data
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-flex-form-container>
+                <form
+                    fxFlex="1 1 100"
+                    [formGroup]="company_form"
+                    fxLayout.lt-md="column"
+                    fxLayout.gt-sm="row wrap"
+                    fxLayoutAlign.lt-md="start center"
+                    fxLayoutAlign.gt-sm="stretch center"
+                    fxLayoutGap.gt-sm="8px"
+                    >
+                    <!-- <h3
+                        class="mat-subheading-1"
+                        fxFlex.gt-sm="100"
+                        >
+                        Basic data
+                    </h3> -->
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(50% - 8px)"
+                        >
+                        <input matInput type="text" placeholder="Name" formControlName="name">
+                    </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(50% - 8px)"
+                        >
+                        <input matInput type="number" placeholder="CUIT" formControlName="cuit">
+                    </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="100"
+                        >
+                        <textarea matInput placeholder="Details" formControlName="details"></textarea>
+                    </mat-form-field>
+                    <!-- <mat-checkbox formControlName="active">Active</mat-checkbox> -->
+                </form>
+            </app-flex-form-container>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header fxLayout="row">
+                <mat-panel-title>
+                    Contact data
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-flex-form-container>
+                <form
+                    fxFlex="1 1 100"
+                    [formGroup]="company_contact_form"
+                    fxLayout.lt-md="column"
+                    fxLayout.gt-sm="row wrap"
+                    fxLayoutAlign.lt-md="start center"
+                    fxLayoutAlign.gt-sm="center center"
+                    fxLayoutGap.gt-sm="8px grid"
+                    >
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(100% - 8px)"
+                        >
+                        <input matInput type="text" placeholder="email" formControlName="email">
+                    </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(33% - 8px)"
+                        >
+                        <input matInput type="text" placeholder="country" formControlName="country">
+                    </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(33% - 8px)"
+                        >
+                        <input matInput type="text" placeholder="state" formControlName="state">
+                    </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(33% - 8px)"
+                        >
+                        <input matInput type="text" placeholder="city" formControlName="city">
+                    </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(33% - 8px)"
+                        >
+                        <input matInput type="text" placeholder="street_name" formControlName="street_name">
+                    </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(33% - 8px)"
+                        >
+                        <input matInput type="number" placeholder="street_number" formControlName="street_number">
+                    </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(33% - 8px)"
+                        >
+                        <input matInput type="number" placeholder="phone" formControlName="phone">
+                    </mat-form-field>
+                </form>
+            </app-flex-form-container>
+        </mat-expansion-panel>
+    <!-- </div> -->
+    </mat-accordion>
+    <mat-list fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="8px">
+        <button
+            mat-raised-button
+            name="save"
+            color="primary"
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            (click)="save()"
+            >
+            <!-- style="height: 56px; width:56px" -->
+            <!-- <button
+                mat-fab
+                name="new"
+                color="primary"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                >
+            </button> -->
+            <mat-icon>save</mat-icon>
+            Save
+        </button>
+        <button
+            mat-raised-button
+            name="cancel"
+            color="primary"
+            style="background-color: #f44336 !important"
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            [routerLink]="'..'"
+            >
+            <!-- style="height: 56px; width:56px" -->
+            <!-- <button
+                mat-fab
+                name="new"
+                color="primary"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                >
+            </button> -->
+            <mat-icon>cancel</mat-icon>
+            Cancel
+        </button>
+    </mat-list>
 </div>

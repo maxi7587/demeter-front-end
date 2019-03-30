@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ToolEditResolver } from 'src/app/company/tools/tools-edit/tool-edit.resolver';
 import { TaskEditResolver } from 'src/app/company/tasks/task-edit/task-edit.resolver';
 import { ProfileEditResolver } from 'src/app/company/profiles/profile-edit/profile-edit.resolver';
 import { FieldEditResolver } from 'src/app/company/fields/field-edit/field-edit.resolver';
@@ -48,7 +49,9 @@ const routes: Routes = [
             {
                 path: 'tasks/:objectId',
                 data: { title: 'task' },
-                resolve: { task: TaskEditResolver },
+                resolve: {
+                    task: TaskEditResolver,
+                },
                 component: TaskEditComponent
             },
             {
@@ -69,6 +72,9 @@ const routes: Routes = [
             {
                 path: 'tools/:objectId',
                 data: { title: 'tools' },
+                resolve: {
+                    tool: ToolEditResolver,
+                },
                 component: ToolsEditComponent
             },
             {

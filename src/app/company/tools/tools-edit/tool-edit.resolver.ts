@@ -4,33 +4,34 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 import { Resolve } from '@angular/router';
 import { of as observableOf, Observable } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
-import { FieldsService, Field } from 'src/app/shared/services/fields.service';
+import { ToolsService, Tool } from 'src/app/shared/services/tools.service';
 
 @Injectable()
-export class FieldEditResolver implements Resolve<Observable<Field>> {
-    protected field_id: string;
+export class ToolEditResolver implements Resolve<Observable<Tool>> {
+    protected tool_id: string;
 
     public constructor(
-        protected fieldsService: FieldsService,
-        protected companiesService: CompaniesService
+        protected toolsService: ToolsService,
+        protected companiesService: CompaniesService,
     ) {}
 
     public resolve(activatedRouteSnapshot: ActivatedRouteSnapshot) {
         if (activatedRouteSnapshot.params.objectId === '0') {
-            let field = new Field();
+            let tool = new Tool();
             // Should use companiesService.comapny instead of the observable?
             return this.companiesService
                 .get(activatedRouteSnapshot.parent.params.company_id)
                 .pipe(
                     map(
                         (company) => {
-                            field.company = company;
-                            return field;
+                            tool.company = company;
+                            return tool;
                         }
                     )
                 );
         } else {
-            return this.fieldsService.get(activatedRouteSnapshot.params.objectId);
+            console.log('will get ---->', activatedRouteSnapshot.params.objectId);
+            return this.toolsService.get(activatedRouteSnapshot.params.objectId);
         }
     }
 }

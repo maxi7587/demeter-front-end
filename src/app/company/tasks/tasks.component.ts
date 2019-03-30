@@ -44,7 +44,7 @@ export class TasksComponent extends CompanyTemplateComponent {
     }
 
     public goToElement(element_id) {
-        console.log('id ---->', element_id);
+        console.log('calling navigate ---->', this.router.url, element_id);
         this.router.navigate([this.router.url, element_id]);
         // this.router.navigate([profile_id.toString(), { relativeTo: this.activatedRoute }]);
     }

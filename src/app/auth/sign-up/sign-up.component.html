@@ -1,4 +1,9 @@
-<form [formGroup]="sign_up_form" class="height-100" fxLayout="column" fxLayoutAlign="center center">
+<form
+    [formGroup]="sign_up_form"
+    class="height-100 width-100"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    >
     <mat-form-field>
         <input matInput formControlName="first_name" placeholder="Nombre">
         <mat-error *ngIf="sign_up_form.controls.first_name.invalid">Debes colocar tu nombre</mat-error>
@@ -19,5 +24,5 @@
         <input type="password" matInput formControlName="repeat_password" placeholder="Confirma tu contraseña">
         <mat-error *ngIf="sign_up_form.controls.repeat_password.invalid">Debes confirmar tu contraseña</mat-error>
     </mat-form-field>
-    <button mat-icon-button><mat-icon>send</mat-icon></button>
+    <button mat-icon-button color="primary"><mat-icon>send</mat-icon></button>
 </form>

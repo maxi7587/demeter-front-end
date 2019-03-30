@@ -53,12 +53,25 @@ export class ContactFormComponent implements OnInit {
     public fillForm() {
         let { name: contact_name, address, phone, web: {social_media: social_media, ...web} } = this.contact;
         this.contact_form.controls.name.setValue(contact_name);
-        this.address_form.setValue(address);
-        this.phone_form.setValue(phone);
-        this.web_form.setValue(web);
+        console.log('address --->', address);
+        // this.address_form.setValue(address);
+        this.assignResourcePropertiesToForm(this.address_form, address);
+        // this.phone_form.setValue(phone);
+        this.assignResourcePropertiesToForm(this.phone_form, phone);
+        // this.web_form.setValue(web);
+        this.assignResourcePropertiesToForm(this.web_form, web);
         // TODO: suppont multiple social media links
-        this.social_media_form.setValue(social_media[0]);
+        // this.social_media_form.setValue(social_media[0]);
+        this.assignResourcePropertiesToForm(this.social_media_form, social_media[0]);
         console.log(this.web_form);
+    }
+
+    public assignResourcePropertiesToForm(form, resource) {
+        for (let control in form.controls) {
+            if (resource.hasOwnProperty(control)) {
+                form.controls[control].setValue(resource[control]);
+            }
+        }
     }
 
     public submit() {

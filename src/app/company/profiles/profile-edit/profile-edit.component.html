@@ -1,46 +1,131 @@
-<form class="height-100 app-form" [formGroup]="profile_form" fxLayout="column" fxLayoutAlign="start center">
-    <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex="80">
-        <h3 class="mat-subheading-1">Personal data</h3>
-        <mat-form-field>
-            <input matInput type="text" placeholder="Name" formControlName="first_name">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="text" placeholder="Last name" formControlName="last_name">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="number" placeholder="CUIT/CUIL" formControlName="cuit">
-        </mat-form-field>
-        <h3 class="mat-subheading-1">Company data</h3>
-        <mat-form-field *ngIf="roles">
-            <mat-select placeholder="Role" formControlName="role" [compareWith]="compareById">
-                <mat-option *ngFor="let role of roles.results" [value]="role">{{ role.name }}</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput [matDatepicker]="birth_date_picker" placeholder="Birth date" formControlName="birth_date">
-            <mat-datepicker-toggle matSuffix [for]="birth_date_picker"></mat-datepicker-toggle>
-            <mat-datepicker #birth_date_picker></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="number" placeholder="Daily working hours" formControlName="daily_working_hours">
-        </mat-form-field>
-        <mat-form-field *ngIf="charges">
-            <mat-select placeholder="Charge" formControlName="charge">
-                <mat-option *ngFor="let charge of charges.results" value="charge">{{ charge.name }}</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field *ngIf="contract_types">
-            <mat-select placeholder="Contract type" formControlName="contract_type">
-                <mat-option *ngFor="let contract_type of contract_types.results" value="contract_type">{{ contract_type.name }}</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <!-- <mat-checkbox formControlName="is_user">Company user</mat-checkbox> -->
-        <!-- <button mat-button (click)="save()">Save</button> -->
-        <app-contact-form
-            #contactForm
-            [contact]="profile.contact"
-            (contactUpdate)="updateContact($event)"
+<div fxLayout="row" fxLayoutGap="16px">
+    <form
+        fxFlex="1 1 100"
+        class="height-100 app-form"
+        [formGroup]="profile_form"
+        fxLayout="column"
+        fxLayoutAlign="start center"
+        >
+        <mat-accordion
+            class="width-100"
             >
-        </app-contact-form>
-    </div>
-</form>
+            <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header fxLayout="row">
+                    <mat-panel-title>
+                        Personal data
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-flex-form-container>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(25% - 8px)"
+                        >
+                        <input matInput type="text" placeholder="Name" formControlName="first_name">
+                    </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(25% - 8px)"
+                        >
+                        <input matInput type="text" placeholder="Last name" formControlName="last_name">
+                    </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(25% - 8px)"
+                        >
+                        <input matInput type="number" placeholder="CUIT/CUIL" formControlName="cuit">
+                    </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(25% - 8px)"
+                        >
+                        <input matInput [matDatepicker]="birth_date_picker" placeholder="Birth date" formControlName="birth_date">
+                        <mat-datepicker-toggle matSuffix [for]="birth_date_picker"></mat-datepicker-toggle>
+                        <mat-datepicker #birth_date_picker></mat-datepicker>
+                    </mat-form-field>
+                    <!-- <h3 class="mat-subheading-2">Company profile data</h3> -->
+                    <mat-form-field *ngIf="roles"
+                        fxFlex.gt-sm="calc(25% - 8px)"
+                        >
+                        <mat-select placeholder="Role" formControlName="role" [compareWith]="compareById">
+                            <mat-option *ngFor="let role of roles.results" [value]="role">{{ role.name }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(25% - 8px)"
+                        >
+                        <input matInput type="number" placeholder="Daily working hours" formControlName="daily_working_hours">
+                    </mat-form-field>
+                    <mat-form-field
+                        *ngIf="charges"
+                        fxFlex.gt-sm="calc(25% - 8px)"
+                        >
+                        <mat-select placeholder="Charge" formControlName="charge">
+                            <mat-option *ngFor="let charge of charges.results" value="charge">{{ charge.name }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field
+                        *ngIf="contract_types"
+                        fxFlex.gt-sm="calc(25% - 8px)"
+                        >
+                        <mat-select placeholder="Contract type" formControlName="contract_type">
+                            <mat-option *ngFor="let contract_type of contract_types.results" value="contract_type">{{ contract_type.name }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </app-flex-form-container>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Contact data
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-contact-form
+                    class="width-100"
+                    #contactForm
+                    [contact]="profile.contact"
+                    (contactUpdate)="updateContact($event)"
+                    >
+                </app-contact-form>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </form>
+    <mat-list fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="8px">
+        <button
+            mat-raised-button
+            name="save"
+            color="primary"
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            (click)="save()"
+            >
+            <!-- style="height: 56px; width:56px" -->
+            <!-- <button
+                mat-fab
+                name="new"
+                color="primary"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                >
+            </button> -->
+            <mat-icon>save</mat-icon>
+            Save
+        </button>
+        <button
+            mat-raised-button
+            name="cancel"
+            color="primary"
+            style="background-color: #f44336 !important"
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            [routerLink]="'..'"
+            >
+            <!-- style="height: 56px; width:56px" -->
+            <!-- <button
+            mat-fab
+            name="new"
+            color="primary"
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            >
+            </button> -->
+            <mat-icon>cancel</mat-icon>
+            Cancel
+        </button>
+    </mat-list>
+</div>

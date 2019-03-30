@@ -14,6 +14,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 @NgModule({
     declarations: [],
     imports: [],
@@ -32,6 +34,7 @@ import { MatNativeDateModule } from '@angular/material';
         MatSelectModule,
         MatTabsModule,
         MatDatepickerModule,
+        MatExpansionModule,
         MatNativeDateModule
     ]
 })

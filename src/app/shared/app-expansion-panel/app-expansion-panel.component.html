@@ -1,0 +1,17 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header fxLayout="row">
+        <mat-panel-title>
+            {{ title }}
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div
+        class="width-100"
+        fxLayout.lt-md="column"
+        fxLayoutAlign.lt-md="start center"
+        fxLayout.gt-sm="row wrap"
+        fxLayoutAlign.gt-sm="center center"
+        fxLayoutGap.gt-sm="8px"
+        >
+        <ng-content></ng-content>
+    </div>
+</mat-expansion-panel>

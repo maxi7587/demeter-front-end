@@ -54,6 +54,7 @@ export class BasicDRFService<T> {
     }
 
     public get(id, route?,  headers?): Observable<T> {
+        console.log(' ------------- called get -------------->', this);
         return this.httpClient.get<T>(
             environment.APIURL +  (route || this.type) + '/' + id + '/',
             // TODO: remove header from here... oauth sendAccessTokenConfig should work

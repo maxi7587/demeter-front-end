@@ -3,50 +3,72 @@
     <!-- Contact -->
     <form
         [formGroup]="contact_form"
-        fxLayout="column"
+        fxLayout="row wrap"
         fxLayoutAlign="start center"
-        fxFlex="80"
+        fxLayoutGap="8px"
+        class="width-100"
         >
-        <h3 class="mat-subheading-1">Contact data</h3>
-        <mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="Contact name" formControlName="name">
         </mat-form-field>
     </form>
 
     <!-- 'country', 'state', 'city', 'street_name', 'street_number', 'floor', 'department', 'zip', 'details' -->
     <!-- Address -->
+    <!-- fxFlex="80" -->
     <form
         [formGroup]="address_form"
-        fxLayout="column"
+        fxLayout="row wrap"
         fxLayoutAlign="start center"
-        fxFlex="80"
+        fxLayoutGap="8px"
+        class="width-100"
         >
-        <h3 class="mat-subheading-1">Address data</h3>
-        <mat-form-field>
+        <h3 class="mat-subheading-1" fxFlex="100">Address data</h3>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="Country" formControlName="country">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="State" formControlName="state">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="City" formControlName="city">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="Zip code" formControlName="zip">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="Street name" formControlName="street_name">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="Street number" formControlName="street_number">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="Floor" formControlName="floor">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="Department" formControlName="department">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="Details" formControlName="details">
         </mat-form-field>
     </form>
@@ -55,18 +77,25 @@
     <!-- Phone -->
     <form
         [formGroup]="phone_form"
-        fxLayout="column"
+        fxLayout="row wrap"
         fxLayoutAlign="start center"
-        fxFlex="80"
+        fxLayoutGap="8px"
+        class="width-100"
         >
-        <h3 class="mat-subheading-1">Phone data</h3>
-        <mat-form-field>
+        <h3 class="mat-subheading-1" fxFlex="100">Phone data</h3>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="Country code" formControlName="country_code">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="Area code" formControlName="area_code">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="Phone number" formControlName="phone_number">
         </mat-form-field>
     </form>
@@ -75,15 +104,20 @@
     <!-- Social media -->
     <form
         [formGroup]="social_media_form"
-        fxLayout="column"
+        fxLayout="row wrap"
         fxLayoutAlign="start center"
-        fxFlex="80"
+        fxLayoutGap="8px"
+        class="width-100"
         >
-        <h3 class="mat-subheading-1">Social media data</h3>
-        <mat-form-field>
+        <h3 class="mat-subheading-1" fxFlex="100">Social media data</h3>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="Social network" formControlName="social_network">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="Link" formControlName="link">
         </mat-form-field>
     </form>
@@ -92,15 +126,20 @@
     <!-- Web -->
     <form
         [formGroup]="web_form"
-        fxLayout="column"
+        fxLayout="row wrap"
         fxLayoutAlign="start center"
-        fxFlex="80"
+        fxLayoutGap="8px"
+        class="width-100"
         >
-        <h3 class="mat-subheading-1">Web contact data</h3>
-        <mat-form-field>
+        <h3 class="mat-subheading-1" fxFlex="100">Web contact data</h3>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="E-mail" formControlName="email">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
             <input matInput type="text" placeholder="Website" formControlName="web_url">
         </mat-form-field>
     </form>
