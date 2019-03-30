@@ -83,6 +83,27 @@
                     >
                 </app-contact-form>
             </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Tasks
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-tasks
+                    class="width-100"
+                    [showActions]="false"
+                    [tableClasses]="['mat-elevation-z0']"
+                    #tasks
+                    >
+                </app-tasks>
+                <!-- <app-contact-form
+                    class="width-100"
+                    #contactForm
+                    [contact]="profile.contact"
+                    (contactUpdate)="updateContact($event)"
+                    >
+                </app-contact-form> -->
+            </mat-expansion-panel>
         </mat-accordion>
     </form>
     <mat-list fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="8px">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
 import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -12,6 +12,9 @@ import { Column } from 'src/app/shared/table/table-elements';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent extends CompanyTemplateComponent {
+
+    @Input() public showActions = true;
+    @Input() public tableClasses: Array<string>;
 
     private _tasks: {[key: string]: any} = {};
     set tasks(tasks: {[key: string]: any}) { this._tasks = tasks; }

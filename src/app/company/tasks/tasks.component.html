@@ -9,10 +9,13 @@
         fxFlex="1 1 100"
         [columns]="columns"
         [rows]="tasks.results"
+        [tableClasses]="tableClasses"
         (rowClick)="goToElement($event.id)"
         >
     </app-table>
-    <mat-list>
+    <mat-list
+        *ngIf="showActions"
+        >
         <button
             mat-raised-button
             name="new"

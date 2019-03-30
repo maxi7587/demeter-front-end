@@ -10,6 +10,7 @@ export class TableComponent implements OnInit {
 
     @Input() public columns: Array<Column>;
     @Input() public rows: Array<{[key: string]: any}>;
+    @Input() public tableClasses: Array<string>;
 
     @Output() public rowClick: EventEmitter<any> = new EventEmitter<any>();
 
