@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DRFResource } from 'src/app/shared/basic-drf.service';
 
-export class Address  extends DRFResource {
+export class Address extends DRFResource {
     public country: string;
     public state: string;
     public city: string;

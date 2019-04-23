@@ -1,152 +1,214 @@
-<div fxLayout="row" fxLayoutGap="16px">
-    <form
-        fxFlex="1 1 100"
-        class="height-100 app-form"
-        [formGroup]="profile_form"
-        fxLayout="column"
-        fxLayoutAlign="start center"
-        >
-        <mat-accordion
-            class="width-100"
+<mat-tab-group #tabGroup (selectedTabChange)="selectedTabChange($event)">
+    <mat-tab>
+        <ng-template
+            id="personl-data-tab"
+            mat-tab-label
             >
-            <mat-expansion-panel [expanded]="true">
-                <mat-expansion-panel-header fxLayout="row">
-                    <mat-panel-title>
-                        Personal data
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <app-flex-form-container>
-                    <mat-form-field
-                        fxFlex.gt-sm="calc(25% - 8px)"
-                        >
-                        <input matInput type="text" placeholder="Name" formControlName="first_name">
-                    </mat-form-field>
-                    <mat-form-field
-                        fxFlex.gt-sm="calc(25% - 8px)"
-                        >
-                        <input matInput type="text" placeholder="Last name" formControlName="last_name">
-                    </mat-form-field>
-                    <mat-form-field
-                        fxFlex.gt-sm="calc(25% - 8px)"
-                        >
-                        <input matInput type="number" placeholder="CUIT/CUIL" formControlName="cuit">
-                    </mat-form-field>
-                    <mat-form-field
-                        fxFlex.gt-sm="calc(25% - 8px)"
-                        >
-                        <input matInput [matDatepicker]="birth_date_picker" placeholder="Birth date" formControlName="birth_date">
-                        <mat-datepicker-toggle matSuffix [for]="birth_date_picker"></mat-datepicker-toggle>
-                        <mat-datepicker #birth_date_picker></mat-datepicker>
-                    </mat-form-field>
-                    <!-- <h3 class="mat-subheading-2">Company profile data</h3> -->
-                    <mat-form-field *ngIf="roles"
-                        fxFlex.gt-sm="calc(25% - 8px)"
-                        >
-                        <mat-select placeholder="Role" formControlName="role" [compareWith]="compareById">
-                            <mat-option *ngFor="let role of roles.results" [value]="role">{{ role.name }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field
-                        fxFlex.gt-sm="calc(25% - 8px)"
-                        >
-                        <input matInput type="number" placeholder="Daily working hours" formControlName="daily_working_hours">
-                    </mat-form-field>
-                    <mat-form-field
-                        *ngIf="charges"
-                        fxFlex.gt-sm="calc(25% - 8px)"
-                        >
-                        <mat-select placeholder="Charge" formControlName="charge">
-                            <mat-option *ngFor="let charge of charges.results" value="charge">{{ charge.name }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field
-                        *ngIf="contract_types"
-                        fxFlex.gt-sm="calc(25% - 8px)"
-                        >
-                        <mat-select placeholder="Contract type" formControlName="contract_type">
-                            <mat-option *ngFor="let contract_type of contract_types.results" value="contract_type">{{ contract_type.name }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </app-flex-form-container>
-            </mat-expansion-panel>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Contact data
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <app-contact-form
-                    class="width-100"
-                    #contactForm
-                    [contact]="profile.contact"
-                    (contactUpdate)="updateContact($event)"
-                    >
-                </app-contact-form>
-            </mat-expansion-panel>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Tasks
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <app-tasks
-                    class="width-100"
-                    [showActions]="false"
-                    [tableClasses]="['mat-elevation-z0']"
-                    #tasks
-                    >
-                </app-tasks>
-                <!-- <app-contact-form
-                    class="width-100"
-                    #contactForm
-                    [contact]="profile.contact"
-                    (contactUpdate)="updateContact($event)"
-                    >
-                </app-contact-form> -->
-            </mat-expansion-panel>
-        </mat-accordion>
-    </form>
-    <mat-list fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="8px">
-        <button
-            mat-raised-button
-            name="save"
-            color="primary"
+            Personal data
+        </ng-template>
+        <div
+            style="padding: 16px;"
             fxLayout="row"
-            fxLayoutAlign="center center"
-            (click)="save()"
+            fxLayoutGap="16px"
+            mat-tab-content
             >
-            <!-- style="height: 56px; width:56px" -->
-            <!-- <button
-                mat-fab
-                name="new"
-                color="primary"
-                fxLayout="row"
-                fxLayoutAlign="center center"
+            <mat-accordion
+                class="width-100"
                 >
-            </button> -->
-            <mat-icon>save</mat-icon>
-            Save
-        </button>
-        <button
-            mat-raised-button
-            name="cancel"
-            color="primary"
-            style="background-color: #f44336 !important"
-            fxLayout="row"
-            fxLayoutAlign="center center"
-            [routerLink]="'..'"
+                <mat-expansion-panel [expanded]="true">
+                    <mat-expansion-panel-header fxLayout="row">
+                        <mat-panel-title>
+                            Personal data
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <form
+                        fxFlex="1 1 100"
+                        class="height-100 app-form"
+                        [formGroup]="profile_form"
+                        fxLayout="column"
+                        fxLayoutAlign="start center"
+                        >
+                        <app-flex-form-container>
+                            <mat-form-field
+                                fxFlex.gt-sm="calc(33% - 8px)"
+                                >
+                                <input matInput type="text" placeholder="Name" formControlName="first_name">
+                            </mat-form-field>
+                            <mat-form-field
+                                fxFlex.gt-sm="calc(33% - 8px)"
+                                >
+                                <input matInput type="text" placeholder="Last name" formControlName="last_name">
+                            </mat-form-field>
+                            <mat-form-field
+                                fxFlex.gt-sm="calc(33% - 8px)"
+                                >
+                                <input matInput type="number" placeholder="CUIT/CUIL" formControlName="cuit">
+                            </mat-form-field>
+                            <mat-form-field
+                                fxFlex.gt-sm="calc(33% - 8px)"
+                                >
+                                <input matInput [matDatepicker]="birth_date_picker" placeholder="Birth date" formControlName="birth_date">
+                                <mat-datepicker-toggle matSuffix [for]="birth_date_picker"></mat-datepicker-toggle>
+                                <mat-datepicker #birth_date_picker></mat-datepicker>
+                            </mat-form-field>
+                            <!-- <h3 class="mat-subheading-2">Company profile data</h3> -->
+                            <mat-form-field *ngIf="roles"
+                                fxFlex.gt-sm="calc(33% - 8px)"
+                                >
+                                <mat-select placeholder="Role" formControlName="role" [compareWith]="compareById">
+                                    <mat-option *ngFor="let role of roles.results" [value]="role">{{ role.name }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field
+                                fxFlex.gt-sm="calc(33% - 8px)"
+                                >
+                                <input matInput type="number" placeholder="Daily working hours" formControlName="daily_working_hours">
+                            </mat-form-field>
+                            <mat-form-field *ngIf="fields"
+                                fxFlex.gt-sm="calc(33% - 8px)"
+                                >
+                                <mat-select placeholder="Field" formControlName="field" [compareWith]="compareById">
+                                    <mat-option *ngFor="let field of fields.results" [value]="field">{{ field.name }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field
+                                *ngIf="charges"
+                                fxFlex.gt-sm="calc(33% - 8px)"
+                                >
+                                <mat-select placeholder="Charge" formControlName="charge">
+                                    <mat-option *ngFor="let charge of charges.results" [value]="charge">{{ charge.name }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field
+                                *ngIf="contract_types"
+                                fxFlex.gt-sm="calc(33% - 8px)"
+                                >
+                                <mat-select placeholder="Contract type" formControlName="contract_type">
+                                    <mat-option *ngFor="let contract_type of contract_types.results" [value]="contract_type">{{ contract_type.name }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </app-flex-form-container>
+                    </form>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Related user
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <form
+                        fxFlex="1 1 100"
+                        class="height-100 app-form"
+                        [formGroup]="related_user_form"
+                        fxLayout="column"
+                        fxLayoutAlign="start center"
+                        >
+                        <app-flex-form-container>
+                            <mat-checkbox
+                                #updateRelatedUser
+                                fxFlex.gt-sm="calc(50% - 8px)"
+                                >
+                                Create/update related user
+                            </mat-checkbox>
+                            <mat-form-field
+                                fxFlex.gt-sm="calc(50% - 8px)"
+                                >
+                                <input matInput type="text" placeholder="Username" formControlName="username">
+                            </mat-form-field>
+                            <mat-form-field
+                                fxFlex.gt-sm="calc(50% - 8px)"
+                                >
+                                <input matInput type="text" placeholder="Password" formControlName="password">
+                            </mat-form-field>
+                            <mat-form-field
+                                fxFlex.gt-sm="calc(50% - 8px)"
+                                >
+                                <input matInput type="text" placeholder="Repeat password" formControlName="repeat_password">
+                            </mat-form-field>
+                        </app-flex-form-container>
+                    </form>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Contact data
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-contact-form
+                        class="width-100"
+                        #contactForm
+                        [contact]="profile.contact"
+                        (contactUpdate)="updateContact($event)"
+                        >
+                    </app-contact-form>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <mat-list fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="8px" fxHide.lt-md>
+                <button
+                    mat-raised-button
+                    name="save"
+                    color="primary"
+                    fxLayout="row"
+                    fxLayoutAlign="center center"
+                    (click)="save()"
+                    >
+                    <!-- style="height: 56px; width:56px" -->
+                    <!-- <button
+                        mat-fab
+                        name="new"
+                        color="primary"
+                        fxLayout="row"
+                        fxLayoutAlign="center center"
+                        >
+                    </button> -->
+                    <mat-icon>save</mat-icon>
+                    Save
+                </button>
+                <button
+                    mat-raised-button
+                    name="cancel"
+                    color="primary"
+                    style="background-color: #f44336 !important"
+                    fxLayout="row"
+                    fxLayoutAlign="center center"
+                    [routerLink]="'..'"
+                    >
+                    <!-- style="height: 56px; width:56px" -->
+                    <!-- <button
+                    mat-fab
+                    name="new"
+                    color="primary"
+                    fxLayout="row"
+                    fxLayoutAlign="center center"
+                    >
+                    </button> -->
+                    <mat-icon>cancel</mat-icon>
+                    Cancel
+                </button>
+            </mat-list>
+        </div>
+    </mat-tab>
+    <mat-tab>
+        <ng-template
+            id="tasks-tab"
+            mat-tab-label
             >
-            <!-- style="height: 56px; width:56px" -->
-            <!-- <button
-            mat-fab
-            name="new"
-            color="primary"
-            fxLayout="row"
-            fxLayoutAlign="center center"
+            Tasks
+        </ng-template>
+        <!-- [tableClasses]="['mat-elevation-z0']" -->
+        <div
+            style="padding: 16px;"
+            mat-tab-content
             >
-            </button> -->
-            <mat-icon>cancel</mat-icon>
-            Cancel
-        </button>
-    </mat-list>
-</div>
+            <app-tasks
+                class="width-100"
+                [showActions]="true"
+                [filter]="{ 'assigned_worker': this.profile.id }"
+                [overrideRowClick]="true"
+                (rowClick)="goToTask($event)"
+                #tasks
+                >
+            </app-tasks>
+        </div>
+    </mat-tab>
+</mat-tab-group>

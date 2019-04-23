@@ -42,9 +42,10 @@ export class ToolsEditComponent extends CompanyTemplateComponent implements OnIn
     public save() {
         this.tool = { ...this.tool, ...this.tool_form.value };
         console.log(this.tool);
-        this.toolsService.save(this.tool).subscribe(tool => {
+        this.toolsService.save(this.tool).subscribe((tool: Tool) => {
             console.log('tool saved', tool);
             this.tool = tool;
+            this.router.navigate(['..']);
             console.log('this.tool', this.tool);
         });
     }

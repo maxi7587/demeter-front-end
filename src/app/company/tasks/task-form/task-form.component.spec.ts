@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FieldElementsEditComponent } from './field-elements-edit.component';
+import { TaskEditComponent } from './task-edit.component';
 
-describe('FieldElementsEditComponent', () => {
-  let component: FieldElementsEditComponent;
-  let fixture: ComponentFixture<FieldElementsEditComponent>;
+describe('TaskEditComponent', () => {
+  let component: TaskEditComponent;
+  let fixture: ComponentFixture<TaskEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FieldElementsEditComponent ]
+      declarations: [ TaskEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FieldElementsEditComponent);
+    fixture = TestBed.createComponent(TaskEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

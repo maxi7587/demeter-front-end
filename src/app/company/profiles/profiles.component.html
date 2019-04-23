@@ -9,17 +9,18 @@
         *ngIf="profiles.results"
         [columns]="columns"
         [rows]="profiles.results"
-        (rowClick)="goToElement($event.id)"
+        (rowClick)="goToElement($event)"
+        [collection]="profiles"
     >
     </app-table>
-    <mat-list>
+    <mat-list fxHide.lt-md>
         <button
             mat-raised-button
             name="new"
             color="primary"
             fxLayout="row"
             fxLayoutAlign="center center"
-            [routerLink]="0"
+            (click)="createElement()"
             >
             <!-- style="height: 56px; width:56px" -->
             <!-- <button

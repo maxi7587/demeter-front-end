@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { DashboardComponent } from 'src/app/company/dashboard/dashboard.component';
 import { CompaniesService } from 'src/app/shared/services/companies.service';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { Resolve } from '@angular/router';
@@ -30,7 +31,7 @@ export class FieldEditResolver implements Resolve<Observable<Field>> {
                     )
                 );
         } else {
-            return this.fieldsService.get(activatedRouteSnapshot.params.objectId);
+            return <Observable<Field>>this.fieldsService.get(activatedRouteSnapshot.params.objectId);
         }
     }
 }

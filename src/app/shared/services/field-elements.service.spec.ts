@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FieldElementsService } from './field-elements.service';
+import { FieldRowsService } from './field-rows.service';
 
-describe('FieldElementsService', () => {
+describe('FieldRowsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: FieldElementsService = TestBed.get(FieldElementsService);
+    const service: FieldRowsService = TestBed.get(FieldRowsService);
     expect(service).toBeTruthy();
   });
 });

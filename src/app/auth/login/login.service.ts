@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
 export class LoginService {
     // private login_url = environment.APIURL + 'api-auth/login/';
     private login_url = environment.APIURL + 'o/token/';
-    private client_id = 'QCxjWmztrYNaTUqUhtKtPrfvRyyx8hflups1ZnGo';
-    private client_secret =
-        'DM4f0qkil41Y8Q4Iv7AmzVGntCkKaGksZKCsyrfPvPlyuG57JJJYKD6TxuHz3N9JBEih41vB9ciieh3cv4y7mTjtreuhthyLPcmkHWdI9KvdRQWBVSq3hukCuV0QTAko';
+    // private client_id = '6g7ZLdmQ9NOKPmDWW04HRLdLDH9EKQuOcmccCXka';
+    // private client_secret =
+    // 'VbjzKD72h7SaMR9dFtWwajAK4UBhc43VAqZWHrSAQ1x3h50m2r318Ou95zAQ6npXEemrPC3ysuBbglcpHWRJJ3z4EWqY4m4hnIXUXgTn5sHw3oy6ahJhGnFlrZHosMI5';
 
     public constructor (public oAuthService: OAuthService) { }
 

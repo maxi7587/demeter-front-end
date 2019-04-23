@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Profile</h1>
+<div mat-dialog-content>
+    <app-profile-form
+        #profileForm
+        [profile]="data.profile"
+        [field]="data.field"
+        fxLayout="row wrap"
+        fxLayoutGap="16px"
+        >
+    </app-profile-form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="save()">Save</button>
+    <button mat-button [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
+</div>

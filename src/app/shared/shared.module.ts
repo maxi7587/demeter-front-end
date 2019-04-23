@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MeasureUnitsService } from 'src/app/shared/services/measure-units.service';
 import { ContactsService } from 'src/app/shared/services/contacts/contacts.service';
 import { ChargesService } from 'src/app/shared/services/charges.service';
 import { ContractTypesService } from 'src/app/shared/services/contract-types.service';
@@ -20,7 +21,7 @@ import { RolesService } from './services/roles.service';
 import { ProfilesService } from './services/profiles.service';
 import { ToolsService } from './services/tools.service';
 import { TaskTypesService } from './services/task-types.service';
-import { FieldElementsService } from './services/field-elements.service';
+import { FieldRowsService } from './services/field-rows.service';
 import { FieldsService } from './services/fields.service';
 import { TasksService } from './services/tasks.service';
 import { UsersService } from './services/users.service';
@@ -59,6 +60,7 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         FlexLayoutModule,
         // HttpClientModule,
         SharedMaterialModule,
+        AvatarModule,
         TableComponent,
         DynamicPipe,
         NavigationComponent,
@@ -78,12 +80,13 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         ProfilesService,
         ToolsService,
         TaskTypesService,
-        FieldElementsService,
+        FieldRowsService,
         FieldsService,
         ContractTypesService,
         ChargesService,
         TasksService,
         UsersService,
+        MeasureUnitsService,
         ContactsService
     ]
 })

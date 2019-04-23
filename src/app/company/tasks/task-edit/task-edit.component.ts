@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User, UsersService } from 'src/app/shared/services/users.service';
-import { FieldElementsService } from 'src/app/shared/services/field-elements.service';
-import { FieldElement } from 'src/app/shared/services/field-elements.service';
+import { FieldRowsService } from 'src/app/shared/services/field-rows.service';
+import { FieldRow } from 'src/app/shared/services/field-rows.service';
 import { DRFCollection } from 'src/app/shared/basic-drf.service';
 import { TaskTypesService, TaskType } from 'src/app/shared/services/task-types.service';
 import { ToolsService } from 'src/app/shared/services/tools.service';
@@ -20,7 +20,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class TaskEditComponent extends CompanyTemplateComponent implements OnInit {
     public task_types: DRFCollection<TaskType>;
-    public field_elements: DRFCollection<FieldElement>;
+    public field_rows: DRFCollection<FieldRow>;
     public status_options: Array<string> = ['todo', 'in_developement', 'ready'];
     public task_form: FormGroup = new FormGroup({
         name: new FormControl(),
@@ -36,8 +36,8 @@ export class TaskEditComponent extends CompanyTemplateComponent implements OnIni
         started_at: new FormControl(),
         finished_at: new FormControl(),
         tool: new FormControl(),
-        from_element: new FormControl(),
-        to_element: new FormControl()
+        from_row: new FormControl(),
+        to_row: new FormControl()
     });
     protected task: Task;
     protected me: User;
@@ -46,7 +46,7 @@ export class TaskEditComponent extends CompanyTemplateComponent implements OnIni
         public fieldsService: FieldsService,
         public taskTypesService: TaskTypesService,
         public profilesService: ProfilesService,
-        public fieldElementsService: FieldElementsService,
+        public fieldRowsService: FieldRowsService,
         public toolsService: ToolsService,
         public tasksService: TasksService,
         protected usersService: UsersService,
@@ -77,12 +77,12 @@ export class TaskEditComponent extends CompanyTemplateComponent implements OnIni
         this.taskTypesService
             .all()
             .subscribe(
-                task_types => this.task_types = task_types
+                (task_types: DRFCollection<TaskType>) => this.task_types = task_types
             );
-        this.fieldElementsService
+        this.fieldRowsService
             .all()
             .subscribe(
-                field_elements => this.field_elements = field_elements
+                field_rows => this.field_rows = field_rows
             );
         this.navigationService.actions.next(new SidenavActions(['delete', 'save']));
     }
@@ -94,7 +94,7 @@ export class TaskEditComponent extends CompanyTemplateComponent implements OnIni
         console.log('me ----------->', this.me);
         this.task.created_by = this.me;
         console.log(this.task);
-        this.tasksService.save(this.task).subscribe(task => {
+        this.tasksService.save(this.task).subscribe((task: Task) => {
             console.log('task saved', task);
             this.task = task;
             console.log('this.task', this.task);

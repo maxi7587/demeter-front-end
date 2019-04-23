@@ -25,7 +25,7 @@ export class CompanyTemplateComponent implements OnInit, OnDestroy {
         this.actions_subscription = this.navigationService.actionClick.subscribe(action => {
             switch (action) {
                 case 'search':
-                    this.search();
+                    this.search(this.navigationService.search_filter);
                     break;
                 case 'add':
                     this.add();
@@ -34,8 +34,13 @@ export class CompanyTemplateComponent implements OnInit, OnDestroy {
                     this.delete();
                     break;
                 case 'save':
-                    console.log('save case');
                     this.save();
+                    break;
+                case 'cancel':
+                    this.cancel();
+                    break;
+                case 'menu':
+                    this.menu();
                     break;
             }
         });
@@ -49,11 +54,12 @@ export class CompanyTemplateComponent implements OnInit, OnDestroy {
     }
 
     public add(): void {
-        this.router.navigate([this.router.url, '0']);
+        console.log('inside add method in CompanyTemplateComponent');
+        // this.router.navigate([this.router.url, '0']);
     }
 
-    public search() {
-        console.log('inside search method');
+    public search(filter: string) {
+        console.log('inside search method: ', filter);
     }
 
     public delete() {
@@ -61,6 +67,14 @@ export class CompanyTemplateComponent implements OnInit, OnDestroy {
     }
 
     public save() {
+        console.log('inside save method');
+    }
+
+    public cancel() {
+        console.log('inside save method');
+    }
+
+    public menu() {
         console.log('inside save method');
     }
 

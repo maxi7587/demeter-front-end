@@ -29,7 +29,7 @@ export class TaskEditResolver implements Resolve<Observable<Task>> {
                 );
         } else {
             console.log('will get ---->', activatedRouteSnapshot.params.objectId);
-            return this.tasksService.get(activatedRouteSnapshot.params.objectId);
+            return <Observable<Task>>this.tasksService.get(activatedRouteSnapshot.params.objectId);
         }
     }
 }

@@ -1,4 +1,8 @@
 import { NgModule } from '@angular/core';
+import { StaffComponent } from 'src/app/company/staff/staff.component';
+import { FieldPlotEditResolver } from 'src/app/company/field-plots/field-plots-edit/field-plots-edit.resolver';
+import { FieldPlotEditComponent } from 'src/app/company/field-plots/field-plots-edit/field-plots-edit.component';
+import { FieldPlotsComponent } from 'src/app/company/field-plots/field-plots.component';
 import { ToolEditResolver } from 'src/app/company/tools/tools-edit/tool-edit.resolver';
 import { TaskEditResolver } from 'src/app/company/tasks/task-edit/task-edit.resolver';
 import { ProfileEditResolver } from 'src/app/company/profiles/profile-edit/profile-edit.resolver';
@@ -39,7 +43,33 @@ const routes: Routes = [
                 path: 'fields/:objectId',
                 data: { title: 'field' },
                 resolve: { field: FieldEditResolver },
+                component: FieldEditComponent,
+            },
+            {
+                path: 'fields/:fieldId/field_plots',
+                data: { title: 'field_plots' },
                 component: FieldEditComponent
+            },
+            {
+                path: 'fields/:fieldId/field_plots/objectId',
+                data: { title: 'field_plot' },
+                resolve: {
+                    task: FieldPlotEditResolver,
+                },
+                component: FieldPlotEditComponent
+            },
+            {
+                path: 'fields/:fieldId/tasks',
+                data: { title: 'tasks' },
+                component: FieldPlotsComponent
+            },
+            {
+                path: 'fields/:fieldId/tasks/objectId',
+                data: { title: 'task' },
+                resolve: {
+                    task: TaskEditResolver,
+                },
+                component: TaskEditComponent
             },
             {
                 path: 'tasks',
@@ -61,7 +91,7 @@ const routes: Routes = [
             },
             {
                 path: 'task_types/:objectId',
-                data: { title: 'task_types' },
+                data: { title: 'task_type' },
                 component: TaskTypesEditComponent
             },
             {
@@ -80,7 +110,8 @@ const routes: Routes = [
             {
                 path: 'profiles',
                 data: { title: 'profiles' },
-                component: ProfilesComponent,
+                component: StaffComponent,
+                // component: ProfilesComponent,
             },
             {
                 path: 'profiles/:objectId',

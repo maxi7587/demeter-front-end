@@ -15,6 +15,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
     declarations: [],
@@ -35,7 +39,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
         MatTabsModule,
         MatDatepickerModule,
         MatExpansionModule,
-        MatNativeDateModule
+        MatDialogModule,
+        MatNativeDateModule,
+        MatStepperModule,
+        MatCardModule,
+        MatPaginatorModule
     ]
 })
 export class SharedMaterialModule { }

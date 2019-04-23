@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Task</h1>
+<div mat-dialog-content>
+    <app-task-form
+        #taskForm
+        fxLayout="row wrap"
+        fxLayoutGap="16px"
+        [field]="data.field"
+        >
+    </app-task-form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="save()">Save</button>
+    <button mat-button [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
+</div>

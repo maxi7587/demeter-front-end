@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Field plot</h1>
+<div mat-dialog-content fxLayout="column">
+    <div
+        *ngFor="let attribute of data.field_plot | keyvalue"
+        class="width-100"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        [fxFlexOrder]="orderAttribute(attribute.key)"
+        >
+        <ng-container
+            *ngIf="data.field_plot.canShowAttribute(attribute.key)"
+            >
+            <h4>{{ attribute.key | translate }}</h4>
+            <p *ngIf="!data.field_plot.attributeIsObject(attribute.key)"> {{ attribute.value || '-' }}</p>
+            <p *ngIf="data.field_plot.attributeIsObject(attribute.key)"> {{ attribute.value.name || '-' }}</p>
+        </ng-container>
+    </div>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false" cdkFocusInitial>Close</button>
+</div>

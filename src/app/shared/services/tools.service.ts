@@ -17,5 +17,6 @@ export class Tool extends DRFResource {
   providedIn: 'root'
 })
 export class ToolsService extends CompanyDRFService<Tool> {
+    public resource = Tool;
     protected _type = 'tools';
 }

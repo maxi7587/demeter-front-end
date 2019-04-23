@@ -1,18 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 export class DRFResource {
     public id: string;
     public url: string;
+
+    public attributeIsObject(attribute: string): boolean {
+        return typeof this[attribute] === 'object' && this[attribute] !== null;
+    }
+
+    public setAttributes(attributes_object): this {
+        for (let attribute in attributes_object) {
+            // TODO: should be "if (this.hasOwnProperty(attribute)) {""
+            if (attributes_object.hasOwnProperty(attribute)) {
+                this[attribute] = attributes_object[attribute];
+            }
+        }
+
+        return this;
+    }
+
+    public canShowAttribute(attribute: string): boolean {
+        return ['id', 'url'].indexOf(attribute) === -1;
+    }
 }
 
 export class DRFCollection<T> {
-    private count: number;
-    private next: number;
-    private previous: number;
+    public count: number;
+    public next: string;
+    public previous: string;
     private _results: Array<T>;
     set results(results: Array<T>) { this._results = results; }
     get results(): Array<T> { return this._results; }
@@ -21,7 +41,11 @@ export class DRFCollection<T> {
 @Injectable({
     providedIn: 'root'
 })
-export class BasicDRFService<T> {
+export class BasicDRFService<T extends DRFResource = DRFResource> {
+    public resource = DRFResource;
+    // set resource(resource: T) { this._resource = resource; }
+    // get resource(): T { return this._resource; }
+
     protected _type: string;
     set type(type: string) { this._type = type; }
     get type(): string { return this._type; }
@@ -44,12 +68,55 @@ export class BasicDRFService<T> {
         });
     }
 
-    public all(route?, headers?): Observable<DRFCollection<T>> {
-        console.log('headers in BasicDRFService --->', this.headers);
+    public formatFilter(filter_object: { [key: string]: string | number }): string {
+        let filter_string: string;
+        for (let key in filter_object) {
+            if (filter_object[key]) {
+                if (!filter_string) {
+                    filter_string = '?';
+                } else {
+                    filter_string += '&';
+                }
+                filter_string += `${key}=${filter_object[key]}`;
+            }
+        }
+        console.log('filter_string -------->', filter_string);
+
+        return filter_string;
+    }
+
+    public getPreRoute(): Array<string> { return undefined; }
+
+    public all(
+        route?: string, headers?: HttpHeaders, filter?: {[key: string]: string | number}
+    ): Observable<DRFCollection<T>> {
+        let url: string = environment.APIURL
+            +  (route || ((this.getPreRoute() ? this.getPreRoute().join('/') + '/' : '') + this.type)) + '/';
+
+        let filter_string = this.formatFilter(filter);
+
+        if (filter_string) {
+            url = url + filter_string;
+        }
+
         return this.httpClient.get<DRFCollection<T>>(
-            environment.APIURL +  (route || ((this.pre_route ? this.pre_route.join('/') + '/' : '') + this.type)) + '/',
+            url,
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
             { headers: headers || this.headers }
+        ).pipe(
+            map(
+                collection => {
+                    let results = [];
+                    for (let resource of collection.results) {
+                        results.push(
+                            (<T>new this.resource().setAttributes(resource))
+                        );
+                    }
+                    collection.results = results;
+
+                    return collection;
+                }
+            )
         );
     }
 
@@ -59,6 +126,8 @@ export class BasicDRFService<T> {
             environment.APIURL +  (route || this.type) + '/' + id + '/',
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
             { headers: headers || this.headers }
+        ).pipe(
+            map(resource => (<T>new this.resource()).setAttributes(resource))
         );
     }
 
@@ -68,6 +137,8 @@ export class BasicDRFService<T> {
             data,
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
             { headers: headers || this.headers }
+        ).pipe(
+            map(resource => (<T>new this.resource()).setAttributes(resource))
         );
     }
 
@@ -77,6 +148,8 @@ export class BasicDRFService<T> {
             data,
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
             { headers: headers || this.headers }
+        ).pipe(
+            map(resource => (<T>new this.resource().setAttributes(resource)))
         );
     }
 
@@ -84,12 +157,12 @@ export class BasicDRFService<T> {
         console.log('INSIDE BASIC DRF SERVICE SAVE METHOD');
         if (resource.id && resource.id !== '0') {
             console.log('inside 1st inf', resource.id);
-            return this.patch(resource);
+            return (<Observable<T>>this.patch(resource));
         } else {
             console.log('will delete resource id', resource.id);
             delete resource.id;
             console.log('deleted resource id');
-            return this.post(resource);
+            return (<Observable<T>>this.post(resource));
         }
     }
 }

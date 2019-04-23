@@ -1,83 +1,222 @@
-<div fxLayout="row" fxLayoutGap="16px">
-    <form
-        fxFlex="1 1 100"
-        class="height-100 app-form"
-        [formGroup]="field_form"
-        fxLayout="column"
-        fxLayoutAlign="start center"
-        >
-        <mat-accordion
-            class="width-100"
+<mat-tab-group #tabGroup (selectedTabChange)="selectedTabChange($event)">
+    <mat-tab>
+        <ng-template
+            id="personl-data-tab"
+            mat-tab-label
             >
-            <mat-expansion-panel [expanded]="true">
-                <mat-expansion-panel-header fxLayout="row">
-                    <mat-panel-title>
-                        Field data
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <app-flex-form-container>
-                    <mat-form-field
-                        fxFlex.gt-sm="calc(50% - 8px)"
-                        >
-                        <input matInput type="text" placeholder="Name" formControlName="name">
-                    </mat-form-field>
-                    <app-drf-collection-autocomplete
-                        fxFlex.gt-sm="calc(50% - 8px)"
-                        [service]="profilesService"
-                        [activeOption]="field?.manager"
-                        searchField="first_name"
-                        placeholder="Manager"
-                        (optionSelected)="updateForm('manager', $event.option.value)"
-                        >
-                    </app-drf-collection-autocomplete>
-                    <mat-form-field
-                        fxFlex="100"
-                        >
-                        <textarea matInput placeholder="Details" formControlName="details"></textarea>
-                    </mat-form-field>
-                </app-flex-form-container>
-            </mat-expansion-panel>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header fxLayout="row">
-                    <mat-panel-title>
-                        Field contact data
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <app-contact-form
+            General data
+        </ng-template>
+        <div
+            style="padding: 16px;"
+            fxLayout="row"
+            fxLayoutGap="16px"
+            mat-tab-content
+            >
+            <form
+                fxFlex="1 1 100"
+                class="height-100 app-form"
+                [formGroup]="field_form"
+                fxLayout="column"
+                fxLayoutAlign="start center"
+                >
+                <mat-accordion
                     class="width-100"
-                    #contactForm
-                    [contact]="field.contact"
-                    (contactUpdate)="updateContact($event)"
                     >
-                </app-contact-form>
-            </mat-expansion-panel>
-            <!-- <mat-checkbox formControlName="active">Active</mat-checkbox>
-            <button mat-button (click)="save()">Save</button> -->
-        </mat-accordion>
-    </form>
-    <mat-list fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="8px">
-        <button
-            mat-raised-button
-            name="save"
-            color="primary"
-            fxLayout="row"
-            fxLayoutAlign="center center"
-            (click)="save()"
+                    <mat-expansion-panel [expanded]="true">
+                        <mat-expansion-panel-header fxLayout="row">
+                            <mat-panel-title>
+                                Field data
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <app-flex-form-container>
+                            <mat-form-field
+                                fxFlex.gt-sm="calc(50% - 8px)"
+                                >
+                                <input matInput type="text" placeholder="Name" formControlName="name">
+                            </mat-form-field>
+                            <app-drf-collection-autocomplete
+                                fxFlex.gt-sm="calc(50% - 8px)"
+                                [service]="profilesService"
+                                [activeOption]="field?.manager"
+                                searchField="first_name"
+                                placeholder="Manager"
+                                (optionSelected)="updateForm('manager', $event.option.value)"
+                                >
+                            </app-drf-collection-autocomplete>
+                            <mat-form-field
+                                fxFlex.gt-sm="calc(50% - 8px)"
+                                >
+                                <input matInput type="number" placeholder="Area" formControlName="total_area">
+                            </mat-form-field>
+                            <mat-form-field
+                                fxFlex.gt-sm="calc(50% - 8px)"
+                                >
+                                <mat-select placeholder="Area measure unit" formControlName="total_area_measure_unit">
+                                    <!-- IMPORTANT: have to use id as value because measure units is not a nested resource, it's a primary key -->
+                                    <mat-option
+                                        *ngFor="let unit of measure_units?.results"
+                                        [value]="unit.id"
+                                        >
+                                        {{ unit.id }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field
+                                fxFlex="100"
+                                >
+                                <textarea matInput placeholder="Details" formControlName="details"></textarea>
+                            </mat-form-field>
+                        </app-flex-form-container>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header fxLayout="row">
+                            <mat-panel-title>
+                                Field contact data
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <app-contact-form
+                            class="width-100"
+                            #contactForm
+                            [contact]="field.contact"
+                            (contactUpdate)="updateContact($event)"
+                            >
+                        </app-contact-form>
+                    </mat-expansion-panel>
+                    <!-- <mat-checkbox formControlName="active">Active</mat-checkbox>
+                    <button mat-button (click)="save()">Save</button> -->
+                </mat-accordion>
+            </form>
+            <mat-list fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="8px" fxHide.lt-md>
+                <button
+                    mat-raised-button
+                    name="save"
+                    color="primary"
+                    fxLayout="row"
+                    fxLayoutAlign="center center"
+                    (click)="save()"
+                    >
+                    <mat-icon>save</mat-icon>
+                    Save
+                </button>
+                <button
+                    mat-raised-button
+                    name="cancel"
+                    color="primary"
+                    style="background-color: #f44336 !important"
+                    fxLayout="row"
+                    fxLayoutAlign="center center"
+                    [routerLink]="'..'"
+                    >
+                    <mat-icon>cancel</mat-icon>
+                    Cancel
+                </button>
+            </mat-list>
+        </div>
+    </mat-tab>
+    <mat-tab [disabled]="!field.id">
+        <ng-template
+            id="plots-tab"
+            mat-tab-label
             >
-            <mat-icon>save</mat-icon>
-            Save
-        </button>
-        <button
-            mat-raised-button
-            name="cancel"
-            color="primary"
-            style="background-color: #f44336 !important"
-            fxLayout="row"
-            fxLayoutAlign="center center"
-            [routerLink]="'..'"
+            Plots
+        </ng-template>
+        <!-- [tableClasses]="['mat-elevation-z0']" -->
+        <div
+            style="padding: 16px;"
+            mat-tab-content
             >
-            <mat-icon>cancel</mat-icon>
-            Cancel
-        </button>
-    </mat-list>
-</div>
+            <!-- [overrideRowClick]="true" -->
+            <!-- (rowClick)="showFieldPlotsDialog($event)" -->
+            <app-field-plots
+                class="width-100"
+                [showActions]="true"
+                [route]="field_plots_route"
+                [field]="field"
+                #fieldPlots
+                >
+            </app-field-plots>
+        </div>
+    </mat-tab>
+    <mat-tab [disabled]="!field.id">
+        <ng-template
+            id="tasks-tab"
+            mat-tab-label
+            >
+            Tasks
+        </ng-template>
+        <!-- [tableClasses]="['mat-elevation-z0']" -->
+        <div
+            style="padding: 16px;"
+            mat-tab-content
+            >
+            <!-- [overrideCreate]="true"
+            (createButton)="createTaskDialog()" -->
+            <app-tasks
+                class="width-100"
+                [showActions]="true"
+                [filter]="{ 'field': this.field.id }"
+                [overrideRowClick]="true"
+                (rowClick)="goToTask($event)"
+                [field]="field"
+                [createFromDialog]="true"
+                #tasks
+                >
+            </app-tasks>
+        </div>
+    </mat-tab>
+    <mat-tab [disabled]="!field.id">
+        <ng-template
+            id="tools-tab"
+            mat-tab-label
+            >
+            Tools
+        </ng-template>
+        <!-- [tableClasses]="['mat-elevation-z0']" -->
+        <div
+            style="padding: 16px;"
+            mat-tab-content
+            >
+            <!-- [overrideCreate]="true"
+            (createButton)="createToolDialog()" -->
+            <app-tools
+                class="width-100"
+                [showActions]="true"
+                [filter]="{ 'field': this.field.id }"
+                [overrideRowClick]="true"
+                (rowClick)="goToTool($event)"
+                [field]="field"
+                [createFromDialog]="true"
+                #tools
+                >
+            </app-tools>
+        </div>
+    </mat-tab>
+    <mat-tab [disabled]="!field.id">
+        <ng-template
+            id="profiles-tab"
+            mat-tab-label
+            >
+            Profiles
+        </ng-template>
+        <!-- [tableClasses]="['mat-elevation-z0']" -->
+        <div
+            style="padding: 16px;"
+            mat-tab-content
+            >
+            <!-- [overrideCreate]="true"
+            (createButton)="createToolDialog()" -->
+            <app-profiles
+                class="width-100"
+                [showActions]="true"
+                [filter]="{ 'field': this.field.id }"
+                [overrideRowClick]="true"
+                [showInDialog]="true"
+                (rowClick)="goToProfile($event)"
+                [field]="field"
+                [createFromDialog]="true"
+                #profiles
+                >
+            </app-profiles>
+        </div>
+    </mat-tab>
+</mat-tab-group>

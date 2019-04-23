@@ -1,0 +1,133 @@
+<form fxLayout="row wrap" fxLayoutGap="16px grid" [formGroup]="field_plot_form">
+    <mat-form-field
+        fxFlex.gt-sm="calc(50% - 8px)"
+        >
+        <input matInput type="text" placeholder="Code" formControlName="code">
+    </mat-form-field>
+    <mat-form-field
+        fxFlex.gt-sm="calc(50% - 8px)"
+        >
+        <input matInput type="text" placeholder="Label" formControlName="label">
+    </mat-form-field>
+    <!-- [disabled]="true" add disabled to autocomplete -->
+    <app-drf-collection-autocomplete
+        fxFlex.gt-sm="calc(50% - 8px)"
+        [service]="fieldsService"
+        [activeOption]="field"
+        searchField="name"
+        placeholder="Field"
+        (optionSelected)="updateForm('field', $event.option.value)"
+        >
+    </app-drf-collection-autocomplete>
+    <mat-form-field
+        fxFlex.gt-sm="calc(50% - 8px)"
+        >
+        <mat-select placeholder="Status" formControlName="status">
+            <mat-option
+                *ngFor="let status_value of ['active', 'inactive']"
+                [value]="status_value"
+                >
+                {{ status_value }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <h3 class="mat-subheading-2" fxFlex="100">Plot measure data</h3>
+    <mat-form-field
+        fxFlex.gt-sm="calc(33% - 8px)"
+        >
+        <input matInput type="number" placeholder="Area" formControlName="area">
+    </mat-form-field>
+    <mat-form-field
+        fxFlex.gt-sm="calc(33% - 8px)"
+        >
+        <mat-select placeholder="Area measure unit" formControlName="area_measure_unit">
+            <mat-option
+                *ngFor="let unit of measure_units?.results"
+                [value]="unit"
+                >
+                {{ unit.id }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field
+        fxFlex.gt-sm="calc(33% - 8px)"
+        >
+        <input matInput type="number" placeholder="Field elements (qty)" formControlName="field_rows_qty">
+    </mat-form-field>
+    <mat-form-field
+        fxFlex.gt-sm="calc(33% - 8px)"
+        >
+        <input matInput type="number" placeholder="Field elements distance" formControlName="field_rows_distance">
+    </mat-form-field>
+    <mat-form-field
+        fxFlex.gt-sm="calc(33% - 8px)"
+        >
+        <mat-select placeholder="Field elements distance measure unit" formControlName="field_rows_distance_measure_unit">
+            <mat-option
+                *ngFor="let unit of measure_units?.results"
+                [value]="unit"
+                >
+                {{ unit.id }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <h3 class="mat-subheading-2" fxFlex="100">Plants data</h3>
+    <mat-form-field
+        fxFlex.gt-sm="calc(50% - 8px)"
+        >
+        <input matInput type="text" placeholder="Graft" formControlName="graft">
+    </mat-form-field>
+    <mat-form-field
+        fxFlex.gt-sm="calc(50% - 8px)"
+        >
+        <input matInput type="text" placeholder="Foot" formControlName="foot">
+    </mat-form-field>
+    <mat-form-field
+        fxFlex.gt-sm="calc(33% - 8px)"
+        >
+        <input matInput type="number" placeholder="Plants distance" formControlName="plants_distance">
+    </mat-form-field>
+    <mat-form-field
+        fxFlex.gt-sm="calc(33% - 8px)"
+        >
+        <mat-select placeholder="Plants distance measure unit" formControlName="plants_distance_measure_unit">
+            <mat-option
+                *ngFor="let unit of measure_units?.results"
+                [value]="unit"
+                >
+                {{ unit.id }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field
+        fxFlex.gt-sm="calc(33% - 8px)"
+        >
+        <input matInput type="number" placeholder="Plantation year" formControlName="plantation_year">
+    </mat-form-field>
+    <mat-form-field
+        fxFlex.gt-sm="calc(33% - 8px)"
+        >
+        <input matInput type="text" placeholder="Plants origin" formControlName="plants_origin">
+    </mat-form-field>
+    <h3 class="mat-subheading-2" fxFlex="100">Additional data</h3>
+    <mat-form-field
+        fxFlex.gt-sm="calc(33% - 8px)"
+        >
+        <input matInput type="text" placeholder="Anit hail net" formControlName="anit_hail_net">
+    </mat-form-field>
+    <mat-form-field
+        fxFlex.gt-sm="calc(33% - 8px)"
+        >
+        <input matInput type="text" placeholder="Irrigation" formControlName="irrigation">
+    </mat-form-field>
+    <mat-form-field
+        fxFlex.gt-sm="calc(33% - 8px)"
+        >
+        <input matInput type="text" placeholder="Conduction system" formControlName="conduction_system">
+    </mat-form-field>
+    <mat-form-field
+        fxFlex="100"
+        >
+        <textarea matInput placeholder="Details" formControlName="details"></textarea>
+    </mat-form-field>
+</form>

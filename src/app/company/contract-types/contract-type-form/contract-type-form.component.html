@@ -1,0 +1,16 @@
+<form
+    fxFlex="1 1 100"
+    class="height-100 app-form"
+    [formGroup]="contract_type_form"
+    fxLayout="column"
+    fxLayoutAlign="start center"
+    >
+    <app-flex-form-container class="width-100">
+        <!-- Name data -->
+        <mat-form-field
+            fxFlex="100"
+            >
+            <input matInput type="text" placeholder="Name" formControlName="name">
+        </mat-form-field>
+    </app-flex-form-container>
+</form>

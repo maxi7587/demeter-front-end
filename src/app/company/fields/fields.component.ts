@@ -27,6 +27,7 @@ export class FieldsComponent extends CompanyTemplateComponent {
         protected navigationService: NavigationService
     ) {
         super(router, activatedRoute, navigationService);
+        this.navigationService.actions.next(new SidenavActions(['search', 'add']));
         this.fieldsService.all().subscribe(fields => {
             this.fields = fields;
             console.log(this.fields);
@@ -36,17 +37,20 @@ export class FieldsComponent extends CompanyTemplateComponent {
             //         this.columns.push(new Column(key, key));
             //     }
             // }
-
-            // TODO: improve for mobile
-            this.columns.push(new Column('name', 'name', 'name'));
-            this.columns.push(new Column('info', 'name', '', 'info', 'end center'));
         });
+        // TODO: improve for mobile
+        this.columns.push(new Column('name', 'name', 'name'));
+        this.columns.push(new Column('info', 'name', '', 'info', 'end center'));
     }
 
     public goToElement(element_id) {
         console.log('id ---->', element_id);
         this.router.navigate([this.router.url, element_id]);
         // this.router.navigate([profile_id.toString(), { relativeTo: this.activatedRoute }]);
+    }
+
+    public add() {
+        this.router.navigate(['0'], { relativeTo: this.activatedRoute });
     }
 
 }

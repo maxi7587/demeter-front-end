@@ -1,0 +1,60 @@
+<div
+    fxLayout="row"
+    fxLayoutAlign="center start"
+    fxLayoutGap="16px"
+    class="width-100"
+    >
+    <app-table
+        fxFlex="1 1 100"
+        *ngIf="field_plots.results"
+        [columns]="columns"
+        [rows]="field_plots.results"
+        [tableClasses]="tableClasses"
+        (rowClick)="goToElement($event)"
+        [collection]="field_plots"
+        >
+    </app-table>
+    <div fxFlex fxHide.lt-md>
+        <mat-list
+            *ngIf="showActions"
+            >
+            <mat-list-item>
+                <!-- [routerLink]="addFieldPlotLink || 0" -->
+                <button
+                    mat-raised-button
+                    name="new"
+                    color="primary"
+                    fxLayout="row"
+                    fxLayoutAlign="center center"
+                    (click)="showFieldPlotsDialog()"
+                    >
+                    <!-- style="height: 56px; width:56px" -->
+                    <!-- <button
+                        mat-fab
+                        name="new"
+                        color="primary"
+                        fxLayout="row"
+                        fxLayoutAlign="center center"
+                        >
+                    </button> -->
+                    <mat-icon>add</mat-icon>
+                    New plot
+                </button>
+            </mat-list-item>
+        </mat-list>
+        <form
+            [formGroup]="filters_form"
+            >
+            <mat-list>
+                <h3 mat-subheader>Filters</h3>
+                <mat-list-item>
+                    <mat-form-field>
+                        <mat-select placeholder="Status" formControlName="status">
+                            <mat-option *ngFor="let option of status_options" [value]="option.value">{{ option.name }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-list-item>
+            </mat-list>
+        </form>
+    </div>
+</div>

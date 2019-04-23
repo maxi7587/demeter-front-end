@@ -14,4 +14,5 @@ export class Charge extends DRFResource {
 })
 export class ChargesService extends BasicDRFService<Charge> {
     protected _type = 'charges';
+    public resource = Charge;
 }

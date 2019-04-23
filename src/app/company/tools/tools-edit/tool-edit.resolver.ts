@@ -31,7 +31,7 @@ export class ToolEditResolver implements Resolve<Observable<Tool>> {
                 );
         } else {
             console.log('will get ---->', activatedRouteSnapshot.params.objectId);
-            return this.toolsService.get(activatedRouteSnapshot.params.objectId);
+            return (<Observable<Tool>>this.toolsService.get(activatedRouteSnapshot.params.objectId));
         }
     }
 }

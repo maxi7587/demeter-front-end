@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Contract Type</h1>
+<div mat-dialog-content>
+    <app-contract-type-form
+        #contractTypeForm
+        fxLayout="row wrap"
+        fxLayoutGap="16px"
+        >
+    </app-contract-type-form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="save()">Save</button>
+    <button mat-button [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
+</div>

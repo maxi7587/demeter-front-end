@@ -10,9 +10,10 @@
         [columns]="columns"
         [rows]="fields.results"
         (rowClick)="goToElement($event.id)"
-    >
+        [collection]="fields"
+        >
     </app-table>
-    <mat-list>
+    <mat-list fxHide.lt-md>
         <button
             mat-raised-button
             name="new"

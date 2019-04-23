@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Field } from 'src/app/shared/services/fields.service';
 import { User } from 'src/app/shared/services/users.service';
 import { Contact } from 'src/app/shared/services/contacts/contacts.service';
 import { ContractType } from 'src/app/shared/services/contract-types.service';
@@ -18,6 +19,7 @@ export class Profile extends DRFResource {
     public cuit: number;
     public birth_date: string | Date;
     public role: string;
+    public field: Field;
     public charge: Charge;
     public contract_type: ContractType;
     public user: User;
@@ -27,5 +29,6 @@ export class Profile extends DRFResource {
   providedIn: 'root'
 })
 export class ProfilesService extends CompanyDRFService<Profile> {
+    public resource = Profile;
     protected _type = 'profiles';
 }

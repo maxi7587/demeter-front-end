@@ -39,6 +39,14 @@ export class UserTemplateComponent implements OnInit, OnDestroy {
                     console.log('save case');
                     this.save();
                     break;
+                case 'menu':
+                    console.log('save case');
+                    this.menu();
+                    break;
+                case 'cancel':
+                    console.log('save case');
+                    this.cancel();
+                    break;
             }
         });
     }
@@ -64,5 +72,13 @@ export class UserTemplateComponent implements OnInit, OnDestroy {
 
     public save() {
         console.log('inside save method');
+    }
+
+    public menu() {
+        console.log('inside menu method');
+    }
+
+    public cancel() {
+        console.log('inside cancel method');
     }
 }

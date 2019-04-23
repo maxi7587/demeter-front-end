@@ -23,7 +23,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
         this.route_data = this.activatedRoute.snapshot.data;
         this.activatedRoute.params
             .subscribe(params => {
-                this.companiesService.getCompanyFromId(params.company_id).subscribe(
+                this.companiesService.getAndSetCompanyFromId(params.company_id).subscribe(
                     company => console.log('company ---------->', company)
                 );
                 let sections_links = [

@@ -25,28 +25,48 @@ export class Contact extends DRFResource {
     public updateContactData(
         contact_data: RawContactData
     ) {
-        this.address = {
-            ...this.address,
-            ...{
+        this.address.setAttributes(
+            {
                 country: contact_data.country,
                 state: contact_data.state,
                 city: contact_data.city,
                 street_name: contact_data.street_name,
                 street_number: contact_data.street_number
             }
-        };
-        this.phone = {
-            ...this.phone,
-            ...{
+        );
+        this.phone.setAttributes(
+            {
                 country_code: contact_data.country_code,
                 area_code: contact_data.area_code,
                 phone_number: contact_data.phone_number
             }
-        };
-        this.web = {
-            ...this.web,
-            ...{ email: contact_data.email }
-        };
+        );
+        this.web.setAttributes(
+            { email: contact_data.email }
+        );
+
+        // this.address = {
+        //     ...this.address,
+        //     ...{
+        //         country: contact_data.country,
+        //         state: contact_data.state,
+        //         city: contact_data.city,
+        //         street_name: contact_data.street_name,
+        //         street_number: contact_data.street_number
+        //     }
+        // };
+        // this.phone = {
+        //     ...this.phone,
+        //     ...{
+        //         country_code: contact_data.country_code,
+        //         area_code: contact_data.area_code,
+        //         phone_number: contact_data.phone_number
+        //     }
+        // };
+        // this.web = {
+        //     ...this.web,
+        //     ...{ email: contact_data.email }
+        // };
     }
 }
 
@@ -55,4 +75,5 @@ export class Contact extends DRFResource {
 })
 export class ContactsService extends BasicDRFService<Contact> {
     public type = 'contacts';
+    public resource = Contact;
 }

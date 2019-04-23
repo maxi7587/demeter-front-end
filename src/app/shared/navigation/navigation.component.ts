@@ -20,11 +20,15 @@ export class NavigationComponent implements OnInit, OnDestroy {
         add?: boolean;
         delete?: boolean;
         save?: boolean;
+        cancel?: boolean;
+        menu?: boolean;
     } = {
         search: false,
         add: false,
         delete: false,
-        save: false
+        save: false,
+        cancel: false,
+        menu: false
     };
 
     private _route_data: {[key: string]: any};
@@ -64,7 +68,11 @@ export class NavigationComponent implements OnInit, OnDestroy {
         // this.router.navigate();
     }
 
-    public actionClick(action) {
+    public actionClick(action, data?: any) {
+        console.log('clicked action --->', action, data);
+        if (action === 'search') {
+            this.navigationService.search_filter = data;
+        }
         this.navigationService.actionClick.next(action);
     }
 

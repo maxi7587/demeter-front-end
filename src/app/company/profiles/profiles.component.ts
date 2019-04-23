@@ -1,17 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ProfileDialogComponent } from 'src/app/company/profiles/profile-dialog/profile-dialog.component';
 import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
 import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ProfilesService } from 'src/app/shared/services/profiles.service';
+import { ProfilesService, Profile } from 'src/app/shared/services/profiles.service';
 import { HttpClient } from '@angular/common/http';
 import { Column } from 'src/app/shared/table/table-elements';
+import { Field } from 'src/app/shared/services/fields.service';
+import { Task } from 'src/app/shared/services/tasks.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-profiles',
-  templateUrl: './profiles.component.html',
-  styleUrls: ['./profiles.component.scss']
+    selector: 'app-profiles',
+    templateUrl: './profiles.component.html',
+    styleUrls: ['./profiles.component.scss']
 })
-export class ProfilesComponent extends CompanyTemplateComponent {
+export class ProfilesComponent extends CompanyTemplateComponent implements OnInit {
+    @Input() public field: Field;
+    @Input() public showActions = true;
+    @Input() public tableClasses: Array<string>;
+    @Input() public filter: {[key: string]: string};
+    @Input() public overrideRowClick: boolean;
+    @Input() public showInDialog: boolean;
+    @Output() public rowClick: EventEmitter<Task> = new EventEmitter();
+    // @Input() public overrideCreate: boolean;
+    // @Output() public createButton: EventEmitter<Task> = new EventEmitter();
+    @Input() public createFromDialog: boolean;
+
     private _profiles: {[key: string]: any} = {};
     set profiles(profiles: {[key: string]: any}) { this._profiles = profiles; }
     get profiles(): {[key: string]: any} { return this._profiles; }
@@ -20,13 +35,34 @@ export class ProfilesComponent extends CompanyTemplateComponent {
     get columns(): Array<Column> { return this._columns; }
 
     public constructor(
+        public matDialog: MatDialog,
         private profilesService: ProfilesService,
         protected router: Router,
         protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
     ) {
         super(router, activatedRoute, navigationService);
-        this.profilesService.all().subscribe(profiles => {
+    }
+
+    public ngOnInit() {
+        this.getList(this.filter);
+        // TODO: improve for mobile
+        this.columns.push(new Column('first_name', 'first_name', 'first_name'));
+        this.columns.push(new Column('info', 'first_name', '', 'info', 'end center'));
+    }
+
+    public goToElement(element: Profile) {
+        if (this.showInDialog) {
+            this.showProfileDialog(element);
+
+            return;
+        }
+        this.router.navigate([this.router.url, element.id]);
+    }
+
+    public getList(filter) {
+        this.profilesService.all(undefined, undefined, filter).subscribe(profiles => {
+            console.log('profiles ------------------->', profiles);
             this.profiles = profiles;
             // TODO: uncomment following for loop for desktop
             // for (let key of Object.keys(profiles.results[0])) {
@@ -34,15 +70,41 @@ export class ProfilesComponent extends CompanyTemplateComponent {
             //         this.columns.push(new Column(key, key));
             //     }
             // }
-
-            // TODO: improve for mobile
-            this.columns.push(new Column('first_name', 'first_name', 'first_name'));
-            this.columns.push(new Column('info', 'first_name', '', 'info', 'end center'));
         });
     }
 
-    public goToElement(element_id) {
-        this.router.navigate([this.router.url, element_id]);
+    public add() {
+        this.createElement();
+    }
+
+    public createElement() {
+        if (this.createFromDialog) {
+            this.showProfileDialog();
+
+            return;
+        }
+        this.router.navigate([this.router.url, '0']);
+    }
+
+    public showProfileDialog(profile?: Profile): void {
+        let dialog_data: {profile: Profile; field: Field} = {
+            profile: profile ? profile : new Profile(),
+            field: this.field
+        };
+        console.log('should open field plot dialog');
+        const dialogRef = this.matDialog.open(ProfileDialogComponent, {
+            width: '720px',
+            data: dialog_data
+        });
+
+        dialogRef.afterClosed()
+            .subscribe(result => {
+                if (result) {
+                    console.log('The dialog was closed', result);
+                    this.getList(this.filter);
+                }
+            }
+        );
     }
 
 }

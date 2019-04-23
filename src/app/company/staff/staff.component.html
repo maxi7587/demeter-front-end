@@ -1,0 +1,69 @@
+<mat-tab-group #tabGroup>
+    <mat-tab>
+        <ng-template
+            id="profiles"
+            mat-tab-label
+            >
+            Profiles
+        </ng-template>
+        <div
+            style="padding: 16px;"
+            mat-tab-content
+            >
+            <app-profiles
+                class="width-100"
+                [showActions]="true"
+                [overrideRowClick]="true"
+                (rowClick)="goToProfile($event)"
+                [createFromDialog]="true"
+                #profiles
+                >
+            </app-profiles>
+        </div>
+    </mat-tab>
+    <mat-tab>
+        <ng-template
+            id="charges"
+            mat-tab-label
+            >
+            Charges
+        </ng-template>
+        <div
+            style="padding: 16px;"
+            mat-tab-content
+            >
+            <app-charges
+                class="width-100"
+                [showActions]="true"
+                [overrideRowClick]="true"
+                (rowClick)="goToCharge($event)"
+                [createFromDialog]="true"
+                #charges
+                >
+            </app-charges>
+        </div>
+    </mat-tab>
+
+    <mat-tab>
+        <ng-template
+            id="contract_types"
+            mat-tab-label
+            >
+            Contract types
+        </ng-template>
+        <div
+            style="padding: 16px;"
+            mat-tab-content
+            >
+            <app-contract-types
+                class="width-100"
+                [showActions]="true"
+                [overrideRowClick]="true"
+                (rowClick)="goToContractType($event)"
+                [createFromDialog]="true"
+                #contractTypes
+                >
+            </app-contract-types>
+        </div>
+    </mat-tab>
+</mat-tab-group>

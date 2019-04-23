@@ -69,19 +69,19 @@
                     </app-drf-collection-autocomplete>
                     <!-- TODO: make datepicker functional or try a better implementation of time handling -->
                     <mat-form-field
-                        *ngIf="field_elements"
+                        *ngIf="field_rows"
                         fxFlex.gt-sm="calc(25% - 8px)"
                         >
-                        <mat-select placeholder="From element" formControlName="from_element" [compareWith]="compareById">
-                            <mat-option *ngFor="let field_element of field_elements.results" value="field_element">{{ field_element.name }}</mat-option>
+                        <mat-select placeholder="From row" formControlName="from_row" [compareWith]="compareById">
+                            <mat-option *ngFor="let field_row of field_rows.results" value="field_row">{{ field_row.name }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field
-                        *ngIf="field_elements"
+                        *ngIf="field_rows"
                         fxFlex.gt-sm="calc(25% - 8px)"
                         >
-                        <mat-select placeholder="Until element" formControlName="to_element" [compareWith]="compareById">
-                            <mat-option *ngFor="let field_element of field_elements.results" value="field_element">{{ field_element.name }}</mat-option>
+                        <mat-select placeholder="Until element" formControlName="to_row" [compareWith]="compareById">
+                            <mat-option *ngFor="let field_row of field_rows.results" value="field_row">{{ field_row.name }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field
@@ -144,7 +144,7 @@
             </mat-expansion-panel>
         </mat-accordion>
         </form>
-        <mat-list fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="8px">
+        <mat-list fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="8px" fxHide.lt-md>
             <button
                 mat-raised-button
                 name="save"

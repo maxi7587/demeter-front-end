@@ -1,0 +1,134 @@
+<form
+    fxFlex="1 1 100"
+    class="height-100 app-form"
+    [formGroup]="task_form"
+    fxLayout="column"
+    fxLayoutAlign="start center"
+    >
+    <app-flex-form-container>
+        <!-- Task data -->
+        <mat-form-field
+            fxFlex.gt-sm="calc(50% - 8px)"
+            >
+            <input matInput type="text" placeholder="Title" formControlName="name">
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            <input matInput type="number" placeholder="Priority" formControlName="priority">
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+                <mat-option *ngFor="let status of status_options" [value]="status">
+                    {{ status | translate }}
+                </mat-option>
+            </mat-select>
+            <!-- <input matInput type="text" placeholder="Status" formControlName="status"> -->
+        </mat-form-field>
+        <!-- Task profiles data -->
+        <app-drf-collection-autocomplete
+            fxFlex.gt-sm="calc(50% - 8px)"
+            [service]="profilesService"
+            [activeOption]="task?.supervised_by"
+            searchField="first_name"
+            placeholder="Managed by"
+            (optionSelected)="updateForm('supervised_by', $event.option.value)"
+            >
+        </app-drf-collection-autocomplete>
+        <app-drf-collection-autocomplete
+            fxFlex.gt-sm="calc(50% - 8px)"
+            [service]="profilesService"
+            [activeOption]="task?.assigned_worker"
+            searchField="first_name"
+            placeholder="Assigned worker"
+            (optionSelected)="updateForm('assigned_worker', $event.option.value)"
+            >
+        </app-drf-collection-autocomplete>
+        <!-- Task field data -->
+        <app-drf-collection-autocomplete
+            fxFlex.gt-sm="calc(25% - 8px)"
+            [service]="fieldsService"
+            [activeOption]="task?.field"
+            searchField="name"
+            placeholder="Field"
+            (optionSelected)="updateForm('field', $event.option.value)"
+            >
+        </app-drf-collection-autocomplete>
+        <!-- TODO: make datepicker functional or try a better implementation of time handling -->
+        <mat-form-field
+            *ngIf="field_rows"
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            <mat-select placeholder="From row" formControlName="from_row" [compareWith]="compareById">
+                <mat-option *ngFor="let field_row of field_rows.results" value="field_row">{{ field_row.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field
+            *ngIf="field_rows"
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            <mat-select placeholder="Until element" formControlName="to_row" [compareWith]="compareById">
+                <mat-option *ngFor="let field_row of field_rows.results" value="field_row">{{ field_row.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field
+            *ngIf="task_types"
+            fxFlex.gt-sm="calc(50% - 8px)"
+            >
+            <mat-select placeholder="Task type" formControlName="task_type" [compareWith]="compareById">
+                <mat-option *ngFor="let task_type of task_types.results" value="task_type">{{ task_type.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <app-drf-collection-autocomplete
+            fxFlex.gt-sm="calc(50% - 8px)"
+            [service]="toolsService"
+            [activeOption]="task?.tool"
+            searchField="name"
+            placeholder="Tool"
+            (optionSelected)="updateForm('tool', $event.option.value)"
+            >
+        </app-drf-collection-autocomplete>
+        <mat-form-field
+            fxFlex.gt-sm="calc(33% - 8px)"
+            >
+            <input matInput type="number" placeholder="Worked time" formControlName="duration">
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(33% - 8px)"
+            >
+            <input matInput [matDatepicker]="started_picker" placeholder="Started at">
+            <mat-datepicker-toggle matSuffix [for]="started_picker"></mat-datepicker-toggle>
+            <mat-datepicker #started_picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(33% - 8px)"
+            >
+            <input matInput [matDatepicker]="finished_picker" placeholder="Finished at">
+            <mat-datepicker-toggle matSuffix [for]="finished_picker"></mat-datepicker-toggle>
+            <mat-datepicker #finished_picker></mat-datepicker>
+        </mat-form-field>
+        <!-- <mat-form-field *ngIf="tools">
+            <mat-select placeholder="Tool" formControlName="tool" [compareWith]="compareById">
+                <mat-option *ngFor="let tool of tools.results" value="tool">{{ tool.name }}</mat-option>
+            </mat-select>
+        </mat-form-field> -->
+        <!-- <mat-checkbox
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            Alert
+        </mat-checkbox>
+        <mat-checkbox
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            Completed
+        </mat-checkbox> -->
+        <mat-form-field
+            fxFlex="100"
+            >
+            <textarea matInput placeholder="Details" formControlName="details"></textarea>
+        </mat-form-field>
+    </app-flex-form-container>
+</form>

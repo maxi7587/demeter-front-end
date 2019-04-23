@@ -7,31 +7,53 @@
     <app-table
         *ngIf="tools.results"
         fxFlex="1 1 100"
+        [collection]="tools"
         [columns]="columns"
         [rows]="tools.results"
+        [tableClasses]="tableClasses"
         (rowClick)="goToElement($event.id)"
         >
     </app-table>
-    <mat-list>
-        <button
-            mat-raised-button
-            name="new"
-            color="primary"
-            fxLayout="row"
-            fxLayoutAlign="center center"
-            [routerLink]="0"
+    <div fxFlex fxHide.lt-md>
+        <mat-list
+            *ngIf="showActions"
             >
-            <!-- style="height: 56px; width:56px" -->
-            <!-- <button
-                mat-fab
-                name="new"
-                color="primary"
-                fxLayout="row"
-                fxLayoutAlign="center center"
-                >
-            </button> -->
-            <mat-icon>add</mat-icon>
-            New tool
-        </button>
-    </mat-list>
+            <mat-list-item>
+                <button
+                    mat-raised-button
+                    name="new"
+                    color="primary"
+                    fxLayout="row"
+                    fxLayoutAlign="center center"
+                    (click)="createElement()"
+                    >
+                    <!-- style="height: 56px; width:56px" -->
+                    <!-- <button
+                        mat-fab
+                        name="new"
+                        color="primary"
+                        fxLayout="row"
+                        fxLayoutAlign="center center"
+                        >
+                    </button> -->
+                    <mat-icon>add</mat-icon>
+                    New tool
+                </button>
+            </mat-list-item>
+        </mat-list>
+        <form
+            [formGroup]="filters_form"
+            >
+            <mat-list>
+                <h3 mat-subheader>Filters</h3>
+                <mat-list-item>
+                    <mat-form-field>
+                        <mat-select placeholder="Status" formControlName="status">
+                            <mat-option *ngFor="let option of status_options" [value]="option.value">{{ option.name }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-list-item>
+            </mat-list>
+        </form>
+    </div>
 </div>

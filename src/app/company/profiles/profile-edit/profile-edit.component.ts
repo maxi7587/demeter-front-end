@@ -1,4 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentRef } from '@angular/core';
+import { User } from 'src/app/shared/services/users.service';
+import { TasksComponent } from 'src/app/company/tasks/tasks.component';
+import { FieldsService, Field } from 'src/app/shared/services/fields.service';
 import { ContactFormComponent } from 'src/app/shared/components/contact-form/contact-form.component';
 import { Contact } from 'src/app/shared/services/contacts/contacts.service';
 import { ContractTypesService, ContractType } from 'src/app/shared/services/contract-types.service';
@@ -8,9 +11,12 @@ import { SidenavActions, NavigationService } from 'src/app/shared/navigation/nav
 import { Router, ActivatedRoute } from '@angular/router';
 import { Company, CompaniesService } from 'src/app/shared/services/companies.service';
 import { Profile, ProfilesService } from 'src/app/shared/services/profiles.service';
+import { Task } from 'src/app/shared/services/tasks.service';
 import { DRFCollection } from 'src/app/shared/basic-drf.service';
 import { RolesService, Role } from 'src/app/shared/services/roles.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
     selector: 'app-profile-edit',
@@ -19,6 +25,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ProfileEditComponent extends CompanyTemplateComponent implements OnInit {
     @ViewChild('contactForm') public contact_form: ContactFormComponent;
+    @ViewChild('tasks') public tasksComponent: TasksComponent;
+    @ViewChild('tabGroup') public tabGroup: MatTabGroup;
+    @ViewChild('updateRelatedUser') public updateRelatedUser: MatCheckbox;
 
     public profile_form: FormGroup = new FormGroup({
         first_name: new FormControl('', [Validators.required]),
@@ -27,24 +36,38 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
         birth_date: new FormControl(),
         company: new FormControl(null, [Validators.required]),
         role: new FormControl(null, [Validators.required]),
+        field: new FormControl(),
         charge: new FormControl(),
         contract_type: new FormControl(),
-        daily_working_hours: new FormControl(),
-        is_user: new FormControl()
+        daily_working_hours: new FormControl()
     });
+
+    public related_user_form: FormGroup = new FormGroup({
+        // update_related_user: new FormControl(false, [Validators.required]),
+        username: new FormControl('', [Validators.required]),
+        password: new FormControl('', [Validators.required]),
+        repeat_password: new FormControl('', [Validators.required])
+    });
+
+    public tab_index = {
+        0: 'profile',
+        1: 'tasks'
+    };
+
 
     public company: Company;
     public roles: DRFCollection<Role>;
+    public fields: DRFCollection<Field>;
     public charges: DRFCollection<Charge>;
     public contract_types: DRFCollection<ContractType>;
-
-    protected profile: Profile;
+    public profile: Profile;
 
     public constructor(
         protected router: Router,
         protected profilesService: ProfilesService,
         protected companiesService: CompaniesService,
         protected rolesService: RolesService,
+        protected fieldsService: FieldsService,
         protected chargesService: ChargesService,
         protected contractTypesService: ContractTypesService,
         protected activatedRoute: ActivatedRoute,
@@ -63,8 +86,13 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
         console.log('this.company --->', this.company);
         this.rolesService
             .all()
-            .subscribe(roles => {
+            .subscribe((roles: DRFCollection<Role>) => {
                 this.roles = roles;
+            });
+        this.fieldsService
+            .all()
+            .subscribe((fields: DRFCollection<Field>) => {
+                this.fields = fields;
             });
         this.chargesService
             .all()
@@ -77,9 +105,28 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
                 this.contract_types = contract_types;
             });
         if (!this.profile.id || this.profile.id === '0') {
-            this.navigationService.actions.next(new SidenavActions(['save']));
+            this.navigationService.actions.next(new SidenavActions(['save', 'cancel']));
         } else {
-            this.navigationService.actions.next(new SidenavActions(['delete', 'save']));
+            this.navigationService.actions.next(new SidenavActions(['cancel', 'delete', 'save']));
+        }
+    }
+
+    public selectedTabChange(tab: MatTabChangeEvent) {
+        console.log('tab changed -------------->', tab);
+        let selected_tab = this.tab_index[tab.index];
+        console.log('tab index changed -------------->', selected_tab);
+
+        switch (selected_tab) {
+            case 'profile':
+                if (!this.profile.id || this.profile.id === '0') {
+                    this.navigationService.actions.next(new SidenavActions(['save', 'cancel']));
+                } else {
+                    this.navigationService.actions.next(new SidenavActions(['cancel', 'delete', 'save']));
+                }
+                break;
+            case 'tasks':
+                this.navigationService.actions.next(new SidenavActions(['search', 'add']));
+                break;
         }
     }
 
@@ -94,10 +141,56 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
         return birth_date;
     }
 
+    public add() {
+        console.log(this.tabGroup.selectedIndex);
+        let selected_tab = this.tab_index[this.tabGroup.selectedIndex];
+
+        switch (selected_tab) {
+            case 'tasks':
+                this.tasksComponent.createTaskDialog();
+                break;
+        }
+    }
+
+    public search(filter: string) {
+        console.log('inside search method: ', filter);
+        let selected_tab = this.tab_index[this.tabGroup.selectedIndex];
+
+        switch (selected_tab) {
+            case 'tasks':
+                let tasks_filter = {
+                    ...this.tasksComponent.filters_form.value,
+                    ...{ name: filter }
+                };
+                console.log('this.tasksComponent.filters_form.value --->', this.tasksComponent.filters_form.value);
+                console.log('filter --->', filter);
+                console.log('tasks_filter --->', tasks_filter);
+                this.tasksComponent.getList(tasks_filter);
+                break;
+        }
+    }
+
     public save() {
+        console.log('this.related_user_form.value ----->', this.updateRelatedUser);
         this.contact_form.submit();
+        if (this.updateRelatedUser.checked) {
+            if (this.related_user_form.value.password !== this.related_user_form.value.repeat_password) {
+                console.log('AHOULD HANDLE THIS ERROR: PASS AND REPEAT PASS ARE NOT EQUAL');
+            }
+            console.log('will create related user ----->', this.related_user_form);
+            let related_user = new User();
+            related_user.username = this.related_user_form.value.username;
+            related_user.password = this.related_user_form.value.password;
+            related_user.email = this.profile.contact.web.email;
+            related_user.first_name = this.profile_form.value.first_name;
+            related_user.last_name = this.profile_form.value.last_name;
+            related_user.is_staff = false;
+
+            this.profile.user = related_user;
+            console.log('this.profile.user ---->', this.profile.user);
+        }
         let birth_date = this.getFormattedBirthDate(this.profile_form.controls.birth_date.value);
-        console.log(this.profile_form);
+        console.log('profile_form ----->', this.profile_form);
         this.profile = {
             ...this.profile,
             ...this.profile_form.value,
@@ -106,11 +199,18 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
         };
         console.log('will save this profile --->', this.profile);
         console.log('will save this with this contact email data --->', this.profile.contact.web.email);
-        this.profilesService.save(this.profile).subscribe(profile => {
+        this.profilesService.save(this.profile).subscribe((profile: Profile) => {
             console.log('profile saved', profile);
             this.profile = profile;
+            this.router.navigate(['..'], { relativeTo: this.activatedRoute });
             console.log('this.profile', this.profile);
         });
+    }
+
+    public goToTask(task: Task) {
+        console.log(`will navigate to --->../../tasks/${task.id}`);
+
+        this.router.navigate([`../../tasks/${task.id}`], { relativeTo: this.activatedRoute });
     }
 
     public compareById(f1: any, f2: any) {

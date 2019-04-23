@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { GlobalErrorHandler } from 'src/app/error-handler';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -51,6 +52,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     {
         provide: OAuthStorage,
         useValue: sessionStorage
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
     }
   ],
   bootstrap: [AppComponent]
@@ -65,12 +70,12 @@ export class AppModule {
         this.oAuthService.setStorage(sessionStorage);
         this.oAuthService.tokenEndpoint = environment.APIURL + 'o/token/';
         // The SPA's id. Register SPA with this id at the auth-server
-        this.oAuthService.clientId = 'QFGawDnlYt4XUmoL2PzSSTeLd6BQij0GDRHKLNnK';
+        this.oAuthService.clientId = 'c6xuho0aBs6GKMGqwbVPgNIJILKfgGK2mxh0HleW';
         // set the scope for the permissions the client should request
         this.oAuthService.scope = 'read groups write';
         this.oAuthService.tokenValidationHandler = new JwksValidationHandler();
         // Set a dummy secret
         // tslint:disable: max-line-length
-        this.oAuthService.dummyClientSecret = `OTKyDLH6bMs92IB9VauZ2HR2uRuFGasRxNfi5UnY9tuDLErvyGryLRuoCeRHgJC2kDhTp1xTALikWhXQFQK5ktURv7HSniXp155rQIOx2AO6KWxShnQkm2cTwaSyOmV6`;
+        this.oAuthService.dummyClientSecret = `u4Qx87NiWWmibYTM5O1Ejhdu43xyBJ9BLY4parQBzHbdvJ4ylTchxWKfZSnqz5HoXqOXsG1Yhl1fLbObWCiegFd8cGculX9SsWPQ5qEmhVsDamgM8nCmFj2eus54upcA`;
     }
 }

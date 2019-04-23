@@ -12,19 +12,22 @@
         <div class="height-100" fxLayout="column" fxLayoutAlign="space-between stretch">
             <mat-toolbar fxHide.lt-md color="primary">
                 <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-                    <button
-                        *ngIf="sections.length > 0"
-                        type="button"
-                        aria-label="Toggle sidenav"
-                        mat-icon-button
-                        (click)="sidenav.toggle()"
-                        >
-                        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-                    </button>
-                    <h3 class="mat-subheading-2">
-                        {{ navigationService.title | translate | titlecase }}
-                    </h3>
-                    <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_back</mat-icon></button>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+                        <button
+                            *ngIf="sections.length > 0"
+                            type="button"
+                            aria-label="Toggle sidenav"
+                            mat-icon-button
+                            (click)="sidenav.toggle()"
+                            >
+                            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                        </button>
+                        <h3 class="mat-subheading-2">
+                            {{ navigationService.title | translate | titlecase }}
+                        </h3>
+                    </div>
+                    <!-- <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_back</mat-icon></button> -->
+                    <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_left_circle</mat-icon></button>
                 </mat-toolbar-row>
             </mat-toolbar>
             <!-- *ngIf="show_title" -->
@@ -33,7 +36,8 @@
                     <h3 class="mat-subheading-2">
                         {{ navigationService.title | translate | titlecase }}
                     </h3>
-                    <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_back</mat-icon></button>
+                    <!-- <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_back</mat-icon></button> -->
+                    <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_left_circle</mat-icon></button>
                 </mat-toolbar-row>
             </mat-toolbar>
             <!-- <mat-toolbar color="primary" id="main-toolbar" ngClass.gt-xs="background-transparent" ngClass.xs="position-absolute bottom inherit-font">
@@ -53,7 +57,7 @@
                 fxLayoutAlign.gt-sm="start center"
                 >
                 <div
-                    [ngStyle.gt-sm]="{ width: '980px', 'margin-top': '56px' }"
+                    [ngStyle.gt-sm]="{ width: '980px', 'margin-top': '56px', height: '100%' }"
                     ngClass.lt-md="width-100"
                     >
                     <!-- ngClass.gt-sm="mat-elevation-z2 app-basic-padding" -->
@@ -75,10 +79,12 @@
                     </button>
                     <h3 class="mat-subheading-2" fxHide.xs>{{ route_data.title }}</h3>
                     <span fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="end center">
-                        <app-expandable-input *ngIf="nav_actions.search"></app-expandable-input>
+                        <app-expandable-input *ngIf="nav_actions.search" (textChange)="actionClick('search', $event)"></app-expandable-input>
                         <button mat-icon-button name="add" *ngIf="nav_actions.add" (click)="actionClick('add')"><mat-icon>add</mat-icon></button>
                         <button mat-icon-button name="delete" *ngIf="nav_actions.delete" (click)="actionClick('delete')"><mat-icon>delete</mat-icon></button>
                         <button mat-icon-button name="save" *ngIf="nav_actions.save" (click)="actionClick('save')"><mat-icon>save</mat-icon></button>
+                        <button mat-icon-button name="cancel" *ngIf="nav_actions.cancel" (click)="actionClick('cancel')"><mat-icon>cancel</mat-icon></button>
+                        <button mat-icon-button name="menu" *ngIf="nav_actions.menu" (click)="actionClick('menu')"><mat-icon>menu</mat-icon></button>
                     </span>
                 </mat-toolbar-row>
             </mat-toolbar>

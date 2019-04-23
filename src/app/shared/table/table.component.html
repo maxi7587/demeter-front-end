@@ -1,4 +1,14 @@
-<mat-table [dataSource]="dataSource" [ngClass]="tableClasses || 'mat-elevation-z8'" *ngIf="displayedColumns">
+<h3
+    *ngIf="dataSource?.data?.length === 0 || !displayedColumns"
+    class="mat-subheading-2"
+    >
+    {{ 'This table is empty, you can start adding some resources.' | translate}}
+</h3>
+<mat-table
+    [dataSource]="dataSource"
+    [ngClass]="tableClasses || 'mat-elevation-z2'"
+    *ngIf="displayedColumns && dataSource?.data?.length > 0"
+    >
     <ng-container *ngFor="let column of columns" [matColumnDef]="column.key">
         <mat-header-cell *matHeaderCellDef>{{ column.title }}</mat-header-cell>
         <mat-cell
@@ -31,3 +41,13 @@
     <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> -->
     <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClick.emit(row)"></mat-row>
 </mat-table>
+<mat-paginator
+    #paginator
+    class="mat-elevation-z2"
+    [length]="10"
+    [pageSize]="10"
+    [hidePageSize]="true"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="updatePage($event)"
+    >
+</mat-paginator>

@@ -33,21 +33,38 @@ export class CompaniesComponent extends UserTemplateComponent implements OnInit 
         protected navigationService: NavigationService
     ) {
         super(router, activatedRoute, navigationService);
-        companiesService.all().subscribe(companies => {
-            console.log(companies);
-            this.companies = companies;
-            if (companies.results.length === 0) {
-                return;
-            }
-            for (let key of Object.keys(companies.results[0])) {
-                if (['id', 'url'].indexOf(key) === -1) {
-                    this.columns.push(new Column(key, key));
+        // companiesService.all(`users/${this.user.id}`).subscribe(companies => {
+        //     console.log(companies);
+        //     this.companies = companies;
+        //     if (companies.results.length === 0) {
+        //         return;
+        //     }
+        //     for (let key of Object.keys(companies.results[0])) {
+        //         if (['id', 'url'].indexOf(key) === -1) {
+        //             this.columns.push(new Column(key, key));
+        //         }
+        //     }
+        // });
+
+        // usersService.all().subscribe(users => {
+        //     this.user = users.results[0];
+        //     console.log('users --->', users);
+        // });
+        usersService.getUser().subscribe(user => {
+            this.user = user;
+            console.log('users --->', user);
+            companiesService.all(`users/${this.user.id}/companies`).subscribe(companies => {
+                console.log('companies ---->', companies);
+                this.companies = companies;
+                if (companies.results.length === 0) {
+                    return;
                 }
-            }
-        });
-        usersService.all().subscribe(users => {
-            this.user = users.results[0];
-            console.log('users --->', users);
+                for (let key of Object.keys(companies.results[0])) {
+                    if (['id', 'url'].indexOf(key) === -1) {
+                        this.columns.push(new Column(key, key));
+                    }
+                }
+            });
         });
     }
 

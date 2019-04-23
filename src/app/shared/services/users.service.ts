@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BasicDRFService } from 'src/app/shared/basic-drf.service';
+import { BasicDRFService, DRFResource } from 'src/app/shared/basic-drf.service';
 import { map } from 'rxjs/operators';
 import { of as observableOf, Observable } from 'rxjs';
 
-export class User {
+export class User extends DRFResource {
     public id: string;
     public username: string;
     public password: string;
@@ -17,17 +17,20 @@ export class User {
   providedIn: 'root'
 })
 export class UsersService extends BasicDRFService<User> {
+    public resource = User;
     public user: User;
     protected _type = 'users';
     public getUser(): Observable<User> {
         if (this.user) {
             return observableOf(this.user);
         } else {
-            return this.all()
+            return this.get('me')
                 .pipe(
                     map(
-                        users => {
-                            this.user = users.results[0];
+                        user => {
+                            console.log('user ---------------->', user);
+                            // this.user = (<User>users.results[0]);
+                            this.user = (<User>user);
                             return this.user;
                         }
                     )

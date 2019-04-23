@@ -35,7 +35,11 @@ export class LoginComponent implements OnInit {
                     this.usersService.getAuthorizationHeaders();
                     this.usersService.getUser()
                         .subscribe(
-                            user => this.router.navigate([`/users/${user.id}/companies`])
+                            user => {
+                                console.log('user --->', user);
+
+                                this.router.navigate([`/users/${user.id}/companies`]);
+                            }
                         );
                 }
             );

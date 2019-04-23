@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Field plot</h1>
+<div mat-dialog-content>
+    <app-field-plot-form #fieldPlotForm [field]="data?.field" fxLayout="row wrap" fxLayoutGap="16px"></app-field-plot-form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="save()">Save</button>
+    <button mat-button [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
+</div>

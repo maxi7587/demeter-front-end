@@ -1,0 +1,46 @@
+<form
+    fxFlex="1 1 100"
+    class="height-100 app-form"
+    [formGroup]="tool_form"
+    fxLayout="column"
+    fxLayoutAlign="start center"
+    >
+    <app-flex-form-container>
+        <!-- Tool data -->
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            <input matInput type="text" placeholder="Name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            <input matInput type="text" placeholder="Code" formControlName="code">
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+                <mat-option *ngFor="let status of status_options" [value]="status">
+                    {{ status | translate }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <!-- Tool field data -->
+        <app-drf-collection-autocomplete
+            fxFlex.gt-sm="calc(25% - 8px)"
+            [service]="fieldsService"
+            [activeOption]="tool?.field"
+            searchField="name"
+            placeholder="Field"
+            (optionSelected)="updateForm('field', $event.option.value)"
+            >
+        </app-drf-collection-autocomplete>
+        <mat-form-field
+            fxFlex="100"
+            >
+            <textarea matInput placeholder="Details" formControlName="detail"></textarea>
+        </mat-form-field>
+    </app-flex-form-container>
+</form>
