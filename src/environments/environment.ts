@@ -10,6 +10,9 @@ export const environment = {
     env: 'develop',
     MPURL: mpurl,
     APIURL: mpurl,
+    clientId: 'c6xuho0aBs6GKMGqwbVPgNIJILKfgGK2mxh0HleW',
+    clientSecret:
+        `u4Qx87NiWWmibYTM5O1Ejhdu43xyBJ9BLY4parQBzHbdvJ4ylTchxWKfZSnqz5HoXqOXsG1Yhl1fLbObWCiegFd8cGculX9SsWPQ5qEmhVsDamgM8nCmFj2eus54upcA`,
     whiteListedDomains: ['127.0.0.1:8000', '127.0.0.1', '192.168.0.12:8000']
 };
 

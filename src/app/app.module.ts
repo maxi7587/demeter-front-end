@@ -70,12 +70,12 @@ export class AppModule {
         this.oAuthService.setStorage(sessionStorage);
         this.oAuthService.tokenEndpoint = environment.APIURL + 'o/token/';
         // The SPA's id. Register SPA with this id at the auth-server
-        this.oAuthService.clientId = 'c6xuho0aBs6GKMGqwbVPgNIJILKfgGK2mxh0HleW';
+        this.oAuthService.clientId = environment.clientId;
         // set the scope for the permissions the client should request
         this.oAuthService.scope = 'read groups write';
         this.oAuthService.tokenValidationHandler = new JwksValidationHandler();
         // Set a dummy secret
         // tslint:disable: max-line-length
-        this.oAuthService.dummyClientSecret = `u4Qx87NiWWmibYTM5O1Ejhdu43xyBJ9BLY4parQBzHbdvJ4ylTchxWKfZSnqz5HoXqOXsG1Yhl1fLbObWCiegFd8cGculX9SsWPQ5qEmhVsDamgM8nCmFj2eus54upcA`;
+        this.oAuthService.dummyClientSecret = environment.clientSecret;
     }
 }
