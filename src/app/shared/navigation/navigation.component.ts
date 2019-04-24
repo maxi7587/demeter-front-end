@@ -38,8 +38,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
     constructor(
         public router: Router,
         public activatedRoute: ActivatedRoute,
-        protected companyiesService: CompaniesService,
-        protected navigationService: NavigationService
+        public companyiesService: CompaniesService,
+        public navigationService: NavigationService
     ) {
         activatedRoute.data.subscribe(data => {
             this.route_data = data;

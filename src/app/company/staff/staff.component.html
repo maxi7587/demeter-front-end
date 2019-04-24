@@ -10,11 +10,11 @@
             style="padding: 16px;"
             mat-tab-content
             >
+            <!-- (rowClick)="goToProfile($event)" -->
             <app-profiles
                 class="width-100"
                 [showActions]="true"
                 [overrideRowClick]="true"
-                (rowClick)="goToProfile($event)"
                 [createFromDialog]="true"
                 #profiles
                 >
@@ -32,11 +32,11 @@
             style="padding: 16px;"
             mat-tab-content
             >
+            <!-- (rowClick)="goToCharge($event)" -->
             <app-charges
                 class="width-100"
                 [showActions]="true"
                 [overrideRowClick]="true"
-                (rowClick)="goToCharge($event)"
                 [createFromDialog]="true"
                 #charges
                 >
@@ -55,11 +55,11 @@
             style="padding: 16px;"
             mat-tab-content
             >
+            <!-- (rowClick)="goToContractType($event)" -->
             <app-contract-types
                 class="width-100"
                 [showActions]="true"
                 [overrideRowClick]="true"
-                (rowClick)="goToContractType($event)"
                 [createFromDialog]="true"
                 #contractTypes
                 >

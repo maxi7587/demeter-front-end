@@ -39,8 +39,8 @@ export class TaskEditComponent extends CompanyTemplateComponent implements OnIni
         from_row: new FormControl(),
         to_row: new FormControl()
     });
-    protected task: Task;
-    protected me: User;
+    public task: Task;
+    public me: User;
 
     public constructor(
         public fieldsService: FieldsService,
