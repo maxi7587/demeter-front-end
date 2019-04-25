@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CompanyDRFService } from 'src/app/shared/drf/company-drf.service';
 import { Company } from 'src/app/shared/services/companies.service';
 import { DRFResource, BasicDRFService } from 'src/app/shared/basic-drf.service';
 
@@ -12,7 +13,7 @@ export class Charge extends DRFResource {
 @Injectable({
   providedIn: 'root'
 })
-export class ChargesService extends BasicDRFService<Charge> {
+export class ChargesService extends CompanyDRFService<Charge> {
     protected _type = 'charges';
     public resource = Charge;
 }

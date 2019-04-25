@@ -97,12 +97,12 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
         this.chargesService
             .all()
             .subscribe(charges => {
-                this.charges = charges;
+                this.charges = <DRFCollection<Charge>>charges;
             });
         this.contractTypesService
             .all()
             .subscribe(contract_types => {
-                this.contract_types = contract_types;
+                this.contract_types = <DRFCollection<ContractType>>contract_types;
             });
         if (!this.profile.id || this.profile.id === '0') {
             this.navigationService.actions.next(new SidenavActions(['save', 'cancel']));
