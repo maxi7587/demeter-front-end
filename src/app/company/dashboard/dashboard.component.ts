@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
         public navigationService: NavigationService
     ) {
         console.log('inside dashboard component');
+        this.navigationService.title = this.activatedRoute.snapshot.data.title;
         this.fieldsService.all()
             .subscribe(
                 (fields: DRFCollection<Field>) => this.fields = fields
