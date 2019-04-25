@@ -13,22 +13,22 @@ export class DashboardComponent implements OnInit {
 
     public links = [
         {
-            text: 'Perfiles',
+            text: 'Staff',
             section: 'profiles',
             icon: 'account_circle'
         },
         {
-            text: 'Campos',
+            text: 'Fields',
             section: 'fields',
             icon: 'wb_sunny'
         },
         {
-            text: 'Tareas',
+            text: 'Tasks',
             section: 'tasks',
             icon: 'assignment'
         },
         {
-            text: 'Herramientas',
+            text: 'Tools',
             section: 'tools',
             icon: 'build'
         }
@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
         public navigationService: NavigationService
     ) {
         console.log('inside dashboard component');
+        this.navigationService.title = this.activatedRoute.snapshot.data.title;
         this.fieldsService.all()
             .subscribe(
                 (fields: DRFCollection<Field>) => this.fields = fields

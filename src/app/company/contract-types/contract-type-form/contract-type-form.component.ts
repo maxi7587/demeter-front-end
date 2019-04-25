@@ -36,12 +36,12 @@ export class ContractTypeFormComponent implements OnInit {
                 this.contract_type_form.controls[form_field].setValue(this.contract_type[form_field]);
             }
         }
-        this.contract_type.company = this.companiesService.company;
     }
 
     public ngOnInit() {
         // IMPORTANT: have to update manually both values because it uses DRFCollectionAutocomplete
         console.log(this.contract_type_form.value);
+        this.contract_type.company = this.contract_type.company || this.companiesService.company;
     }
 
     public compareById(f1: any, f2: any) {

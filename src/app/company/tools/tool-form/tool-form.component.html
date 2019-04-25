@@ -31,7 +31,7 @@
         <app-drf-collection-autocomplete
             fxFlex.gt-sm="calc(25% - 8px)"
             [service]="fieldsService"
-            [activeOption]="tool?.field"
+            [activeOption]="tool?.field || field"
             searchField="name"
             placeholder="Field"
             (optionSelected)="updateForm('field', $event.option.value)"

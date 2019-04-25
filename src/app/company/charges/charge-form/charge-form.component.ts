@@ -36,11 +36,11 @@ export class ChargeFormComponent implements OnInit {
                 this.charge_form.controls[form_field].setValue(this.charge[form_field]);
             }
         }
-        this.charge.company = this.companiesService.company;
     }
 
     public ngOnInit() {
         // IMPORTANT: have to update manually both values because it uses DRFCollectionAutocomplete
+        this.charge.company = this.charge.company || this.companiesService.company;
         console.log(this.charge_form.value);
     }
 

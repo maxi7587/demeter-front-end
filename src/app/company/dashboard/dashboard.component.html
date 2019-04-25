@@ -1,13 +1,14 @@
 <div
     class="app-basic-padding"
     ngStyle.lt-md="{ 'margin-bottom': '48px'}"
-    fxLayout="row wrap"
-    fxLayoutGap="16px"
+    fxLayout.gt-sm="row wrap"
     fxLayout.lt-md="column"
-    ngClass.gt-sm="height-100 width-100"
-    ngClass.lt-sm="width-100">
-    <!-- fxFlex="1 1 auto" -->
-    <div
+    fxLayoutGap.gt-sm="16px grid"
+    fxLayoutGap.lt-md="8px"
+    ngClass.gt-sm="width-100"
+    ngClass.lt-sm="width-100"
+    >
+    <!-- <div
         fxFlexOrder.lt-md="3"
         fxLayout="column"
         fxLayoutAlign="center center"
@@ -53,7 +54,6 @@
     </div>
     <mat-divider [vertical]="true" [fxHide.lt-md]="true"></mat-divider>
     <mat-divider [fxHide.gt-sm]="true" fxFlexOrder="2"></mat-divider>
-    <!-- fxFlex="1 1 auto" -->
     <div
         fxFlexOrder.lt-md="1"
         fxLayout="column"
@@ -80,5 +80,70 @@
             </mat-icon>
             {{ link.text }}
         </button>
+    </div> -->
+    <div
+        fxLayout.gt-sm="row"
+        fxLayoutGap.gt-sm="16px"
+        fxLayoutGap.lt-md="8px"
+        class="width-100"
+        >
+        <button
+            mat-button
+            *ngFor="let link of links"
+            fxLayout.gt-sm="row"
+            fxLayout.lt-md="column"
+            fxLayoutAlign="start center"
+            (click)="goToSection(link.section)"
+            >
+            <mat-icon
+                [ngStyle.gt-sm]="{ width: '24px', height: '24px', 'font-size': '24px' }"
+                >
+                {{ link.icon }}
+            </mat-icon>
+            {{ link.text }}
+        </button>
+    </div>
+    <mat-divider class="width-100"></mat-divider>
+    <!-- fxLayoutAlign="start start"
+    fxLayoutGap.gt-sm="16px" -->
+    <div
+        fxLayout.gt-sm="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutGap.gt-sm="16px grid"
+        fxLayoutGap.lt-md="8px"
+        [ngClass.lt-md]="width-100"
+        >
+        <div
+            [ngStyle.gt-sm]="{width: 'calc(25% - 16px)'}"
+            *ngFor="let field of fields?.results"
+            >
+            <!-- [ngStyle.gt-xs]="{'max-width': '175px', 'margin': '16px'}"
+            [ngStyle.lt-md]="{'max-width': '175px', 'margin': '8px'}" -->
+            <!-- fxFlex.gt-sm="1 1 calc(20% - 16px)" -->
+            <mat-card
+                (click)="goToField(field)"
+                style="cursor: pointer; border-left: 4px solid #388e3c"
+                >
+                <h4 class="mat-subheading-2">{{ field.name }}</h4>
+                <mat-card-content>
+                    <p>{{ field.details }}</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div
+            [ngStyle.gt-sm]="{width: 'calc(25% - 16px)'}"
+            >
+            <!-- [ngStyle.gt-xs]="{'max-width': '175px', 'margin-bottom': '16px'}"
+            fxFlex.gt-sm="1 1 calc(20% - 16px)" -->
+            <mat-card
+                [routerLink]="'../fields/0'"
+                style="cursor: pointer; border-left: 4px solid #388e3c"
+                >
+                <h4 class="mat-subheading-2">{{ 'Add field' }}</h4>
+                <mat-card-content>
+                    <p>{{ 'Add a new field to your company' }}</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
 </div>
