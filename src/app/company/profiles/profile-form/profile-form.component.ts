@@ -101,12 +101,12 @@ export class ProfileFormComponent implements OnInit {
         this.chargesService
             .all()
             .subscribe(charges => {
-                this.charges = charges;
+                this.charges = <DRFCollection<Charge>>charges;
             });
         this.contractTypesService
             .all()
             .subscribe(contract_types => {
-                this.contract_types = contract_types;
+                this.contract_types = <DRFCollection<ContractType>>contract_types;
             });
         if (!this.profile && this.activatedRoute.snapshot.params.objectId) {
             this.profilesService.get(this.activatedRoute.snapshot.params.objectId)
