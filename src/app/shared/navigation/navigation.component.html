@@ -1,7 +1,7 @@
 <mat-sidenav-container class="height-100">
     <mat-sidenav #sidenav mode="over" [opened]="sections.length > 0" role="navigation">
         <mat-nav-list>
-            <h3 mat-subheader>Secciones</h3>
+            <h3 mat-subheader>Sections</h3>
             <mat-list-item (click)="goToSection(link.section)" *ngFor="let link of sections">
                 <mat-icon mat-list-icon *ngIf="link.icon">{{ link.icon }}</mat-icon>
                 <h4 mat-line>{{ link.text }}</h4>
@@ -27,7 +27,22 @@
                         </h3>
                     </div>
                     <!-- <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_back</mat-icon></button> -->
-                    <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_left_circle</mat-icon></button>
+                    <!-- <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_left_circle</mat-icon></button> -->
+                    <!-- <button mat-icon-button (click)="logout()"></button> -->
+                    <!-- size="100" -->
+                    <div>
+                        <ngx-avatar
+                            [name]="user?.first_name || 'Profile'"
+                            bgColor="#fafafa"
+                            fgColor="#000000"
+                            [matMenuTriggerFor]="menu"
+                            style="cursor: pointer"
+                            >
+                        </ngx-avatar>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="logout()">Log out</button>
+                        </mat-menu>
+                    </div>
                 </mat-toolbar-row>
             </mat-toolbar>
             <!-- *ngIf="show_title" -->

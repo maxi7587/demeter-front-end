@@ -1,38 +1,50 @@
-<div
-    fxLayout="row"
-    fxLayoutAlign="center start"
-    fxLayoutGap="16px"
-    class="width-100"
-    >
-    <app-table
-        fxFlex="1 1 100"
-        *ngIf="fields.results"
-        [columns]="columns"
-        [rows]="fields.results"
-        (rowClick)="goToElement($event.id)"
-        [collection]="fields"
-        >
-    </app-table>
-    <mat-list fxHide.lt-md>
-        <button
-            mat-raised-button
-            name="new"
-            color="primary"
-            fxLayout="row"
-            fxLayoutAlign="center center"
-            [routerLink]="0"
+<mat-tab-group #tabGroup>
+    <mat-tab>
+        <ng-template
+            id="fields-tab"
+            mat-tab-label
             >
-            <!-- style="height: 56px; width:56px" -->
-            <!-- <button
-                mat-fab
-                name="new"
-                color="primary"
-                fxLayout="row"
-                fxLayoutAlign="center center"
+            Fields
+        </ng-template>
+        <div
+            style="padding: 16px;"
+            fxLayout="row"
+            fxLayoutAlign="center start"
+            fxLayoutGap="16px"
+            class="width-100"
+            mat-tab-content
+            >
+            <app-table
+                fxFlex="1 1 100"
+                *ngIf="fields.results"
+                [columns]="columns"
+                [rows]="fields.results"
+                (rowClick)="goToElement($event.id)"
+                [collection]="fields"
                 >
-            </button> -->
-            <mat-icon>add</mat-icon>
-            New field
-        </button>
-    </mat-list>
-</div>
+            </app-table>
+            <mat-list fxHide.lt-md>
+                <button
+                    mat-raised-button
+                    name="new"
+                    color="primary"
+                    fxLayout="row"
+                    fxLayoutAlign="center center"
+                    [routerLink]="0"
+                    >
+                    <!-- style="height: 56px; width:56px" -->
+                    <!-- <button
+                        mat-fab
+                        name="new"
+                        color="primary"
+                        fxLayout="row"
+                        fxLayoutAlign="center center"
+                        >
+                    </button> -->
+                    <mat-icon>add</mat-icon>
+                    New field
+                </button>
+            </mat-list>
+        </div>
+    </mat-tab>
+</mat-tab-group>

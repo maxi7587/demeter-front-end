@@ -5,7 +5,7 @@
     class="width-100"
     >
     <div
-        class="app-basic-padding" 
+        class="app-basic-padding"
         fxLayout="column"
         fxFlex="1 1 100"
         >
@@ -37,6 +37,21 @@
                     <mat-icon>settings</mat-icon>
                 </button>
             </mat-list-item>
+            <h4 *ngIf="companies.results.length === 0" class="mat-subheading-2">{{ "You don't have any companies yet." }}</h4>
+            <!-- <mat-list-item
+                *ngFor="let company of companies.results"
+                (click)="goToCompany(company)"
+                >
+                <mat-icon mat-list-icon>work</mat-icon>
+                <h4 mat-line>{{ company.name }}</h4>
+                <p mat-line> {{ company.details }} </p>
+                <button
+                    mat-icon-button
+                    (click)="$event.stopPropagation(); goToCompanyEdit(company.id)"
+                    >
+                    <mat-icon>settings</mat-icon>
+                </button>
+            </mat-list-item> -->
         </mat-list>
     </div>
     <mat-list

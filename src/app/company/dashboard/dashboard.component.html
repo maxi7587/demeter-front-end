@@ -8,87 +8,14 @@
     ngClass.gt-sm="width-100"
     ngClass.lt-sm="width-100"
     >
-    <!-- <div
-        fxFlexOrder.lt-md="3"
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        fxLayoutAlign.lt-md="start center"
-        fxFlex.gt-sm="calc(50 - 8px)"
-        fxFlex.lt-md="100"
-        fxLayoutGap="16px"
-        class="height-100"
-        >
-        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.lt-md="start center" fxLayoutGap="16px">
-            <div
-                *ngFor="let field of fields?.results"
-                fxLayout="column"
-                fxLayoutAlign="start center"
-                fxLayoutGap="8px grid"
-                fxFlex.xs="100"
-                >
-                <ngx-avatar
-                    [name]="field.name"
-                    (clickOnAvatar)="goToField(field)"
-                    size="100"
-                    style="cursor: pointer"
-                    >
-                </ngx-avatar>
-                <h4 class="mat-subheading-2">{{ field.name }}</h4>
-            </div>
-            <div
-                fxLayout="column"
-                fxLayoutAlign="start center"
-                fxLayoutGap="8px grid"
-                fxFlex.xs="100"
-                [routerLink]="'../fields/0'"
-                >
-                <ngx-avatar
-                    name="+"
-                    size="100"
-                    style="cursor: pointer"
-                    >
-                </ngx-avatar>
-                <h4 class="mat-subheading-2">Add new field</h4>
-            </div>
-        </div>
-    </div>
-    <mat-divider [vertical]="true" [fxHide.lt-md]="true"></mat-divider>
-    <mat-divider [fxHide.gt-sm]="true" fxFlexOrder="2"></mat-divider>
-    <div
-        fxFlexOrder.lt-md="1"
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        fxFlex.gt-sm="calc(50 - 8px)"
-        fxFlex.lt-md="100"
-        fxLayoutGap="16px"
-        class="height-100"
-        >
-        <button
-            mat-raised-button
-            fxLayout="row"
-            fxLayoutAlign="start center"
-            color="accent"
-            [ngStyle.gt-sm]="{ width: '200px', height: '48px', 'font-size': '16px' }"
-            [ngStyle.lt-md]="{ width: '100%', height: '48px' }"
-            *ngFor="let link of links"
-            (click)="goToSection(link.section)"
-            >
-            <mat-icon
-                [ngStyle.gt-sm]="{ width: '24px', height: '24px', 'font-size': '24px' }"
-                >
-                {{ link.icon }}
-            </mat-icon>
-            {{ link.text }}
-        </button>
-    </div> -->
     <div
         fxLayout.gt-sm="row"
         fxLayoutGap.gt-sm="16px"
         fxLayoutGap.lt-md="8px"
+        fxLayoutAlign="space-between center"
         class="width-100"
         >
-        <button
-            mat-button
+        <!-- <mat-card
             *ngFor="let link of links"
             fxLayout.gt-sm="row"
             fxLayout.lt-md="column"
@@ -100,7 +27,27 @@
                 >
                 {{ link.icon }}
             </mat-icon>
-            {{ link.text }}
+            <span>
+                {{ link.text }}
+            </span>
+        </mat-card> -->
+        <button
+            mat-button
+            fxFlex="calc(25%-16px)"
+            *ngFor="let link of links"
+            fxLayout.gt-sm="row"
+            fxLayout.lt-md="column"
+            fxLayoutAlign="start center"
+            (click)="goToSection(link.section)"
+            >
+            <mat-icon
+                [ngStyle.gt-sm]="{ width: '24px', height: '24px', 'font-size': '24px' }"
+                >
+                {{ link.icon }}
+            </mat-icon>
+            <span>
+                {{ link.text }}
+            </span>
         </button>
     </div>
     <mat-divider class="width-100"></mat-divider>

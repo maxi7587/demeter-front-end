@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
     declarations: [],
@@ -43,7 +44,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         MatNativeDateModule,
         MatStepperModule,
         MatCardModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatMenuModule
     ]
 })
 export class SharedMaterialModule { }

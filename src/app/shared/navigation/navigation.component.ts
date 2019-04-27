@@ -1,5 +1,6 @@
 // TODO: improve navigation component implementation relating to OOP
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { UsersService, User } from 'src/app/shared/services/users.service';
 import { CompaniesService } from 'src/app/shared/services/companies.service';
 import { NavigationService, NavigationSidenavLink } from 'src/app/shared/navigation/navigation.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
@@ -31,6 +32,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
         menu: false
     };
 
+    public user: User;
+
     private _route_data: {[key: string]: any};
     set route_data(data: {[key: string]: any}) { this._route_data = data; }
     get route_data(): {[key: string]: any} { return this._route_data; }
@@ -39,11 +42,17 @@ export class NavigationComponent implements OnInit, OnDestroy {
         public router: Router,
         public activatedRoute: ActivatedRoute,
         public companyiesService: CompaniesService,
+        public usersService: UsersService,
         public navigationService: NavigationService
     ) {
         activatedRoute.data.subscribe(data => {
             this.route_data = data;
         });
+
+        usersService.getUser()
+            .subscribe(
+                user => this.user = user
+            );
     }
 
     public ngOnInit() {
@@ -57,6 +66,12 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
     public ngOnDestroy() {
         this.nav_actions_subscription.unsubscribe();
+    }
+
+    public logout() {
+        localStorage.clear();
+        sessionStorage.clear();
+        this.router.navigate(['/auth']);
     }
 
     public goToSection(section) {

@@ -27,12 +27,12 @@ export class CompanyComponent implements OnInit, OnDestroy {
                     company => console.log('company ---------->', company)
                 );
                 let sections_links = [
-                    new NavigationSidenavLink('Cambiar de compañía', 'users/' + this.route_data.user.id + '/companies', 'arrow_back'),
-                    new NavigationSidenavLink('Inicio', 'companies/' + params.company_id + '/dashboard', 'dashboard'),
-                    new NavigationSidenavLink('Perfiles', 'companies/' + params.company_id + '/profiles', 'account_circle'),
-                    new NavigationSidenavLink('Campos', 'companies/' + params.company_id + '/fields', 'wb_sunny'),
-                    new NavigationSidenavLink('Tareas', 'companies/' + params.company_id + '/tasks', 'assignment'),
-                    new NavigationSidenavLink('Herramientas', 'companies/' + params.company_id + '/tools', 'build')
+                    new NavigationSidenavLink('Change company', 'users/' + this.route_data.user.id + '/companies', 'arrow_back'),
+                    new NavigationSidenavLink('Home', 'companies/' + params.company_id + '/dashboard', 'dashboard'),
+                    new NavigationSidenavLink('Staff', 'companies/' + params.company_id + '/profiles', 'account_circle'),
+                    new NavigationSidenavLink('Fields', 'companies/' + params.company_id + '/fields', 'wb_sunny'),
+                    new NavigationSidenavLink('Tasks', 'companies/' + params.company_id + '/tasks', 'assignment'),
+                    new NavigationSidenavLink('Tools', 'companies/' + params.company_id + '/tools', 'build')
                 ];
                 this.sections_links = sections_links;
                 this.navigationService.actions.next(new SidenavActions());
