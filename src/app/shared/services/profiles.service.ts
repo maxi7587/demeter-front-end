@@ -23,6 +23,7 @@ export class Profile extends DRFResource {
     public charge: Charge;
     public contract_type: ContractType;
     public user: User;
+    public pinned: boolean;
 }
 
 @Injectable({

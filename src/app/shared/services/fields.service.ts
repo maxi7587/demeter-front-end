@@ -15,6 +15,7 @@ export class Field extends DRFResource {
     public manager: {[key: string]: any};
     public contact: {[key: string]: any};
     public details: string;
+    public pinned: boolean;
     public type: 'fields';
 }
 
