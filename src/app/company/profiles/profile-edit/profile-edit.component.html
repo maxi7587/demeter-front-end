@@ -44,6 +44,13 @@
                                 >
                                 <input matInput type="number" placeholder="CUIT/CUIL" formControlName="cuit">
                             </mat-form-field>
+                            <mat-checkbox
+                                fxFlex="100"
+                                [checked]="profile?.pinned"
+                                (change)="updateForm('pinned', $event.checked)"
+                                >
+                                {{ 'Pin to dashboard' | translate }}
+                            </mat-checkbox>
                             <mat-form-field
                                 fxFlex.gt-sm="calc(33% - 8px)"
                                 >

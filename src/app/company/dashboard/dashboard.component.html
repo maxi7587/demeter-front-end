@@ -8,89 +8,196 @@
     ngClass.gt-sm="width-100"
     ngClass.lt-sm="width-100"
     >
-    <div
-        fxLayout.gt-sm="row"
-        fxLayoutGap.gt-sm="16px"
-        fxLayoutGap.lt-md="8px"
-        fxLayoutAlign="space-between center"
-        class="width-100"
-        >
-        <!-- <mat-card
-            *ngFor="let link of links"
-            fxLayout.gt-sm="row"
-            fxLayout.lt-md="column"
-            fxLayoutAlign="start center"
-            (click)="goToSection(link.section)"
-            >
-            <mat-icon
-                [ngStyle.gt-sm]="{ width: '24px', height: '24px', 'font-size': '24px' }"
+    <mat-tab-group mat-stretch-tabs #tabGroup class="width-100">
+        <mat-tab>
+            <ng-template
+                id="profiles-tab"
+                mat-tab-label
                 >
-                {{ link.icon }}
-            </mat-icon>
-            <span>
-                {{ link.text }}
-            </span>
-        </mat-card> -->
-        <button
-            mat-button
-            fxFlex="calc(25%-16px)"
-            *ngFor="let link of links"
-            fxLayout.gt-sm="row"
-            fxLayout.lt-md="column"
-            fxLayoutAlign="start center"
-            (click)="goToSection(link.section)"
-            >
-            <mat-icon
-                [ngStyle.gt-sm]="{ width: '24px', height: '24px', 'font-size': '24px' }"
+                Pinned profiles
+            </ng-template>
+            <div
+                fxLayout.gt-sm="row wrap"
+                fxLayout.lt-md="column"
+                fxLayoutGap.gt-sm="16px grid"
+                fxLayoutGap.lt-md="8px"
+                class="width-100"
+                style="height: auto !important; padding-top: 16px; padding-bottom: 16px; overflow: hidden"
                 >
-                {{ link.icon }}
-            </mat-icon>
-            <span>
-                {{ link.text }}
-            </span>
-        </button>
-    </div>
-    <mat-divider class="width-100"></mat-divider>
-    <!-- fxLayoutAlign="start start"
-    fxLayoutGap.gt-sm="16px" -->
-    <div
-        fxLayout.gt-sm="row wrap"
-        fxLayout.lt-md="column"
-        fxLayoutGap.gt-sm="16px grid"
-        fxLayoutGap.lt-md="8px"
-        class="width-100"
-        >
-        <div
-            [ngStyle.gt-sm]="{width: 'calc(25% - 16px)'}"
-            *ngFor="let field of fields?.results"
-            >
-            <!-- [ngStyle.gt-xs]="{'max-width': '175px', 'margin': '16px'}"
-            [ngStyle.lt-md]="{'max-width': '175px', 'margin': '8px'}" -->
-            <!-- fxFlex.gt-sm="1 1 calc(20% - 16px)" -->
-            <mat-card
-                (click)="goToField(field)"
-                style="cursor: pointer; border-left: 4px solid #388e3c"
+                <div
+                    [ngStyle.gt-sm]="{width: 'calc(25% - 16px)'}"
+                    *ngFor="let profile of profiles?.results"
+                    >
+                    <!-- [ngStyle.gt-xs]="{'max-width': '175px', 'margin': '16px'}"
+                    [ngStyle.lt-md]="{'max-width': '175px', 'margin': '8px'}" -->
+                    <!-- fxFlex.gt-sm="1 1 calc(20% - 16px)" -->
+                    <mat-card
+                        (click)="goToProfile(profile)"
+                        style="cursor: pointer; border-left: 4px solid #388e3c"
+                        >
+                        <h4 class="mat-subheading-2">{{ profile.name + ' ' + profile.last_name }}</h4>
+                        <mat-card-content>
+                            <p>{{ profile.charge.name }}</p>
+                            <p>{{ profile.role }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div
+                    [ngStyle.gt-sm]="{width: 'calc(25% - 16px)'}"
+                    >
+                    <!-- [ngStyle.gt-xs]="{'max-width': '175px', 'margin-bottom': '16px'}"
+                    fxFlex.gt-sm="1 1 calc(20% - 16px)" -->
+                    <mat-card
+                        [routerLink]="'../profiles/0'"
+                        style="cursor: pointer; border-left: 4px solid #388e3c"
+                        >
+                        <h4 class="mat-subheading-2">{{ 'Add profile' }}</h4>
+                        <mat-card-content>
+                            <p>{{ 'Add a new profile to your company' }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template
+                id="fields-tab"
+                mat-tab-label
                 >
-                <h4 class="mat-subheading-2">{{ field.name }}</h4>
-                <mat-card-content>
-                    <p>{{ field.details }}</p>
-                </mat-card-content>
-            </mat-card>
-        </div>
-        <div
-            [ngStyle.gt-sm]="{width: 'calc(25% - 16px)'}"
-            >
-            <!-- [ngStyle.gt-xs]="{'max-width': '175px', 'margin-bottom': '16px'}"
-            fxFlex.gt-sm="1 1 calc(20% - 16px)" -->
-            <mat-card
-                [routerLink]="'../fields/0'"
-                style="cursor: pointer; border-left: 4px solid #388e3c"
+                Fields
+            </ng-template>
+            <div
+                fxLayout.gt-sm="row wrap"
+                fxLayout.lt-md="column"
+                fxLayoutGap.gt-sm="16px grid"
+                fxLayoutGap.lt-md="8px"
+                class="width-100"
+                style="height: auto !important; padding-top: 16px; padding-bottom: 16px; overflow: hidden"
                 >
-                <h4 class="mat-subheading-2">{{ 'Add field' }}</h4>
-                <mat-card-content>
-                    <p>{{ 'Add a new field to your company' }}</p>
-                </mat-card-content>
-            </mat-card>
-        </div>
-    </div>
+                <div
+                    [ngStyle.gt-sm]="{width: 'calc(25% - 16px)'}"
+                    *ngFor="let field of fields?.results"
+                    >
+                    <mat-card
+                        (click)="goToField(field)"
+                        style="cursor: pointer; border-left: 4px solid #388e3c"
+                        >
+                        <h4 class="mat-subheading-2">{{ field.name }}</h4>
+                        <mat-card-content>
+                            <p>{{ field.details }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div
+                    [ngStyle.gt-sm]="{width: 'calc(25% - 16px)'}"
+                    >
+                    <mat-card
+                        [routerLink]="'../fields/0'"
+                        style="cursor: pointer; border-left: 4px solid #388e3c"
+                        >
+                        <h4 class="mat-subheading-2">{{ 'Add field' }}</h4>
+                        <mat-card-content>
+                            <p>{{ 'Add a new field to your company' }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template
+                id="tasks-tab"
+                mat-tab-label
+                >
+                Tasks
+            </ng-template>
+            <div fxLayout="row">
+                <div
+                    fxFlex="50%"
+                    fxLayout="column"
+                    fxLayoutAlign="start stretch"
+                    fxLayoutGap.gt-sm="16px"
+                    fxLayoutGap.lt-md="8px"
+                    style="height: auto !important; padding-top: 16px; padding-bottom: 16px; overflow: hidden"
+                    >
+                    <h4 class="mat-subheading-2">Not completed tasks</h4>
+                    <mat-card
+                        *ngFor="let task of uncompleted_tasks"
+                        (click)="goToTask(task)"
+                        style="cursor: pointer; border-left: 4px solid #388e3c"
+                        >
+                        <h4 class="mat-subheading-2">{{ task.name }}</h4>
+                        <mat-card-content>
+                            <p>{{ task.status }}</p>
+                            <p>{{ task.details || 'No details...' }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div
+                    fxFlex="50%"
+                    fxLayout="column"
+                    fxLayoutGap.gt-sm="16px grid"
+                    fxLayoutGap.lt-md="8px"
+                    class="width-100"
+                    style="height: auto !important; padding-top: 16px; padding-bottom: 16px; overflow: hidden"
+                    >
+                    <h4 class="mat-subheading-2">Completed tasks</h4>
+                    <mat-card
+                        *ngFor="let task of completed_tasks"
+                        (click)="goToTask(task)"
+                        style="cursor: pointer; border-left: 4px solid #388e3c"
+                        >
+                        <h4 class="mat-subheading-2">{{ task.name }}</h4>
+                        <mat-card-content>
+                            <p>{{ task.status }}</p>
+                            <p>{{ task.details || 'No details...' }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template
+                id="tools-tab"
+                mat-tab-label
+                >
+                Pinned tools
+            </ng-template>
+            <div
+                fxLayout.gt-sm="row wrap"
+                fxLayout.lt-md="column"
+                fxLayoutGap.gt-sm="16px grid"
+                fxLayoutGap.lt-md="8px"
+                class="width-100"
+                style="height: auto !important; padding-top: 16px; padding-bottom: 16px; overflow: hidden"
+                >
+                <div
+                    [ngStyle.gt-sm]="{width: 'calc(25% - 16px)'}"
+                    *ngFor="let tool of tools?.results"
+                    >
+                    <mat-card
+                        (click)="goToTool(tool)"
+                        style="cursor: pointer; border-left: 4px solid #388e3c"
+                        >
+                        <h4 class="mat-subheading-2">{{ tool.name }}</h4>
+                        <mat-card-content>
+                            <p>{{ tool.status }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div
+                    [ngStyle.gt-sm]="{width: 'calc(25% - 16px)'}"
+                    >
+                    <mat-card
+                        [routerLink]="'../tools/0'"
+                        style="cursor: pointer; border-left: 4px solid #388e3c"
+                        >
+                        <h4 class="mat-subheading-2">{{ 'Add tool' }}</h4>
+                        <mat-card-content>
+                            <p>{{ 'Add a new tool to your company' }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
 </div>

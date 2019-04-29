@@ -27,6 +27,7 @@ export class Task extends DRFResource {
     public from_row;
     public to_row;
     public details: string;
+    public pinned: boolean;
 }
 
 

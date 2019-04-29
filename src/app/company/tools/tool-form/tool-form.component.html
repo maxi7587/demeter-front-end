@@ -37,6 +37,13 @@
             (optionSelected)="updateForm('field', $event.option.value)"
             >
         </app-drf-collection-autocomplete>
+        <mat-checkbox
+            fxFlex="100"
+            [checked]="tool?.pinned"
+            (change)="updateForm('pinned', $event.checked)"
+            >
+            {{ 'Pin to dashboard' | translate }}
+        </mat-checkbox>
         <mat-form-field
             fxFlex="100"
             >

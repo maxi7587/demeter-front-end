@@ -68,7 +68,7 @@ export class BasicDRFService<T extends DRFResource = DRFResource> {
         });
     }
 
-    public formatFilter(filter_object: { [key: string]: string | number }): string {
+    public formatFilter(filter_object: { [key: string]: string | number | boolean }): string {
         let filter_string: string;
         for (let key in filter_object) {
             if (filter_object[key]) {
@@ -88,7 +88,7 @@ export class BasicDRFService<T extends DRFResource = DRFResource> {
     public getPreRoute(): Array<string> { return undefined; }
 
     public all(
-        route?: string, headers?: HttpHeaders, filter?: {[key: string]: string | number}
+        route?: string, headers?: HttpHeaders, filter?: {[key: string]: string | number | boolean}
     ): Observable<DRFCollection<T>> {
         let url: string = environment.APIURL
             +  (route || ((this.getPreRoute() ? this.getPreRoute().join('/') + '/' : '') + this.type)) + '/';

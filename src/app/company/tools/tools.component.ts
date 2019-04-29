@@ -25,6 +25,7 @@ export class ToolsComponent extends CompanyTemplateComponent implements OnInit {
     @Input() public overrideRowClick: boolean;
     @Output() public rowClick: EventEmitter<Task> = new EventEmitter();
     @Input() public createFromDialog: boolean;
+    @Input() public showTabGroup = true;
 
     private _tools: {[key: string]: any} = {};
     set tools(tools: {[key: string]: any}) { this._tools = tools; }
@@ -100,6 +101,7 @@ export class ToolsComponent extends CompanyTemplateComponent implements OnInit {
 
             return;
         }
+        console.log('------ will navigate to tool-edit ------', element);
 
         this.router.navigate([this.router.url, element.id]);
         // this.router.navigate([profile_id.toString(), { relativeTo: this.activatedRoute }]);

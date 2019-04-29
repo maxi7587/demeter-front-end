@@ -43,6 +43,13 @@
                                 (optionSelected)="updateForm('manager', $event.option.value)"
                                 >
                             </app-drf-collection-autocomplete>
+                            <mat-checkbox
+                                fxFlex="100"
+                                [checked]="field.pinned"
+                                (change)="updateForm('pinned', $event.checked)"
+                                >
+                                {{ 'Pin to dashboard' | translate }}
+                            </mat-checkbox>
                             <mat-form-field
                                 fxFlex.gt-sm="calc(50% - 8px)"
                                 >
@@ -181,6 +188,7 @@
             <app-tools
                 class="width-100"
                 [showActions]="true"
+                [showTabGroup]="false"
                 [filter]="{ 'field': this.field.id }"
                 [overrideRowClick]="true"
                 (rowClick)="goToTool($event)"

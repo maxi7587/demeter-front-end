@@ -2,18 +2,19 @@ import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ToolFormComponent } from 'src/app/company/tools/tool-form/tool-form.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Field } from 'src/app/shared/services/fields.service';
+import { Tool } from 'src/app/shared/services/tools.service';
 
 @Component({
-  selector: 'app-tool-dialog',
-  templateUrl: './tool-dialog.component.html',
-  styleUrls: ['./tool-dialog.component.scss']
+    selector: 'app-tool-dialog',
+    templateUrl: './tool-dialog.component.html',
+    styleUrls: ['./tool-dialog.component.scss']
 })
 export class ToolDialogComponent {
     @ViewChild('toolForm') public tool_form: ToolFormComponent;
 
     public constructor(
         public dialogRef: MatDialogRef<ToolDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: { field: Field }
+        @Inject(MAT_DIALOG_DATA) public data: { field?: Field, tool?: Tool }
     ) {}
 
     public save(): void {

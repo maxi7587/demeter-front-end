@@ -38,6 +38,7 @@ export class ProfileFormComponent implements OnInit {
         field: new FormControl(),
         charge: new FormControl(),
         contract_type: new FormControl(),
+        pinned: new FormControl(),
         daily_working_hours: new FormControl()
     });
 
