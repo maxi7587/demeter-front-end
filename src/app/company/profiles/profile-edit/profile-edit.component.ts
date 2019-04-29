@@ -39,6 +39,7 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
         field: new FormControl(),
         charge: new FormControl(),
         contract_type: new FormControl(),
+        pinned: new FormControl(),
         daily_working_hours: new FormControl()
     });
 
@@ -128,6 +129,10 @@ export class ProfileEditComponent extends CompanyTemplateComponent implements On
                 this.navigationService.actions.next(new SidenavActions(['search', 'add']));
                 break;
         }
+    }
+
+    public updateForm(key, value) {
+        this.profile_form.controls[key].setValue(value);
     }
 
     public getFormattedBirthDate(date: string): string {

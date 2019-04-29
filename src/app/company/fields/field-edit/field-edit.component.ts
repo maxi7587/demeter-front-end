@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToolDialogComponent } from 'src/app/company/tools/tool-dialog/tool-dialog.component';
 import { ProfilesComponent } from 'src/app/company/profiles/profiles.component';
 import { ToolsComponent } from 'src/app/company/tools/tools.component';
 import { FieldPlotsComponent } from 'src/app/company/field-plots/field-plots.component';
@@ -43,6 +44,7 @@ export class FieldEditComponent extends CompanyTemplateComponent implements OnIn
         manager: new FormControl(),
         total_area: new FormControl(),
         total_area_measure_unit: new FormControl(),
+        pinned: new FormControl(),
         details: new FormControl()
     });
     public field: Field;
@@ -209,8 +211,14 @@ export class FieldEditComponent extends CompanyTemplateComponent implements OnIn
     }
 
     public goToTool(tool: Tool) {
-        console.log(`will navigate to --->../../tools/${tool.id}`);
+        const dialogRef = this.dialog.open(ToolDialogComponent, {
+            width: '600px',
+            data: { tool: tool }
+        });
 
+        return;
+
+        console.log(`will navigate to --->../../tools/${tool.id}`);
         this.router.navigate([`../../tools/${tool.id}`], { relativeTo: this.activatedRoute });
     }
 

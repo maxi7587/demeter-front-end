@@ -11,6 +11,7 @@ export class Tool extends DRFResource {
     public status: string;
     public field: Field;
     public company: Company;
+    public pinned: boolean;
 }
 
 @Injectable({

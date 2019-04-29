@@ -23,6 +23,7 @@ export class ToolFormComponent implements OnInit {
         code: new FormControl(),
         detail: new FormControl(),
         status: new FormControl(),
+        pinned: new FormControl(),
         field: new FormControl()
     });
     public status_options: Array<string> = ['available', 'in_use', 'broken'];
@@ -37,9 +38,11 @@ export class ToolFormComponent implements OnInit {
     ) {}
 
     public ngOnInit() {
+        console.log('tool form --------this.field ---------->', this.field);
         if (!this.tool) {
             this.tool = new Tool();
         }
+        this.tool.field = this.tool.field || this.field;
         for (let tool in this.tool_form.controls) {
             if (this.tool[tool]) {
                 this.tool_form.controls[tool].setValue(this.tool[tool]);
@@ -49,8 +52,8 @@ export class ToolFormComponent implements OnInit {
     }
 
     public save(): Observable<Tool> {
+        console.log('saving tool -------->', this.tool.pinned, this.tool_form.value);
         this.tool = { ...this.tool, ...this.tool_form.value };
-        console.log(this.tool);
         return (<Observable<Tool>>this.toolsService.save(this.tool));
     }
 
@@ -59,6 +62,7 @@ export class ToolFormComponent implements OnInit {
     }
 
     public updateForm(key, value) {
+        console.log('key, value', key, value);
         this.tool_form.controls[key].setValue(value);
     }
 
