@@ -35,10 +35,10 @@
                         (click)="goToProfile(profile)"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
-                        <h4 class="mat-subheading-2">{{ profile.name + ' ' + profile.last_name }}</h4>
-                        <mat-card-content>
-                            <p>{{ profile.charge.name }}</p>
-                            <p>{{ profile.role }}</p>
+                        <h4 class="mat-subheading-2">{{ profile.first_name + ' ' + profile.last_name }}</h4>
+                        <mat-card-content fxLayout="column" fxLayoutGap="8px">
+                            <p>{{ profile.charge ? profile.charge.name : 'No charge assigned' }}</p>
+                            <p>{{ profile.role.name }}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>
@@ -110,7 +110,7 @@
                 >
                 Tasks
             </ng-template>
-            <div fxLayout="row">
+            <div fxLayout="row" fxLayoutGap.gt-sm="16px" fxLayoutGap.lt-md="8px">
                 <div
                     fxFlex="50%"
                     fxLayout="column"
@@ -129,6 +129,15 @@
                         <mat-card-content>
                             <p>{{ task.status }}</p>
                             <p>{{ task.details || 'No details...' }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card
+                        [routerLink]="'../tasks/0'"
+                        style="cursor: pointer; border-left: 4px solid #388e3c"
+                        >
+                        <h4 class="mat-subheading-2">{{ 'Add task' }}</h4>
+                        <mat-card-content>
+                            <p>{{ 'Add a new task' }}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>

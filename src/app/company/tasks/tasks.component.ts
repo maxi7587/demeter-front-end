@@ -22,6 +22,7 @@ export class TasksComponent extends CompanyTemplateComponent implements OnInit {
     @Input() public filter: string;
     @Input() public field: Field;
     @Input() public overrideRowClick: boolean;
+    @Input() public showTabGroup = true;
     @Output() public rowClick: EventEmitter<Task> = new EventEmitter();
     // @Input() public overrideCreate: boolean;
     // @Output() public createButton: EventEmitter<Task> = new EventEmitter();
