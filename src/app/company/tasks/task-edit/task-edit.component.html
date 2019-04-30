@@ -72,17 +72,19 @@
                         *ngIf="field_rows"
                         fxFlex.gt-sm="calc(25% - 8px)"
                         >
-                        <mat-select placeholder="From row" formControlName="from_row" [compareWith]="compareById">
+                        <input matInput type="number" placeholder="From row" formControlName="from_row">
+                        <!-- <mat-select placeholder="From row" formControlName="from_row" [compareWith]="compareById">
                             <mat-option *ngFor="let field_row of field_rows.results" value="field_row">{{ field_row.name }}</mat-option>
-                        </mat-select>
+                        </mat-select> -->
                     </mat-form-field>
                     <mat-form-field
                         *ngIf="field_rows"
                         fxFlex.gt-sm="calc(25% - 8px)"
                         >
-                        <mat-select placeholder="Until element" formControlName="to_row" [compareWith]="compareById">
+                        <input matInput type="number" placeholder="To row" formControlName="to_row">
+                        <!-- <mat-select placeholder="Until element" formControlName="to_row" [compareWith]="compareById">
                             <mat-option *ngFor="let field_row of field_rows.results" value="field_row">{{ field_row.name }}</mat-option>
-                        </mat-select>
+                        </mat-select> -->
                     </mat-form-field>
                     <mat-form-field
                         *ngIf="task_types"
