@@ -38,19 +38,6 @@
                     <mat-icon>settings</mat-icon>
                 </button>
             </mat-list-item>
-            <div *ngIf="companies.results.length === 0" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap.gt-sm="16px" fxLayoutGap.lt-md="8px">
-                <h4 class="mat-subheading-2">{{ "You don't have any companies yet. Add one to start working." }}</h4>
-                <button
-                    mat-icon-button
-                    name="new"
-                    color="primary"
-                    fxLayout="row"
-                    fxLayoutAlign="center center"
-                    [routerLink]="0"
-                    >
-                    <mat-icon style="font-size: 96px">add</mat-icon>
-                </button>
-            </div>
             <!-- <mat-list-item
                 *ngFor="let company of companies.results"
                 (click)="goToCompany(company)"
@@ -66,6 +53,19 @@
                 </button>
             </mat-list-item> -->
         </mat-list>
+        <div *ngIf="companies.results.length === 0" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap.gt-sm="16px" fxLayoutGap.lt-md="8px">
+            <h4 class="mat-subheading-2">{{ 'You don't have any companies yet. Add one to start working.' | translate }}</h4>
+            <button
+                mat-icon-button
+                name="new"
+                color="primary"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                [routerLink]="0"
+                >
+                <mat-icon style="font-size: 96px">add</mat-icon>
+            </button>
+        </div>
     </div>
     <mat-list
         fxHide.lt-md
