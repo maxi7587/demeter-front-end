@@ -5,6 +5,7 @@ import { CompaniesService } from 'src/app/shared/services/companies.service';
 import { NavigationService, NavigationSidenavLink } from 'src/app/shared/navigation/navigation.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-navigation',
@@ -43,7 +44,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
         public activatedRoute: ActivatedRoute,
         public companyiesService: CompaniesService,
         public usersService: UsersService,
-        public navigationService: NavigationService
+        public navigationService: NavigationService,
+        public oAuthService: OAuthService
     ) {
         activatedRoute.data.subscribe(data => {
             this.route_data = data;
@@ -71,6 +73,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
     public logout() {
         localStorage.clear();
         sessionStorage.clear();
+        this.oAuthService.logOut();
         this.router.navigate(['/auth']);
     }
 

@@ -84,7 +84,10 @@ export class FieldPlotFormComponent implements OnInit {
             this.measureUnitsService
                 .all()
                 .subscribe(
-                    measure_units => this.measure_units = measure_units
+                    measure_units => {
+                        this.measure_units = measure_units;
+                        console.log('measure_units --->', this.measure_units, measure_units);
+                    }
                 );
         }
     }

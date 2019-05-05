@@ -203,13 +203,14 @@
             Tasks
         </ng-template>
         <!-- [tableClasses]="['mat-elevation-z0']" -->
+        <!-- style="padding: 16px;" -->
         <div
-            style="padding: 16px;"
             mat-tab-content
             >
             <app-tasks
                 class="width-100"
                 [showActions]="true"
+                [showTabGroup]="false"
                 [filter]="{ 'assigned_worker': this.profile.id }"
                 [overrideRowClick]="true"
                 (rowClick)="goToTask($event)"

@@ -20,6 +20,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [],
@@ -45,6 +46,7 @@ import { MatMenuModule } from '@angular/material/menu';
         MatStepperModule,
         MatCardModule,
         MatPaginatorModule,
+        MatSnackBarModule,
         MatMenuModule
     ]
 })

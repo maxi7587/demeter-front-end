@@ -55,9 +55,7 @@ export class ContractTypesComponent extends CompanyTemplateComponent implements 
 
         // Populate table columns
         // TODO: improve for mobile
-        this.columns.push(new Column('name', 'name', 'name'));
-        this.columns.push(new Column('field.name', 'field', ''));
-        this.columns.push(new Column('info', 'name', '', 'info', 'end center'));
+        this.columns.push(new Column('name', 'name'));
 
         this.filters_form.valueChanges
             .subscribe(
