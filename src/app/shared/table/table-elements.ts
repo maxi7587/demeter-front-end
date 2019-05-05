@@ -56,7 +56,7 @@ export class Column {
         let properties = nested_property_string.split('.');
         for (let i = 0, n = properties.length; i < n; ++i) {
             let property = properties[i];
-            if (property in resource) {
+            if (resource && property in resource) {
                 resource = resource[property];
             } else {
                 return;
