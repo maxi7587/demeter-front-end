@@ -161,6 +161,7 @@
             <app-tasks
                 class="width-100"
                 [showActions]="true"
+                [showTabGroup]="false"
                 [filter]="{ 'field': this.field.id }"
                 [overrideRowClick]="true"
                 (rowClick)="goToTask($event)"

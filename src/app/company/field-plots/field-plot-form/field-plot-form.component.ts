@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
     styleUrls: ['./field-plot-form.component.scss']
 })
 export class FieldPlotFormComponent implements OnInit {
-    @Input() public field_plot: FieldPlot;
+    @Input() public field_plot: FieldPlot = new FieldPlot();
     @Input() public field: Field;
     @Input() public measure_units: DRFCollection<MeasureUnit>;
 
@@ -80,11 +80,19 @@ export class FieldPlotFormComponent implements OnInit {
         } else {
             this.fillFormData(this.field_plot);
         }
+        console.log('--------------------------------------------------------------');
+        console.log('measure_units ---->', this.measure_units);
+        console.log('--------------------------------------------------------------');
         if (!this.measure_units) {
             this.measureUnitsService
                 .all()
                 .subscribe(
-                    measure_units => this.measure_units = measure_units
+                    measure_units => {
+                        this.measure_units = measure_units;
+                        console.log('--------------------------------------------------------------');
+                        console.log('measure_units --->', this.measure_units, measure_units);
+                        console.log('--------------------------------------------------------------');
+                    }
                 );
         }
     }

@@ -82,7 +82,7 @@
                                 *ngIf="charges"
                                 fxFlex.gt-sm="calc(33% - 8px)"
                                 >
-                                <mat-select placeholder="Charge" formControlName="charge">
+                                <mat-select placeholder="Charge" formControlName="charge" [compareWith]="compareById">
                                     <mat-option *ngFor="let charge of charges.results" [value]="charge">{{ charge.name }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -90,7 +90,7 @@
                                 *ngIf="contract_types"
                                 fxFlex.gt-sm="calc(33% - 8px)"
                                 >
-                                <mat-select placeholder="Contract type" formControlName="contract_type">
+                                <mat-select placeholder="Contract type" formControlName="contract_type" [compareWith]="compareById">
                                     <mat-option *ngFor="let contract_type of contract_types.results" [value]="contract_type">{{ contract_type.name }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -203,13 +203,14 @@
             Tasks
         </ng-template>
         <!-- [tableClasses]="['mat-elevation-z0']" -->
+        <!-- style="padding: 16px;" -->
         <div
-            style="padding: 16px;"
             mat-tab-content
             >
             <app-tasks
                 class="width-100"
                 [showActions]="true"
+                [showTabGroup]="false"
                 [filter]="{ 'assigned_worker': this.profile.id }"
                 [overrideRowClick]="true"
                 (rowClick)="goToTask($event)"

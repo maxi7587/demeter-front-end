@@ -61,11 +61,13 @@ export class BasicDRFService<T extends DRFResource = DRFResource> {
 
     public constructor(protected httpClient: HttpClient, protected oAuthService: OAuthService) {}
 
-    public getAuthorizationHeaders() {
+    public getAuthorizationHeaders(): HttpHeaders {
         this.headers = new HttpHeaders({
             'Content-Type':  'application/json',
             'Authorization': this.oAuthService.authorizationHeader()
         });
+
+        return this.headers;
     }
 
     public formatFilter(filter_object: { [key: string]: string | number | boolean }): string {
@@ -102,7 +104,7 @@ export class BasicDRFService<T extends DRFResource = DRFResource> {
         return this.httpClient.get<DRFCollection<T>>(
             url,
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
-            { headers: headers || this.headers }
+            { headers: headers || this.getAuthorizationHeaders() }
         ).pipe(
             map(
                 collection => {
@@ -125,7 +127,7 @@ export class BasicDRFService<T extends DRFResource = DRFResource> {
         return this.httpClient.get<T>(
             environment.APIURL +  (route || this.type) + '/' + id + '/',
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
-            { headers: headers || this.headers }
+            { headers: headers || this.getAuthorizationHeaders() }
         ).pipe(
             map(resource => (<T>new this.resource()).setAttributes(resource))
         );
@@ -136,7 +138,7 @@ export class BasicDRFService<T extends DRFResource = DRFResource> {
             environment.APIURL +  (route || this.type) + '/',
             data,
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
-            { headers: headers || this.headers }
+            { headers: headers || this.getAuthorizationHeaders() }
         ).pipe(
             map(resource => (<T>new this.resource()).setAttributes(resource))
         );
@@ -147,7 +149,7 @@ export class BasicDRFService<T extends DRFResource = DRFResource> {
             environment.APIURL +  (route || this.type) + '/' + data.id + '/',
             data,
             // TODO: remove header from here... oauth sendAccessTokenConfig should work
-            { headers: headers || this.headers }
+            { headers: headers || this.getAuthorizationHeaders() }
         ).pipe(
             map(resource => (<T>new this.resource().setAttributes(resource)))
         );

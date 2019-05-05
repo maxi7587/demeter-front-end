@@ -1,4 +1,4 @@
-import { Pipe } from '@angular/core';
+import { Pipe, TemplateRef } from '@angular/core';
 
 export interface IColumnPipe {
     pipe: Pipe;
@@ -25,6 +25,9 @@ export class Column {
     private _pipe: Pipe;
     set pipe(pipe: Pipe) { this._pipe = pipe; }
     get pipe(): Pipe { return this._pipe; }
+    private _template: TemplateRef<any>;
+    set template(template: TemplateRef<any>) { this._template = template; }
+    get template(): TemplateRef<any> { return this._template; }
 
     public constructor(key: string, title: string, avatar?: string, icon?: string, align?: string, pipe?: Pipe) {
         this.key = key;
@@ -35,13 +38,25 @@ export class Column {
         this.pipe = pipe;
     }
 
+    public setPipe(pipe: Pipe): this {
+        this.pipe = pipe;
+
+        return this;
+    }
+
+    public setTemplate(template: TemplateRef<any>): this {
+        this.template = template;
+
+        return this;
+    }
+
     public accessNestedProperty(resource, nested_property_string) {
         nested_property_string = nested_property_string.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
         nested_property_string = nested_property_string.replace(/^\./, '');           // strip a leading dot
         let properties = nested_property_string.split('.');
         for (let i = 0, n = properties.length; i < n; ++i) {
             let property = properties[i];
-            if (property in resource) {
+            if (resource && property in resource) {
                 resource = resource[property];
             } else {
                 return;
