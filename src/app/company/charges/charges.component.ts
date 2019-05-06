@@ -102,7 +102,7 @@ export class ChargesComponent extends CompanyTemplateComponent implements OnInit
     }
 
     public createChargeDialog(): void {
-        console.log('should open field plot dialog');
+        console.log('should open charge dialog');
         const dialogRef = this.matDialog.open(ChargeDialogComponent, {
             width: '360px',
             data: {}

@@ -80,11 +80,17 @@ export class ProfilesComponent extends CompanyTemplateComponent implements OnIni
         });
     }
 
-    public add() {
-        this.createElement();
-    }
+    // public add() {
+    //     console.log('--------------------------');
+    //     console.log('inside profiles add method');
+    //     console.log('--------------------------');
+    //     this.createElement();
+    // }
 
     public createElement() {
+        console.log('--------------------------');
+        console.log('inside profiles createElement method');
+        console.log('--------------------------');
         if (this.createFromDialog) {
             this.showProfileDialog();
 
@@ -98,7 +104,7 @@ export class ProfilesComponent extends CompanyTemplateComponent implements OnIni
             profile: profile ? profile : new Profile(),
             field: this.field
         };
-        console.log('should open field plot dialog');
+        console.log('should open profiles dialog');
         const dialogRef = this.matDialog.open(ProfileDialogComponent, {
             width: '720px',
             data: dialog_data

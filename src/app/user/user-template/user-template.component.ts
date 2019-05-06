@@ -30,6 +30,11 @@ export class UserTemplateComponent implements OnInit, OnDestroy {
                     this.search();
                     break;
                 case 'add':
+                    console.log('------------------------');
+                    console.log('------------------------');
+                    console.log('-------will call add-------');
+                    console.log('------------------------');
+                    console.log('------------------------');
                     this.add();
                     break;
                 case 'delete':

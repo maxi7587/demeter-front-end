@@ -1,13 +1,12 @@
-<div
-    class="app-basic-padding"
-    ngStyle.lt-md="{ 'margin-bottom': '48px'}"
+<!-- <div
+    [ngStyle.lt-md]="{ 'margin-bottom': '48px'}"
     fxLayout.gt-sm="row wrap"
     fxLayout.lt-md="column"
     fxLayoutGap.gt-sm="16px grid"
     fxLayoutGap.lt-md="8px"
     ngClass.gt-sm="width-100"
     ngClass.lt-sm="width-100"
-    >
+    > -->
     <mat-tab-group mat-stretch-tabs #tabGroup class="width-100">
         <mat-tab>
             <ng-template
@@ -21,7 +20,7 @@
                 fxLayout.lt-md="column"
                 fxLayoutGap.gt-sm="16px grid"
                 fxLayoutGap.lt-md="8px"
-                class="width-100"
+                class="width-100 app-basic-padding"
                 style="height: auto !important; padding-top: 16px; padding-bottom: 16px; overflow: hidden"
                 >
                 <div
@@ -71,7 +70,7 @@
                 fxLayout.lt-md="column"
                 fxLayoutGap.gt-sm="16px grid"
                 fxLayoutGap.lt-md="8px"
-                class="width-100"
+                class="width-100 app-basic-padding"
                 style="height: auto !important; padding-top: 16px; padding-bottom: 16px; overflow: hidden"
                 >
                 <div
@@ -110,7 +109,12 @@
                 >
                 Tasks
             </ng-template>
-            <div fxLayout="row" fxLayoutGap.gt-sm="16px" fxLayoutGap.lt-md="8px">
+            <div
+                class="app-basic-padding"
+                fxLayout="row"
+                fxLayoutGap.gt-sm="16px"
+                fxLayoutGap.lt-md="8px"
+                >
                 <div
                     fxFlex="50%"
                     fxLayout="column"
@@ -176,7 +180,7 @@
                 fxLayout.lt-md="column"
                 fxLayoutGap.gt-sm="16px grid"
                 fxLayoutGap.lt-md="8px"
-                class="width-100"
+                class="width-100 app-basic-padding"
                 style="height: auto !important; padding-top: 16px; padding-bottom: 16px; overflow: hidden"
                 >
                 <div
@@ -209,4 +213,4 @@
             </div>
         </mat-tab>
     </mat-tab-group>
-</div>
+<!-- </div> -->

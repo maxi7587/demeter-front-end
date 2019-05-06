@@ -100,7 +100,7 @@ export class ContractTypesComponent extends CompanyTemplateComponent implements 
     }
 
     public createContractTypeDialog(): void {
-        console.log('should open field plot dialog');
+        console.log('should open contract types dialog');
         const dialogRef = this.matDialog.open(ContractTypeDialogComponent, {
             width: '360px',
             data: {}
