@@ -69,7 +69,7 @@ export class CompaniesComponent extends UserTemplateComponent implements OnInit 
     }
 
     public ngOnInit() {
-        this.navigationService.actions.next(new SidenavActions(['search', 'add']));
+        this.navigationService.actions.next(new SidenavActions(['add']));
     }
 
     public goToCompany(company: Company) {

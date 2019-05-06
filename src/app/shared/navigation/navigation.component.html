@@ -51,8 +51,19 @@
                     <h3 class="mat-subheading-2">
                         {{ navigationService.title | translate | titlecase }}
                     </h3>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="logout()">Log out</button>
+                    </mat-menu>
+                    <!-- bgColor="#fafafa"
+                    fgColor="#000000" -->
+                    <ngx-avatar
+                        [name]="user?.first_name || 'Profile'"
+                        [matMenuTriggerFor]="menu"
+                        style="cursor: pointer"
+                        >
+                    </ngx-avatar>
                     <!-- <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_back</mat-icon></button> -->
-                    <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_left_circle</mat-icon></button>
+                    <!-- <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_left_circle</mat-icon></button> -->
                 </mat-toolbar-row>
             </mat-toolbar>
             <!-- <mat-toolbar color="primary" id="main-toolbar" ngClass.gt-xs="background-transparent" ngClass.xs="position-absolute bottom inherit-font">
