@@ -57,7 +57,9 @@ export class TaskFormComponent implements OnInit {
         protected router: Router,
         protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
-    ) {
+    ) {}
+
+    public ngOnInit() {
         console.log('recieved task --->', this.task);
         for (let form_field in this.task_form.controls) {
             if (this.task[form_field]) {
@@ -65,12 +67,10 @@ export class TaskFormComponent implements OnInit {
             }
         }
         this.task.company = this.companiesService.company;
-    }
 
-    public ngOnInit() {
         // IMPORTANT: have to update manually both values because it uses DRFCollectionAutocomplete
-        this.task_form.controls.field.setValue(this.field);
-        this.task.field = this.field;
+        this.task_form.controls.field.setValue(this.task.field || this.field);
+        this.task.field = this.task.field || this.field;
         console.log(this.task_form.value);
         // this.usersService
         //     .getUser()

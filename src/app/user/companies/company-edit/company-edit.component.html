@@ -51,7 +51,14 @@
                     Contact data
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <app-flex-form-container>
+            <app-contact-form
+                class="width-100"
+                #contactForm
+                [contact]="company.contact"
+                (contactUpdate)="updateContact($event)"
+                >
+            </app-contact-form>
+            <!-- <app-flex-form-container>
                 <form
                     fxFlex="1 1 100"
                     [formGroup]="company_contact_form"
@@ -97,7 +104,7 @@
                         <input matInput type="number" placeholder="phone" formControlName="phone">
                     </mat-form-field>
                 </form>
-            </app-flex-form-container>
+            </app-flex-form-container> -->
         </mat-expansion-panel>
     <!-- </div> -->
     </mat-accordion>

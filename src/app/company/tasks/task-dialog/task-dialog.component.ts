@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Field } from 'src/app/shared/services/fields.service';
 import { TaskFormComponent } from 'src/app/company/tasks/task-form/task-form.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Task } from 'src/app/shared/services/tasks.service';
 
 @Component({
   selector: 'app-task-dialog',
@@ -13,7 +14,7 @@ export class TaskDialogComponent {
 
     public constructor(
         public dialogRef: MatDialogRef<TaskDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: { field: Field }
+        @Inject(MAT_DIALOG_DATA) public data: { task?: Task, field?: Field }
     ) {}
 
     public save(): void {
