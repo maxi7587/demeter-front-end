@@ -31,7 +31,7 @@
                     [ngStyle.lt-md]="{'max-width': '175px', 'margin': '8px'}" -->
                     <!-- fxFlex.gt-sm="1 1 calc(20% - 16px)" -->
                     <mat-card
-                        (click)="goToProfile(profile)"
+                        (click)="showProfileDialog(profile)"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
                         <h4 class="mat-subheading-2">{{ profile.first_name + ' ' + profile.last_name }}</h4>
@@ -47,7 +47,7 @@
                     <!-- [ngStyle.gt-xs]="{'max-width': '175px', 'margin-bottom': '16px'}"
                     fxFlex.gt-sm="1 1 calc(20% - 16px)" -->
                     <mat-card
-                        [routerLink]="'../profiles/0'"
+                        (click)="showProfileDialog()"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
                         <h4 class="mat-subheading-2">{{ 'Add profile' }}</h4>
@@ -126,7 +126,7 @@
                     <h4 class="mat-subheading-2">Not completed tasks</h4>
                     <mat-card
                         *ngFor="let task of uncompleted_tasks"
-                        (click)="goToTask(task)"
+                        (click)="showTaskDialog(task)"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
                         <h4 class="mat-subheading-2">{{ task.name }}</h4>
@@ -136,7 +136,7 @@
                         </mat-card-content>
                     </mat-card>
                     <mat-card
-                        [routerLink]="'../tasks/0'"
+                        (click)="showTaskDialog()"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
                         <h4 class="mat-subheading-2">{{ 'Add task' }}</h4>
@@ -156,7 +156,7 @@
                     <h4 class="mat-subheading-2">Completed tasks</h4>
                     <mat-card
                         *ngFor="let task of completed_tasks"
-                        (click)="goToTask(task)"
+                        (click)="showTaskDialog(task)"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
                         <h4 class="mat-subheading-2">{{ task.name }}</h4>
@@ -188,7 +188,7 @@
                     *ngFor="let tool of tools?.results"
                     >
                     <mat-card
-                        (click)="goToTool(tool)"
+                        (click)="showToolDialog(tool)"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
                         <h4 class="mat-subheading-2">{{ tool.name }}</h4>
@@ -201,7 +201,7 @@
                     [ngStyle.gt-sm]="{width: 'calc(25% - 16px)'}"
                     >
                     <mat-card
-                        [routerLink]="'../tools/0'"
+                        (click)="showToolDialog()"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
                         <h4 class="mat-subheading-2">{{ 'Add tool' }}</h4>

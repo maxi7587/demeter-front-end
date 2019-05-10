@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ContactFormComponent } from 'src/app/shared/components/contact-form/contact-form.component';
 import { Contact } from 'src/app/shared/services/contacts/contacts.service';
 import { UserTemplateComponent } from 'src/app/user/user-template/user-template.component';
 import { Company, CompaniesService } from 'src/app/shared/services/companies.service';
@@ -12,6 +13,8 @@ import { FormGroup, FormControl } from '@angular/forms';
     styleUrls: ['./company-edit.component.scss']
 })
 export class CompanyEditComponent extends UserTemplateComponent implements OnInit {
+    @ViewChild('contactForm') public contact_form: ContactFormComponent;
+
     public company_form: FormGroup = new FormGroup({
         name: new FormControl(),
         cuit: new FormControl(),
@@ -53,12 +56,20 @@ export class CompanyEditComponent extends UserTemplateComponent implements OnIni
         }
     }
 
+    public updateContact(contact: Contact) {
+        this.company.contact = contact;
+        console.log('updated comapny contact data?', this.company);
+    }
+
     public save() {
         this.company = { ...this.company, ...this.company_form.value };
-        if (!this.company.contact) {
-            this.company.contact = new Contact();
-        }
-        this.company.contact.updateContactData(this.company_contact_form.value);
+        this.contact_form.submit();
+        console.log('will update contact data in company: ', this.company.contact);
+        // if (!this.company.contact) {
+        //     this.company.contact = new Contact();
+        // }
+        // this.company.contact.updateContactData(this.company_contact_form.value);
+        console.log('will save company');
         this.companiesService.save(this.company).subscribe(
             company => this.router.navigate(['..'], {relativeTo: this.activatedRoute})
         );

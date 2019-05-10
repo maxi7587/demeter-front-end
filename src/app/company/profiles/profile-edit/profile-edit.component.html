@@ -75,6 +75,7 @@
                                 fxFlex.gt-sm="calc(33% - 8px)"
                                 >
                                 <mat-select placeholder="Field" formControlName="field" [compareWith]="compareById">
+                                    <mat-option [value]="undefined">Sin asignar</mat-option>
                                     <mat-option *ngFor="let field of fields.results" [value]="field">{{ field.name }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -83,6 +84,7 @@
                                 fxFlex.gt-sm="calc(33% - 8px)"
                                 >
                                 <mat-select placeholder="Charge" formControlName="charge" [compareWith]="compareById">
+                                    <mat-option [value]="undefined">Sin asignar</mat-option>
                                     <mat-option *ngFor="let charge of charges.results" [value]="charge">{{ charge.name }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -91,6 +93,7 @@
                                 fxFlex.gt-sm="calc(33% - 8px)"
                                 >
                                 <mat-select placeholder="Contract type" formControlName="contract_type" [compareWith]="compareById">
+                                    <mat-option [value]="undefined">Sin asignar</mat-option>
                                     <mat-option *ngFor="let contract_type of contract_types.results" [value]="contract_type">{{ contract_type.name }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -213,6 +216,7 @@
                 [showTabGroup]="false"
                 [filter]="{ 'assigned_worker': this.profile.id }"
                 [overrideRowClick]="true"
+                [createFromDialog]="true"
                 (rowClick)="goToTask($event)"
                 #tasks
                 >
