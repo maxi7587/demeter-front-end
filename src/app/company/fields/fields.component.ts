@@ -11,7 +11,7 @@ import { Column } from 'src/app/shared/table/table-elements';
   templateUrl: './fields.component.html',
   styleUrls: ['./fields.component.scss']
 })
-export class FieldsComponent extends CompanyTemplateComponent {
+export class FieldsComponent extends CompanyTemplateComponent implements OnInit {
 
     private _fields: {[key: string]: any} = {};
     set fields(fields: {[key: string]: any}) { this._fields = fields; }
@@ -28,7 +28,19 @@ export class FieldsComponent extends CompanyTemplateComponent {
     ) {
         super(router, activatedRoute, navigationService);
         this.navigationService.actions.next(new SidenavActions(['search', 'add']));
-        this.fieldsService.all().subscribe(fields => {
+        this.getList({});
+    }
+
+    public ngOnInit() {
+        // TODO: improve for mobile
+        this.columns.push(new Column('name', 'name'));
+        this.columns.push(new Column('field.name', 'field'));
+        this.columns.push(new Column('priority', 'priority'));
+        this.columns.push(new Column('status', 'status'));
+    }
+
+    public getList(filter) {
+        this.fieldsService.all(undefined, undefined, filter).subscribe(fields => {
             this.fields = fields;
             console.log(this.fields);
             // TODO: uncomment following for loop for desktop
@@ -38,9 +50,6 @@ export class FieldsComponent extends CompanyTemplateComponent {
             //     }
             // }
         });
-        // TODO: improve for mobile
-        this.columns.push(new Column('name', 'name', 'name'));
-        this.columns.push(new Column('info', 'name', '', 'info', 'end center'));
     }
 
     public goToElement(element_id) {
@@ -51,6 +60,11 @@ export class FieldsComponent extends CompanyTemplateComponent {
 
     public add() {
         this.router.navigate(['0'], { relativeTo: this.activatedRoute });
+    }
+
+    public search(search_string: string) {
+        let name_filter = { name: search_string };
+        this.getList(name_filter);
     }
 
 }

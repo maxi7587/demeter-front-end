@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChild, TemplateRef } from '@angular/core';
 import { ProfileDialogComponent } from 'src/app/company/profiles/profile-dialog/profile-dialog.component';
 import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
 import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
@@ -15,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
     templateUrl: './profiles.component.html',
     styleUrls: ['./profiles.component.scss']
 })
-export class ProfilesComponent extends CompanyTemplateComponent implements OnInit {
+export class ProfilesComponent extends CompanyTemplateComponent implements OnInit, AfterViewInit {
     @Input() public field: Field;
     @Input() public showActions = true;
     @Input() public tableClasses: Array<string>;
@@ -26,6 +26,8 @@ export class ProfilesComponent extends CompanyTemplateComponent implements OnIni
     // @Input() public overrideCreate: boolean;
     // @Output() public createButton: EventEmitter<Task> = new EventEmitter();
     @Input() public createFromDialog: boolean;
+
+    @ViewChild('nameTemplate') public name_template: TemplateRef<any>;
 
     private _profiles: {[key: string]: any} = {};
     set profiles(profiles: {[key: string]: any}) { this._profiles = profiles; }
@@ -46,9 +48,14 @@ export class ProfilesComponent extends CompanyTemplateComponent implements OnIni
 
     public ngOnInit() {
         this.getList(this.filter);
+    }
+
+    public ngAfterViewInit() {
         // TODO: improve for mobile
-        this.columns.push(new Column('first_name', 'first_name', 'first_name'));
-        this.columns.push(new Column('info', 'first_name', '', 'info', 'end center'));
+        // this.columns.push(new Column('first_name', 'first_name', 'first_name').setTemplate(this.name_template));
+        this.columns.push(new Column('first_name', 'first_name').setTemplate(this.name_template));
+        this.columns.push(new Column('charge.name', 'charge', '', ''));
+        this.columns.push(new Column('role.name', 'role', '', '', 'end center'));
     }
 
     public goToElement(element: Profile) {
@@ -73,11 +80,17 @@ export class ProfilesComponent extends CompanyTemplateComponent implements OnIni
         });
     }
 
-    public add() {
-        this.createElement();
-    }
+    // public add() {
+    //     console.log('--------------------------');
+    //     console.log('inside profiles add method');
+    //     console.log('--------------------------');
+    //     this.createElement();
+    // }
 
     public createElement() {
+        console.log('--------------------------');
+        console.log('inside profiles createElement method');
+        console.log('--------------------------');
         if (this.createFromDialog) {
             this.showProfileDialog();
 
@@ -91,7 +104,7 @@ export class ProfilesComponent extends CompanyTemplateComponent implements OnIni
             profile: profile ? profile : new Profile(),
             field: this.field
         };
-        console.log('should open field plot dialog');
+        console.log('should open profiles dialog');
         const dialogRef = this.matDialog.open(ProfileDialogComponent, {
             width: '720px',
             data: dialog_data

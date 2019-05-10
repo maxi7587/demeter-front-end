@@ -19,12 +19,13 @@
         <!-- class="mat-elevation-z2" -->
         <mat-list
             fxFlex="1 1 100"
-            *ngIf="user && companies && companies.results"
+            *ngIf="user && companies && companies?.results"
             class="mat-elevation-z2"
             style="padding: 0 !important"
             >
             <mat-list-item
-                *ngFor="let company of companies.results"
+                *ngFor="let company of companies?.results"
+                style="cursor: pointer"
                 (click)="goToCompany(company)"
                 >
                 <mat-icon mat-list-icon>work</mat-icon>
@@ -37,9 +38,8 @@
                     <mat-icon>settings</mat-icon>
                 </button>
             </mat-list-item>
-            <h4 *ngIf="companies.results.length === 0" class="mat-subheading-2">{{ "You don't have any companies yet." }}</h4>
             <!-- <mat-list-item
-                *ngFor="let company of companies.results"
+                *ngFor="let company of companies?.results"
                 (click)="goToCompany(company)"
                 >
                 <mat-icon mat-list-icon>work</mat-icon>
@@ -53,6 +53,27 @@
                 </button>
             </mat-list-item> -->
         </mat-list>
+        <div
+            class="app-basic-padding"
+            *ngIf="companies?.results.length === 0"
+            fxLayout="column"
+            fxLayoutAlign="start center"
+            fxLayoutGap.gt-sm="16px"
+            fxLayoutGap.lt-md="8px"
+            >
+            <h4 class="mat-subheading-1">{{ "You don't have any companies yet. Add one to start working." | translate }}</h4>
+            <button
+                class="app-basic-padding"
+                mat-button
+                name="new"
+                color="primary"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                [routerLink]="0"
+                >
+                <mat-icon style="height: 96px; width: 96px; font-size: 96px">add</mat-icon>
+            </button>
+        </div>
     </div>
     <mat-list
         fxHide.lt-md

@@ -56,7 +56,6 @@ export class TaskEditComponent extends CompanyTemplateComponent implements OnIni
     ) {
         super(router, activatedRoute, navigationService);
         this.task = this.activatedRoute.snapshot.data.task;
-        console.log('recieved task --->', this.task);
         for (let form_field in this.task_form.controls) {
             if (this.task[form_field]) {
                 this.task_form.controls[form_field].setValue(this.task[form_field]);
@@ -65,7 +64,6 @@ export class TaskEditComponent extends CompanyTemplateComponent implements OnIni
     }
 
     public ngOnInit() {
-        console.log('On init');
         if (!this.task.id || this.task.id === '0') {
             this.navigationService.actions.next(new SidenavActions(['save']));
         }
@@ -91,13 +89,10 @@ export class TaskEditComponent extends CompanyTemplateComponent implements OnIni
         this.task = { ...this.task, ...this.task_form.value };
         // this.task.created_by = ;
         // TODO: update task contact data before saving
-        console.log('me ----------->', this.me);
         this.task.created_by = this.me;
-        console.log(this.task);
         this.tasksService.save(this.task).subscribe((task: Task) => {
-            console.log('task saved', task);
             this.task = task;
-            console.log('this.task', this.task);
+            this.router.navigate(['..'], {relativeTo: this.activatedRoute});
         });
     }
 

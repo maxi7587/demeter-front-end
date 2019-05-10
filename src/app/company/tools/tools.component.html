@@ -3,7 +3,8 @@
         fxLayout="row"
         fxLayoutAlign="center start"
         fxLayoutGap="16px"
-        class="width-100"
+        style="padding: 16px"
+        class="width-100 app-basic-padding"
         >
         <app-table
             *ngIf="tools.results"
@@ -60,10 +61,10 @@
     </div>
 </ng-template>
 
-<mat-tab-group #tabGroup *ngIf="!showTabGroup">
+<mat-tab-group #tabGroup *ngIf="showTabGroup">
     <mat-tab>
         <ng-template
-            id="fields-tab"
+            id="tools-tab"
             mat-tab-label
             >
             Fields

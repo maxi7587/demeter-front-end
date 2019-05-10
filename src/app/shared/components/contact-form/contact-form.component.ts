@@ -62,7 +62,9 @@ export class ContactFormComponent implements OnInit {
         this.assignResourcePropertiesToForm(this.web_form, web);
         // TODO: suppont multiple social media links
         // this.social_media_form.setValue(social_media[0]);
-        this.assignResourcePropertiesToForm(this.social_media_form, social_media[0]);
+        if (social_media) {
+            this.assignResourcePropertiesToForm(this.social_media_form, social_media[0]);
+        }
         console.log(this.web_form);
     }
 

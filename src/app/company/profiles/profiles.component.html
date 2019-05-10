@@ -36,3 +36,7 @@
         </button>
     </mat-list>
 </div>
+
+<ng-template #nameTemplate let-element="element">
+    <span>{{ element.first_name + ' ' + element.last_name }}</span>
+</ng-template>

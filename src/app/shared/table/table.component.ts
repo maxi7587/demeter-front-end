@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { DRFCollection, DRFResource } from 'src/app/shared/basic-drf.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -30,22 +30,22 @@ export class TableComponent implements OnChanges, AfterViewInit {
 
     public constructor(
         public httpClient: HttpClient,
-        public oAuthService: OAuthService
+        public oAuthService: OAuthService,
+        public changeDetectorRef: ChangeDetectorRef
     ) { }
 
     public ngOnChanges() {
         this.dataSource.data = this.rows;
         this.displayedColumns = this.columns.map(column => column.key);
-        console.log('this.collection ----------->', this.collection);
     }
 
     public ngAfterViewInit() {
         this.paginator.length = this.collection.count;
+        this.changeDetectorRef.detectChanges();
     }
 
     public updatePage(pagination_event) {
         let destination: string;
-        console.log('pagination_event --->', pagination_event);
         let page_regex = /\?page=(\d+)/;
         let next: any = page_regex.exec(this.collection.next);
         if (next) {
@@ -56,24 +56,16 @@ export class TableComponent implements OnChanges, AfterViewInit {
         if (this.collection.previous !== null && !previous) {
             previous = 1;
         }
-        console.log('next --------------->', next);
-        console.log('previous --------------->', previous);
         if (this.overridePagination) {
             // TODO: crate overridePagination Output
             return;
         }
 
         if (pagination_event.pageIndex + 1 === next) {
-            console.log('------------------------------------------------');
-            console.log('GO TO NExT');
-            console.log('------------------------------------------------');
             destination = 'next';
         }
 
         if (pagination_event.pageIndex + 1 === previous || previous === 1) {
-            console.log('------------------------------------------------');
-            console.log('GO TO PREvIOUS');
-            console.log('------------------------------------------------');
             destination = 'previous';
         }
 
@@ -91,7 +83,6 @@ export class TableComponent implements OnChanges, AfterViewInit {
             { headers: headers }
         ).subscribe(
             (collection: DRFCollection<DRFResource>) => {
-                console.log('got next page collection --------->', collection);
                 this.collection = collection;
                 this.dataSource.data = collection.results;
                 this.paginator.length = collection.count;

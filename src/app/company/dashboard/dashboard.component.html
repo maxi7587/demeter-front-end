@@ -1,13 +1,12 @@
-<div
-    class="app-basic-padding"
-    ngStyle.lt-md="{ 'margin-bottom': '48px'}"
+<!-- <div
+    [ngStyle.lt-md]="{ 'margin-bottom': '48px'}"
     fxLayout.gt-sm="row wrap"
     fxLayout.lt-md="column"
     fxLayoutGap.gt-sm="16px grid"
     fxLayoutGap.lt-md="8px"
     ngClass.gt-sm="width-100"
     ngClass.lt-sm="width-100"
-    >
+    > -->
     <mat-tab-group mat-stretch-tabs #tabGroup class="width-100">
         <mat-tab>
             <ng-template
@@ -21,7 +20,7 @@
                 fxLayout.lt-md="column"
                 fxLayoutGap.gt-sm="16px grid"
                 fxLayoutGap.lt-md="8px"
-                class="width-100"
+                class="width-100 app-basic-padding"
                 style="height: auto !important; padding-top: 16px; padding-bottom: 16px; overflow: hidden"
                 >
                 <div
@@ -32,13 +31,13 @@
                     [ngStyle.lt-md]="{'max-width': '175px', 'margin': '8px'}" -->
                     <!-- fxFlex.gt-sm="1 1 calc(20% - 16px)" -->
                     <mat-card
-                        (click)="goToProfile(profile)"
+                        (click)="showProfileDialog(profile)"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
-                        <h4 class="mat-subheading-2">{{ profile.name + ' ' + profile.last_name }}</h4>
-                        <mat-card-content>
-                            <p>{{ profile.charge.name }}</p>
-                            <p>{{ profile.role }}</p>
+                        <h4 class="mat-subheading-2">{{ profile.first_name + ' ' + profile.last_name }}</h4>
+                        <mat-card-content fxLayout="column" fxLayoutGap="8px">
+                            <p>{{ profile.charge ? profile.charge.name : 'No charge assigned' }}</p>
+                            <p>{{ profile.role.name }}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>
@@ -48,7 +47,7 @@
                     <!-- [ngStyle.gt-xs]="{'max-width': '175px', 'margin-bottom': '16px'}"
                     fxFlex.gt-sm="1 1 calc(20% - 16px)" -->
                     <mat-card
-                        [routerLink]="'../profiles/0'"
+                        (click)="showProfileDialog()"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
                         <h4 class="mat-subheading-2">{{ 'Add profile' }}</h4>
@@ -71,7 +70,7 @@
                 fxLayout.lt-md="column"
                 fxLayoutGap.gt-sm="16px grid"
                 fxLayoutGap.lt-md="8px"
-                class="width-100"
+                class="width-100 app-basic-padding"
                 style="height: auto !important; padding-top: 16px; padding-bottom: 16px; overflow: hidden"
                 >
                 <div
@@ -110,7 +109,12 @@
                 >
                 Tasks
             </ng-template>
-            <div fxLayout="row">
+            <div
+                class="app-basic-padding"
+                fxLayout="row"
+                fxLayoutGap.gt-sm="16px"
+                fxLayoutGap.lt-md="8px"
+                >
                 <div
                     fxFlex="50%"
                     fxLayout="column"
@@ -122,13 +126,22 @@
                     <h4 class="mat-subheading-2">Not completed tasks</h4>
                     <mat-card
                         *ngFor="let task of uncompleted_tasks"
-                        (click)="goToTask(task)"
+                        (click)="showTaskDialog(task)"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
                         <h4 class="mat-subheading-2">{{ task.name }}</h4>
                         <mat-card-content>
                             <p>{{ task.status }}</p>
                             <p>{{ task.details || 'No details...' }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                    <mat-card
+                        (click)="showTaskDialog()"
+                        style="cursor: pointer; border-left: 4px solid #388e3c"
+                        >
+                        <h4 class="mat-subheading-2">{{ 'Add task' }}</h4>
+                        <mat-card-content>
+                            <p>{{ 'Add a new task' }}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>
@@ -143,7 +156,7 @@
                     <h4 class="mat-subheading-2">Completed tasks</h4>
                     <mat-card
                         *ngFor="let task of completed_tasks"
-                        (click)="goToTask(task)"
+                        (click)="showTaskDialog(task)"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
                         <h4 class="mat-subheading-2">{{ task.name }}</h4>
@@ -167,7 +180,7 @@
                 fxLayout.lt-md="column"
                 fxLayoutGap.gt-sm="16px grid"
                 fxLayoutGap.lt-md="8px"
-                class="width-100"
+                class="width-100 app-basic-padding"
                 style="height: auto !important; padding-top: 16px; padding-bottom: 16px; overflow: hidden"
                 >
                 <div
@@ -175,7 +188,7 @@
                     *ngFor="let tool of tools?.results"
                     >
                     <mat-card
-                        (click)="goToTool(tool)"
+                        (click)="showToolDialog(tool)"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
                         <h4 class="mat-subheading-2">{{ tool.name }}</h4>
@@ -188,7 +201,7 @@
                     [ngStyle.gt-sm]="{width: 'calc(25% - 16px)'}"
                     >
                     <mat-card
-                        [routerLink]="'../tools/0'"
+                        (click)="showToolDialog()"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
                         <h4 class="mat-subheading-2">{{ 'Add tool' }}</h4>
@@ -200,4 +213,4 @@
             </div>
         </mat-tab>
     </mat-tab-group>
-</div>
+<!-- </div> -->

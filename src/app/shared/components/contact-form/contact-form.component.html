@@ -15,6 +15,28 @@
         </mat-form-field>
     </form>
 
+    <!-- 'email', 'web_url', 'social_media' -->
+    <!-- Web -->
+    <form
+        [formGroup]="web_form"
+        fxLayout="row wrap"
+        fxLayoutAlign="start center"
+        fxLayoutGap="8px"
+        class="width-100"
+        >
+        <h3 class="mat-subheading-1" fxFlex="100">Web contact data</h3>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            <input matInput type="text" placeholder="E-mail" formControlName="email">
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            <input matInput type="text" placeholder="Website" formControlName="web_url">
+        </mat-form-field>
+    </form>
+
     <!-- 'country', 'state', 'city', 'street_name', 'street_number', 'floor', 'department', 'zip', 'details' -->
     <!-- Address -->
     <!-- fxFlex="80" -->
@@ -119,28 +141,6 @@
             fxFlex.gt-sm="calc(25% - 8px)"
             >
             <input matInput type="text" placeholder="Link" formControlName="link">
-        </mat-form-field>
-    </form>
-
-    <!-- 'email', 'web_url', 'social_media' -->
-    <!-- Web -->
-    <form
-        [formGroup]="web_form"
-        fxLayout="row wrap"
-        fxLayoutAlign="start center"
-        fxLayoutGap="8px"
-        class="width-100"
-        >
-        <h3 class="mat-subheading-1" fxFlex="100">Web contact data</h3>
-        <mat-form-field
-            fxFlex.gt-sm="calc(25% - 8px)"
-            >
-            <input matInput type="text" placeholder="E-mail" formControlName="email">
-        </mat-form-field>
-        <mat-form-field
-            fxFlex.gt-sm="calc(25% - 8px)"
-            >
-            <input matInput type="text" placeholder="Website" formControlName="web_url">
         </mat-form-field>
     </form>
 </div>

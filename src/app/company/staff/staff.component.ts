@@ -15,7 +15,7 @@ import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 export class StaffComponent extends CompanyTemplateComponent implements OnInit {
     @ViewChild('profiles') public profilesComponent: ProfilesComponent;
     @ViewChild('charges') public chargesComponent: ChargesComponent;
-    @ViewChild('contract_types') public contractTypesComponent: ContractTypesComponent;
+    @ViewChild('contractTypes') public contractTypesComponent: ContractTypesComponent;
     @ViewChild('tabGroup') public tabGroup: MatTabGroup;
 
     public tab_index = {
@@ -39,6 +39,7 @@ export class StaffComponent extends CompanyTemplateComponent implements OnInit {
     public add() {
         console.log('tab ----------->', this.tabGroup.selectedIndex);
         let selected_tab = this.tab_index[this.tabGroup.selectedIndex];
+        console.log('selected tab ----------->', selected_tab);
 
         switch (selected_tab) {
             case 'profiles':
@@ -48,6 +49,7 @@ export class StaffComponent extends CompanyTemplateComponent implements OnInit {
                 this.chargesComponent.createChargeDialog();
                 break;
             case 'contract_types':
+                console.log('inside contract_types add switch option');
                 this.contractTypesComponent.createContractTypeDialog();
                 break;
         }
@@ -65,17 +67,17 @@ export class StaffComponent extends CompanyTemplateComponent implements OnInit {
             case 'charges':
                 let charges_filter = {
                     ...this.chargesComponent.filters_form.value,
-                    ...{ name: filter }
+                    ...{ name: search_string_filter }
                 };
                 console.log('this.chargesComponent.filters_form.value --->', this.chargesComponent.filters_form.value);
-                console.log('filter --->', filter);
+                console.log('filter --->', search_string_filter);
                 console.log('charges_filter --->', charges_filter);
                 this.chargesComponent.getList(charges_filter);
                 break;
             case 'contract_types':
                 let tools_filter = {
                     ...this.contractTypesComponent.filters_form.value,
-                    ...{ name: filter }
+                    ...{ name: search_string_filter }
                 };
                 this.contractTypesComponent.getList(tools_filter);
                 break;

@@ -57,8 +57,10 @@ export class FieldPlotsComponent extends CompanyTemplateComponent implements OnI
 
         // Populate table columns
         // TODO: improve for mobile
-        this.columns.push(new Column('label', 'label', 'label'));
-        this.columns.push(new Column('info', 'label', '', 'info', 'end center'));
+        this.columns.push(new Column('label', 'label'));
+        this.columns.push(new Column('status', 'status'));
+        this.columns.push(new Column('graft', 'graft'));
+        this.columns.push(new Column('foot', 'foot'));
 
         this.filters_form.valueChanges
             .subscribe(

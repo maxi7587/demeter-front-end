@@ -2,7 +2,7 @@
     *ngIf="dataSource?.data?.length === 0 || !displayedColumns"
     class="mat-subheading-2"
     >
-    {{ 'This table is empty, you can start adding some resources.' | translate}}
+    {{ 'This table is empty, you can start adding some resources.' | translate }}
 </h3>
 <mat-table
     [dataSource]="dataSource"
@@ -11,13 +11,13 @@
     >
     <ng-container *ngFor="let column of columns" [matColumnDef]="column.key">
         <mat-header-cell *matHeaderCellDef>{{ column.title }}</mat-header-cell>
+        <!-- fxFlex="1 1 auto" -->
         <mat-cell
-            fxFlex="1 1 auto"
             *matCellDef="let element"
             fxLayout="row"
             fxLayoutGap="8px"
             fxLayoutAlign="{{ column.align || 'start center' }}"
-            style="padding: 8px"
+            style="padding-top: 8px; padding-bottom: 8px; cursor: pointer"
             >
             <ng-container *ngIf="column.icon">
                 <mat-icon>{{ column.icon }}</mat-icon>
@@ -30,7 +30,12 @@
                     {{ column.accessNestedProperty(element, column.key) | dynamic: column.pipe.pipe : (column.pipe.arg || element[column.pipe.element_key_arg]) }}
                 </span>
             </ng-container>
-            <ng-container *ngIf="!column.pipe">
+            <ng-container
+                [ngTemplateOutlet]="column.template"
+                [ngTemplateOutletContext]="{element: element}"
+                >
+            </ng-container>
+            <ng-container *ngIf="!column.pipe && !column.template">
                 <span>
                     {{ column.accessNestedProperty(element, column.key) }}
                 </span>
