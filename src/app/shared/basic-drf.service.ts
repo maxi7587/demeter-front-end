@@ -66,6 +66,7 @@ export class BasicDRFService<T extends DRFResource = DRFResource> {
             'Content-Type':  'application/json',
             'Authorization': this.oAuthService.authorizationHeader()
         });
+        console.log(`HEADERS FOR ${this.type}: ${this.headers}`);
 
         return this.headers;
     }

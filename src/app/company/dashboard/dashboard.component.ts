@@ -191,6 +191,7 @@ export class DashboardComponent implements OnInit {
             .subscribe(result => {
                 if (result) {
                     console.log('The dialog was closed', result);
+                    this.getProfiles();
                 }
             }
         );
