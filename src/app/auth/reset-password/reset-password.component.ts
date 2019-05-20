@@ -37,8 +37,9 @@ export class ResetPasswordComponent implements OnInit {
           )
           .subscribe(
               response => {
+                  this.router.navigate(['/auth']);
                   let snack_bar = this.matSnackBar.open(
-                      response.message,
+                      response.detail,
                       'Close',
                       { duration: 10000, verticalPosition: 'bottom', horizontalPosition: 'center' }
                   );

@@ -15,8 +15,8 @@ export class ChangePasswordService {
         token: string,
         new_password: string,
         new_password_confirmation: string
-    ): Observable<{message: string}> {
-        return <Observable<{message: string}>>this.httpClient.post(
+    ): Observable<{detail: string}> {
+        return <Observable<{detail: string}>>this.httpClient.post(
             environment.APIURL + 'change_password',
             {
                 email: email,

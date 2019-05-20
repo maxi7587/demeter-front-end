@@ -11,8 +11,8 @@ export class ResetPasswordService {
 
     public resetPassword(
         email: string
-    ): Observable<{message: string}> {
-        return <Observable<{message: string}>>this.httpClient.post(
+    ): Observable<{detail: string}> {
+        return <Observable<{detail: string}>>this.httpClient.post(
             environment.APIURL + 'reset_password',
             {
                 email: email

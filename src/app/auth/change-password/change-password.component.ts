@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UsersService } from 'src/app/shared/services/users.service';
+import { MatSnackBar } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UsersService } from 'src/app/shared/services/users.service';
 import { ChangePasswordService } from 'src/app/auth/change-password/change-password.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class ChangePasswordComponent implements OnInit {
     public constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute,
+        private matSnackBar: MatSnackBar,
         private changePasswordService: ChangePasswordService,
         private usersService: UsersService
     ) { }
@@ -40,6 +42,12 @@ export class ChangePasswordComponent implements OnInit {
           .subscribe(
               () => {
                   this.router.navigate([`/auth`]);
+                  let snack_bar = this.matSnackBar.open(
+                      'Passowrd successfully changed, you can login using your credentials',
+                      'Close',
+                      { duration: 10000, verticalPosition: 'bottom', horizontalPosition: 'center' }
+                  );
+                  snack_bar.onAction().subscribe(() => snack_bar.dismiss());
               }
           );
     }
