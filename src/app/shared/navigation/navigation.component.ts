@@ -71,6 +71,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
     }
 
     public logout() {
+        this.usersService.user = undefined;
         localStorage.clear();
         sessionStorage.clear();
         this.oAuthService.logOut();

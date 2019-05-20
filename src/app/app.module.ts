@@ -67,7 +67,7 @@ export class AppModule {
 
     private configOAuth() {
         this.oAuthService.requireHttps = false;
-        this.oAuthService.setStorage(sessionStorage);
+        this.oAuthService.setStorage(localStorage);
         this.oAuthService.tokenEndpoint = environment.APIURL + 'o/token/';
         // The SPA's id. Register SPA with this id at the auth-server
         this.oAuthService.clientId = environment.clientId;
