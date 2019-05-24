@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/auth/login/login.service';
 import { Router } from '@angular/router';
 import { UsersService, User } from 'src/app/shared/services/users.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -20,6 +21,7 @@ export class SignUpComponent implements OnInit {
 
     public constructor(
         public usersService: UsersService,
+        public loginService: LoginService,
         public router: Router
     ) { console.log('form group --->', this.sign_up_form); }
 
@@ -40,7 +42,16 @@ export class SignUpComponent implements OnInit {
         new_user.password = this.sign_up_form.value.password;
         new_user.is_staff = false;
         this.usersService.save(new_user).subscribe(
-            user => this.router.navigate([`/users/${user.id}/companies`])
+            // login before navigating
+            user => {
+                this.loginService
+                    .login(new_user.username, new_user.password)
+                    .then(
+                        () => {
+                            this.router.navigate([`/users/${user.id}/companies`]);
+                        }
+                    );
+            }
         );
     }
 
