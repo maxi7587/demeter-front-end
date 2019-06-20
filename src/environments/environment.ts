@@ -10,9 +10,9 @@ export const environment = {
     env: 'develop',
     MPURL: mpurl,
     APIURL: mpurl,
-    clientId: 'c6xuho0aBs6GKMGqwbVPgNIJILKfgGK2mxh0HleW',
+    clientId: '1g1AOeu8vczjmddzbNnQMLTAr9wab1U53Q6Ar4v2',
     clientSecret:
-        `u4Qx87NiWWmibYTM5O1Ejhdu43xyBJ9BLY4parQBzHbdvJ4ylTchxWKfZSnqz5HoXqOXsG1Yhl1fLbObWCiegFd8cGculX9SsWPQ5qEmhVsDamgM8nCmFj2eus54upcA`,
+        `XWvy7M6EtDHSJQ9Yb8ohkYBhfdwGwGvsJW6hO9hpXvTI0ombGVwo1weQBNqGZmjxQHbVwuXQPxdkXNQU4DuDSOqtADM6uc0JC2eMA5TCnJXI2TUOI8Uo1WqbOH7mDjDh`,
     whiteListedDomains: ['127.0.0.1:8000', '127.0.0.1', '192.168.0.12:8000']
 };
 

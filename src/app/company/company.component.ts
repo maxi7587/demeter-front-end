@@ -32,7 +32,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
                 user => {
                     let user_company_profile = this.getUserCompanyProfile(user, activatedRoute.snapshot.params.company_id);
                     let sections_links: Array<NavigationSidenavLink>;
-                    if (user_company_profile.role === 'Adminitrator') {
+                    if (user_company_profile.role === 'Administrator') {
                         sections_links = [
                             new NavigationSidenavLink(
                                 'Change company', 'users/' + this.route_data.user.id + '/companies', 'arrow_back'

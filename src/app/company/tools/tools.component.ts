@@ -20,7 +20,7 @@ export class ToolsComponent extends CompanyTemplateComponent implements OnInit {
 
     @Input() public showActions = true;
     @Input() public tableClasses: Array<string>;
-    @Input() public filter: string;
+    @Input() public filter: {[key: string]: any};
     @Input() public field: Field;
     @Input() public overrideRowClick: boolean;
     @Output() public rowClick: EventEmitter<Task> = new EventEmitter();
@@ -76,7 +76,6 @@ export class ToolsComponent extends CompanyTemplateComponent implements OnInit {
     }
 
     public getList(filter) {
-        console.log('inside getList', filter);
         this.toolsService
             // .all(undefined, undefined, 'name=&name__in=&name__startswith=&assigned_worker=7&assigned_worker__id=').subscribe(tasks => {
             .all(undefined, undefined, filter).subscribe(tools => {
@@ -100,8 +99,6 @@ export class ToolsComponent extends CompanyTemplateComponent implements OnInit {
 
             return;
         }
-        console.log('------ will navigate to tool-edit ------', element);
-
         this.router.navigate([this.router.url, element.id]);
         // this.router.navigate([profile_id.toString(), { relativeTo: this.activatedRoute }]);
     }
@@ -117,7 +114,6 @@ export class ToolsComponent extends CompanyTemplateComponent implements OnInit {
     }
 
     public createToolDialog(): void {
-        console.log('should open tool dialog');
         const dialogRef = this.matDialog.open(ToolDialogComponent, {
             width: '720px',
             data: { field: this.field }
@@ -126,8 +122,7 @@ export class ToolsComponent extends CompanyTemplateComponent implements OnInit {
         dialogRef.afterClosed()
             .subscribe(result => {
                 if (result) {
-                    console.log('The dialog was closed', result);
-                    this.getList(this.filters_form.value);
+                    this.getList({...this.filter, ...this.filters_form.value});
                 }
             }
         );
