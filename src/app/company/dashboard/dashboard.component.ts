@@ -141,7 +141,6 @@ export class DashboardComponent implements OnInit {
             profile: profile ? profile : new Profile(),
             field: profile.field
         };
-        console.log('should open profiles dialog');
         const dialogRef = this.matDialog.open(ProfileDialogComponent, {
             width: '720px',
             data: dialog_data
@@ -150,7 +149,7 @@ export class DashboardComponent implements OnInit {
         dialogRef.afterClosed()
             .subscribe(result => {
                 if (result) {
-                    console.log('The dialog was closed', result);
+                    this.getProfiles();
                 }
             }
         );
@@ -161,7 +160,6 @@ export class DashboardComponent implements OnInit {
             task = new Task();
         }
 
-        console.log('should open field plot dialog');
         const dialogRef = this.matDialog.open(TaskDialogComponent, {
             width: '720px',
             data: { task: task }
@@ -170,7 +168,7 @@ export class DashboardComponent implements OnInit {
         dialogRef.afterClosed()
             .subscribe(result => {
                 if (result) {
-                    console.log('The dialog was closed', result);
+                    this.getTasks();
                 }
             }
         );
@@ -181,7 +179,6 @@ export class DashboardComponent implements OnInit {
             tool = new Tool();
         }
 
-        console.log('should open field plot dialog');
         const dialogRef = this.matDialog.open(ToolDialogComponent, {
             width: '720px',
             data: { tool: tool }
@@ -190,8 +187,7 @@ export class DashboardComponent implements OnInit {
         dialogRef.afterClosed()
             .subscribe(result => {
                 if (result) {
-                    console.log('The dialog was closed', result);
-                    this.getProfiles();
+                    this.getTools();
                 }
             }
         );
