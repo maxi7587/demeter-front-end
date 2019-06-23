@@ -17,6 +17,8 @@ export class FieldPlotFormComponent implements OnInit {
     @Input() public field_plot: FieldPlot = new FieldPlot();
     @Input() public field: Field;
     @Input() public measure_units: DRFCollection<MeasureUnit>;
+    @Input() public area_measure_units: DRFCollection<MeasureUnit>;
+    @Input() public length_measure_units: DRFCollection<MeasureUnit>;
 
     public field_plot_form: FormGroup = new FormGroup({
         code: new FormControl(),
@@ -85,12 +87,22 @@ export class FieldPlotFormComponent implements OnInit {
         console.log('--------------------------------------------------------------');
         if (!this.measure_units) {
             this.measureUnitsService
-                .all()
+                .all(undefined, undefined, { quantity_type: 'area' })
                 .subscribe(
                     measure_units => {
-                        this.measure_units = measure_units;
+                        this.area_measure_units = measure_units;
                         console.log('--------------------------------------------------------------');
-                        console.log('measure_units --->', this.measure_units, measure_units);
+                        console.log('measure_units --->', this.area_measure_units);
+                        console.log('--------------------------------------------------------------');
+                    }
+                );
+            this.measureUnitsService
+                .all(undefined, undefined, { quantity_type: 'length' })
+                .subscribe(
+                    measure_units => {
+                        this.length_measure_units = measure_units;
+                        console.log('--------------------------------------------------------------');
+                        console.log('measure_units --->', this.length_measure_units);
                         console.log('--------------------------------------------------------------');
                     }
                 );

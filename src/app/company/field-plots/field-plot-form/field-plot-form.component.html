@@ -41,9 +41,10 @@
         fxFlex.gt-sm="calc(33% - 8px)"
         >
         <mat-select placeholder="Area measure unit" formControlName="area_measure_unit">
+            <!-- IMPORTANT: have to use id as value because measure units is not a nested resource, it's a primary key -->
             <mat-option
-                *ngFor="let unit of measure_units?.results"
-                [value]="unit"
+                *ngFor="let unit of area_measure_units?.results"
+                [value]="unit.id"
                 >
                 {{ unit.id }}
             </mat-option>
@@ -63,9 +64,10 @@
         fxFlex.gt-sm="calc(33% - 8px)"
         >
         <mat-select placeholder="Field elements distance measure unit" formControlName="field_rows_distance_measure_unit">
+            <!-- IMPORTANT: have to use id as value because measure units is not a nested resource, it's a primary key -->
             <mat-option
-                *ngFor="let unit of measure_units?.results"
-                [value]="unit"
+                *ngFor="let unit of length_measure_units?.results"
+                [value]="unit.id"
                 >
                 {{ unit.id }}
             </mat-option>
@@ -91,9 +93,10 @@
         fxFlex.gt-sm="calc(33% - 8px)"
         >
         <mat-select placeholder="Plants distance measure unit" formControlName="plants_distance_measure_unit">
+            <!-- IMPORTANT: have to use id as value because measure units is not a nested resource, it's a primary key -->
             <mat-option
-                *ngFor="let unit of measure_units?.results"
-                [value]="unit"
+                *ngFor="let unit of length_measure_units?.results"
+                [value]="unit.id"
                 >
                 {{ unit.id }}
             </mat-option>
