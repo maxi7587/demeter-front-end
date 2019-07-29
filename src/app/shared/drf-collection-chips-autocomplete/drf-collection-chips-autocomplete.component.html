@@ -1,0 +1,57 @@
+<form [formGroup]="search_form" *ngIf="collection" class="width-100">
+    <mat-form-field class="width-100">
+        <mat-chip-list
+            #chipList
+            aria-label="Chip autocomplete selection"
+            >
+            <mat-chip
+                *ngFor="let option of activeOptions"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(option)"
+                >
+                {{ option.name }}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <!-- <input
+                placeholder="New fruit..."
+                #fruitInput
+                [formControl]="fruitCtrl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)"
+                > -->
+            <!-- <input
+                type="text"
+                placeholder="{{ placeholder || 'Buscar' }}"
+                matInput
+                formControlName="search"
+                [matAutocomplete]="auto"
+                > -->
+            <input
+                type="text"
+                placeholder="{{ placeholder }}"
+                matInput
+                #chipsAutocompleteInput
+                formControlName="search"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)"
+                >
+        </mat-chip-list>
+        <!-- <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith" (optionSelected)="optionSelected.emit($event)"> -->
+        <!-- [displayWith]="displayWith" -->
+        <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="selected($event)"
+            >
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{ option[searchField] }}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>

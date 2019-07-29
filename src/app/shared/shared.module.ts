@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { DrfCollectionChipsAutocompleteComponent } from 'src/app/shared/drf-collection-chips-autocomplete/drf-collection-chips-autocomplete.component';
+import { ChipsAutocompleteComponent } from 'src/app/shared/chips-autocomplete/chips-autocomplete.component';
 import { MeasureUnitsService } from 'src/app/shared/services/measure-units.service';
 import { ContactsService } from 'src/app/shared/services/contacts/contacts.service';
 import { ChargesService } from 'src/app/shared/services/charges.service';
@@ -37,8 +39,10 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         DynamicPipe,
         NavigationComponent,
         AutocompleteComponent,
+        ChipsAutocompleteComponent,
         ExpandableInputComponent,
         DrfCollectionAutocompleteComponent,
+        DrfCollectionChipsAutocompleteComponent,
         ContactFormComponent,
         AppExpansionPanelComponent,
         FlexFormContainerComponent,
@@ -65,9 +69,11 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         DynamicPipe,
         NavigationComponent,
         AutocompleteComponent,
+        ChipsAutocompleteComponent,
         TranslateModule,
         ExpandableInputComponent,
         DrfCollectionAutocompleteComponent,
+        DrfCollectionChipsAutocompleteComponent,
         AppExpansionPanelComponent,
         ContactFormComponent,
         FlexFormContainerComponent,

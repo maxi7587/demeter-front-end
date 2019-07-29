@@ -84,15 +84,17 @@
                 <mat-option *ngFor="let task_type of task_types.results" value="task_type">{{ task_type.name }}</mat-option>
             </mat-select>
         </mat-form-field>
-        <app-drf-collection-autocomplete
+        <app-drf-collection-chips-autocomplete
             fxFlex.gt-sm="calc(50% - 8px)"
             [service]="toolsService"
-            [activeOption]="task?.tool"
+            [filters]="{field: task?.field?.id}"
+            [disabled]="!task?.field"
+            [activeOptions]="task?.tool"
             searchField="name"
             placeholder="Tool"
             (optionSelected)="updateForm('tool', $event.option.value)"
             >
-        </app-drf-collection-autocomplete>
+        </app-drf-collection-chips-autocomplete>
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >

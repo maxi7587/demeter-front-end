@@ -11,7 +11,7 @@ import { MatAutocomplete } from '@angular/material/autocomplete';
   styleUrls: ['./drf-collection-autocomplete.component.scss']
 })
 export class DrfCollectionAutocompleteComponent implements OnInit {
-    @ViewChild('matAutocomplete') public autocomplete: MatAutocomplete;
+    @ViewChild('auto') public autocomplete: MatAutocomplete;
 
     @Input() service: BasicDRFService<any>;
     @Input() searchField: string;
