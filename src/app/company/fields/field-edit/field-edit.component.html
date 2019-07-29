@@ -135,7 +135,7 @@
             <!-- [overrideRowClick]="true" -->
             <!-- (rowClick)="showFieldPlotsDialog($event)" -->
             <app-field-plots
-                *ngIf="field.id && field.id !== 0"
+                *ngIf="field.id"
                 class="width-100"
                 [showActions]="true"
                 [route]="field_plots_route"
@@ -160,7 +160,7 @@
             <!-- [overrideCreate]="true"
             (createButton)="createTaskDialog()" -->
             <app-tasks
-                *ngIf="field.id && field.id !== 0"
+                *ngIf="field.id"
                 class="width-100"
                 [showActions]="true"
                 [showTabGroup]="false"
@@ -189,7 +189,7 @@
             <!-- [overrideCreate]="true"
             (createButton)="createToolDialog()" -->
             <app-tools
-                *ngIf="field.id && field.id !== 0"
+                *ngIf="field.id"
                 class="width-100"
                 [showActions]="true"
                 [showTabGroup]="false"
@@ -218,7 +218,7 @@
             <!-- [overrideCreate]="true"
             (createButton)="createToolDialog()" -->
             <app-profiles
-                *ngIf="field.id && field.id !== 0"
+                *ngIf="field.id"
                 class="width-100"
                 [showActions]="true"
                 [filter]="{ 'field': this.field.id }"

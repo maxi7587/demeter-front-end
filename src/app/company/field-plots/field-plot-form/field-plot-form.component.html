@@ -116,7 +116,15 @@
     <mat-form-field
         fxFlex.gt-sm="calc(33% - 8px)"
         >
-        <input matInput type="text" placeholder="Anit hail net" formControlName="anit_hail_net">
+        <mat-select placeholder="Anit hail net" formControlName="anit_hail_net">
+            <mat-option
+                *ngFor="let anit_hail_net_option of [{option_name: 'Yes', value: true}, {option_name: 'No', value: false}]"
+                [value]="anit_hail_net_option.value"
+                >
+                {{ anit_hail_net_option.option_name | translate }}
+            </mat-option>
+        </mat-select>
+        <!-- <input matInput type="text" placeholder="Anit hail net" formControlName="anit_hail_net"> -->
     </mat-form-field>
     <mat-form-field
         fxFlex.gt-sm="calc(33% - 8px)"
