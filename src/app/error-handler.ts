@@ -29,9 +29,11 @@ export class GlobalErrorHandler implements ErrorHandler {
     public handleDRFErrors(error: {[key: string]: any}) {
         for (let error_key in error) {
             if (typeof(error[error_key]) === 'string') {
-                this.showErrorInSnackBar(error[error_key]);
+                this.showErrorInSnackBar(`${error_key}: ${error[error_key]}`);
             } else if (error[error_key] instanceof Array) {
-                this.showErrorInSnackBar(error[error_key][0]);
+                for (let each_error of error[error_key]) {
+                    this.showErrorInSnackBar(`${error_key}: ${each_error}`);
+                }
             } else if (
                 typeof error.error === 'object' && error.error !== null
             ) {
