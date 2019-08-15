@@ -1,5 +1,5 @@
 import { Component, OnChanges, Input, Output, EventEmitter, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { DRFCollection, DRFResource } from 'src/app/shared/basic-drf.service';
+import { DRFCollection, DRFResource, BasicDRFService } from 'src/app/shared/basic-drf.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Column } from './table-elements';
@@ -14,6 +14,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 })
 export class TableComponent implements OnChanges, AfterViewInit {
 
+    @Input() public service: BasicDRFService;
     @Input() public columns: Array<Column>;
     @Input() public rows: Array<{[key: string]: any}>;
     @Input() public tableClasses: Array<string>;
@@ -88,6 +89,14 @@ export class TableComponent implements OnChanges, AfterViewInit {
                 this.paginator.length = collection.count;
             }
         );
+    }
+
+    public rowClickMenu(row) {
+        /**/
+    }
+
+    public performAction(event: {action: string; item: any}) {
+        console.log('should perform action: ', event.action);
     }
 
 }

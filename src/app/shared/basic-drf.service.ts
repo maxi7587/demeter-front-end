@@ -168,4 +168,12 @@ export class BasicDRFService<T extends DRFResource = DRFResource> {
             return (<Observable<T>>this.post(resource));
         }
     }
+
+    public delete(id, route?, headers?): Observable<any> {
+        return this.httpClient.delete<T>(
+            environment.APIURL +  (route || this.type) + '/' + id + '/',
+            // TODO: remove header from here... oauth sendAccessTokenConfig should work
+            { headers: headers || this.getAuthorizationHeaders() }
+        );
+    }
 }

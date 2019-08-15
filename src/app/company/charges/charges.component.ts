@@ -43,7 +43,7 @@ export class ChargesComponent extends CompanyTemplateComponent implements OnInit
 
     public constructor(
         public matDialog: MatDialog,
-        private chargesService: ChargesService,
+        public chargesService: ChargesService,
         protected router: Router,
         protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
@@ -99,6 +99,11 @@ export class ChargesComponent extends CompanyTemplateComponent implements OnInit
             return;
         }
         this.router.navigate([this.router.url, '0']);
+    }
+
+    public deleteElement(element) {
+        // NOTE: implement delete
+        console.log(`should delete element ${element}`);
     }
 
     public createChargeDialog(): void {

@@ -44,7 +44,13 @@
     </ng-container>
 
     <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> -->
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClick.emit(row)"></mat-row>
+    <!-- <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClick.emit(row)"></mat-row> -->
+    <mat-row
+        *matRowDef="let row; columns: displayedColumns;"
+        (click)="rowClickMenu(row)"
+        (contextmenu)="floatingMenu.onContextMenu($event, row)"
+        >
+    </mat-row>
 </mat-table>
 <mat-paginator
     #paginator
@@ -54,5 +60,11 @@
     [hidePageSize]="true"
     [pageSizeOptions]="[5, 10, 25, 100]"
     (page)="updatePage($event)"
+    (actionsClick)="performAction($event)"
     >
 </mat-paginator>
+<app-floating-menu
+    [service]="service"
+    #floatingMenu
+    >
+</app-floating-menu>

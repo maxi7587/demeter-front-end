@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>{{ 'delete confirmation' | translate | titlecase }}</h1>
+<mat-dialog-content>
+    <pre>{{ data | json }}</pre>
+    <p [innerHTML]="data?.text"></p>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button (click)="delete()" color="primary">Delete</button>
+</mat-dialog-actions>

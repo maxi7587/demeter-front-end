@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { DeleteConfirmationDialogComponent } from 'src/app/shared/delete-confirmation/delete-confirmation-dialog.component';
+import { FloatingMenuComponent } from 'src/app/shared/floating-menu/floating-menu.component';
 import {
     DrfCollectionChipsAutocompleteComponent
 } from 'src/app/shared/drf-collection-chips-autocomplete/drf-collection-chips-autocomplete.component';
@@ -36,6 +38,7 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
 
 @NgModule({
     declarations: [
+        FloatingMenuComponent,
         TableComponent,
         DynamicPipe,
         NavigationComponent,
@@ -46,6 +49,7 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         ContactFormComponent,
         AppExpansionPanelComponent,
         FlexFormContainerComponent,
+        DeleteConfirmationDialogComponent,
         ActionsPadComponent
     ],
     imports: [
@@ -76,6 +80,8 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         AppExpansionPanelComponent,
         ContactFormComponent,
         FlexFormContainerComponent,
+        FloatingMenuComponent,
+        DeleteConfirmationDialogComponent,
         ActionsPadComponent
     ],
     providers: [
@@ -93,6 +99,9 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         UsersService,
         MeasureUnitsService,
         ContactsService
+    ],
+    entryComponents: [
+        DeleteConfirmationDialogComponent
     ]
 })
 export class SharedModule { }
