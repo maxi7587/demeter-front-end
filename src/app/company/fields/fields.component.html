@@ -18,7 +18,7 @@
                 *ngIf="fields.results"
                 [columns]="columns"
                 [rows]="fields.results"
-                (rowClick)="goToElement($event.id)"
+                (edit)="goToElement($event.id)"
                 [collection]="fields"
                 >
             </app-table>

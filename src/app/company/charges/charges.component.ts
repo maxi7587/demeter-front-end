@@ -101,13 +101,7 @@ export class ChargesComponent extends CompanyTemplateComponent implements OnInit
         this.router.navigate([this.router.url, '0']);
     }
 
-    public deleteElement(element) {
-        // NOTE: implement delete
-        console.log(`should delete element ${element}`);
-    }
-
     public createChargeDialog(): void {
-        console.log('should open charge dialog');
         const dialogRef = this.matDialog.open(ChargeDialogComponent, {
             width: '360px',
             data: {}
@@ -116,7 +110,6 @@ export class ChargesComponent extends CompanyTemplateComponent implements OnInit
         dialogRef.afterClosed()
             .subscribe(result => {
                 if (result) {
-                    console.log('The dialog was closed', result);
                     this.getList(this.filters_form.value);
                 }
             }

@@ -12,7 +12,7 @@
             [rows]="tasks.results"
             [collection]="tasks"
             [tableClasses]="tableClasses"
-            (rowClick)="goToElement($event)"
+            (edit)="goToElement($event)"
             >
         </app-table>
         <div fxFlex fxHide.lt-md>

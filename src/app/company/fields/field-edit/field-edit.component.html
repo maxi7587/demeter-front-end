@@ -133,7 +133,7 @@
             mat-tab-content
             >
             <!-- [overrideRowClick]="true" -->
-            <!-- (rowClick)="showFieldPlotsDialog($event)" -->
+            <!-- (edit)="showFieldPlotsDialog($event)" -->
             <app-field-plots
                 *ngIf="field.id"
                 class="width-100"
@@ -166,7 +166,7 @@
                 [showTabGroup]="false"
                 [filter]="{ 'field': this.field.id }"
                 [overrideRowClick]="true"
-                (rowClick)="goToTask($event)"
+                (edit)="goToTask($event)"
                 [field]="field"
                 [createFromDialog]="true"
                 #tasks
@@ -195,7 +195,7 @@
                 [showTabGroup]="false"
                 [filter]="{ 'field': this.field.id }"
                 [overrideRowClick]="true"
-                (rowClick)="goToTool($event)"
+                (edit)="goToTool($event)"
                 [field]="field"
                 [createFromDialog]="true"
                 #tools

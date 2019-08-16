@@ -217,7 +217,7 @@
                 [filter]="{ 'assigned_worker': this.profile.id }"
                 [overrideRowClick]="true"
                 [createFromDialog]="true"
-                (rowClick)="goToTask($event)"
+                (edit)="goToTask($event)"
                 #tasks
                 >
             </app-tasks>

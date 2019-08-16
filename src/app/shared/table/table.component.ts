@@ -22,6 +22,8 @@ export class TableComponent implements OnChanges, AfterViewInit {
     @Input() public overridePagination: boolean;
 
     @Output() public rowClick: EventEmitter<any> = new EventEmitter<any>();
+    @Output() public edit: EventEmitter<any> = new EventEmitter<any>();
+    @Output() public delete: EventEmitter<any> = new EventEmitter<any>();
     @Output() public paginationChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
 
     @ViewChild('paginator') public paginator: MatPaginator;
@@ -92,11 +94,12 @@ export class TableComponent implements OnChanges, AfterViewInit {
     }
 
     public rowClickMenu(row) {
-        /**/
+        this.rowClick.emit(row);
     }
 
     public performAction(event: {action: string; item: any}) {
-        console.log('should perform action: ', event.action);
+        console.log('should perform action: ', event.action, event.item);
+        this[event.action].emit(event.item);
     }
 
 }

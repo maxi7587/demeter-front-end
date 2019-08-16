@@ -9,7 +9,7 @@
         *ngIf="profiles.results"
         [columns]="columns"
         [rows]="profiles.results"
-        (rowClick)="goToElement($event)"
+        (edit)="goToElement($event)"
         [collection]="profiles"
     >
     </app-table>

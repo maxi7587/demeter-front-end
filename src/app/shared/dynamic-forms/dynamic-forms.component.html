@@ -1,0 +1,42 @@
+<form
+    [ngClass]="form.classes"
+    [formGroup]="form"
+    [fxFlex]="form.fx_flex"
+    [fxLayout]="form.fx_layout"
+    [fxLayoutAlign]="form.fx_layout_align"
+    >
+    <app-flex-form-container [ngClass]="form.flex_form_container_classes">
+        <ng-container *ngFor="let field of form.fields">
+            <mat-form-field
+                [fxFlex]="field.form_field_fx_flex"
+                >
+                <input
+                    matInput
+                    [type]="field.input_type"
+                    [placeholder]="field.placeholder"
+                    [formControlName]="field.form_control_name"
+                    >
+                <mat-select
+                    [placeholder]="field.placeholder"
+                    [formControlName]="field.form_control_name"
+                    >
+                    <mat-option
+                        *ngFor="let option of field.options"
+                        [value]="option.value"
+                        >
+                        {{ option.displayed_value }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <app-drf-collection-autocomplete
+                [fxFlex]="field.form_field_fx_flex"
+                [service]="field.service"
+                [activeOption]="field.active_option"
+                [searchField]="field.searchField"
+                [placeholder]="field.placeholder"
+                (optionSelected)="field.optionSelected(field.key, $event.option.value)"
+                >
+            </app-drf-collection-autocomplete>
+        </ng-container>
+    </app-flex-form-container>
+</form>

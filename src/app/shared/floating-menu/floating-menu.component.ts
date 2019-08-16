@@ -31,7 +31,7 @@ export class FloatingMenuComponent {
 
     public edit(item: Item) {
         console.log(`Click on edit for ${item.id}`);
-        this.actionsClick.emit({action: 'edit', item: 'item'});
+        this.actionsClick.emit({action: 'edit', item: item});
     }
 
     public delete(item: Item) {

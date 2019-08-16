@@ -12,7 +12,8 @@
         [rows]="charges.results"
         [tableClasses]="tableClasses"
         [collection]="charges"
-        (rowClick)="goToElement($event)"
+        (edit)="goToElement($event)"
+        (delete)="service.delete($event.id)"
         >
     </app-table>
     <div fxFlex fxHide.lt-md>

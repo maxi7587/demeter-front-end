@@ -47,7 +47,7 @@
     <!-- <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClick.emit(row)"></mat-row> -->
     <mat-row
         *matRowDef="let row; columns: displayedColumns;"
-        (click)="rowClickMenu(row)"
+        (click)="floatingMenu.onContextMenu($event, row)"
         (contextmenu)="floatingMenu.onContextMenu($event, row)"
         >
     </mat-row>
@@ -65,6 +65,7 @@
 </mat-paginator>
 <app-floating-menu
     [service]="service"
+    (actionsClick)="performAction($event)"
     #floatingMenu
     >
 </app-floating-menu>
