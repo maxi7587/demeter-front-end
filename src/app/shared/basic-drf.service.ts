@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CustomForm } from 'src/app/shared/dynamic-forms/dynamic-forms.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -176,4 +177,9 @@ export class BasicDRFService<T extends DRFResource = DRFResource> {
             { headers: headers || this.getAuthorizationHeaders() }
         );
     }
+
+    /*
+     * createForm method should be implemented in child classes
+     */
+    public createForm(): CustomForm { return new CustomForm(); }
 }

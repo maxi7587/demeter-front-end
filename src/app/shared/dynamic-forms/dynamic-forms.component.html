@@ -7,16 +7,25 @@
     >
     <app-flex-form-container [ngClass]="form.flex_form_container_classes">
         <ng-container *ngFor="let field of form.fields">
+            <h3
+                *ngIf="field.type === 'title'"
+                [ngClass]="field.classes"
+                [fxFlex]="field.fx_flex"
+                >
+                {{ field.content }}
+            </h3>
             <mat-form-field
-                [fxFlex]="field.form_field_fx_flex"
+                [fxFlex]="field.fx_flex"
                 >
                 <input
                     matInput
+                    *ngIf="field.type === 'input'"
                     [type]="field.input_type"
                     [placeholder]="field.placeholder"
                     [formControlName]="field.form_control_name"
                     >
                 <mat-select
+                    *ngIf="field.type === 'select'"
                     [placeholder]="field.placeholder"
                     [formControlName]="field.form_control_name"
                     >
@@ -29,7 +38,8 @@
                 </mat-select>
             </mat-form-field>
             <app-drf-collection-autocomplete
-                [fxFlex]="field.form_field_fx_flex"
+                *ngIf="field.type === 'autocomplete'"
+                [fxFlex]="field.fx_flex"
                 [service]="field.service"
                 [activeOption]="field.active_option"
                 [searchField]="field.searchField"
