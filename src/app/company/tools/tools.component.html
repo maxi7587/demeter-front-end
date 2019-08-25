@@ -9,6 +9,7 @@
         <app-table
             *ngIf="tools.results"
             fxFlex="1 1 100"
+            [service]="toolsService"
             [collection]="tools"
             [columns]="columns"
             [rows]="tools.results"

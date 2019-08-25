@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { DynamicFormComponent } from 'src/app/shared/dynamic-forms/dynamic-forms.component';
+import { FullTableComponent } from 'src/app/shared/list/full-table.component';
 import { DeleteConfirmationDialogComponent } from 'src/app/shared/delete-confirmation/delete-confirmation-dialog.component';
 import { FloatingMenuComponent } from 'src/app/shared/floating-menu/floating-menu.component';
 import {
@@ -50,6 +52,8 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         AppExpansionPanelComponent,
         FlexFormContainerComponent,
         DeleteConfirmationDialogComponent,
+        FullTableComponent,
+        DynamicFormComponent,
         ActionsPadComponent
     ],
     imports: [
@@ -82,6 +86,8 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         FlexFormContainerComponent,
         FloatingMenuComponent,
         DeleteConfirmationDialogComponent,
+        FullTableComponent,
+        DynamicFormComponent,
         ActionsPadComponent
     ],
     providers: [

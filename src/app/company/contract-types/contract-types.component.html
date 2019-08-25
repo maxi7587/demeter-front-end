@@ -7,6 +7,7 @@
     <app-table
         *ngIf="contract_types.results"
         fxFlex="1 1 100"
+        [service]="contractTypesService"
         [columns]="columns"
         [rows]="contract_types.results"
         [tableClasses]="tableClasses"

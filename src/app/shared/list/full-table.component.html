@@ -1,0 +1,84 @@
+<ng-template #list>
+    <pre>{{ results | json }}</pre>
+    <div
+        fxLayout="row"
+        fxLayoutAlign="center start"
+        fxLayoutGap="16px"
+        class="width-100 app-basic-padding"
+        >
+        <app-table
+            *ngIf="resources.results"
+            fxFlex="1 1 100"
+            [service]="service"
+            [columns]="columns"
+            [rows]="resources.results"
+            [collection]="resources"
+            [tableClasses]="tableClasses"
+            (edit)="goToElement($event)"
+            >
+        </app-table>
+        <div fxFlex fxHide.lt-md>
+            <mat-list
+                *ngIf="showActions"
+                >
+                <mat-list-item>
+                    <button
+                        mat-raised-button
+                        name="new"
+                        color="primary"
+                        fxLayout="row"
+                        fxLayoutAlign="center center"
+                        (click)="createElement()"
+                        >
+                        <mat-icon>add</mat-icon>
+                        New task
+                    </button>
+                </mat-list-item>
+            </mat-list>
+            <form
+                [formGroup]="service.filters_form"
+                >
+                <mat-list>
+                    <h3 mat-subheader>Filters</h3>
+                    <mat-list-item>
+                        <ng-container *ngFor="let filter of service.filters_form.controls | keyvalue">
+                            <mat-form-field *ngIf="filter.value.ffc_type === 'select'">
+                                    <mat-select
+                                        [placeholder]="filter.value.ffc_placeholder"
+                                        [formControlName]="filter.key"
+                                        [value]="filter.value.ffc_value"
+                                        >
+                                        <mat-option *ngFor="let option of filter.value.ffc_select_options" [value]="option.value">{{ option.text }}</mat-option>
+                                    </mat-select>
+                            </mat-form-field>
+                            <mat-form-field *ngIf="filter.value.ffc_type === 'input'">
+                                    <input
+                                        [value]="filter.value.ffc_value"
+                                        [placeholder]="filter.value.ffc_placeholder"
+                                        [formControlName]="filter.key"
+                                        >
+                            </mat-form-field>
+                        </ng-container>
+                    </mat-list-item>
+                </mat-list>
+            </form>
+        </div>
+    </div>
+</ng-template>
+
+<!-- <mat-tab-group #tabGroup *ngIf="showTabGroup">
+    <mat-tab>
+        <ng-template
+            id="tasks-tab"
+            mat-tab-label
+            >
+            Tasks
+        </ng-template>
+        <ng-container *ngTemplateOutlet="tasksList"></ng-container>
+    </mat-tab>
+</mat-tab-group> -->
+
+<!-- <ng-container *ngIf="!showTabGroup"> -->
+<ng-container>
+    <ng-container *ngTemplateOutlet="list"></ng-container>
+</ng-container>

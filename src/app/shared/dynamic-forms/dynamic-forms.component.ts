@@ -1,58 +1,29 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, Input, Output, EventEmitter, OnInit, Injector } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, map } from 'rxjs/operators';
 import { BasicDRFService } from 'src/app/shared/basic-drf.service';
-
-/**
- * Basic Custom Form Field class should be abstract
- */
-export class CustomFormField {
-    public type: string;
-    public classes: string;
-    public fx_flex: string;
-    public placeholder: string;
-    public form_control_name: string;
-}
-
-/**
- * Options shown inside a CustomSelect field
- */
-class CustomSelectOption {
-    public value: any;
-    public displayed_value: string;
-}
-
-/**
- * Custom Select field
- */
-class CustomSelect {
-    public select_options: Array<CustomSelectOption>;
-}
-
-/**
- * Custom Input field
- */
-export class CustomInput extends CustomFormField {
-    public input_type: string;
-}
-
-/**
- * Custom Form
- */
-export class CustomForm {
-    public fields: Array<CustomFormField> = [];
-}
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-dynamic-form',
-    templateUrl: './dynamic-form.component.html'
+    templateUrl: './dynamic-forms.component.html'
 })
 export class DynamicFormComponent implements OnInit {
     @Input() public service: BasicDRFService;
-    @Input() public formCreatorMethod: () => CustomForm;
-    public form: CustomForm;
+    // @Input() public formCreatorMethod: () => CustomForm;
+    public form: FormGroup;
+
+    public constructor(
+        public activatedRoute: ActivatedRoute,
+        public injector: Injector
+    ) {
+        this.service = injector.get<BasicDRFService>(this.activatedRoute.snapshot.data.service);
+        console.log('Service --->', this.service);
+    }
 
     public ngOnInit() {
-        this.form = this.formCreatorMethod() || this.service.createForm();
+        // this.form = this.formCreatorMethod() || this.service.form;
+        this.form = this.service.form;
+        console.log('form in form', this.form);
     }
 }

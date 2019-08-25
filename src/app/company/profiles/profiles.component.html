@@ -7,6 +7,7 @@
     <app-table
         fxFlex="1 1 100"
         *ngIf="profiles.results"
+        [service]="profilesService"
         [columns]="columns"
         [rows]="profiles.results"
         (edit)="goToElement($event)"
