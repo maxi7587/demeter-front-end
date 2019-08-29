@@ -86,8 +86,8 @@ export class FilterFormControl extends FormControl {
         return this;
     }
 
-    public addFfgClasses(classes: Array<string>): this {
-        this.ffg_classes = [...this.ffg_classes, ...classes];
+    public addFfcClasses(classes: Array<string>): this {
+        this.ffc_classes = [...this.ffc_classes, ...classes];
 
         return this;
     }
