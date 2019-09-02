@@ -34,6 +34,7 @@ export class DRFResource {
 
 export class DRFCollection<T> {
     public count: number;
+    public url: string; // own property (not in Django)
     public next: string;
     public previous: string;
     private _results: Array<T>;
@@ -119,6 +120,7 @@ export class BasicDRFService<T extends DRFResource = DRFResource> {
                             (<T>new this.resource().setAttributes(resource))
                         );
                     }
+                    collection.url = url;
                     collection.results = results;
 
                     return collection;

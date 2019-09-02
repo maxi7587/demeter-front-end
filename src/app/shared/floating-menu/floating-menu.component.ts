@@ -45,7 +45,8 @@ export class FloatingMenuComponent {
                     this.service.delete(item.id)
                         .subscribe(
                             response => {
-                                this.actionsClick.emit({action: 'deleted', item: item});
+                                // this.actionsClick.emit({action: 'deleted', item: item});
+                                this.actionsClick.emit({action: 'delete', item: item});
                                 console.log('DELETE response --->', response);
                             }
                         );

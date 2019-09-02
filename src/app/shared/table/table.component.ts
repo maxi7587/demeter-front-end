@@ -73,7 +73,7 @@ export class TableComponent implements OnChanges, AfterViewInit {
         }
 
         if (!destination) {
-            return;
+            destination = 'url';
         }
 
         let headers = new HttpHeaders({
@@ -98,6 +98,11 @@ export class TableComponent implements OnChanges, AfterViewInit {
     }
 
     public performAction(event: {action: string; item: any}) {
+        // TODO: improve following if for deleting objects
+        if (event.action === 'delete') {
+            this.updatePage(this.paginator);
+        }
+
         console.log('should perform action: ', event.action, event.item);
         this[event.action].emit(event.item);
     }

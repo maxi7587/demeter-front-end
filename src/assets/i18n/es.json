@@ -10,5 +10,13 @@
     "task": "tarea",
     "tasks": "tareas",
     "tool": "herramienta",
-    "tools": "herramientas"
+    "tools": "herramientas",
+    "charge": "cargo",
+    "charges": "cargos",
+    "role": "rol",
+    "roles": "roles",
+
+    "name": "nombre",
+    "first_name": "nombre",
+    "last_name": "apellido"
 }

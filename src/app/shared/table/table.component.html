@@ -10,7 +10,14 @@
     *ngIf="displayedColumns && dataSource?.data?.length > 0"
     >
     <ng-container *ngFor="let column of columns" [matColumnDef]="column.key">
-        <mat-header-cell *matHeaderCellDef>{{ column.title }}</mat-header-cell>
+        <mat-header-cell
+            *matHeaderCellDef
+            fxLayout="row"
+            fxLayoutGap="8px"
+            fxLayoutAlign="{{ column.align || 'start center' }}"
+            >
+            {{ column.title | translate | titlecase }}
+        </mat-header-cell>
         <!-- fxFlex="1 1 auto" -->
         <mat-cell
             *matCellDef="let element"
@@ -43,7 +50,7 @@
         </mat-cell>
     </ng-container>
 
-    <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <!-- <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClick.emit(row)"></mat-row> -->
     <mat-row
         *matRowDef="let row; columns: displayedColumns;"
