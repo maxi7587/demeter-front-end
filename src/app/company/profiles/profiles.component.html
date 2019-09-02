@@ -7,9 +7,10 @@
     <app-table
         fxFlex="1 1 100"
         *ngIf="profiles.results"
+        [service]="profilesService"
         [columns]="columns"
         [rows]="profiles.results"
-        (rowClick)="goToElement($event)"
+        (edit)="goToElement($event)"
         [collection]="profiles"
     >
     </app-table>

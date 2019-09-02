@@ -24,7 +24,7 @@ export class ToolsComponent extends CompanyTemplateComponent implements OnInit {
     @Input() public field: Field;
     @Input() public overrideRowClick: boolean;
     @Output() public rowClick: EventEmitter<Task> = new EventEmitter();
-    @Input() public createFromDialog: boolean;
+    @Input() public createFromDialog = true;
     @Input() public showTabGroup = true;
 
     private _tools: {[key: string]: any} = {};
@@ -36,7 +36,8 @@ export class ToolsComponent extends CompanyTemplateComponent implements OnInit {
 
     public status_options: Array<{[key: string]: string}> = [
         {name: 'available', value: 'available'},
-        {name: 'unavailable', value: 'unavailable'}
+        {name: 'in_use', value: 'in_use'},
+        {name: 'broken', value: 'broken'}
     ];
     public filters_form: FormGroup = new FormGroup({
         status: new FormControl(this.status_options[0].value),

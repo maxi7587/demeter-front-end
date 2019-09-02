@@ -9,11 +9,12 @@
         <app-table
             *ngIf="tools.results"
             fxFlex="1 1 100"
+            [service]="toolsService"
             [collection]="tools"
             [columns]="columns"
             [rows]="tools.results"
             [tableClasses]="tableClasses"
-            (rowClick)="goToElement($event)"
+            (edit)="goToElement($event)"
             >
         </app-table>
         <div fxFlex fxHide.lt-md>
@@ -67,7 +68,7 @@
             id="tools-tab"
             mat-tab-label
             >
-            Fields
+            Tools
         </ng-template>
         <ng-container *ngTemplateOutlet="toolsList"></ng-container>
     </mat-tab>

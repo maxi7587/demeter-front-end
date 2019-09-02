@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FieldPlotsService } from 'src/app/shared/services/field-plots.service';
 import { CompaniesService } from 'src/app/shared/services/companies.service';
 import { Observable } from 'rxjs';
 import { User, UsersService } from 'src/app/shared/services/users.service';
@@ -29,6 +30,7 @@ export class TaskFormComponent implements OnInit {
     public task_form: FormGroup = new FormGroup({
         name: new FormControl(),
         field: new FormControl(),
+        field_plot: new FormControl(),
         task_type: new FormControl(),
         priority: new FormControl(),
         duration: new FormControl(),
@@ -47,6 +49,7 @@ export class TaskFormComponent implements OnInit {
 
     public constructor(
         public fieldsService: FieldsService,
+        public fieldPlotsService: FieldPlotsService,
         public taskTypesService: TaskTypesService,
         public profilesService: ProfilesService,
         public fieldRowsService: FieldRowsService,

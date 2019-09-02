@@ -7,10 +7,11 @@
     <app-table
         fxFlex="1 1 100"
         *ngIf="field_plots.results"
+        [service]="fieldPlotsService"
         [columns]="columns"
         [rows]="field_plots.results"
         [tableClasses]="tableClasses"
-        (rowClick)="goToElement($event)"
+        (edit)="goToElement($event)"
         [collection]="field_plots"
         >
     </app-table>

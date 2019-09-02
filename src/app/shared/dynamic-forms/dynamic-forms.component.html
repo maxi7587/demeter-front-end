@@ -1,0 +1,54 @@
+<form
+    *ngIf="form"
+    [ngClass]="form.ffg_classes"
+    [formGroup]="form"
+    [fxFlex]="form.ffg_flex.flex"
+    [fxLayout]="form.ffg_flex.layout"
+    [fxLayoutAlign]="form.ffg_flex.layout_align"
+    >
+    <app-flex-form-container [ngClass]="form.ffg_flex_form_container_classes">
+        <ng-container *ngFor="let field of form.controls | keyvalue">
+            <h3
+                *ngIf="field.value.ffc_type === 'title'"
+                [ngClass]="field.ffc_classes"
+                [fxFlex]="fieldf.value.ffc_flex.flex"
+                >
+                {{ field.value.ffc_value }}
+            </h3>
+            <mat-form-field
+                *ngIf="field.value.ffc_type === 'input' || field.value.ffc_type === 'select'"
+                [fxFlex]="field.value.ffc_flex.flex"
+                >
+                <input
+                    matInput
+                    *ngIf="field.value.ffc_type === 'input'"
+                    [type]="field.value.ffc_input_type"
+                    [placeholder]="field.value.ffc_placeholder"
+                    [formControlName]="field.key"
+                    >
+                <mat-select
+                    *ngIf="field.value.ffc_type === 'select'"
+                    [placeholder]="field.value.ffc_placeholder"
+                    [formControlName]="field.key"
+                    >
+                    <mat-option
+                        *ngFor="let option of field.value.ffc_select_options"
+                        [value]="option.value"
+                        >
+                        {{ option.text }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <!-- <app-drf-collection-autocomplete
+                *ngIf="field.value.ffc_type === 'autocomplete'"
+                [fxFlex]="field.value.ffc_flex.flex"
+                [service]="field.value.ffc_service"
+                [activeOption]="field.value.ffc_active_option"
+                [searchField]="field.value.ffc_search_field"
+                [placeholder]="field.value.ffc_placeholder"
+                (optionSelected)="field.value.ffcOptionSelected(field.key, $event.option.value)"
+                >
+            </app-drf-collection-autocomplete> -->
+        </ng-container>
+    </app-flex-form-container>
+</form>

@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+// NOTE: circular dependency in dynamic-forms
+// import { CustomForm } from 'src/app/shared/dynamic-forms/dynamic-forms.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { FormGroup } from '@angular/forms';
 
 export class DRFResource {
     public id: string;
@@ -31,6 +34,7 @@ export class DRFResource {
 
 export class DRFCollection<T> {
     public count: number;
+    public url: string; // own property (not in Django)
     public next: string;
     public previous: string;
     private _results: Array<T>;
@@ -45,6 +49,7 @@ export class BasicDRFService<T extends DRFResource = DRFResource> {
     public resource = DRFResource;
     // set resource(resource: T) { this._resource = resource; }
     // get resource(): T { return this._resource; }
+    public form: FormGroup;
 
     protected _type: string;
     set type(type: string) { this._type = type; }
@@ -115,6 +120,7 @@ export class BasicDRFService<T extends DRFResource = DRFResource> {
                             (<T>new this.resource().setAttributes(resource))
                         );
                     }
+                    collection.url = url;
                     collection.results = results;
 
                     return collection;
@@ -176,4 +182,10 @@ export class BasicDRFService<T extends DRFResource = DRFResource> {
             { headers: headers || this.getAuthorizationHeaders() }
         );
     }
+
+    /*
+     * createForm method should be implemented in child classes
+     */
+    public createForm(): any { return; }
+    // public createForm(): CustomForm { return new CustomForm(); }
 }

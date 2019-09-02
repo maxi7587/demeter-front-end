@@ -8,11 +8,12 @@
         <app-table
             *ngIf="tasks.results"
             fxFlex="1 1 100"
+            [service]="tasksService"
             [columns]="columns"
             [rows]="tasks.results"
             [collection]="tasks"
             [tableClasses]="tableClasses"
-            (rowClick)="goToElement($event)"
+            (edit)="goToElement($event)"
             >
         </app-table>
         <div fxFlex fxHide.lt-md>

@@ -16,9 +16,10 @@
             <app-table
                 fxFlex="1 1 100"
                 *ngIf="fields.results"
+                [service]="fieldsService"
                 [columns]="columns"
                 [rows]="fields.results"
-                (rowClick)="goToElement($event.id)"
+                (edit)="goToElement($event.id)"
                 [collection]="fields"
                 >
             </app-table>

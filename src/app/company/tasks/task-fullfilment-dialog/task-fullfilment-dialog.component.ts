@@ -3,6 +3,7 @@ import { DRFCollection } from 'src/app/shared/basic-drf.service';
 import { Task, TasksService } from 'src/app/shared/services/tasks.service';
 import { ToolsService } from 'src/app/shared/services/tools.service';
 import { FieldRowsService } from 'src/app/shared/services/field-rows.service';
+import { FieldPlotsService } from 'src/app/shared/services/field-plots.service';
 import { ProfilesService } from 'src/app/shared/services/profiles.service';
 import { TaskType, TaskTypesService } from 'src/app/shared/services/task-types.service';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -32,7 +33,7 @@ export class TaskFullfilmentDialogComponent implements OnInit {
     });
     public taskTypeAndToolsFormGroup: FormGroup = new FormGroup({
         task_type: new FormControl(),
-        tool: new FormControl()
+        tool: new FormControl([])
     });
     public taskStatusConfirmationFormGroup: FormGroup = new FormGroup({
         status: new FormControl(this.status_options[0])
@@ -46,10 +47,16 @@ export class TaskFullfilmentDialogComponent implements OnInit {
         public taskTypesService: TaskTypesService,
         public profilesService: ProfilesService,
         public fieldRowsService: FieldRowsService,
+        public fieldPlotsService: FieldPlotsService,
         public toolsService: ToolsService,
         public tasksService: TasksService,
         @Inject(MAT_DIALOG_DATA) public data: any
-    ) { }
+    ) {
+        this.taskTypesService.all()
+            .subscribe(
+                (task_types: DRFCollection<TaskType>) => this.task_types = task_types
+            );
+    }
 
     public ngOnInit() {
         this.populateForm(this.data.task, this.fieldDataFormGroup);
@@ -68,7 +75,7 @@ export class TaskFullfilmentDialogComponent implements OnInit {
     }
 
     public updateForm(form: FormGroup, key, value) {
-        if (this.data.task[key].isArray()) {
+        if (Array.isArray(this.data.task[key])) {
             this.data.task[key].push(value);
 
             return;

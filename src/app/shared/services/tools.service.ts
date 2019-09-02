@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CompanyDRFService } from 'src/app/shared/drf/company-drf.service';
 import { BasicDRFService, DRFResource } from 'src/app/shared/basic-drf.service';
+import { TaskType } from './task-types.service';
 import { Field } from './fields.service';
 import { Company } from './companies.service';
 
@@ -10,6 +11,7 @@ export class Tool extends DRFResource {
     public internal_code: string;
     public status: string;
     public field: Field;
+    public task_type: TaskType;
     public company: Company;
     public pinned: boolean;
 }
