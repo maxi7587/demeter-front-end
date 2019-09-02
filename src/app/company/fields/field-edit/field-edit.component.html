@@ -167,6 +167,7 @@
                 [filter]="{ 'field': this.field.id }"
                 [overrideRowClick]="true"
                 (edit)="goToTask($event)"
+                (rowClick)="goToTask($event)"
                 [field]="field"
                 [createFromDialog]="true"
                 #tasks
@@ -196,6 +197,7 @@
                 [filter]="{ 'field': this.field.id }"
                 [overrideRowClick]="true"
                 (edit)="goToTool($event)"
+                (rowClick)="goToTool($event)"
                 [field]="field"
                 [createFromDialog]="true"
                 #tools

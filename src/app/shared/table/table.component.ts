@@ -104,6 +104,7 @@ export class TableComponent implements OnChanges, AfterViewInit {
         }
 
         console.log('should perform action: ', event.action, event.item);
+        console.log('will emit with: ', this[event.action]);
         this[event.action].emit(event.item);
     }
 

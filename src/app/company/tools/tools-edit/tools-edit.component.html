@@ -37,6 +37,16 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
+                    <mat-form-field
+                        fxFlex.gt-sm="calc(25% - 8px)"
+                        >
+                        <mat-label>Task type</mat-label>
+                        <mat-select formControlName="task_type">
+                            <mat-option *ngFor="let task_type of task_types.results" [value]="task_type">
+                                {{ task_type.name | translate }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                     <!-- Tool field data -->
                     <app-drf-collection-autocomplete
                         fxFlex.gt-sm="calc(25% - 8px)"

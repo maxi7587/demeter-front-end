@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { BasicDRFService, DRFCollection, DRFResource } from 'src/app/shared/basic-drf.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -12,7 +12,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
   templateUrl: './drf-collection-chips-autocomplete.component.html',
   styleUrls: ['./drf-collection-chips-autocomplete.component.scss']
 })
-export class DrfCollectionChipsAutocompleteComponent implements OnInit {
+export class DrfCollectionChipsAutocompleteComponent implements OnInit, OnChanges {
     @ViewChild('auto') public autocomplete: MatAutocomplete;
     @ViewChild('chipsAutocompleteInput') chipsAutocompleteInput: ElementRef<HTMLInputElement>;
 
@@ -41,28 +41,63 @@ export class DrfCollectionChipsAutocompleteComponent implements OnInit {
         //     this.search_form.controls.search.setValue(this.activeOptions);
         // }
         console.log('CHIPS autocomplete activeOptions --->', this.activeOptions);
+        // this.service
+        //     .all(undefined, undefined, this.filters)
+        //     .subscribe(
+        //         collection => {
+        //             this.collection = collection;
+        //             console.log('collection ------>', this.collection);
+        //         }
+        //     );
+        // this.filteredOptions = this.search_form.controls.search.valueChanges
+        //     .pipe(
+        //         startWith(''),
+        //         map(
+        //             value => {
+        //                 if (!value) {
+        //                     value = '';
+        //                 }
+        //                 if (typeof value !== 'string') {
+        //                     return [value];
+        //                 }
+        //                 return this._filter(value);
+        //             }
+        //         )
+        //     );
+        this.getCollection();
+    }
+
+    public ngOnChanges(changes) {
+        console.log('changes --------->', changes);
+        if (changes.filters) {
+            console.log('changes.filters .....', changes.filters);
+            this.getCollection();
+        }
+    }
+
+    public getCollection() {
         this.service
             .all(undefined, undefined, this.filters)
             .subscribe(
                 collection => {
                     this.collection = collection;
                     console.log('collection ------>', this.collection);
+                    this.filteredOptions = this.search_form.controls.search.valueChanges
+                        .pipe(
+                            startWith(''),
+                            map(
+                                value => {
+                                    if (!value) {
+                                        value = '';
+                                    }
+                                    if (typeof value !== 'string') {
+                                        return [value];
+                                    }
+                                    return this._filter(value);
+                                }
+                            )
+                        );
                 }
-            );
-        this.filteredOptions = this.search_form.controls.search.valueChanges
-            .pipe(
-                startWith(''),
-                map(
-                    value => {
-                        if (!value) {
-                            value = '';
-                        }
-                        if (typeof value !== 'string') {
-                            return [value];
-                        }
-                        return this._filter(value);
-                    }
-                )
             );
     }
 

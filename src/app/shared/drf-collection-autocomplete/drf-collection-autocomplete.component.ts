@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { BasicDRFService, DRFCollection, DRFResource } from 'src/app/shared/basic-drf.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -10,7 +10,7 @@ import { MatAutocomplete } from '@angular/material/autocomplete';
   templateUrl: './drf-collection-autocomplete.component.html',
   styleUrls: ['./drf-collection-autocomplete.component.scss']
 })
-export class DrfCollectionAutocompleteComponent implements OnInit {
+export class DrfCollectionAutocompleteComponent implements OnInit, OnChanges {
     @ViewChild('auto') public autocomplete: MatAutocomplete;
 
     @Input() service: BasicDRFService<any>;
@@ -32,14 +32,7 @@ export class DrfCollectionAutocompleteComponent implements OnInit {
         if (this.activeOption) {
             this.search_form.controls.search.setValue(this.activeOption);
         }
-        this.service
-            .all()
-            .subscribe(
-                collection => {
-                    this.collection = collection;
-                    console.log('collection ------>', this.collection);
-                }
-            );
+        this.getCollection();
         this.filteredOptions = this.search_form.controls.search.valueChanges
             .pipe(
                 startWith(''),
@@ -49,6 +42,35 @@ export class DrfCollectionAutocompleteComponent implements OnInit {
                         return this._filter(value);
                     }
                 )
+            );
+    }
+
+    public ngOnChanges(changes) {
+        console.log('changes --------->', changes);
+        if (changes.filters) {
+            console.log('changes.filters .....', changes.filters);
+            this.getCollection();
+        }
+    }
+
+    public getCollection() {
+        this.service
+            .all(undefined, undefined, this.filters)
+            .subscribe(
+                collection => {
+                    console.log('collection ------>', this.collection);
+                    this.collection = collection;
+                    this.filteredOptions = this.search_form.controls.search.valueChanges
+                        .pipe(
+                            startWith(''),
+                            map(
+                                value => {
+                                    if (typeof value !== 'string') { return [value]; }
+                                    return this._filter(value);
+                                }
+                            )
+                        );
+                }
             );
     }
 

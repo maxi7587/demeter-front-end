@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FieldPlotsService } from 'src/app/shared/services/field-plots.service';
 import { User, UsersService } from 'src/app/shared/services/users.service';
 import { FieldRowsService } from 'src/app/shared/services/field-rows.service';
 import { FieldRow } from 'src/app/shared/services/field-rows.service';
@@ -25,6 +26,7 @@ export class TaskEditComponent extends CompanyTemplateComponent implements OnIni
     public task_form: FormGroup = new FormGroup({
         name: new FormControl(),
         field: new FormControl(),
+        field_plot: new FormControl(),
         task_type: new FormControl(),
         priority: new FormControl(),
         duration: new FormControl(),
@@ -46,6 +48,7 @@ export class TaskEditComponent extends CompanyTemplateComponent implements OnIni
         public fieldsService: FieldsService,
         public taskTypesService: TaskTypesService,
         public profilesService: ProfilesService,
+        public fieldPlotsService: FieldPlotsService,
         public fieldRowsService: FieldRowsService,
         public toolsService: ToolsService,
         public tasksService: TasksService,

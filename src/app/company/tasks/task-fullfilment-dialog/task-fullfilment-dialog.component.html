@@ -23,6 +23,17 @@
               (optionSelected)="updateForm(fieldDataFormGroup, 'field', $event.option.value)"
               >
           </app-drf-collection-autocomplete> -->
+
+          <app-drf-collection-autocomplete
+              fxFlex.gt-sm="calc(25% - 8px)"
+              [service]="fieldPlotsService"
+              [filters]="data.task?.field ? { field: data.task.field.id } : {}"
+              [activeOption]="data.task?.field_plot"
+              searchField="label"
+              placeholder="Field plot"
+              (optionSelected)="updateForm(fieldDataFormGroup, 'field_plot', $event.option.value)"
+              >
+          </app-drf-collection-autocomplete>
           <mat-form-field
               fxFlex.gt-sm="calc(25% - 8px)"
               >
@@ -92,20 +103,25 @@
               fxFlex.gt-sm="calc(50% - 8px)"
               >
               <mat-select
-                #task_type_select placeholder="Task type" formControlName="task_type" [compareWith]="compareById">
-                  <mat-option *ngFor="let task_type of task_types.results" value="task_type">{{ task_type.name }}</mat-option>
+                    #taskTypesSelect
+                    placeholder="Task type"
+                    formControlName="task_type"
+                    [value]="taskTypeAndToolsFormGroup.value.task_type"
+                    [compareWith]="compareById"
+                    >
+                    <mat-option *ngFor="let task_type of task_types.results" [value]="task_type">{{ task_type.name }}</mat-option>
               </mat-select>
           </mat-form-field>
-          <app-drf-collection-autocomplete
+          <app-drf-collection-chips-autocomplete
               fxFlex.gt-sm="calc(50% - 8px)"
               [service]="toolsService"
-              [filters]="{ task_type: task_type_select.value.id }"
-              [activeOption]="data.task?.tool"
+              [filters]="taskTypeAndToolsFormGroup.value.task_type ? { task_type: taskTypeAndToolsFormGroup.value.task_type.id } : {}"
+              [activeOptions]="data.task?.tool"
               searchField="name"
               placeholder="Tool"
               (optionSelected)="updateForm(taskTypeAndToolsFormGroup, 'tool', $event.option.value)"
               >
-          </app-drf-collection-autocomplete>
+          </app-drf-collection-chips-autocomplete>
       </app-flex-form-container>
       <div align="end">
         <button mat-button matStepperPrevious>Back</button>

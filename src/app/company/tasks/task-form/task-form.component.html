@@ -57,6 +57,16 @@
             (optionSelected)="updateForm('field', $event.option.value)"
             >
         </app-drf-collection-autocomplete>
+        <app-drf-collection-autocomplete
+            fxFlex.gt-sm="calc(25% - 8px)"
+            [service]="fieldPlotsService"
+            [filters]="task?.field ? { field: task.field.id } : {}"
+            [activeOption]="task?.field_plot"
+            searchField="label"
+            placeholder="Field plot"
+            (optionSelected)="updateForm('field_plot', $event.option.value)"
+            >
+        </app-drf-collection-autocomplete>
         <!-- TODO: make datepicker functional or try a better implementation of time handling -->
         <mat-form-field
             *ngIf="field_rows"
