@@ -32,11 +32,12 @@
                     <!-- size="100" -->
                     <div>
                         <ngx-avatar
-                            [name]="user?.first_name || 'Profile'"
                             bgColor="#fafafa"
                             fgColor="#000000"
+                            *ngIf="user"
+                            [name]="user?.first_name || 'Profile'"
                             [matMenuTriggerFor]="menu"
-                            style="cursor: pointer"
+                            [style]="{cursor: 'pointer'}"
                             >
                         </ngx-avatar>
                         <mat-menu #menu="matMenu">
@@ -54,14 +55,18 @@
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item (click)="logout()">Log out</button>
                     </mat-menu>
-                    <!-- bgColor="#fafafa"
-                    fgColor="#000000" -->
-                    <ngx-avatar
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <!-- <ngx-avatar
+                        bgColor="#388e3c"
+                        fgColor="#fafafa"
+                        *ngIf="user"
                         [name]="user?.first_name || 'Profile'"
                         [matMenuTriggerFor]="menu"
-                        style="cursor: pointer"
+                        [style]="{cursor: 'pointer'}"
                         >
-                    </ngx-avatar>
+                    </ngx-avatar> -->
                     <!-- <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_back</mat-icon></button> -->
                     <!-- <button mat-icon-button (click)="goToParent()"><mat-icon>arrow_left_circle</mat-icon></button> -->
                 </mat-toolbar-row>
