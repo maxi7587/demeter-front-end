@@ -91,7 +91,7 @@
             fxFlex.gt-sm="calc(50% - 8px)"
             >
             <mat-select placeholder="Task type" formControlName="task_type" [compareWith]="compareById">
-                <mat-option *ngFor="let task_type of task_types.results" value="task_type">{{ task_type.name }}</mat-option>
+                <mat-option *ngFor="let task_type of task_types.results" [value]="task_type">{{ task_type.name }}</mat-option>
             </mat-select>
         </mat-form-field>
         <app-drf-collection-chips-autocomplete
