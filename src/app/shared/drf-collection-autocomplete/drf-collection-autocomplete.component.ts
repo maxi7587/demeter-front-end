@@ -14,6 +14,7 @@ export class DrfCollectionAutocompleteComponent implements OnInit, OnChanges {
     @ViewChild('auto') public autocomplete: MatAutocomplete;
 
     @Input() service: BasicDRFService<any>;
+    @Input() disabled: boolean;
     @Input() searchField: string;
     @Input() filters: {[key: string]: any};
     @Input() placeholder = 'Buscar';
@@ -43,6 +44,9 @@ export class DrfCollectionAutocompleteComponent implements OnInit, OnChanges {
                     }
                 )
             );
+        if (this.disabled) {
+            this.search_form.disable();
+        }
     }
 
     public ngOnChanges(changes) {

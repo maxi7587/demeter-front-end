@@ -1,0 +1,59 @@
+<form
+    fxFlex="1 1 100"
+    class="height-100 app-form"
+    [formGroup]="supply_transaction_form"
+    fxLayout="column"
+    fxLayoutAlign="start center"
+    >
+    <app-flex-form-container>
+        <mat-form-field
+            fxFlex.gt-sm="calc(33% - 8px)"
+            >
+            <input matInput [matDatepicker]="date_picker" placeholder="Date" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="date_picker"></mat-datepicker-toggle>
+            <mat-datepicker #date_picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(33% - 8px)"
+            >
+            <mat-select placeholder="Type" formControlName="type">
+                <mat-option *ngFor="let type of supply_transaction_types" [value]="type">{{ type }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(33% - 8px)"
+            >
+            <mat-select placeholder="Status" formControlName="status">
+                <mat-option *ngFor="let status of supply_transaction_status" [value]="status">{{ status }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(33% - 8px)"
+            >
+            <input matInput type="number" placeholder="Quantity" formControlName="quantity">
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(33% - 8px)"
+            >
+            <input matInput type="number" placeholder="Amount" formControlName="amount">
+        </mat-form-field>
+        <app-drf-collection-autocomplete
+            fxFlex.gt-sm="calc(50% - 8px)"
+            [service]="suppliesService"
+            [activeOption]="supply_transaction.supply"
+            searchField="name"
+            placeholder="Supply"
+            (optionSelected)="updateForm('supply', $event.option.value)"
+            >
+        </app-drf-collection-autocomplete>
+        <app-drf-collection-autocomplete
+            fxFlex.gt-sm="calc(50% - 8px)"
+            [service]="fieldsService"
+            [activeOption]="supply_transaction.field"
+            searchField="name"
+            placeholder="Field"
+            (optionSelected)="updateForm('field', $event.option.value)"
+            >
+        </app-drf-collection-autocomplete>
+    </app-flex-form-container>
+</form>

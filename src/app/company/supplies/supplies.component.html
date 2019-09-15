@@ -1,0 +1,133 @@
+<div
+    fxLayout="row"
+    fxLayoutAlign="center start"
+    fxLayoutGap="16px"
+    class="width-100"
+    >
+    <app-table
+        fxFlex="1 1 100"
+        *ngIf="supplies.results"
+        [service]="suppliesService"
+        [columns]="columns"
+        [rows]="supplies.results"
+        (edit)="goToElement($event)"
+        [collection]="supplies"
+    >
+    </app-table>
+    <mat-list fxHide.lt-md>
+        <mat-list-item>
+            <button
+                mat-raised-button
+                name="new"
+                color="primary"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                (click)="createElement()"
+                >
+                <!-- style="height: 56px; width:56px" -->
+                <!-- <button
+                    mat-fab
+                    name="new"
+                    color="primary"
+                    fxLayout="row"
+                    fxLayoutAlign="center center"
+                    >
+                </button> -->
+                <mat-icon>add</mat-icon>
+                New supply
+            </button>
+        </mat-list-item>
+        <mat-list-item>
+            <button
+                mat-raised-button
+                name="new_input"
+                color="primary"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                (click)="createInputReceipt()"
+                >
+                <!-- style="height: 56px; width:56px" -->
+                <!-- <button
+                    mat-fab
+                    name="new"
+                    color="primary"
+                    fxLayout="row"
+                    fxLayoutAlign="center center"
+                    >
+                </button> -->
+                <mat-icon>add</mat-icon>
+                New input receipt
+            </button>
+        </mat-list-item>
+        <mat-list-item>
+            <button
+                mat-raised-button
+                name="new_output"
+                color="primary"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                (click)="createOutputReceipt()"
+                >
+                <!-- style="height: 56px; width:56px" -->
+                <!-- <button
+                    mat-fab
+                    name="new"
+                    color="primary"
+                    fxLayout="row"
+                    fxLayoutAlign="center center"
+                    >
+                </button> -->
+                <mat-icon>add</mat-icon>
+                New output receipt
+            </button>
+        </mat-list-item>
+        <mat-list-item>
+            <button
+                mat-raised-button
+                name="new_input"
+                color="primary"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                (click)="createInputTransaction()"
+                >
+                <!-- style="height: 56px; width:56px" -->
+                <!-- <button
+                    mat-fab
+                    name="new"
+                    color="primary"
+                    fxLayout="row"
+                    fxLayoutAlign="center center"
+                    >
+                </button> -->
+                <mat-icon>add</mat-icon>
+                New input transaction
+            </button>
+        </mat-list-item>
+        <mat-list-item>
+            <button
+                mat-raised-button
+                name="new_output"
+                color="primary"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                (click)="createOutputTransaction()"
+                >
+                <!-- style="height: 56px; width:56px" -->
+                <!-- <button
+                    mat-fab
+                    name="new"
+                    color="primary"
+                    fxLayout="row"
+                    fxLayoutAlign="center center"
+                    >
+                </button> -->
+                <mat-icon>add</mat-icon>
+                New output transaction
+            </button>
+        </mat-list-item>
+    </mat-list>
+</div>
+
+<ng-template #nameTemplate let-element="element">
+    <span>{{ element.first_name + ' ' + element.last_name }}</span>
+</ng-template>

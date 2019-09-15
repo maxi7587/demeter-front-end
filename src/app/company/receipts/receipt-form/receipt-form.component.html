@@ -1,0 +1,121 @@
+<form
+    fxFlex="1 1 100"
+    class="height-100 app-form"
+    [formGroup]="receipt_form"
+    fxLayout="column"
+    fxLayoutAlign="start center"
+    >
+    <app-flex-form-container>
+        <mat-form-field
+            fxFlex.gt-sm="calc(33% - 8px)"
+            >
+            <input matInput placeholder="Document ID" formControlName="document_id">
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(33% - 8px)"
+            >
+            <input matInput [matDatepicker]="date_picker" placeholder="Date" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="date_picker"></mat-datepicker-toggle>
+            <mat-datepicker #date_picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(33% - 8px)"
+            >
+            <mat-select placeholder="Type" formControlName="type">
+                <mat-option *ngFor="let type of receipt_types" [value]="type">{{ type }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(33% - 8px)"
+            >
+            <mat-select placeholder="Status" formControlName="status">
+                <mat-option *ngFor="let status of receipt_status" [value]="status">{{ status }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(33% - 8px)"
+            >
+            <input matInput type="number" placeholder="Amount" formControlName="amount">
+        </mat-form-field>
+        <app-drf-collection-autocomplete
+            fxFlex.gt-sm="calc(33% - 8px)"
+            [disabled]="disabled"
+            [service]="fieldsService"
+            [activeOption]="receipt.field"
+            searchField="name"
+            placeholder="Field"
+            (optionSelected)="updateForm('field', $event.option.value)"
+            >
+        </app-drf-collection-autocomplete>
+        <h3 class="mat-subheading-2" fxFlex="100">Receipt Items</h3>
+        <div
+            *ngFor="let supply_transaction of receipt.receipt_supply_transactions"
+            fxFlex="100"
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            fxLayoutGap="8px"
+            >
+            <mat-form-field
+                fxFlex.gt-sm="calc(25% - 8px)"
+                >
+                <input
+                    matInput
+                    type="number"
+                    placeholder="Quantity"
+                    [disabled]="disabled"
+                    [value]="supply_transaction.quantity"
+                    (change)="updateSupplyTransaction(supply_transaction, 'quantity', $event.target.value)"
+                    >
+            </mat-form-field>
+            <app-drf-collection-autocomplete
+                fxFlex.gt-sm="calc(25% - 8px)"
+                [disabled]="disabled"
+                [service]="suppliesService"
+                [activeOption]="supply_transaction.supply"
+                searchField="name"
+                placeholder="Supply"
+                (optionSelected)="updateSupplyTransaction(supply_transaction, 'supply', $event.option.value)"
+                >
+            </app-drf-collection-autocomplete>
+            <mat-form-field
+                fxFlex.gt-sm="calc(25% - 8px)"
+                >
+                <input
+                    matInput
+                    type="number"
+                    placeholder="Amount"
+                    [disabled]="disabled"
+                    [value]="supply_transaction.amount"
+                    (change)="updateSupplyTransaction(supply_transaction, 'amount', $event.target.value)"
+                    >
+            </mat-form-field>
+            <!-- NOTE: if supply transaction id includes "new", it hasn't been saved in the server -->
+            <!-- *ngIf="receipt.status === 'draft' || supply_transaction.id.indexOf('new') > -1" -->
+            <div
+                *ngIf="!receipt.id || receipt.status === 'draft'"
+                fxFlex.gt-sm="calc(25% - 8px)"
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                >
+                <button
+                    mat-icon-button
+                    type="button"
+                    (click)="removeSupplyTransaction(supply_transaction.id)"
+                    >
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
+            <button
+                *ngIf="!receipt.id || receipt.status === 'draft'"
+                mat-icon-button
+                type="button"
+                (click)="addSupplyTransaction()"
+                >
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </app-flex-form-container>
+</form>

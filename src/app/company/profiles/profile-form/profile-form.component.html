@@ -59,7 +59,7 @@
             *ngIf="charges"
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <mat-select placeholder="Charge" formControlName="charge">
+            <mat-select placeholder="Charge" formControlName="charge" [value]="profile.charge">
                 <mat-option *ngFor="let charge of charges.results" [value]="charge">{{ charge.name }}</mat-option>
             </mat-select>
         </mat-form-field>
@@ -67,7 +67,7 @@
             *ngIf="contract_types"
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <mat-select placeholder="Contract type" formControlName="contract_type">
+            <mat-select placeholder="Contract type" formControlName="contract_type" [value]="profile.contract_type">
                 <mat-option *ngFor="let contract_type of contract_types.results" [value]="contract_type">{{ contract_type.name }}</mat-option>
             </mat-select>
         </mat-form-field>

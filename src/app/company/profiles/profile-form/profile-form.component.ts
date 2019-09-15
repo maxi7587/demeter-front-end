@@ -118,7 +118,8 @@ export class ProfileFormComponent implements OnInit {
                     }
                 );
         } else if (!this.profile && !this.activatedRoute.snapshot.params.objectId) {
-            this.fillFormData(new Profile());
+            this.profile = new Profile();
+            this.fillFormData(this.profile);
         } else {
             this.fillFormData(this.profile);
         }

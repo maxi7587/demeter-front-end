@@ -1,4 +1,19 @@
 import { NgModule } from '@angular/core';
+import { ReceiptFormComponent } from 'src/app/company/receipts/receipt-form/receipt-form.component';
+import { ReceiptsComponent } from 'src/app/company/receipts/receipts.component';
+import { ReceiptDialogComponent } from 'src/app/company/receipts/receipt-dialog/receipt-dialog.component';
+import { SupplyEditResolver } from 'src/app/company/supplies/supply-edit/supply-edit.resolver';
+import {
+    SupplyTransactionDialogComponent
+} from 'src/app/company/supply-transactions/supply-transaction-dialog/supply-transaction-dialog.component';
+import {
+    SupplyTransactionFormComponent
+} from 'src/app/company/supply-transactions/supply-transaction-form/supply-transaction-form.component';
+import { SupplyTransactionsComponent } from 'src/app/company/supply-transactions/supply-transactions.component';
+import { SupplyDialogComponent } from 'src/app/company/supplies/supply-dialog/supply-dialog.component';
+import { SupplyFormComponent } from 'src/app/company/supplies/supply-form/supply-form.component';
+import { SupplyEditComponent } from 'src/app/company/supplies/supply-edit/supply-edit.component';
+import { SuppliesComponent } from 'src/app/company/supplies/supplies.component';
 import { ToolFormComponent } from 'src/app/company/tools/tool-form/tool-form.component';
 import { ToolDialogComponent } from 'src/app/company/tools/tool-dialog/tool-dialog.component';
 import { ProfileFormComponent } from 'src/app/company/profiles/profile-form/profile-form.component';
@@ -45,6 +60,7 @@ import { FieldPlotInfoDialogComponent } from './field-plots/field-plot-info-dial
 import { TaskFullfilmentDialogComponent } from './tasks/task-fullfilment-dialog/task-fullfilment-dialog.component';
 import { TaskDialogComponent } from 'src/app/company/tasks/task-dialog/task-dialog.component';
 import { StaffComponent } from './staff/staff.component';
+import { InventoryComponent } from './inventory/inventory.component';
 import { ChargesComponent } from './charges/charges.component';
 import { ContractTypesComponent } from './contract-types/contract-types.component';
 
@@ -79,6 +95,7 @@ import { ContractTypesComponent } from './contract-types/contract-types.componen
         TaskFormComponent,
         TaskDialogComponent,
         StaffComponent,
+        InventoryComponent,
         ChargesComponent,
         ContractTypesComponent,
         ContractTypeFormComponent,
@@ -87,6 +104,16 @@ import { ContractTypesComponent } from './contract-types/contract-types.componen
         ChargeDialogComponent,
         ProfileDialogComponent,
         ProfileFormComponent,
+        SupplyTransactionsComponent,
+        SupplyTransactionFormComponent,
+        SupplyTransactionDialogComponent,
+        SuppliesComponent,
+        SupplyEditComponent,
+        SupplyFormComponent,
+        SupplyDialogComponent,
+        ReceiptsComponent,
+        ReceiptFormComponent,
+        ReceiptDialogComponent,
         ToolFormComponent,
         ToolDialogComponent
     ],
@@ -101,6 +128,7 @@ import { ContractTypesComponent } from './contract-types/contract-types.componen
         ProfileEditResolver,
         TaskEditResolver,
         ToolEditResolver,
+        SupplyEditResolver,
         FieldPlotEditResolver
     ],
     entryComponents: [
@@ -111,6 +139,9 @@ import { ContractTypesComponent } from './contract-types/contract-types.componen
         ContractTypeDialogComponent,
         ChargeDialogComponent,
         ProfileDialogComponent,
+        ReceiptDialogComponent,
+        SupplyDialogComponent,
+        SupplyTransactionDialogComponent,
         ToolDialogComponent
     ]
 })
