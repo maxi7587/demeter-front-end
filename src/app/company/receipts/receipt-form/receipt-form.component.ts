@@ -116,6 +116,7 @@ export class ReceiptFormComponent implements OnInit {
             }
         }
         if (this.disabled) {
+            console.log('---------- WILL DISABLE FORM! ----------');
             this.receipt_form.disable();
         }
     }

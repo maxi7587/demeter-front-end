@@ -3,11 +3,13 @@ import { ReceiptDialogComponent } from 'src/app/company/receipts/receipt-dialog/
 import {
     SupplyTransactionDialogComponent
 } from 'src/app/company/supply-transactions/supply-transaction-dialog/supply-transaction-dialog.component';
-import { SupplyDialogComponent } from 'src/app/company/supplies/supply-dialog/supply-dialog.component';
+import {
+    FieldSupplyStockDialogComponent
+} from 'src/app/company/field-supply-stocks/field-supply-stock-dialog/field-supply-stock-dialog.component';
 import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
 import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SuppliesService, Supply } from 'src/app/shared/services/supplies.service';
+import { FieldSupplyStocksService, FieldSupplyStock } from 'src/app/shared/services/field-supply-stocks.service';
 import { HttpClient } from '@angular/common/http';
 import { Column } from 'src/app/shared/table/table-elements';
 import { Field } from 'src/app/shared/services/fields.service';
@@ -15,34 +17,35 @@ import { Task } from 'src/app/shared/services/tasks.service';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-    selector: 'app-supplies',
-    templateUrl: './supplies.component.html',
-    styleUrls: ['./supplies.component.scss']
+    selector: 'app-field-supply-stocks',
+    templateUrl: './field-supply-stocks.component.html',
+    styleUrls: ['./field-supply-stocks.component.scss']
 })
-export class SuppliesComponent extends CompanyTemplateComponent implements OnInit, AfterViewInit {
+export class FieldSupplyStocksComponent extends CompanyTemplateComponent implements OnInit, AfterViewInit {
     @Input() public field: Field;
     @Input() public showActions = true;
     @Input() public tableClasses: Array<string>;
     @Input() public filter: {[key: string]: string};
     @Input() public overrideRowClick: boolean;
-    @Input() public showInDialog = true;
+    @Input() public showInDialog: boolean;
     @Output() public rowClick: EventEmitter<Task> = new EventEmitter();
     @Output() public createdSupplyTransaction: EventEmitter<any> = new EventEmitter();
     @Output() public createdReceipt: EventEmitter<any> = new EventEmitter();
     // @Input() public overrideCreate: boolean;
     // @Output() public createButton: EventEmitter<Task> = new EventEmitter();
-    @Input() public createFromDialog = true;
+    @Input() public createFromDialog: boolean;
+    @ViewChild('nameTemplate') public name_template: TemplateRef<any>;
 
-    private _supplies: {[key: string]: any} = {};
-    set supplies(supplies: {[key: string]: any}) { this._supplies = supplies; }
-    get supplies(): {[key: string]: any} { return this._supplies; }
+    private _field_supply_stocks: {[key: string]: any} = {};
+    set field_supply_stocks(field_supply_stocks: {[key: string]: any}) { this._field_supply_stocks = field_supply_stocks; }
+    get field_supply_stocks(): {[key: string]: any} { return this._field_supply_stocks; }
     private _columns: Array<Column> = [];
     set columns(columns: Array<Column>) { this._columns = columns; }
     get columns(): Array<Column> { return this._columns; }
 
     public constructor(
         public matDialog: MatDialog,
-        private suppliesService: SuppliesService,
+        private fieldSupplyStocksService: FieldSupplyStocksService,
         protected router: Router,
         protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
@@ -57,15 +60,15 @@ export class SuppliesComponent extends CompanyTemplateComponent implements OnIni
     public ngAfterViewInit() {
         // TODO: improve for mobile
         // this.columns.push(new Column('first_name', 'first_name', 'first_name').setTemplate(this.name_template));
-        this.columns.push(new Column('name', 'name'));
+        this.columns.push(new Column('name', 'name').setTemplate(this.name_template));
         this.columns.push(new Column('actual_stock', 'actual_stock', '', ''));
         this.columns.push(new Column('pending_stock', 'pending_stock', '', ''));
         this.columns.push(new Column('desired_stock', 'desired_stock', '', '', 'end center'));
     }
 
-    public goToElement(element: Supply) {
+    public goToElement(element: FieldSupplyStock) {
         if (this.showInDialog) {
-            this.showSupplyDialog(element);
+            this.showFieldSupplyStockDialog(element);
 
             return;
         }
@@ -73,11 +76,11 @@ export class SuppliesComponent extends CompanyTemplateComponent implements OnIni
     }
 
     public getList(filter) {
-        this.suppliesService.all(undefined, undefined, filter).subscribe(supplies => {
-            console.log('supplies ------------------->', supplies);
-            this.supplies = supplies;
+        this.fieldSupplyStocksService.all(undefined, undefined, filter).subscribe(field_supply_stocks => {
+            console.log('field_supply_stocks ------------------->', field_supply_stocks);
+            this.field_supply_stocks = field_supply_stocks;
             // TODO: uncomment following for loop for desktop
-            // for (let key of Object.keys(supplies.results[0])) {
+            // for (let key of Object.keys(field_supply_stocks.results[0])) {
             //     if (['id', 'url'].indexOf(key) === -1) {
             //         this.columns.push(new Column(key, key));
             //     }
@@ -87,30 +90,30 @@ export class SuppliesComponent extends CompanyTemplateComponent implements OnIni
 
     // public add() {
     //     console.log('--------------------------');
-    //     console.log('inside supplies add method');
+    //     console.log('inside field_supply_stocks add method');
     //     console.log('--------------------------');
     //     this.createElement();
     // }
 
     public createElement() {
         console.log('--------------------------');
-        console.log('inside supplies createElement method');
+        console.log('inside field_supply_stocks createElement method');
         console.log('--------------------------');
         if (this.createFromDialog) {
-            this.showSupplyDialog();
+            this.showFieldSupplyStockDialog();
 
             return;
         }
         this.router.navigate([this.router.url, '0']);
     }
 
-    public showSupplyDialog(supply?: Supply): void {
-        let dialog_data: {supply: Supply; field: Field} = {
-            supply: supply ? supply : new Supply(),
+    public showFieldSupplyStockDialog(field_supply_stock?: FieldSupplyStock): void {
+        let dialog_data: {field_supply_stock: FieldSupplyStock; field: Field} = {
+            field_supply_stock: field_supply_stock ? field_supply_stock : new FieldSupplyStock(),
             field: this.field
         };
-        console.log('should open supplies dialog');
-        const dialogRef = this.matDialog.open(SupplyDialogComponent, {
+        console.log('should open field_supply_stocks dialog');
+        const dialogRef = this.matDialog.open(FieldSupplyStockDialogComponent, {
             width: '720px',
             data: dialog_data
         });

@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+import { FieldSupplyStockFormComponent } from 'src/app/company/field-supply-stocks/field-supply-stock-form/field-supply-stock-form.component';
+import { FieldSupplyStocksComponent } from 'src/app/company/field-supply-stocks/field-supply-stocks.component';
+import { FieldSupplyStockDialogComponent } from 'src/app/company/field-supply-stocks/field-supply-stock-dialog/field-supply-stock-dialog.component';
 import { ReceiptFormComponent } from 'src/app/company/receipts/receipt-form/receipt-form.component';
 import { ReceiptsComponent } from 'src/app/company/receipts/receipts.component';
 import { ReceiptDialogComponent } from 'src/app/company/receipts/receipt-dialog/receipt-dialog.component';
@@ -107,6 +110,9 @@ import { ContractTypesComponent } from './contract-types/contract-types.componen
         SupplyTransactionsComponent,
         SupplyTransactionFormComponent,
         SupplyTransactionDialogComponent,
+        FieldSupplyStocksComponent,
+        FieldSupplyStockFormComponent,
+        FieldSupplyStockDialogComponent,
         SuppliesComponent,
         SupplyEditComponent,
         SupplyFormComponent,
@@ -142,6 +148,7 @@ import { ContractTypesComponent } from './contract-types/contract-types.componen
         ReceiptDialogComponent,
         SupplyDialogComponent,
         SupplyTransactionDialogComponent,
+        FieldSupplyStockDialogComponent,
         ToolDialogComponent
     ]
 })

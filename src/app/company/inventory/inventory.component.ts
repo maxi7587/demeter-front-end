@@ -47,9 +47,13 @@ export class InventoryComponent extends CompanyTemplateComponent implements OnIn
             case 'supplies':
                 this.suppliesComponent.createElement();
                 break;
+            case 'receipts':
+                // TODO: open dialog with actions and filters
+                break;
             case 'supply_transactions':
+                // TODO: open dialog with actions and filters
                 // this.supplyTransactionsComponent.createSupplyTransactionDialog();
-                // break;
+                break;
         }
     }
 

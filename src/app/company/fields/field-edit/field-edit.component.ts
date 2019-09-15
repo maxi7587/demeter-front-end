@@ -108,6 +108,8 @@ export class FieldEditComponent extends CompanyTemplateComponent implements OnIn
             case 'tasks':
             case 'tools':
             case 'profiles':
+            case 'supplies':
+            case 'receipts':
                 this.navigationService.actions.next(new SidenavActions(['search', 'add']));
                 break;
         }
@@ -136,6 +138,14 @@ export class FieldEditComponent extends CompanyTemplateComponent implements OnIn
                 break;
             case 'profiles':
                 this.profilesComponent.showProfileDialog();
+                break;
+            case 'supplies':
+                // TODO: open dialog with actions and filters
+                // this.suppliesComponent.showProfileDialog();
+                break;
+            case 'receipts':
+                // TODO: open dialog with actions and filters
+                // this.receiptsComponent.showProfileDialog();
                 break;
         }
     }

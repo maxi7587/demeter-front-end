@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+import { SupplyTransactionsService } from 'src/app/shared/services/supply-transactions.service';
+import { FieldSupplyStocksService } from 'src/app/shared/services/field-supply-stocks.service';
+import { SuppliesService } from 'src/app/shared/services/supplies.service';
 import { DynamicFormComponent } from 'src/app/shared/dynamic-forms/dynamic-forms.component';
 import { FullTableComponent } from 'src/app/shared/list/full-table.component';
 import { DeleteConfirmationDialogComponent } from 'src/app/shared/delete-confirmation/delete-confirmation-dialog.component';
@@ -104,6 +107,9 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         TasksService,
         UsersService,
         MeasureUnitsService,
+        SuppliesService,
+        SupplyTransactionsService,
+        FieldSupplyStocksService,
         ContactsService
     ],
     entryComponents: [

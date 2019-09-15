@@ -75,9 +75,10 @@ export class SupplyTransactionsComponent extends CompanyTemplateComponent implem
 
         // Populate table columns
         // TODO: improve for mobile
-        this.columns.push(new Column('document_id', 'document_id'));
         this.columns.push(new Column('date', 'date'));
-        this.columns.push(new Column('field.name', 'field', '', '', 'end center'));
+        this.columns.push(new Column('field.name', 'field'));
+        this.columns.push(new Column('quantity', 'quantity'));
+        this.columns.push(new Column('amount', 'amount', '', '', 'end center'));
 
         this.filters_form.valueChanges
             .subscribe(

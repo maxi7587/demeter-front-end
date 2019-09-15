@@ -6,37 +6,15 @@
     >
     <app-table
         fxFlex="1 1 100"
-        *ngIf="supplies.results"
-        [service]="suppliesService"
+        *ngIf="field_supply_stocks.results"
+        [service]="fieldSupplyStocksService"
         [columns]="columns"
-        [rows]="supplies.results"
+        [rows]="field_supply_stocks.results"
         (edit)="goToElement($event)"
-        [collection]="supplies"
+        [collection]="field_supply_stocks"
         >
     </app-table>
     <mat-list fxHide.lt-md>
-        <mat-list-item>
-            <button
-                mat-raised-button
-                name="new"
-                color="primary"
-                fxLayout="row"
-                fxLayoutAlign="center center"
-                (click)="createElement()"
-                >
-                <!-- style="height: 56px; width:56px" -->
-                <!-- <button
-                    mat-fab
-                    name="new"
-                    color="primary"
-                    fxLayout="row"
-                    fxLayoutAlign="center center"
-                    >
-                </button> -->
-                <mat-icon>add</mat-icon>
-                New supply
-            </button>
-        </mat-list-item>
         <mat-list-item>
             <button
                 mat-raised-button
@@ -129,5 +107,5 @@
 </div>
 
 <ng-template #nameTemplate let-element="element">
-    <span>{{ element.first_name + ' ' + element.last_name }}</span>
+    <span>{{ element.supply.name }}</span>
 </ng-template>

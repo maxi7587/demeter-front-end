@@ -1,0 +1,39 @@
+<form
+    fxFlex="1 1 100"
+    class="height-100 app-form"
+    [formGroup]="field_supply_stock_form"
+    fxLayout="column"
+    fxLayoutAlign="start center"
+    >
+    <app-flex-form-container>
+        <mat-checkbox
+            fxFlex="100"
+            [checked]="field_supply_stock?.pinned"
+            (change)="updateForm('pinned', $event.checked)"
+            >
+            {{ 'Pin to dashboard' | translate }}
+        </mat-checkbox>
+        <mat-form-field *ngIf="fields"
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            <mat-select placeholder="Field" formControlName="field" [compareWith]="compareById">
+                <mat-option *ngFor="let field of fields.results" [value]="field">{{ field.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            <input matInput type="number" placeholder="Actual stock" formControlName="actual_stock">
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            <input matInput type="number" placeholder="Pending stock" formControlName="pending_stock">
+        </mat-form-field>
+        <mat-form-field
+            fxFlex.gt-sm="calc(25% - 8px)"
+            >
+            <input matInput type="number" placeholder="Desired stock" formControlName="desired_stock">
+        </mat-form-field>
+    </app-flex-form-container>
+</form>
