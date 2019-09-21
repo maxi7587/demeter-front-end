@@ -6,13 +6,6 @@
     fxLayoutAlign="start center"
     >
     <app-flex-form-container>
-        <mat-checkbox
-            fxFlex="100"
-            [checked]="field_supply_stock?.pinned"
-            (change)="updateForm('pinned', $event.checked)"
-            >
-            {{ 'Pin to dashboard' | translate }}
-        </mat-checkbox>
         <mat-form-field *ngIf="fields"
             fxFlex.gt-sm="calc(25% - 8px)"
             >

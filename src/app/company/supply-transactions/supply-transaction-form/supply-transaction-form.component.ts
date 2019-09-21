@@ -40,12 +40,12 @@ export class SupplyTransactionFormComponent implements OnInit {
     public fields: DRFCollection<Field>;
 
     public constructor(
+        public suppliesService: SuppliesService,
+        public fieldsService: FieldsService,
         protected router: Router,
         protected changeDetectorRef: ChangeDetectorRef,
         protected supplyTransactionsService: SupplyTransactionsService,
-        protected suppliesService: SuppliesService,
         protected companiesService: CompaniesService,
-        protected fieldsService: FieldsService,
         protected activatedRoute: ActivatedRoute,
         protected navigationService: NavigationService
     ) {

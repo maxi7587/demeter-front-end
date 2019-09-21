@@ -163,7 +163,7 @@ export class SupplyEditComponent extends CompanyTemplateComponent implements OnI
         });
     }
 
-    public goToSuuplyTransaction(supply_transaction: SupplyTransaction) {
+    public goToSupplyTransaction(supply_transaction: SupplyTransaction) {
         console.log(`will navigate to --->../../supply_transactions/${supply_transaction.id}`);
 
         this.router.navigate([`../../supply_transactions/${supply_transaction.id}`], { relativeTo: this.activatedRoute });

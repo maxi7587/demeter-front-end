@@ -23,7 +23,7 @@ export class SupplyFormComponent implements OnInit {
     @Input() public field: Field;
 
     public supply_form: FormGroup = new FormGroup({
-        pinned: new FormControl('', [Validators.required]),
+        // pinned: new FormControl('', [Validators.required]),
         name: new FormControl('', [Validators.required]),
         price: new FormControl('', [Validators.required]),
         field: new FormControl(null, [Validators.required]),

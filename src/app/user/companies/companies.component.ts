@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { AppResponsiveActionsComponent } from 'src/app/shared/app-responsive-actions/app-responsive-actions.component';
 import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
 import { Profile } from 'src/app/shared/services/user-profiles.service';
@@ -19,6 +19,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CompaniesComponent extends UserTemplateComponent implements OnInit {
     @ViewChild('responsiveActions') public responsiveActions: AppResponsiveActionsComponent;
     public actions_model: Array<ResponsiveAction> = CompaniesService.actions_model;
+    @Input() public showActions = true;
 
     private _user: User;
     set user(user: User) { this._user = user; }

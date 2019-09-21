@@ -42,11 +42,11 @@ export class ReceiptFormComponent implements OnInit {
     public supply_transactions: Array<SupplyTransaction>;
 
     public constructor(
+        public fieldsService: FieldsService,
         protected router: Router,
         protected changeDetectorRef: ChangeDetectorRef,
         protected receiptsService: ReceiptsService,
         protected companiesService: CompaniesService,
-        protected fieldsService: FieldsService,
         protected supplyTransactionsService: SupplyTransactionsService,
         protected suppliesService: SuppliesService,
         protected activatedRoute: ActivatedRoute,
