@@ -14,28 +14,13 @@
         [collection]="profiles"
     >
     </app-table>
-    <mat-list fxHide.lt-md>
-        <button
-            mat-raised-button
-            name="new"
-            color="primary"
-            fxLayout="row"
-            fxLayoutAlign="center center"
-            (click)="createElement()"
-            >
-            <!-- style="height: 56px; width:56px" -->
-            <!-- <button
-                mat-fab
-                name="new"
-                color="primary"
-                fxLayout="row"
-                fxLayoutAlign="center center"
-                >
-            </button> -->
-            <mat-icon>add</mat-icon>
-            New profile
-        </button>
-    </mat-list>
+    <app-responsive-actions
+        *ngIf="showActions"
+        #responsiveActions
+        [actions]="actions_model"
+        (actionClick)="actionClick($event)"
+        >
+    </app-responsive-actions>
 </div>
 
 <ng-template #nameTemplate let-element="element">

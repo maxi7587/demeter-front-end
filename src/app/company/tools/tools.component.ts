@@ -1,4 +1,6 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
+import { AppResponsiveActionsComponent } from 'src/app/shared/app-responsive-actions/app-responsive-actions.component';
 import { ToolDialogComponent } from 'src/app/company/tools/tool-dialog/tool-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Field } from 'src/app/shared/services/fields.service';
@@ -17,6 +19,8 @@ import { Column } from 'src/app/shared/table/table-elements';
   styleUrls: ['./tools.component.scss']
 })
 export class ToolsComponent extends CompanyTemplateComponent implements OnInit {
+    @ViewChild('responsiveActions') public responsiveActions: AppResponsiveActionsComponent;
+    public actions_model: Array<ResponsiveAction> = ToolsService.actions_model;
 
     @Input() public showActions = true;
     @Input() public tableClasses: Array<string>;
@@ -74,6 +78,10 @@ export class ToolsComponent extends CompanyTemplateComponent implements OnInit {
                     this.getList(filters);
                 }
             );
+    }
+
+    public actionClick(action_key) {
+        this[action_key]();
     }
 
     public getList(filter) {

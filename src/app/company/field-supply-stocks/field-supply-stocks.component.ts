@@ -1,4 +1,6 @@
 import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChild, TemplateRef } from '@angular/core';
+import { AppResponsiveActionsComponent } from 'src/app/shared/app-responsive-actions/app-responsive-actions.component';
+import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
 import { ReceiptDialogComponent } from 'src/app/company/receipts/receipt-dialog/receipt-dialog.component';
 import {
     SupplyTransactionDialogComponent
@@ -22,6 +24,9 @@ import { MatDialog } from '@angular/material/dialog';
     styleUrls: ['./field-supply-stocks.component.scss']
 })
 export class FieldSupplyStocksComponent extends CompanyTemplateComponent implements OnInit, AfterViewInit {
+    @ViewChild('responsiveActions') public responsiveActions: AppResponsiveActionsComponent;
+    public actions_model: Array<ResponsiveAction> = FieldSupplyStocksService.actions_model;
+
     @Input() public field: Field;
     @Input() public showActions = true;
     @Input() public tableClasses: Array<string>;
@@ -64,6 +69,10 @@ export class FieldSupplyStocksComponent extends CompanyTemplateComponent impleme
         this.columns.push(new Column('actual_stock', 'actual_stock', '', ''));
         this.columns.push(new Column('pending_stock', 'pending_stock', '', ''));
         this.columns.push(new Column('desired_stock', 'desired_stock', '', '', 'end center'));
+    }
+
+    public actionClick(action_key) {
+        this[action_key]();
     }
 
     public goToElement(element: FieldSupplyStock) {

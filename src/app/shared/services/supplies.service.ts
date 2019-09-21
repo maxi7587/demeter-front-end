@@ -18,7 +18,7 @@ export class Supply extends DRFResource {
 }
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class SuppliesService extends CompanyDRFService<Supply> {
     public static actions_model: Array<ResponsiveAction> = [

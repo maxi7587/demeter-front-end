@@ -128,7 +128,7 @@ export class FieldEditComponent extends CompanyTemplateComponent implements OnIn
 
         switch (selected_tab) {
             case 'field_plots':
-                this.fieldPlotsComponent.showFieldPlotsDialog();
+                this.fieldPlotsComponent.createElement();
                 break;
             case 'tasks':
                 this.tasksComponent.createTaskDialog();

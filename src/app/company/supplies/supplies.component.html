@@ -15,6 +15,7 @@
         >
     </app-table>
     <app-responsive-actions
+        *ngIf="showActions"
         #responsiveActions
         [actions]="actions_model"
         (actionClick)="actionClick($event)"

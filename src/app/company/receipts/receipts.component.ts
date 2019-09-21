@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { AppResponsiveActionsComponent } from 'src/app/shared/app-responsive-actions/app-responsive-actions.component';
+import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
 import { DRFCollection } from 'src/app/shared/basic-drf.service';
 import { Field } from 'src/app/shared/services/fields.service';
 import {
@@ -19,6 +21,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./receipts.component.scss']
 })
 export class ReceiptsComponent extends CompanyTemplateComponent implements OnInit {
+    @ViewChild('responsiveActions') public responsiveActions: AppResponsiveActionsComponent;
+    public actions_model: Array<ResponsiveAction> = ReceiptsService.actions_model;
 
     @Input() public showActions = true;
     @Input() public tableClasses: Array<string>;
@@ -72,6 +76,10 @@ export class ReceiptsComponent extends CompanyTemplateComponent implements OnIni
                     this.getList(filters);
                 }
             );
+    }
+
+    public actionClick(action_key) {
+        this[action_key]();
     }
 
     public getList(filter) {

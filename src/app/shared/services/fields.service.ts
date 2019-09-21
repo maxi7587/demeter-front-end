@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
 import { DRFResource } from 'src/app/shared/basic-drf.service';
 import { CompanyDRFService } from 'src/app/shared/drf/company-drf.service';
 import { HttpClient } from '@angular/common/http';
@@ -23,6 +24,10 @@ export class Field extends DRFResource {
   providedIn: 'root'
 })
 export class FieldsService extends CompanyDRFService<Field> {
+    public static actions_model: Array<ResponsiveAction> = [
+        new ResponsiveAction('createElement', 'add', 'New field')
+    ];
+
     public resource = Field;
     protected _type = 'fields';
 

@@ -23,6 +23,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class SuppliesComponent extends CompanyTemplateComponent implements OnInit, AfterViewInit {
     @ViewChild('responsiveActions') public responsiveActions: AppResponsiveActionsComponent;
+    public actions_model: Array<ResponsiveAction> = SuppliesService.actions_model;
 
     @Input() public field: Field;
     @Input() public showActions = true;
@@ -37,7 +38,6 @@ export class SuppliesComponent extends CompanyTemplateComponent implements OnIni
     // @Output() public createButton: EventEmitter<Task> = new EventEmitter();
     @Input() public createFromDialog = true;
 
-    public actions_model: Array<ResponsiveAction> = SuppliesService.actions_model;
 
     private _supplies: {[key: string]: any} = {};
     set supplies(supplies: {[key: string]: any}) { this._supplies = supplies; }

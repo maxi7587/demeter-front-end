@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
 import { FieldPlot } from 'src/app/shared/services/field-plots.service';
 import { CompanyDRFService } from 'src/app/shared/drf/company-drf.service';
 import { Company } from 'src/app/shared/services/companies.service';
@@ -35,6 +36,9 @@ export class Task extends DRFResource {
   providedIn: 'root'
 })
 export class TasksService extends CompanyDRFService<Task> {
+    public static actions_model: Array<ResponsiveAction> = [
+        new ResponsiveAction('createElement', 'add', 'New task')
+    ];
     public resource = Task;
     protected _type = 'tasks';
 }

@@ -56,7 +56,6 @@ export class DashboardComponent implements OnInit {
         public toolsService: ToolsService,
         public navigationService: NavigationService
     ) {
-        console.log('inside dashboard component');
         this.navigationService.title = this.activatedRoute.snapshot.data.title;
         this.getFields();
         this.getProfiles();
@@ -103,7 +102,7 @@ export class DashboardComponent implements OnInit {
             .subscribe(
                 (tasks: DRFCollection<Task>) => {
                     for (let task of tasks.results) {
-                        if (task.status === 'done') {
+                        if (task.status === 'ready') {
                             this.completed_tasks.push(task);
                         } else {
                             this.uncompleted_tasks.push(task);

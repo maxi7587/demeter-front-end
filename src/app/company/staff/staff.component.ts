@@ -37,9 +37,7 @@ export class StaffComponent extends CompanyTemplateComponent implements OnInit {
     }
 
     public add() {
-        console.log('tab ----------->', this.tabGroup.selectedIndex);
         let selected_tab = this.tab_index[this.tabGroup.selectedIndex];
-        console.log('selected tab ----------->', selected_tab);
 
         switch (selected_tab) {
             case 'profiles':
@@ -49,7 +47,6 @@ export class StaffComponent extends CompanyTemplateComponent implements OnInit {
                 this.chargesComponent.createChargeDialog();
                 break;
             case 'contract_types':
-                console.log('inside contract_types add switch option');
                 this.contractTypesComponent.createContractTypeDialog();
                 break;
         }
@@ -60,7 +57,6 @@ export class StaffComponent extends CompanyTemplateComponent implements OnInit {
 
         switch (selected_tab) {
             case 'profiles':
-                console.log('PROFILES: ', this.profilesComponent);
                 let filter = { first_name: search_string_filter };
                 this.profilesComponent.getList(filter);
                 break;
@@ -69,9 +65,6 @@ export class StaffComponent extends CompanyTemplateComponent implements OnInit {
                     ...this.chargesComponent.filters_form.value,
                     ...{ name: search_string_filter }
                 };
-                console.log('this.chargesComponent.filters_form.value --->', this.chargesComponent.filters_form.value);
-                console.log('filter --->', search_string_filter);
-                console.log('charges_filter --->', charges_filter);
                 this.chargesComponent.getList(charges_filter);
                 break;
             case 'contract_types':

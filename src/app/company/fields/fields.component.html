@@ -23,28 +23,13 @@
                 [collection]="fields"
                 >
             </app-table>
-            <mat-list fxHide.lt-md>
-                <button
-                    mat-raised-button
-                    name="new"
-                    color="primary"
-                    fxLayout="row"
-                    fxLayoutAlign="center center"
-                    [routerLink]="0"
-                    >
-                    <!-- style="height: 56px; width:56px" -->
-                    <!-- <button
-                        mat-fab
-                        name="new"
-                        color="primary"
-                        fxLayout="row"
-                        fxLayoutAlign="center center"
-                        >
-                    </button> -->
-                    <mat-icon>add</mat-icon>
-                    New field
-                </button>
-            </mat-list>
+            <app-responsive-actions
+                *ngIf="showActions"
+                #responsiveActions
+                [actions]="actions_model"
+                (actionClick)="actionClick($event)"
+                >
+            </app-responsive-actions>
         </div>
     </mat-tab>
 </mat-tab-group>

@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild  } from '@angular/core';
+import { AppResponsiveActionsComponent } from 'src/app/shared/app-responsive-actions/app-responsive-actions.component';
+import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
 import { DRFCollection } from 'src/app/shared/basic-drf.service';
 import { ChargeDialogComponent } from 'src/app/company/charges/charge-dialog/charge-dialog.component';
 import { ChargesService, Charge } from 'src/app/shared/services/charges.service';
@@ -16,6 +18,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./charges.component.scss']
 })
 export class ChargesComponent extends CompanyTemplateComponent implements OnInit {
+    @ViewChild('responsiveActions') public responsiveActions: AppResponsiveActionsComponent;
 
     @Input() public showActions = true;
     @Input() public tableClasses: Array<string>;
@@ -33,6 +36,8 @@ export class ChargesComponent extends CompanyTemplateComponent implements OnInit
     public filters_form: FormGroup = new FormGroup({
         status: new FormControl(this.status_options[0].value),
     });
+
+    public actions_model: Array<ResponsiveAction> = ChargesService.actions_model;
 
     private _charges: {[key: string]: any} = {};
     set charges(charges: {[key: string]: any}) { this._charges = charges; }
@@ -78,6 +83,10 @@ export class ChargesComponent extends CompanyTemplateComponent implements OnInit
                 //     }
                 // }
             });
+    }
+
+    public actionClick(action_key) {
+        this[action_key]();
     }
 
     public goToElement(element) {
