@@ -1,4 +1,5 @@
-const mpurl = '//demeter.pythonanywhere.com/';
+const mpurl = '//tranquil-sands-20400.herokuapp.com/'
+// const mpurl = '//demeter.pythonanywhere.com/';
 // const mpurl = '//192.168.0.12:8000/';
 
 export const environment = {
