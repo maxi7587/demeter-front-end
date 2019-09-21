@@ -45,7 +45,8 @@ export class InventoryComponent extends CompanyTemplateComponent implements OnIn
 
         switch (selected_tab) {
             case 'supplies':
-                this.suppliesComponent.createElement();
+                // this.suppliesComponent.createElement();
+                this.suppliesComponent.responsiveActions.openBottomSheet();
                 break;
             case 'receipts':
                 // TODO: open dialog with actions and filters

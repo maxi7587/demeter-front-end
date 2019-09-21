@@ -27,6 +27,7 @@ export class SupplyFormComponent implements OnInit {
         name: new FormControl('', [Validators.required]),
         price: new FormControl('', [Validators.required]),
         field: new FormControl(null, [Validators.required]),
+        company: new FormControl(null, [Validators.required]), // this should not be in the form
         measure_unit: new FormControl(null, [Validators.required]),
         actual_stock: new FormControl(),
         pending_stock: new FormControl(),

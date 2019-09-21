@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
 import { Company } from 'src/app/shared/services/companies.service';
 import { Field } from 'src/app/shared/services/fields.service';
 import { MeasureUnit } from 'src/app/shared/services/measure-units.service';
@@ -20,6 +21,15 @@ export class Supply extends DRFResource {
   providedIn: 'root'
 })
 export class SuppliesService extends CompanyDRFService<Supply> {
+    public static actions_model: Array<ResponsiveAction> = [
+        new ResponsiveAction('createElement', 'add', 'New supply'),
+        new ResponsiveAction('createInputReceipt', 'add', 'Input receipt'),
+        new ResponsiveAction('createOutputReceipt', 'add', 'Output receipt'),
+        new ResponsiveAction('createInputTransaction', 'add', 'Input transaction'),
+        new ResponsiveAction('createOutputTransaction', 'add', 'Output transaction')
+    ];
     public resource = Supply;
+
     protected _type = 'supplies';
+
 }

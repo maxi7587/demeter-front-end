@@ -50,6 +50,7 @@ export class FieldSupplyStockFormComponent implements OnInit {
                 );
         }
         let field_id = fieldsService.getFieldIdFromURL();
+        console.log('field_id --->', field_id);
         if (field_id) {
             fieldsService.get(field_id).subscribe(
                 field => this.field_supply_stock_form.controls.field.setValue(field)
@@ -61,6 +62,7 @@ export class FieldSupplyStockFormComponent implements OnInit {
         // IMPORTANT: have to seet both fields manually
         console.log('field in field_supply_stock-form ng on init --->', this.field);
         if (this.field) {
+            console.log('field --->', this.field);
             // this.field_supply_stock.field = this.field_supply_stock.field || this.field;
             this.field_supply_stock_form.controls.field.setValue(this.field);
         }

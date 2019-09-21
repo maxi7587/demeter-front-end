@@ -1,0 +1,42 @@
+<!-- fxFlex.gt-sm="auto"
+fxFlex.lt-md="100" -->
+<div
+    [fxHide.lt-md]="true"
+    >
+    <ng-container
+        [ngTemplateOutlet]="actionsTemplate"
+        >
+    </ng-container>
+</div>
+
+<ng-template
+    #actionsTemplate
+    >
+    <div
+        fxFlex="auto"
+        fxLayout="column"
+        fxLayoutAlign="start stretch"
+        fxLayoutGap="8px"
+        >
+        <mat-list id="actions" fxLayout="column" fxLayoutAlign="start stretch">
+            <mat-list-item *ngFor="let action of actions">
+                <button
+                    mat-raised-button
+                    name="action.key"
+                    color="primary"
+                    fxFlex="100"
+                    style="text-align: start; font-weight: bold"
+                    (click)="actionClick.emit(action.key)"
+                    >
+                    <!-- <mat-icon>{{ action.icon }}</mat-icon> -->
+                    {{ action.text }}
+                </button>
+            </mat-list-item>
+        </mat-list>
+        <!-- @TODO: add dynamic filters form... actually we have to use ng-template and biind filters to the component -->
+        <ng-container
+            [ngTemplateOutlet]="filtersTemplate"
+            >
+        </ng-container>
+    </div>
+</ng-template>

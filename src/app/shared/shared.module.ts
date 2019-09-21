@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { AppResponsiveActionsComponent } from 'src/app/shared/app-responsive-actions/app-responsive-actions.component';
+import { ResponsiveActionsBottomSheetComponent } from 'src/app/shared/app-responsive-actions/responsive-actions-bottom-sheet/responsive-actions-bottom-sheet.component';
 import { SupplyTransactionsService } from 'src/app/shared/services/supply-transactions.service';
 import { FieldSupplyStocksService } from 'src/app/shared/services/field-supply-stocks.service';
 import { SuppliesService } from 'src/app/shared/services/supplies.service';
@@ -57,7 +59,9 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         DeleteConfirmationDialogComponent,
         FullTableComponent,
         DynamicFormComponent,
-        ActionsPadComponent
+        ActionsPadComponent,
+        AppResponsiveActionsComponent,
+        ResponsiveActionsBottomSheetComponent
     ],
     imports: [
         CommonModule,
@@ -91,7 +95,9 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         DeleteConfirmationDialogComponent,
         FullTableComponent,
         DynamicFormComponent,
-        ActionsPadComponent
+        ActionsPadComponent,
+        AppResponsiveActionsComponent,
+        ResponsiveActionsBottomSheetComponent
     ],
     providers: [
         BasicDRFService,
@@ -113,7 +119,8 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         ContactsService
     ],
     entryComponents: [
-        DeleteConfirmationDialogComponent
+        DeleteConfirmationDialogComponent,
+        ResponsiveActionsBottomSheetComponent
     ]
 })
 export class SharedModule { }
