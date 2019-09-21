@@ -69,14 +69,15 @@ export class ReceiptFormComponent implements OnInit {
 
     public ngOnInit() {
         console.log('field in receipt-form ng on init --->', this.field);
-        if (this.field) {
-            // this.receipt.field = this.receipt.field || this.field;
-            this.receipt_form.controls.field.setValue(this.field);
-        }
-        if (this.type) {
-            // this.receipt.field = this.receipt.field || this.field;
-            this.receipt_form.controls.type.setValue(this.type);
-        }
+        // if (this.field) {
+        //     // this.receipt.field = this.receipt.field || this.field;
+        //     this.receipt.controls.field.setValue(this.field);
+        //     this.receipt_form.controls.field.setValue(this.field);
+        // }
+        // if (this.type) {
+        //     // this.receipt.field = this.receipt.field || this.field;
+        //     this.receipt_form.controls.type.setValue(this.type);
+        // }
         // this.supplyTransactionsService
         //     .all()
         //     .subscribe((supply_transactions: DRFCollection<SupplyTransaction>) => {
@@ -104,6 +105,17 @@ export class ReceiptFormComponent implements OnInit {
         } else {
             this.fillFormData(this.receipt);
         }
+
+        if (this.field) {
+            // this.receipt.field = this.receipt.field || this.field;
+            this.receipt.field = this.field;
+            this.receipt_form.controls.field.setValue(this.field);
+        }
+        if (this.type) {
+            // this.receipt.field = this.receipt.field || this.field;
+            this.receipt_form.controls.type.setValue(this.type);
+        }
+
 
         console.log('receipt_form VALUE --->', this.receipt_form.value);
         this.changeDetectorRef.detectChanges();
