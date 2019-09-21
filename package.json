@@ -7,7 +7,11 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "tslint": "tslint \"src/**/*.ts\"",
     "e2e": "ng e2e",
+    "fix": "ng lint colmena --fix && ng lint colmena-e2e --fix && yarn prettier:fix",
+    "prettier:fix": "prettier **/*.{ts,sass,scss,md} --write",
+    "prettier:check": "bash node_modules/reyesoft-ci/parallel.bash -s \"yarn prettier **/*.{sass,scss,md} -l\" \"yarn prettier **/*.ts -l\"",
     "heroku-postbuild": "ng build --prod"
   },
   "private": true,
