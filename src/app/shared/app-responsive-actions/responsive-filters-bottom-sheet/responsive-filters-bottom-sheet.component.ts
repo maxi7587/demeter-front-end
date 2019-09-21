@@ -1,5 +1,5 @@
 import { Component, Inject, TemplateRef } from '@angular/core';
-import { MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 @Component({
     selector: 'app-responsive-filters-bottom-sheet',

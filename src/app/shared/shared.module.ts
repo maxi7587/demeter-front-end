@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ResponsiveFiltersBottomSheetComponent } from 'src/app/shared/app-responsive-actions/responsive-filters-bottom-sheet/responsive-filters-bottom-sheet.component';
 import { AppResponsiveActionsComponent } from 'src/app/shared/app-responsive-actions/app-responsive-actions.component';
 import { ResponsiveActionsBottomSheetComponent } from 'src/app/shared/app-responsive-actions/responsive-actions-bottom-sheet/responsive-actions-bottom-sheet.component';
 import { SupplyTransactionsService } from 'src/app/shared/services/supply-transactions.service';
@@ -61,6 +62,7 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         DynamicFormComponent,
         ActionsPadComponent,
         AppResponsiveActionsComponent,
+        ResponsiveFiltersBottomSheetComponent,
         ResponsiveActionsBottomSheetComponent
     ],
     imports: [
@@ -97,6 +99,7 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         DynamicFormComponent,
         ActionsPadComponent,
         AppResponsiveActionsComponent,
+        ResponsiveFiltersBottomSheetComponent,
         ResponsiveActionsBottomSheetComponent
     ],
     providers: [
@@ -120,6 +123,7 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
     ],
     entryComponents: [
         DeleteConfirmationDialogComponent,
+        ResponsiveFiltersBottomSheetComponent,
         ResponsiveActionsBottomSheetComponent
     ]
 })
