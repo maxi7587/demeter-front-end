@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild  } from '@angular/core';
+import { AppResponsiveActionsComponent } from 'src/app/shared/app-responsive-actions/app-responsive-actions.component';
+import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
 import { ContractTypeDialogComponent } from 'src/app/company/contract-types/contract-type-dialog/contract-type-dialog.component';
 import { ContractTypesService, ContractType } from 'src/app/shared/services/contract-types.service';
 import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
@@ -15,6 +17,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./contract-types.component.scss']
 })
 export class ContractTypesComponent extends CompanyTemplateComponent implements OnInit {
+    @ViewChild('responsiveActions') public responsiveActions: AppResponsiveActionsComponent;
 
     @Input() public showActions = true;
     @Input() public tableClasses: Array<string>;
@@ -23,14 +26,10 @@ export class ContractTypesComponent extends CompanyTemplateComponent implements 
     @Output() public rowClick: EventEmitter<ContractType> = new EventEmitter();
     @Input() public createFromDialog: boolean;
 
-    public status_options: Array<{[key: string]: string}> = [
-        {name: 'all', value: undefined},
-        {name: 'todo', value: 'todo'},
-        {name: 'in_developement', value: 'in_developement'},
-        {name: 'ready', value: 'ready'}
-    ];
+    public actions_model: Array<ResponsiveAction> = ContractTypesService.actions_model;
+
     public filters_form: FormGroup = new FormGroup({
-        status: new FormControl(this.status_options[0].value),
+        // status: new FormControl(this.status_options[0].value),
     });
 
     private _contract_types: {[key: string]: any} = {};
@@ -63,6 +62,10 @@ export class ContractTypesComponent extends CompanyTemplateComponent implements 
                     this.getList(filters);
                 }
             );
+    }
+
+    public actionClick(action_key) {
+        this[action_key]();
     }
 
     public getList(filter) {

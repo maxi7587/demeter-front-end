@@ -49,7 +49,10 @@ export class CompanyComponent implements OnInit, OnDestroy {
                             new NavigationSidenavLink(
                                 'Tasks', `companies/${activatedRoute.snapshot.params.company_id}/tasks`, 'assignment'
                             ),
-                            new NavigationSidenavLink('Tools', `companies/${activatedRoute.snapshot.params.company_id}/tools`, 'build')
+                            new NavigationSidenavLink('Tools', `companies/${activatedRoute.snapshot.params.company_id}/tools`, 'build'),
+                            new NavigationSidenavLink(
+                                'Inventory', `companies/${activatedRoute.snapshot.params.company_id}/inventory`, 'add_shopping_cart'
+                            )
                         ];
                     } else  {
                         sections_links = [

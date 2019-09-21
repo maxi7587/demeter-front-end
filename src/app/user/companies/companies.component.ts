@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AppResponsiveActionsComponent } from 'src/app/shared/app-responsive-actions/app-responsive-actions.component';
+import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
 import { Profile } from 'src/app/shared/services/user-profiles.service';
 import { UserTemplateComponent } from 'src/app/user/user-template/user-template.component';
 import { NavigationService, SidenavActions } from 'src/app/shared/navigation/navigation.service';
@@ -15,6 +17,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./companies.component.scss']
 })
 export class CompaniesComponent extends UserTemplateComponent implements OnInit {
+    @ViewChild('responsiveActions') public responsiveActions: AppResponsiveActionsComponent;
+    public actions_model: Array<ResponsiveAction> = CompaniesService.actions_model;
+
     private _user: User;
     set user(user: User) { this._user = user; }
     get user(): User { return this._user; }
@@ -73,6 +78,14 @@ export class CompaniesComponent extends UserTemplateComponent implements OnInit 
 
     public ngOnInit() {
         this.navigationService.actions.next(new SidenavActions(['add']));
+    }
+
+    public actionClick(action_key) {
+        this[action_key]();
+    }
+
+    public createElement() {
+        this.router.navigate(['0'], { relativeTo: this.activatedRoute });
     }
 
     public goToCompany(company: Company): void {

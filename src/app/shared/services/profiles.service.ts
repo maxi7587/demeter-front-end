@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
 import { Field } from 'src/app/shared/services/fields.service';
 import { User } from 'src/app/shared/services/users.service';
 import { Contact } from 'src/app/shared/services/contacts/contacts.service';
@@ -30,6 +31,9 @@ export class Profile extends DRFResource {
   providedIn: 'root'
 })
 export class ProfilesService extends CompanyDRFService<Profile> {
+    public static actions_model: Array<ResponsiveAction> = [
+        new ResponsiveAction('createElement', 'add', 'New profile')
+    ];
     public resource = Profile;
     protected _type = 'profiles';
 }

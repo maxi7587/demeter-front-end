@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
 import { User } from 'src/app/shared/services/users.service';
 import { Contact } from 'src/app/shared/services/contacts/contacts.service';
 import { Router } from '@angular/router';
@@ -22,6 +23,10 @@ export class Company extends DRFResource {
     providedIn: 'root'
 })
 export class CompaniesService extends BasicDRFService<Company> {
+    public static actions_model: Array<ResponsiveAction> = [
+        new ResponsiveAction('createElement', 'add', 'New company')
+    ];
+
     public resource = Company;
 
     private _company: Company;

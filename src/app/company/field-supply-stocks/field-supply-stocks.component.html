@@ -1,0 +1,28 @@
+<div
+    fxLayout="row"
+    fxLayoutAlign="center start"
+    fxLayoutGap="16px"
+    class="width-100"
+    >
+    <app-table
+        fxFlex="1 1 100"
+        *ngIf="field_supply_stocks.results"
+        [service]="fieldSupplyStocksService"
+        [columns]="columns"
+        [rows]="field_supply_stocks.results"
+        (edit)="goToElement($event)"
+        [collection]="field_supply_stocks"
+        >
+    </app-table>
+    <app-responsive-actions
+        *ngIf="showActions"
+        #responsiveActions
+        [actions]="actions_model"
+        (actionClick)="actionClick($event)"
+        >
+    </app-responsive-actions>
+</div>
+
+<ng-template #nameTemplate let-element="element">
+    <span>{{ element.supply.name }}</span>
+</ng-template>

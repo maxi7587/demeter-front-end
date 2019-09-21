@@ -1,0 +1,28 @@
+<div
+    fxLayout="row"
+    fxLayoutAlign="center start"
+    fxLayoutGap="16px"
+    class="width-100"
+    >
+    <app-table
+        fxFlex="1 1 100"
+        *ngIf="supplies.results"
+        [service]="suppliesService"
+        [columns]="columns"
+        [rows]="supplies.results"
+        (edit)="goToElement($event)"
+        [collection]="supplies"
+        >
+    </app-table>
+    <app-responsive-actions
+        *ngIf="showActions"
+        #responsiveActions
+        [actions]="actions_model"
+        (actionClick)="actionClick($event)"
+        >
+    </app-responsive-actions>
+</div>
+
+<ng-template #nameTemplate let-element="element">
+    <span>{{ element.first_name + ' ' + element.last_name }}</span>
+</ng-template>

@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, TemplateRef } from '@angular/core';
+import { AppResponsiveActionsComponent } from 'src/app/shared/app-responsive-actions/app-responsive-actions.component';
+import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
 import { FieldPlotInfoDialogComponent } from 'src/app/company/field-plots/field-plot-info-dialog/field-plot-info-dialog.component';
 import { FieldPlotDialogComponent } from 'src/app/company/field-plots/field-plot-dialog/field-plot-dialog.component';
 import { FieldPlot, FieldPlotsService } from 'src/app/shared/services/field-plots.service';
@@ -17,6 +19,8 @@ import { Field } from 'src/app/shared/services/fields.service';
     styleUrls: ['./field-plots.component.scss']
 })
 export class FieldPlotsComponent extends CompanyTemplateComponent implements OnInit {
+    @ViewChild('responsiveActions') public responsiveActions: AppResponsiveActionsComponent;
+    public actions_model: Array<ResponsiveAction> = FieldPlotsService.actions_model;
 
     @Input() public showActions = true;
     @Input() public tableClasses: Array<string>;
@@ -84,6 +88,10 @@ export class FieldPlotsComponent extends CompanyTemplateComponent implements OnI
             });
     }
 
+    public actionClick(action_key) {
+        this[action_key]();
+    }
+
     public goToElement(element) {
         if (this.overrideRowClick) {
             this.rowClick.emit(element);
@@ -91,31 +99,22 @@ export class FieldPlotsComponent extends CompanyTemplateComponent implements OnI
             return;
         }
 
-        console.log('will navigate to field plot -->', this.router.url, element.id);
-
         this.showFieldPlotInfoDialog(element);
         // this.router.navigate([this.router.url, element.id]);
     }
 
     public showFieldPlotInfoDialog(field_plot: FieldPlot): void {
-        console.log('should open field plot dialog');
         const dialogRef = this.dialog.open(FieldPlotInfoDialogComponent, {
             width: '480px',
             data: { field_plot: field_plot }
         });
+    }
 
-        // dialogRef.afterClosed()
-        //     .subscribe(result => {
-        //         if (result) {
-        //             console.log('The dialog was closed', result);
-        //             // this.getList(this.route, this.filter);
-        //         }
-        //     }
-        // );
+    public createElement(): void {
+        this.showFieldPlotsDialog();
     }
 
     public showFieldPlotsDialog(): void {
-        console.log('should open field plot dialog');
         const dialogRef = this.dialog.open(FieldPlotDialogComponent, {
             width: '720px',
             data: { field: this.field }
@@ -124,7 +123,6 @@ export class FieldPlotsComponent extends CompanyTemplateComponent implements OnI
         dialogRef.afterClosed()
             .subscribe(result => {
                 if (result) {
-                    console.log('The dialog was closed', result);
                     this.getList(this.route, this.filter);
                 }
             }

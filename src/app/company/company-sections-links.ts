@@ -5,4 +5,5 @@ export const sections_links: Array<NavigationSidenavLink> = [
     new NavigationSidenavLink('Fields', 'fields', 'wb_sunny'),
     new NavigationSidenavLink('Tasks', 'tasks', 'assignment'),
     new NavigationSidenavLink('Tools', 'tools', 'build'),
+    new NavigationSidenavLink('Inventory', 'inventory', 'build'),
 ];

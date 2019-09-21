@@ -233,4 +233,82 @@
             </app-profiles>
         </div>
     </mat-tab>
+
+    <!-- <mat-tab [disabled]="!field.id">
+        <ng-template
+            id="supplies-tab"
+            mat-tab-label
+            >
+            Supplies
+        </ng-template>
+        <div
+            style="padding: 16px;"
+            mat-tab-content
+            >
+            <app-supplies
+                *ngIf="field.id"
+                class="width-100"
+                [showActions]="true"
+                [filter]="{ 'field': this.field.id }"
+                [overrideRowClick]="true"
+                [showInDialog]="true"
+                [field]="field"
+                [createFromDialog]="true"
+                #supplies
+                >
+            </app-supplies>
+        </div>
+    </mat-tab> -->
+
+    <mat-tab [disabled]="!field.id">
+        <ng-template
+            id="supplies-tab"
+            mat-tab-label
+            >
+            Supplies
+        </ng-template>
+        <div
+            style="padding: 16px;"
+            mat-tab-content
+            >
+            <app-field-supply-stocks
+                *ngIf="field.id"
+                class="width-100"
+                [showActions]="true"
+                [filter]="{ 'field': this.field.id }"
+                [overrideRowClick]="true"
+                [showInDialog]="true"
+                [field]="field"
+                [createFromDialog]="true"
+                #fieldSupplyStocks
+                >
+            </app-field-supply-stocks>
+        </div>
+    </mat-tab>
+
+    <mat-tab [disabled]="!field.id">
+        <ng-template
+            id="receipts-tab"
+            mat-tab-label
+            >
+            Receipts
+        </ng-template>
+        <div
+            class="app-basic-padding"
+            mat-tab-content
+            >
+            <!-- (edit)="goToCharge($event)" -->
+            <app-receipts
+                *ngIf="field.id"
+                class="width-100"
+                [filter]="{ 'field': this.field.id }"
+                [field]="field"
+                [showTabGroup]="false"
+                [showActions]="true"
+                [createFromDialog]="true"
+                #receipts
+                >
+            </app-receipts>
+        </div>
+    </mat-tab>
 </mat-tab-group>

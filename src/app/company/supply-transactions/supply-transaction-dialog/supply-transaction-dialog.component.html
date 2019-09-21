@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Supply transaction</h1>
+<div mat-dialog-content>
+    <app-supply-transaction-form
+        #supplyTransactionForm
+        [supply_transaction]="data.supply_transaction"
+        [supply]="data.supply"
+        [field]="data.field"
+        [type]="data.type"
+        fxLayout="row wrap"
+        fxLayoutGap="16px"
+        >
+    </app-supply-transaction-form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="save()">Save</button>
+    <button mat-button [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
+</div>

@@ -22,6 +22,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 @NgModule({
     declarations: [],
@@ -49,6 +50,7 @@ import { MatChipsModule } from '@angular/material/chips';
         MatPaginatorModule,
         MatSnackBarModule,
         MatChipsModule,
+        MatBottomSheetModule,
         MatMenuModule
     ]
 })

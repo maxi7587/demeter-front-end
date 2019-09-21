@@ -28,6 +28,7 @@ export class CompanyTemplateComponent implements OnInit, OnDestroy {
                     this.search(this.navigationService.search_filter);
                     break;
                 case 'add':
+                    console.log('should call company templae component add() method');
                     this.add();
                     break;
                 case 'delete':

@@ -1,4 +1,9 @@
 import { NgModule } from '@angular/core';
+import { AppResponsiveActionsComponent } from 'src/app/shared/app-responsive-actions/app-responsive-actions.component';
+import { ResponsiveActionsBottomSheetComponent } from 'src/app/shared/app-responsive-actions/responsive-actions-bottom-sheet/responsive-actions-bottom-sheet.component';
+import { SupplyTransactionsService } from 'src/app/shared/services/supply-transactions.service';
+import { FieldSupplyStocksService } from 'src/app/shared/services/field-supply-stocks.service';
+import { SuppliesService } from 'src/app/shared/services/supplies.service';
 import { DynamicFormComponent } from 'src/app/shared/dynamic-forms/dynamic-forms.component';
 import { FullTableComponent } from 'src/app/shared/list/full-table.component';
 import { DeleteConfirmationDialogComponent } from 'src/app/shared/delete-confirmation/delete-confirmation-dialog.component';
@@ -54,7 +59,9 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         DeleteConfirmationDialogComponent,
         FullTableComponent,
         DynamicFormComponent,
-        ActionsPadComponent
+        ActionsPadComponent,
+        AppResponsiveActionsComponent,
+        ResponsiveActionsBottomSheetComponent
     ],
     imports: [
         CommonModule,
@@ -88,7 +95,9 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         DeleteConfirmationDialogComponent,
         FullTableComponent,
         DynamicFormComponent,
-        ActionsPadComponent
+        ActionsPadComponent,
+        AppResponsiveActionsComponent,
+        ResponsiveActionsBottomSheetComponent
     ],
     providers: [
         BasicDRFService,
@@ -104,10 +113,14 @@ import { ActionsPadComponent } from './actions-pad/actions-pad.component';
         TasksService,
         UsersService,
         MeasureUnitsService,
+        SuppliesService,
+        SupplyTransactionsService,
+        FieldSupplyStocksService,
         ContactsService
     ],
     entryComponents: [
-        DeleteConfirmationDialogComponent
+        DeleteConfirmationDialogComponent,
+        ResponsiveActionsBottomSheetComponent
     ]
 })
 export class SharedModule { }

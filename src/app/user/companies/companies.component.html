@@ -75,29 +75,11 @@
             </button>
         </div>
     </div>
-    <mat-list
-        fxHide.lt-md
-        style="padding-top: 48px"
+    <app-responsive-actions
+        *ngIf="showActions"
+        #responsiveActions
+        [actions]="actions_model"
+        (actionClick)="actionClick($event)"
         >
-        <button
-            mat-raised-button
-            name="new"
-            color="primary"
-            fxLayout="row"
-            fxLayoutAlign="center center"
-            [routerLink]="0"
-            >
-            <!-- style="height: 56px; width:56px" -->
-            <!-- <button
-                mat-fab
-                name="new"
-                color="primary"
-                fxLayout="row"
-                fxLayoutAlign="center center"
-                >
-            </button> -->
-            <mat-icon>add</mat-icon>
-            Crear compañía
-        </button>
-    </mat-list>
+    </app-responsive-actions>
 </div>

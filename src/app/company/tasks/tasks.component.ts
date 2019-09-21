@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
+import { AppResponsiveActionsComponent } from 'src/app/shared/app-responsive-actions/app-responsive-actions.component';
 import { Field } from 'src/app/shared/services/fields.service';
 import { TaskDialogComponent } from 'src/app/company/tasks/task-dialog/task-dialog.component';
 import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
@@ -16,6 +18,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent extends CompanyTemplateComponent implements OnInit {
+    @ViewChild('responsiveActions') public responsiveActions: AppResponsiveActionsComponent;
+    public actions_model: Array<ResponsiveAction> = TasksService.actions_model;
 
     @Input() public showActions = true;
     @Input() public tableClasses: Array<string>;
@@ -69,6 +73,10 @@ export class TasksComponent extends CompanyTemplateComponent implements OnInit {
                     this.getList(filters);
                 }
             );
+    }
+
+    public actionClick(action_key) {
+        this[action_key]();
     }
 
     public getList(filter) {

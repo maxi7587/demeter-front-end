@@ -1,4 +1,9 @@
 import { NgModule } from '@angular/core';
+import { ReceiptsComponent } from 'src/app/company/receipts/receipts.component';
+import { InventoryComponent } from 'src/app/company/inventory/inventory.component';
+import { SupplyEditComponent } from 'src/app/company/supplies/supply-edit/supply-edit.component';
+import { SupplyEditResolver } from 'src/app/company/supplies/supply-edit/supply-edit.resolver';
+import { SuppliesComponent } from 'src/app/company/supplies/supplies.component';
 import { StaffComponent } from 'src/app/company/staff/staff.component';
 import { FieldPlotEditResolver } from 'src/app/company/field-plots/field-plots-edit/field-plots-edit.resolver';
 import { FieldPlotEditComponent } from 'src/app/company/field-plots/field-plots-edit/field-plots-edit.component';
@@ -118,6 +123,27 @@ const routes: Routes = [
                 data: { title: 'profile edit' },
                 resolve: { profile: ProfileEditResolver },
                 component: ProfileEditComponent
+            },
+            {
+                path: 'supplies',
+                data: { title: 'supplies' },
+                component: SuppliesComponent,
+            },
+            {
+                path: 'receipts',
+                data: { title: 'receipts' },
+                component: ReceiptsComponent,
+            },
+            {
+                path: 'inventory',
+                data: { title: 'inventory' },
+                component: InventoryComponent,
+            },
+            {
+                path: 'supplies/:objectId',
+                data: { title: 'supply edit' },
+                resolve: { supply: SupplyEditResolver },
+                component: SupplyEditComponent
             }
         ]
     }

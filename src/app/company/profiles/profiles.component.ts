@@ -1,4 +1,6 @@
 import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChild, TemplateRef } from '@angular/core';
+import { AppResponsiveActionsComponent } from 'src/app/shared/app-responsive-actions/app-responsive-actions.component';
+import { ResponsiveAction } from 'src/app/shared/app-responsive-actions/responsive-actions-elements/responsive-action';
 import { ProfileDialogComponent } from 'src/app/company/profiles/profile-dialog/profile-dialog.component';
 import { CompanyTemplateComponent } from 'src/app/company/company-template/company-template.component';
 import { SidenavActions, NavigationService } from 'src/app/shared/navigation/navigation.service';
@@ -16,6 +18,9 @@ import { MatDialog } from '@angular/material/dialog';
     styleUrls: ['./profiles.component.scss']
 })
 export class ProfilesComponent extends CompanyTemplateComponent implements OnInit, AfterViewInit {
+    @ViewChild('responsiveActions') public responsiveActions: AppResponsiveActionsComponent;
+    public actions_model: Array<ResponsiveAction> = ProfilesService.actions_model;
+
     @Input() public field: Field;
     @Input() public showActions = true;
     @Input() public tableClasses: Array<string>;
@@ -56,6 +61,10 @@ export class ProfilesComponent extends CompanyTemplateComponent implements OnIni
         this.columns.push(new Column('first_name', 'first_name').setTemplate(this.name_template));
         this.columns.push(new Column('charge.name', 'charge', '', ''));
         this.columns.push(new Column('role.name', 'role', '', '', 'end center'));
+    }
+
+    public actionClick(action_key) {
+        this[action_key]();
     }
 
     public goToElement(element: Profile) {
