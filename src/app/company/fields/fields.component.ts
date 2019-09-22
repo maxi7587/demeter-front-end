@@ -40,8 +40,6 @@ export class FieldsComponent extends CompanyTemplateComponent implements OnInit 
     public ngOnInit() {
         // TODO: improve for mobile
         this.columns.push(new Column('name', 'name'));
-        this.columns.push(new Column('field.name', 'field'));
-        this.columns.push(new Column('priority', 'priority'));
         this.columns.push(new Column('status', 'status'));
     }
 
