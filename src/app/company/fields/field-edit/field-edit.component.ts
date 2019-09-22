@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Profile } from 'src/app/shared/services/profiles.service';
+import { User, UsersService } from 'src/app/shared/services/users.service';
 import { ToolDialogComponent } from 'src/app/company/tools/tool-dialog/tool-dialog.component';
 import { ProfilesComponent } from 'src/app/company/profiles/profiles.component';
 import { ToolsComponent } from 'src/app/company/tools/tools.component';
@@ -62,6 +64,7 @@ export class FieldEditComponent extends CompanyTemplateComponent implements OnIn
         public fieldsService: FieldsService,
         public companiesService: CompaniesService,
         public dialog: MatDialog,
+        protected usersService: UsersService,
         protected measureUnitsService: MeasureUnitsService,
         protected router: Router,
         protected activatedRoute: ActivatedRoute,
@@ -84,11 +87,32 @@ export class FieldEditComponent extends CompanyTemplateComponent implements OnIn
             this.navigationService.actions.next(new SidenavActions(['cancel', 'delete', 'save']));
         }
 
+        this.usersService
+            .getUser()
+            .subscribe(
+                user => {
+                    let user_company_profile = this.getUserCompanyProfile(user, this.activatedRoute.snapshot.params.company_id);
+                    if (user_company_profile.role !== 'Administrator') {
+                        this.field_form.disable();
+                    }
+                }
+            );
+
         this.measureUnitsService
             .all(undefined, undefined, { quantity_type: 'area' })
             .subscribe(
                 measure_units => this.measure_units = measure_units
             );
+    }
+
+    public getUserCompanyProfile(user: User, company_id: string): Profile {
+        // TODO: profile relationships taken from User has reated keys, not full models... except role (has the name)
+        // wait for the api to fix this
+        console.log('user ---->', user);
+        console.log('company_id ---->', company_id);
+        let user_company_profile = user.demeter_profiles.find(profile => (profile.company as any).toString() === company_id);
+
+        return user_company_profile;
     }
 
     public selectedTabChange(tab: MatTabChangeEvent) {
