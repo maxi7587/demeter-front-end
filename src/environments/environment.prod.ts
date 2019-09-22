@@ -7,9 +7,9 @@ export const environment = {
     env: 'production',
     MPURL: mpurl,
     APIURL: mpurl,
-    clientId: 'IUPfaJdxUwkHfSbiXSUyzmIypqC1MDn3XCJeVMUk',
+    clientId: 'UQchCqv7MmohI9VuZR5E2FiuUNb24jBjPRLFIcOy',
     clientSecret:
-        `5IkrTIn0OpGOnHwhWLfUN6mNWZqHV02mjs1iQuOJNFGolJ23NK8ZpUZFUi51KJ1Dn1h81njmshoKdVmzpVzo6BlRQXEyIOYZmQCkwvR9InSjZccBGSl18onvlHEdVV3H`,
+        `vaEPQLQ0e1nmbuiILs4FpB5iuc3quI6iGYGLFZ07QfX5cL6Mxvz1ii6cBE8NeJZx2I1TQTgaaQZWV5ijK2G1eQxOpth9PwpkIqjVKMxgYssZoFmNxrCcDTZq0DhjRGZ0`,
     whiteListedDomains: [
         'demeter.pythonanywhere.com',
         'tranquil-sands-20400.herokuapp.com',
