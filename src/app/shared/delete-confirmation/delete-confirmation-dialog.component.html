@@ -4,6 +4,6 @@
     <p [innerHTML]="data?.text"></p>
 </mat-dialog-content>
 <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
-    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button (click)="cancel()">{{ 'Cancel' | translate }}</button>
     <button mat-button (click)="delete()" color="primary">Delete</button>
 </mat-dialog-actions>

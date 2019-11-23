@@ -16,17 +16,17 @@
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <input matInput type="text" placeholder="Name" formControlName="first_name">
+            <input matInput type="text" placeholder="{{ 'Name' | translate }}" formControlName="first_name">
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <input matInput type="text" placeholder="Last name" formControlName="last_name">
+            <input matInput type="text" placeholder="{{ 'Last name' | translate }}" formControlName="last_name">
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <input matInput type="number" placeholder="CUIT/CUIL" formControlName="cuit">
+            <input matInput type="number" placeholder="{{ 'CUIT/CUIL' | translate }}" formControlName="cuit">
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
@@ -39,19 +39,19 @@
         <mat-form-field *ngIf="roles"
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <mat-select placeholder="Role" formControlName="role" [compareWith]="compareById">
+            <mat-select placeholder="{{ 'Role' | translate }}" formControlName="role" [compareWith]="compareById">
                 <mat-option *ngFor="let role of roles.results" [value]="role">{{ role.name }}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <input matInput type="number" placeholder="Daily working hours" formControlName="daily_working_hours">
+            <input matInput type="number" placeholder="{{ 'Daily working hours' | translate }}" formControlName="daily_working_hours">
         </mat-form-field>
         <mat-form-field *ngIf="fields"
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <mat-select placeholder="Field" formControlName="field" [compareWith]="compareById">
+            <mat-select placeholder="{{ 'Field' | translate }}" formControlName="field" [compareWith]="compareById">
                 <mat-option *ngFor="let field of fields.results" [value]="field">{{ field.name }}</mat-option>
             </mat-select>
         </mat-form-field>
@@ -59,7 +59,7 @@
             *ngIf="charges"
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <mat-select placeholder="Charge" formControlName="charge" [value]="profile.charge">
+            <mat-select placeholder="{{ 'Charge' | translate }}" formControlName="charge" [value]="profile.charge">
                 <mat-option *ngFor="let charge of charges.results" [value]="charge">{{ charge.name }}</mat-option>
             </mat-select>
         </mat-form-field>
@@ -67,12 +67,12 @@
             *ngIf="contract_types"
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <mat-select placeholder="Contract type" formControlName="contract_type" [value]="profile.contract_type">
+            <mat-select placeholder="{{ 'Contract type' | translate }}" formControlName="contract_type" [value]="profile.contract_type">
                 <mat-option *ngFor="let contract_type of contract_types.results" [value]="contract_type">{{ contract_type.name }}</mat-option>
             </mat-select>
         </mat-form-field>
     </app-flex-form-container>
-    <h3 class="mat-subheading-1" fxFlex="100">User data</h3>
+    <h3 class="mat-subheading-1" fxFlex="100">{{ 'User data' | translate }}</h3>
     <form
         fxFlex="1 1 100"
         class="height-100 app-form"
@@ -85,26 +85,26 @@
                 #updateRelatedUser
                 fxFlex.gt-sm="calc(50% - 8px)"
                 >
-                Create/update related user
+                {{ 'Create/update related user' | translate }}
             </mat-checkbox>
             <mat-form-field
                 fxFlex.gt-sm="calc(50% - 8px)"
                 >
-                <input matInput type="text" placeholder="Username" formControlName="username">
+                <input matInput type="text" placeholder="{{ 'Username' | translate }}" formControlName="username">
             </mat-form-field>
             <mat-form-field
                 fxFlex.gt-sm="calc(50% - 8px)"
                 >
-                <input matInput type="text" placeholder="Password" formControlName="password">
+                <input matInput type="text" placeholder="{{ 'Password' | translate }}" formControlName="password">
             </mat-form-field>
             <mat-form-field
                 fxFlex.gt-sm="calc(50% - 8px)"
                 >
-                <input matInput type="text" placeholder="Repeat password" formControlName="repeat_password">
+                <input matInput type="text" placeholder="{{ 'Repeat password' | translate }}" formControlName="repeat_password">
             </mat-form-field>
         </app-flex-form-container>
     </form>
-    <h3 class="mat-subheading-1" fxFlex="100">Contact data</h3>
+    <h3 class="mat-subheading-1" fxFlex="100">{{ 'Contact data' | translate }}</h3>
     <app-contact-form
         class="width-100"
         #contactForm

@@ -13,7 +13,7 @@
                 id="profiles-tab"
                 mat-tab-label
                 >
-                Pinned profiles
+                {{ 'Pinned profiles' | translate }}
             </ng-template>
             <div
                 fxLayout.gt-sm="row wrap"
@@ -36,8 +36,8 @@
                         >
                         <h4 class="mat-subheading-2">{{ profile.first_name + ' ' + profile.last_name }}</h4>
                         <mat-card-content fxLayout="column" fxLayoutGap="8px">
-                            <p>{{ profile.charge ? profile.charge.name : 'No charge assigned' }}</p>
-                            <p>{{ profile.role.name }}</p>
+                            <p>{{ (profile.charge ? profile.charge.name : 'No charge assigned') | translate }}</p>
+                            <p>{{ profile.role.name | translate }}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>
@@ -50,9 +50,9 @@
                         (click)="showProfileDialog()"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
-                        <h4 class="mat-subheading-2">{{ 'Add profile' }}</h4>
+                        <h4 class="mat-subheading-2">{{ 'Add profile' | translate }}</h4>
                         <mat-card-content>
-                            <p>{{ 'Add a new profile to your company' }}</p>
+                            <p>{{ 'Add a new profile to your company' | translate }}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>
@@ -63,7 +63,7 @@
                 id="fields-tab"
                 mat-tab-label
                 >
-                Fields
+                {{ 'Fields' | translate }}
             </ng-template>
             <div
                 fxLayout.gt-sm="row wrap"
@@ -94,9 +94,9 @@
                         [routerLink]="'../fields/0'"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
-                        <h4 class="mat-subheading-2">{{ 'Add field' }}</h4>
+                        <h4 class="mat-subheading-2">{{ 'Add field' | translate }}</h4>
                         <mat-card-content>
-                            <p>{{ 'Add a new field to your company' }}</p>
+                            <p>{{ 'Add a new field to your company' | translate }}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>
@@ -107,7 +107,7 @@
                 id="tasks-tab"
                 mat-tab-label
                 >
-                Tasks
+                {{ 'Tasks' | translate }}
             </ng-template>
             <div
                 class="app-basic-padding"
@@ -123,7 +123,7 @@
                     fxLayoutGap.lt-md="8px"
                     style="height: auto !important; padding-top: 16px; padding-bottom: 16px; overflow: hidden"
                     >
-                    <h4 class="mat-subheading-2">Not completed tasks</h4>
+                    <h4 class="mat-subheading-2">{{ 'Not completed tasks' | translate }}</h4>
                     <mat-card
                         *ngFor="let task of uncompleted_tasks"
                         (click)="showTaskDialog(task)"
@@ -132,16 +132,16 @@
                         <h4 class="mat-subheading-2">{{ task.name }}</h4>
                         <mat-card-content>
                             <p>{{ task.status }}</p>
-                            <p>{{ task.details || 'No details...' }}</p>
+                            <p>{{ task.details || 'No details...' | translate }}</p>
                         </mat-card-content>
                     </mat-card>
                     <mat-card
                         (click)="showTaskDialog()"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
-                        <h4 class="mat-subheading-2">{{ 'Add task' }}</h4>
+                        <h4 class="mat-subheading-2">{{ 'Add task' | translate }}</h4>
                         <mat-card-content>
-                            <p>{{ 'Add a new task' }}</p>
+                            <p>{{ 'Add a new task' | translate }}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>
@@ -153,7 +153,7 @@
                     class="width-100"
                     style="height: auto !important; padding-top: 16px; padding-bottom: 16px; overflow: hidden"
                     >
-                    <h4 class="mat-subheading-2">Completed tasks</h4>
+                    <h4 class="mat-subheading-2">{{ 'Completed tasks' | translate }}</h4>
                     <mat-card
                         *ngFor="let task of completed_tasks"
                         (click)="showTaskDialog(task)"
@@ -162,7 +162,7 @@
                         <h4 class="mat-subheading-2">{{ task.name }}</h4>
                         <mat-card-content>
                             <p>{{ task.status }}</p>
-                            <p>{{ task.details || 'No details...' }}</p>
+                            <p>{{ task.details || 'No details...' | translate }}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>
@@ -173,7 +173,7 @@
                 id="tools-tab"
                 mat-tab-label
                 >
-                Pinned tools
+                {{ 'Pinned tools' | translate }}
             </ng-template>
             <div
                 fxLayout.gt-sm="row wrap"
@@ -204,9 +204,9 @@
                         (click)="showToolDialog()"
                         style="cursor: pointer; border-left: 4px solid #388e3c"
                         >
-                        <h4 class="mat-subheading-2">{{ 'Add tool' }}</h4>
+                        <h4 class="mat-subheading-2">{{ 'Add tool' | translate }}</h4>
                         <mat-card-content>
-                            <p>{{ 'Add a new tool to your company' }}</p>
+                            <p>{{ 'Add a new tool to your company' | translate }}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>
