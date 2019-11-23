@@ -30,24 +30,24 @@
               [filters]="data.task?.field ? { field: data.task.field.id } : {}"
               [activeOption]="data.task?.field_plot"
               searchField="label"
-              placeholder="Field plot"
+              placeholder="{{ 'Field plot' | translate }}"
               (optionSelected)="updateForm(fieldDataFormGroup, 'field_plot', $event.option.value)"
               >
           </app-drf-collection-autocomplete>
           <mat-form-field
               fxFlex.gt-sm="calc(25% - 8px)"
               >
-              <input matInput type="number" placeholder="From row" formControlName="from_row">
+              <input matInput type="number" placeholder="{{ 'From row' | translate }}" formControlName="from_row">
           </mat-form-field>
           <mat-form-field
               fxFlex.gt-sm="calc(25% - 8px)"
               >
-              <input matInput type="number" placeholder="To row" formControlName="to_row">
+              <input matInput type="number" placeholder="{{ 'To row' | translate }}" formControlName="to_row">
           </mat-form-field>
           <mat-form-field
               fxFlex="100"
               >
-              <textarea matInput placeholder="Details" formControlName="details"></textarea>
+              <textarea matInput placeholder="{{ 'Details' | translate }}" formControlName="details"></textarea>
           </mat-form-field>
       </app-flex-form-container>
       <div align="end">
@@ -64,32 +64,32 @@
               [service]="profilesService"
               [activeOption]="data.task?.assigned_worker"
               searchField="first_name"
-              placeholder="Assigned worker"
+              placeholder="{{ 'Assigned worker' | translate }}"
               (optionSelected)="updateForm(workerAndTimeFormGroup, 'assigned_worker', $event.option.value)"
               >
           </app-drf-collection-autocomplete>
           <mat-form-field
               fxFlex.gt-sm="calc(33% - 8px)"
               >
-              <input matInput [matDatepicker]="started_picker" placeholder="Started at" formControlName="started_at">
+              <input matInput [matDatepicker]="started_picker" placeholder="{{ 'Started at' | translate }}" formControlName="started_at">
               <mat-datepicker-toggle matSuffix [for]="started_picker"></mat-datepicker-toggle>
               <mat-datepicker #started_picker></mat-datepicker>
           </mat-form-field>
           <mat-form-field
               fxFlex.gt-sm="calc(33% - 8px)"
               >
-              <input matInput [matDatepicker]="finished_picker" placeholder="Finished at" formControlName="finished_at">
+              <input matInput [matDatepicker]="finished_picker" placeholder="{{ 'Finished at' | translate }}" formControlName="finished_at">
               <mat-datepicker-toggle matSuffix [for]="finished_picker"></mat-datepicker-toggle>
               <mat-datepicker #finished_picker></mat-datepicker>
           </mat-form-field>
           <mat-form-field
               fxFlex.gt-sm="calc(33% - 8px)"
               >
-              <input matInput type="number" placeholder="Worked time" formControlName="duration">
+              <input matInput type="number" placeholder="{{ 'Worked time' | translate }}" formControlName="duration">
           </mat-form-field>
       </app-flex-form-container>
       <div align="end">
-        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
         <button mat-button matStepperNext>{{ 'Next' | translate }}</button>
       </div>
     </form>
@@ -118,26 +118,26 @@
               [filters]="taskTypeAndToolsFormGroup.value.task_type ? { task_type: taskTypeAndToolsFormGroup.value.task_type.id } : {}"
               [activeOptions]="data.task?.tool"
               searchField="name"
-              placeholder="Tool"
+              placeholder="{{ 'Tool' | translate }}"
               (optionSelected)="updateForm(taskTypeAndToolsFormGroup, 'tool', $event.option.value)"
               >
           </app-drf-collection-chips-autocomplete>
       </app-flex-form-container>
       <div align="end">
-        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperPrevious>{{ 'Back' | translate }}</button>
         <button mat-button matStepperNext>{{ 'Next' | translate }}</button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="taskStatusConfirmationFormGroup">
     <ng-template matStepLabel>{{ 'Confirm and save' | translate }}</ng-template>
-    Please confirm data before saving.
+    {{ 'Please confirm data before saving.' | translate }}
     <form [formGroup]="taskStatusConfirmationFormGroup">
         <app-flex-form-container>
             <mat-form-field
                 fxFlex.gt-sm="calc(25% - 8px)"
                 >
-                <mat-label>Status</mat-label>
+                <mat-label>{{ 'Status' | translate }}</mat-label>
                 <mat-select formControlName="status">
                     <mat-option *ngFor="let status of status_options" [value]="status">
                         {{ status | translate }}

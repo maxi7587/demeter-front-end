@@ -10,17 +10,17 @@
         <mat-form-field
             fxFlex.gt-sm="calc(50% - 8px)"
             >
-            <input matInput type="text" placeholder="Title" formControlName="name">
+            <input matInput type="text" placeholder="{{ 'Title' | translate }}" formControlName="name">
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(25% - 8px)"
             >
-            <input matInput type="number" placeholder="Priority" formControlName="priority">
+            <input matInput type="number" placeholder="{{ 'Priority' | translate }}" formControlName="priority">
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(25% - 8px)"
             >
-            <mat-label>Status</mat-label>
+            <mat-label>{{ 'Status' | translate }}</mat-label>
             <mat-select formControlName="status">
                 <mat-option *ngFor="let status of status_options" [value]="status">
                     {{ status | translate }}
@@ -34,7 +34,7 @@
             [service]="profilesService"
             [activeOption]="task?.supervised_by"
             searchField="first_name"
-            placeholder="Managed by"
+            placeholder="{{ 'Managed by' | translate }}"
             (optionSelected)="updateForm('supervised_by', $event.option.value)"
             >
         </app-drf-collection-autocomplete>
@@ -43,7 +43,7 @@
             [service]="profilesService"
             [activeOption]="task?.assigned_worker"
             searchField="first_name"
-            placeholder="Assigned worker"
+            placeholder="{{ 'Assigned worker' | translate }}"
             (optionSelected)="updateForm('assigned_worker', $event.option.value)"
             >
         </app-drf-collection-autocomplete>
@@ -53,7 +53,7 @@
             [service]="fieldsService"
             [activeOption]="task?.field"
             searchField="name"
-            placeholder="Field"
+            placeholder="{{ 'Field' | translate }}"
             (optionSelected)="updateForm('field', $event.option.value)"
             >
         </app-drf-collection-autocomplete>
@@ -63,7 +63,7 @@
             [filters]="task?.field ? { field: task.field.id } : {}"
             [activeOption]="task?.field_plot"
             searchField="label"
-            placeholder="Field plot"
+            placeholder="{{ 'Field plot | translate '}}"
             (optionSelected)="updateForm('field_plot', $event.option.value)"
             >
         </app-drf-collection-autocomplete>
@@ -72,7 +72,7 @@
             *ngIf="field_rows"
             fxFlex.gt-sm="calc(25% - 8px)"
             >
-            <input matInput type="number" placeholder="From row" formControlName="from_row">
+            <input matInput type="number" placeholder="{{ 'From row' | translate }}" formControlName="from_row">
             <!-- <mat-select placeholder="From row" formControlName="from_row" [compareWith]="compareById">
                 <mat-option *ngFor="let field_row of field_rows.results" value="field_row">{{ field_row.name }}</mat-option>
             </mat-select> -->
@@ -90,7 +90,7 @@
             *ngIf="task_types"
             fxFlex.gt-sm="calc(50% - 8px)"
             >
-            <mat-select placeholder="Task type" formControlName="task_type" [compareWith]="compareById">
+            <mat-select placeholder="{{ 'Task type' | translate }}" formControlName="task_type" [compareWith]="compareById">
                 <mat-option *ngFor="let task_type of task_types.results" [value]="task_type">{{ task_type.name }}</mat-option>
             </mat-select>
         </mat-form-field>
@@ -101,7 +101,7 @@
             [disabled]="!task?.field"
             [activeOptions]="task?.tool"
             searchField="name"
-            placeholder="Tool"
+            placeholder="{{ 'Tool' | translate }}"
             (optionSelected)="updateForm('tool', $event.option.value)"
             >
         </app-drf-collection-chips-autocomplete>
@@ -113,14 +113,14 @@
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <input matInput [matDatepicker]="started_picker" placeholder="Started at">
+            <input matInput [matDatepicker]="started_picker" placeholder="{{ 'Started at' | translate }}">
             <mat-datepicker-toggle matSuffix [for]="started_picker"></mat-datepicker-toggle>
             <mat-datepicker #started_picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <input matInput [matDatepicker]="finished_picker" placeholder="Finished at">
+            <input matInput [matDatepicker]="finished_picker" placeholder="{{ 'Finished at' | translate }}">
             <mat-datepicker-toggle matSuffix [for]="finished_picker"></mat-datepicker-toggle>
             <mat-datepicker #finished_picker></mat-datepicker>
         </mat-form-field>
@@ -142,7 +142,7 @@
         <mat-form-field
             fxFlex="100"
             >
-            <textarea matInput placeholder="Details" formControlName="details"></textarea>
+            <textarea matInput placeholder="{{ 'Details' | translate }}" formControlName="details"></textarea>
         </mat-form-field>
     </app-flex-form-container>
 </form>

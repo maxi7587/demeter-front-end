@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Field plot</h1>
+<h1 mat-dialog-title>{{ 'Field plot' | translate }}</h1>
 <div mat-dialog-content fxLayout="column">
     <div
         *ngFor="let attribute of data.field_plot | keyvalue"
@@ -17,5 +17,5 @@
     </div>
 </div>
 <div mat-dialog-actions align="end">
-    <button mat-button [mat-dialog-close]="false" cdkFocusInitial>Close</button>
+    <button mat-button [mat-dialog-close]="false" cdkFocusInitial>{{ 'Close' | translate }}</button>
 </div>

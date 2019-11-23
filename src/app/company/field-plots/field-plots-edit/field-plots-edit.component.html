@@ -12,7 +12,7 @@
             <mat-expansion-panel [expanded]="true">
                 <mat-expansion-panel-header fxLayout="row">
                     <mat-panel-title>
-                        Plot data
+                        {{ 'Plot data' | translate }}
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <app-flex-form-container>
@@ -32,7 +32,7 @@
             (click)="save()"
             >
             <mat-icon>save</mat-icon>
-            Save
+            {{ 'Save' | translate }}
         </button>
         <button
             mat-raised-button
@@ -44,7 +44,7 @@
             [routerLink]="'..'"
             >
             <mat-icon>cancel</mat-icon>
-            Cancel
+            {{ 'Cancel' | translate }}
         </button>
     </mat-list>
 </div>

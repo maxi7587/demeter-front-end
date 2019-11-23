@@ -1,13 +1,13 @@
 <form [formGroup]="login_form" class="height-100" fxLayout="column" fxLayoutAlign="center center">
     <img src="../../../assets/images/demeter.png" alt="demeter" width="150px">
     <mat-form-field>
-        <input matInput formControlName="email" placeholder="Username or email">
-        <mat-error *ngIf="login_form.controls.email.invalid">This field cannot be empty</mat-error>
+        <input matInput formControlName="email" placeholder="{{ 'Username or email' | translate }}">
+        <mat-error *ngIf="login_form.controls.email.invalid">{{ 'This field cannot be empty' | translate }}</mat-error>
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="password" formControlName="password" placeholder="Password">
-        <mat-error *ngIf="login_form.controls.password.invalid">This field cannot be empty</mat-error>
+        <input matInput type="password" formControlName="password" placeholder="{{ 'Password' | translate }}">
+        <mat-error *ngIf="login_form.controls.password.invalid">{{ 'This field cannot be empty' | translate }}</mat-error>
     </mat-form-field>
     <button mat-icon-button color="primary" (click)="login()"><mat-icon>send</mat-icon></button>
-    <a routerLink="reset_password" style="padding-top: 16px">Forgot my password</a>
+    <a routerLink="reset_password" style="padding-top: 16px">{{ 'Forgot my password' | translate }}</a>
 </form>

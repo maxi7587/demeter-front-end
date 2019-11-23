@@ -9,33 +9,33 @@
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <input matInput [matDatepicker]="date_picker" placeholder="Date" formControlName="date">
+            <input matInput [matDatepicker]="date_picker" placeholder="{{ 'Date' | translate }}" formControlName="date">
             <mat-datepicker-toggle matSuffix [for]="date_picker"></mat-datepicker-toggle>
             <mat-datepicker #date_picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <mat-select placeholder="Type" formControlName="type">
+            <mat-select placeholder="{{ 'Type' | translate }}" formControlName="type">
                 <mat-option *ngFor="let type of supply_transaction_types" [value]="type">{{ type }}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <mat-select placeholder="Status" formControlName="status">
+            <mat-select placeholder="{{ 'Status' | translate }}" formControlName="status">
                 <mat-option *ngFor="let status of supply_transaction_status" [value]="status">{{ status }}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <input matInput type="number" placeholder="Quantity" formControlName="quantity">
+            <input matInput type="number" placeholder="{{ 'Quantity' | translate }}" formControlName="quantity">
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <input matInput type="number" placeholder="Amount" formControlName="amount">
+            <input matInput type="number" placeholder="{{ 'Amount' | translate }}" formControlName="amount">
         </mat-form-field>
         <app-drf-collection-autocomplete
             fxFlex.gt-sm="calc(50% - 8px)"

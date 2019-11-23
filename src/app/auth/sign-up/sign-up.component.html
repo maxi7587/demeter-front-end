@@ -6,24 +6,24 @@
     (submit)="save()"
     >
     <mat-form-field>
-        <input matInput formControlName="first_name" placeholder="Nombre">
-        <mat-error *ngIf="sign_up_form.controls.first_name.invalid">Debes colocar tu nombre</mat-error>
+        <input matInput formControlName="first_name" placeholder="{{ 'Name' | translate }}">
+        <mat-error *ngIf="sign_up_form.controls.first_name.invalid">{{ 'Name is required' | translate }}</mat-error>
     </mat-form-field>
     <mat-form-field>
-        <input matInput formControlName="last_name" placeholder="Apellido">
-        <mat-error *ngIf="sign_up_form.controls.last_name.invalid">Debes colocar tu apellido</mat-error>
+        <input matInput formControlName="last_name" placeholder="{{ 'Last name' | translate }}">
+        <mat-error *ngIf="sign_up_form.controls.last_name.invalid">{{ 'Last name is required' | translate }}</mat-error>
     </mat-form-field>
     <mat-form-field>
-        <input matInput formControlName="email" placeholder="Correo electrónico">
-        <mat-error *ngIf="sign_up_form.controls.email.invalid">Debes colocar tu correo electrónico</mat-error>
+        <input matInput formControlName="email" placeholder="{{ 'Email' | translate }}">
+        <mat-error *ngIf="sign_up_form.controls.email.invalid">{{ 'Email is required' | translate }}</mat-error>
     </mat-form-field>
     <mat-form-field>
-        <input type="password" matInput formControlName="password" placeholder="Contraseña">
-        <mat-error *ngIf="sign_up_form.controls.password.invalid">Debes elegir una contraseña</mat-error>
+        <input type="password" matInput formControlName="password" placeholder="{{ 'Password' | translate }}">
+        <mat-error *ngIf="sign_up_form.controls.password.invalid">{{ 'Password is required' | translate }}</mat-error>
     </mat-form-field>
     <mat-form-field>
-        <input type="password" matInput formControlName="repeat_password" placeholder="Confirma tu contraseña">
-        <mat-error *ngIf="sign_up_form.controls.repeat_password.invalid">Debes confirmar tu contraseña</mat-error>
+        <input type="password" matInput formControlName="repeat_password" placeholder="{{ 'Confirm password' | translate }}">
+        <mat-error *ngIf="sign_up_form.controls.repeat_password.invalid">{{ 'Repeat passwowrd is required' | translate }}</mat-error>
     </mat-form-field>
     <button mat-icon-button color="primary"><mat-icon>send</mat-icon></button>
 </form>

@@ -2,12 +2,12 @@
     <mat-form-field
         fxFlex.gt-sm="calc(50% - 8px)"
         >
-        <input matInput type="text" placeholder="Code" formControlName="code">
+        <input matInput type="text" placeholder="{{ 'Code' | translate }}" formControlName="code">
     </mat-form-field>
     <mat-form-field
         fxFlex.gt-sm="calc(50% - 8px)"
         >
-        <input matInput type="text" placeholder="Label" formControlName="label">
+        <input matInput type="text" placeholder="{{ 'Label' | translate }}" formControlName="label">
     </mat-form-field>
     <!-- [disabled]="true" add disabled to autocomplete -->
     <app-drf-collection-autocomplete
@@ -15,14 +15,14 @@
         [service]="fieldsService"
         [activeOption]="field"
         searchField="name"
-        placeholder="Field"
+        placeholder="{{ 'Field' | translate }}"
         (optionSelected)="updateForm('field', $event.option.value)"
         >
     </app-drf-collection-autocomplete>
     <mat-form-field
         fxFlex.gt-sm="calc(50% - 8px)"
         >
-        <mat-select placeholder="Status" formControlName="status">
+        <mat-select placeholder="{{ 'Status' | translate }}" formControlName="status">
             <mat-option
                 *ngFor="let status_value of ['active', 'inactive']"
                 [value]="status_value"
@@ -31,16 +31,16 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
-    <h3 class="mat-subheading-2" fxFlex="100">Plot measure data</h3>
+    <h3 class="mat-subheading-2" fxFlex="100">{{ 'Plot measure data' | translate }}</h3>
     <mat-form-field
         fxFlex.gt-sm="calc(33% - 8px)"
         >
-        <input matInput type="number" placeholder="Area" formControlName="area">
+        <input matInput type="number" placeholder="{{ 'Area' | translate }}" formControlName="area">
     </mat-form-field>
     <mat-form-field
         fxFlex.gt-sm="calc(33% - 8px)"
         >
-        <mat-select placeholder="Area measure unit" formControlName="area_measure_unit">
+        <mat-select placeholder="{{ 'Area measure unit' | translate }}" formControlName="area_measure_unit">
             <!-- IMPORTANT: have to use id as value because measure units is not a nested resource, it's a primary key -->
             <mat-option
                 *ngFor="let unit of area_measure_units?.results"
@@ -53,17 +53,17 @@
     <mat-form-field
         fxFlex.gt-sm="calc(33% - 8px)"
         >
-        <input matInput type="number" placeholder="Field elements (qty)" formControlName="field_rows_qty">
+        <input matInput type="number" placeholder="{{ 'Field elements (qty)' | translate }}" formControlName="field_rows_qty">
     </mat-form-field>
     <mat-form-field
         fxFlex.gt-sm="calc(33% - 8px)"
         >
-        <input matInput type="number" placeholder="Field elements distance" formControlName="field_rows_distance">
+        <input matInput type="number" placeholder="{{ 'Field elements distance' | translate }}" formControlName="field_rows_distance">
     </mat-form-field>
     <mat-form-field
         fxFlex.gt-sm="calc(33% - 8px)"
         >
-        <mat-select placeholder="Field elements distance measure unit" formControlName="field_rows_distance_measure_unit">
+        <mat-select placeholder="{{ 'Field elements distance measure unit' | translate }}" formControlName="field_rows_distance_measure_unit">
             <!-- IMPORTANT: have to use id as value because measure units is not a nested resource, it's a primary key -->
             <mat-option
                 *ngFor="let unit of length_measure_units?.results"
@@ -73,26 +73,26 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
-    <h3 class="mat-subheading-2" fxFlex="100">Plants data</h3>
+    <h3 class="mat-subheading-2" fxFlex="100">{{ 'Plants data' | translate }}</h3>
     <mat-form-field
         fxFlex.gt-sm="calc(50% - 8px)"
         >
-        <input matInput type="text" placeholder="Graft" formControlName="graft">
+        <input matInput type="text" placeholder="{{ 'Graft' | translate }}" formControlName="graft">
     </mat-form-field>
     <mat-form-field
         fxFlex.gt-sm="calc(50% - 8px)"
         >
-        <input matInput type="text" placeholder="Foot" formControlName="foot">
+        <input matInput type="text" placeholder="{{ 'Foot' | translate }}" formControlName="foot">
     </mat-form-field>
     <mat-form-field
         fxFlex.gt-sm="calc(33% - 8px)"
         >
-        <input matInput type="number" placeholder="Plants distance" formControlName="plants_distance">
+        <input matInput type="number" placeholder="{{ 'Plants distance' | translate }}" formControlName="plants_distance">
     </mat-form-field>
     <mat-form-field
         fxFlex.gt-sm="calc(33% - 8px)"
         >
-        <mat-select placeholder="Plants distance measure unit" formControlName="plants_distance_measure_unit">
+        <mat-select placeholder="{{ 'Plants distance measure unit' | translate }}" formControlName="plants_distance_measure_unit">
             <!-- IMPORTANT: have to use id as value because measure units is not a nested resource, it's a primary key -->
             <mat-option
                 *ngFor="let unit of length_measure_units?.results"
@@ -105,18 +105,18 @@
     <mat-form-field
         fxFlex.gt-sm="calc(33% - 8px)"
         >
-        <input matInput type="number" placeholder="Plantation year" formControlName="plantation_year">
+        <input matInput type="number" placeholder="{{ 'Plantation year' | translate }}" formControlName="plantation_year">
     </mat-form-field>
     <mat-form-field
         fxFlex.gt-sm="calc(33% - 8px)"
         >
-        <input matInput type="text" placeholder="Plants origin" formControlName="plants_origin">
+        <input matInput type="text" placeholder="{{ 'Plants origin' | translate }}" formControlName="plants_origin">
     </mat-form-field>
-    <h3 class="mat-subheading-2" fxFlex="100">Additional data</h3>
+    <h3 class="mat-subheading-2" fxFlex="100">{{ 'Additional data' | translate }}</h3>
     <mat-form-field
         fxFlex.gt-sm="calc(33% - 8px)"
         >
-        <mat-select placeholder="Anit hail net" formControlName="anit_hail_net">
+        <mat-select placeholder="{{ 'Anit hail net' | translate }}" formControlName="anit_hail_net">
             <mat-option
                 *ngFor="let anit_hail_net_option of [{option_name: 'Yes', value: true}, {option_name: 'No', value: false}]"
                 [value]="anit_hail_net_option.value"
@@ -129,16 +129,16 @@
     <mat-form-field
         fxFlex.gt-sm="calc(33% - 8px)"
         >
-        <input matInput type="text" placeholder="Irrigation" formControlName="irrigation">
+        <input matInput type="text" placeholder="{{ 'Irrigation' | translate }}" formControlName="irrigation">
     </mat-form-field>
     <mat-form-field
         fxFlex.gt-sm="calc(33% - 8px)"
         >
-        <input matInput type="text" placeholder="Conduction system" formControlName="conduction_system">
+        <input matInput type="text" placeholder="{{ 'Conduction system' | translate }}" formControlName="conduction_system">
     </mat-form-field>
     <mat-form-field
         fxFlex="100"
         >
-        <textarea matInput placeholder="Details" formControlName="details"></textarea>
+        <textarea matInput placeholder="{{ 'Details' | translate }}" formControlName="details"></textarea>
     </mat-form-field>
 </form>

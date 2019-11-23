@@ -12,7 +12,7 @@
             <mat-expansion-panel [expanded]="true">
                 <mat-expansion-panel-header fxLayout="row">
                     <mat-panel-title>
-                        Tool data
+                        {{ 'Tool data' | translate }}
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <app-flex-form-container>
@@ -20,12 +20,12 @@
                     <mat-form-field
                         fxFlex.gt-sm="calc(25% - 8px)"
                         >
-                        <input matInput type="text" placeholder="Name" formControlName="name">
+                        <input matInput type="text" placeholder="{{ 'Name' | translate }}" formControlName="name">
                     </mat-form-field>
                     <mat-form-field
                         fxFlex.gt-sm="calc(25% - 8px)"
                         >
-                        <input matInput type="text" placeholder="Code" formControlName="code">
+                        <input matInput type="text" placeholder="{{ 'Code' | translate }}" formControlName="code">
                     </mat-form-field>
                     <mat-form-field
                         fxFlex.gt-sm="calc(25% - 8px)"
@@ -40,7 +40,7 @@
                     <mat-form-field
                         fxFlex.gt-sm="calc(25% - 8px)"
                         >
-                        <mat-label>Task type</mat-label>
+                        <mat-label>{{ 'Task type' | translate }}</mat-label>
                         <mat-select formControlName="task_type">
                             <mat-option *ngFor="let task_type of task_types.results" [value]="task_type">
                                 {{ task_type.name | translate }}
@@ -53,14 +53,14 @@
                         [service]="fieldsService"
                         [activeOption]="tool?.field"
                         searchField="name"
-                        placeholder="Field"
+                        placeholder="{{ 'Field' | translate }}"
                         (optionSelected)="updateForm('field', $event.option.value)"
                         >
                     </app-drf-collection-autocomplete>
                     <mat-form-field
                         fxFlex="100"
                         >
-                        <textarea matInput placeholder="Details" formControlName="detail"></textarea>
+                        <textarea matInput placeholder="{{ 'Details' | translate }}" formControlName="detail"></textarea>
                     </mat-form-field>
                 </app-flex-form-container>
             </mat-expansion-panel>
@@ -76,7 +76,7 @@
             (click)="save()"
             >
             <mat-icon>save</mat-icon>
-            Save
+            {{ 'Save' | translate }}
         </button>
         <button
             mat-raised-button
@@ -88,7 +88,7 @@
             [routerLink]="'..'"
             >
             <mat-icon>cancel</mat-icon>
-            Cancel
+            {{ 'Cancel' | translate }}
         </button>
     </mat-list>
 </div>

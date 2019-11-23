@@ -4,7 +4,7 @@
             id="supply-data-tab"
             mat-tab-label
             >
-            Supply data
+            {{ 'Supply data' | translate }}
         </ng-template>
         <div
             style="padding: 16px;"
@@ -18,7 +18,7 @@
                 <mat-expansion-panel [expanded]="true">
                     <mat-expansion-panel-header fxLayout="row">
                         <mat-panel-title>
-                            Supply data
+                            {{ 'Supply data' | translate }}
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <form
@@ -39,41 +39,41 @@
                             <mat-form-field
                                 fxFlex.gt-sm="calc(33% - 8px)"
                                 >
-                                <input matInput type="text" placeholder="Name" formControlName="name">
+                                <input matInput type="text" placeholder="{{ 'Name' | translate }}" formControlName="name">
                             </mat-form-field>
                             <mat-form-field *ngIf="fields"
                                 fxFlex.gt-sm="calc(33% - 8px)"
                                 >
-                                <mat-select placeholder="Field" formControlName="field" [compareWith]="compareById">
+                                <mat-select placeholder="{{ 'Field' | translate }}" formControlName="field" [compareWith]="compareById">
                                     <mat-option *ngFor="let field of fields.results" [value]="field">{{ field.name }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field
                                 fxFlex.gt-sm="calc(33% - 8px)"
                                 >
-                                <input matInput type="number" placeholder="Price" formControlName="price">
+                                <input matInput type="number" placeholder="{{ 'Price' | translate }}" formControlName="price">
                             </mat-form-field>
                             <mat-form-field *ngIf="measure_units"
                                 fxFlex.gt-sm="calc(25% - 8px)"
                                 >
-                                <mat-select placeholder="Measure unit" formControlName="measure_unit" [compareWith]="compareById">
+                                <mat-select placeholder="{{ 'Measure unit' | translate }}" formControlName="measure_unit" [compareWith]="compareById">
                                     <mat-option *ngFor="let measure_unit of measure_units.results" [value]="measure_unit.id">{{ measure_unit.id }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field
                                 fxFlex.gt-sm="calc(25% - 8px)"
                                 >
-                                <input matInput type="number" placeholder="Actual stock" formControlName="actual_stock">
+                                <input matInput type="number" placeholder="{{ 'Actual stock' | translate }}" formControlName="actual_stock">
                             </mat-form-field>
                             <mat-form-field
                                 fxFlex.gt-sm="calc(25% - 8px)"
                                 >
-                                <input matInput type="number" placeholder="Pending stock" formControlName="pending_stock">
+                                <input matInput type="number" placeholder="{{ 'Pending stock' | translate }}" formControlName="pending_stock">
                             </mat-form-field>
                             <mat-form-field
                                 fxFlex.gt-sm="calc(25% - 8px)"
                                 >
-                                <input matInput type="number" placeholder="Desired stock" formControlName="desired_stock">
+                                <input matInput type="number" placeholder="{{ 'Desired stock' | translate }}" formControlName="desired_stock">
                             </mat-form-field>
                         </app-flex-form-container>
                     </form>
@@ -98,7 +98,7 @@
                         >
                     </button> -->
                     <mat-icon>save</mat-icon>
-                    Save
+                    {{ 'Save' | translate }}
                 </button>
                 <button
                     mat-raised-button
@@ -119,7 +119,7 @@
                     >
                     </button> -->
                     <mat-icon>cancel</mat-icon>
-                    Cancel
+                    {{ 'Cancel' | translate }}
                 </button>
             </mat-list>
         </div>
@@ -129,7 +129,7 @@
             id="supply-transactions-tab"
             mat-tab-label
             >
-            Supply transactions
+            {{ 'Supply transactions' | translate }}
         </ng-template>
         <!-- [tableClasses]="['mat-elevation-z0']" -->
         <!-- style="padding: 16px;" -->

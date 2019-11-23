@@ -9,33 +9,33 @@
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <input matInput placeholder="Document ID" formControlName="document_id">
+            <input matInput placeholder="{{ 'Document ID' | translate }}" formControlName="document_id">
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <input matInput [matDatepicker]="date_picker" placeholder="Date" formControlName="date">
+            <input matInput [matDatepicker]="date_picker" placeholder="{{ 'Date' | translate }}" formControlName="date">
             <mat-datepicker-toggle matSuffix [for]="date_picker"></mat-datepicker-toggle>
             <mat-datepicker #date_picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <mat-select placeholder="Type" formControlName="type">
+            <mat-select placeholder="{{ 'Type' | translate }}" formControlName="type">
                 <mat-option *ngFor="let type of receipt_types" [value]="type">{{ type }}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <mat-select placeholder="Status" formControlName="status">
+            <mat-select placeholder="{{ 'Status' | translate }}" formControlName="status">
                 <mat-option *ngFor="let status of receipt_status" [value]="status">{{ status }}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field
             fxFlex.gt-sm="calc(33% - 8px)"
             >
-            <input matInput type="number" placeholder="Amount" formControlName="amount">
+            <input matInput type="number" placeholder="{{ 'Amount' | translate }}" formControlName="amount">
         </mat-form-field>
         <app-drf-collection-autocomplete
             fxFlex.gt-sm="calc(33% - 8px)"
@@ -47,7 +47,7 @@
             (optionSelected)="updateForm('field', $event.option.value)"
             >
         </app-drf-collection-autocomplete>
-        <h3 class="mat-subheading-2" fxFlex="100">Receipt Items</h3>
+        <h3 class="mat-subheading-2" fxFlex="100">{{ 'Receipt Items' | translate }}</h3>
         <div
             *ngFor="let supply_transaction of receipt.receipt_supply_transactions"
             fxFlex="100"
@@ -61,7 +61,7 @@
                 <input
                     matInput
                     type="number"
-                    placeholder="Quantity"
+                    placeholder="{{ 'Quantity' | translate }}"
                     [disabled]="disabled"
                     [value]="supply_transaction.quantity"
                     (change)="updateSupplyTransaction(supply_transaction, 'quantity', $event.target.value)"
@@ -73,7 +73,7 @@
                 [service]="suppliesService"
                 [activeOption]="supply_transaction.supply"
                 searchField="name"
-                placeholder="Supply"
+                placeholder="{{ 'Supply' | translate }}"
                 (optionSelected)="updateSupplyTransaction(supply_transaction, 'supply', $event.option.value)"
                 >
             </app-drf-collection-autocomplete>
@@ -83,7 +83,7 @@
                 <input
                     matInput
                     type="number"
-                    placeholder="Amount"
+                    placeholder="{{ 'Amount' | translate }}"
                     [disabled]="disabled"
                     [value]="supply_transaction.amount"
                     (change)="updateSupplyTransaction(supply_transaction, 'amount', $event.target.value)"

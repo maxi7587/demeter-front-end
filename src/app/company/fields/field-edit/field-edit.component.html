@@ -4,7 +4,7 @@
             id="personl-data-tab"
             mat-tab-label
             >
-            General data
+            {{ 'General data' | translate }}
         </ng-template>
         <div
             style="padding: 16px;"
@@ -25,7 +25,7 @@
                     <mat-expansion-panel [expanded]="true">
                         <mat-expansion-panel-header fxLayout="row">
                             <mat-panel-title>
-                                Field data
+                                {{ 'Field data' | translate }}
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <app-flex-form-container>
@@ -46,19 +46,19 @@
                                 [service]="profilesService"
                                 [activeOption]="field?.manager"
                                 searchField="first_name"
-                                placeholder="Manager"
+                                placeholder="{{ 'Manager' | translate }}"
                                 (optionSelected)="updateForm('manager', $event.option.value)"
                                 >
                             </app-drf-collection-autocomplete>
                             <mat-form-field
                                 fxFlex.gt-sm="calc(50% - 8px)"
                                 >
-                                <input matInput type="number" placeholder="Area" formControlName="total_area">
+                                <input matInput type="number" placeholder="{{ 'Area' | translate }}" formControlName="total_area">
                             </mat-form-field>
                             <mat-form-field
                                 fxFlex.gt-sm="calc(50% - 8px)"
                                 >
-                                <mat-select placeholder="Area measure unit" formControlName="total_area_measure_unit">
+                                <mat-select placeholder="{{ 'Area measure unit' | translate }}" formControlName="total_area_measure_unit">
                                     <!-- IMPORTANT: have to use id as value because measure units is not a nested resource, it's a primary key -->
                                     <mat-option
                                         *ngFor="let unit of measure_units?.results"
@@ -71,14 +71,14 @@
                             <mat-form-field
                                 fxFlex="100"
                                 >
-                                <textarea matInput placeholder="Details" formControlName="details"></textarea>
+                                <textarea matInput placeholder="{{ 'Details' | translate }}" formControlName="details"></textarea>
                             </mat-form-field>
                         </app-flex-form-container>
                     </mat-expansion-panel>
                     <mat-expansion-panel>
                         <mat-expansion-panel-header fxLayout="row">
                             <mat-panel-title>
-                                Field contact data
+                                {{ 'Field contact data' | translate }}
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <app-contact-form
@@ -90,7 +90,7 @@
                         </app-contact-form>
                     </mat-expansion-panel>
                     <!-- <mat-checkbox formControlName="active">Active</mat-checkbox>
-                    <button mat-button (click)="save()">Save</button> -->
+                    <button mat-button (click)="save()">{{ 'Save' | translate }}</button> -->
                 </mat-accordion>
             </form>
             <mat-list fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="8px" fxHide.lt-md>
@@ -103,7 +103,7 @@
                     (click)="save()"
                     >
                     <mat-icon>save</mat-icon>
-                    Save
+                    {{ 'Save' | translate }}
                 </button>
                 <button
                     mat-raised-button
@@ -115,7 +115,7 @@
                     [routerLink]="'..'"
                     >
                     <mat-icon>cancel</mat-icon>
-                    Cancel
+                    {{ 'Cancel' | translate }}
                 </button>
             </mat-list>
         </div>
@@ -125,7 +125,7 @@
             id="plots-tab"
             mat-tab-label
             >
-            Plots
+            {{ 'Plots' | translate }}
         </ng-template>
         <!-- [tableClasses]="['mat-elevation-z0']" -->
         <div
@@ -150,7 +150,7 @@
             id="tasks-tab"
             mat-tab-label
             >
-            Tasks
+            {{ 'Tasks' | translate }}
         </ng-template>
         <!-- [tableClasses]="['mat-elevation-z0']" -->
         <div
@@ -180,7 +180,7 @@
             id="tools-tab"
             mat-tab-label
             >
-            Tools
+            {{ 'Tools' | translate }}
         </ng-template>
         <!-- [tableClasses]="['mat-elevation-z0']" -->
         <div
@@ -210,7 +210,7 @@
             id="profiles-tab"
             mat-tab-label
             >
-            Profiles
+            {{ 'Profiles' | translate }}
         </ng-template>
         <!-- [tableClasses]="['mat-elevation-z0']" -->
         <div
@@ -265,7 +265,7 @@
             id="supplies-tab"
             mat-tab-label
             >
-            Supplies
+            {{ 'Supplies' | translate }}
         </ng-template>
         <div
             style="padding: 16px;"
@@ -291,7 +291,7 @@
             id="receipts-tab"
             mat-tab-label
             >
-            Receipts
+            {{ 'Receipts' | translate }}
         </ng-template>
         <div
             class="app-basic-padding"
